@@ -96,7 +96,7 @@ body {
 	border-top: 1px solid black;
 }
 </style>
-<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 		<div class="content">
 			<div class="contentTitle">
 				<div style="border-bottom: 2px solid black">

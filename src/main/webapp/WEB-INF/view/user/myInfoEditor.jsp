@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+</head>
 <style>
 body {
 	width: 1200px;
@@ -213,11 +220,12 @@ body {
 	color: #909090;
 }
 </style>
+<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 
 		<div class="content">
 			<div class="content_1">
-				<div class="title">
-					<h1>프로필 정보</h1>
+				<div class="title" style="padding-bottom:10px;">
+					<h2>프로필 정보</h2>
 				</div>
 				<div class="myinfo">
 					<div class="myimage">

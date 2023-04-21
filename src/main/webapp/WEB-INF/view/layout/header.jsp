@@ -209,54 +209,13 @@ button:hover {
 			</div>
 			<div class="header-inner">
 				<h3>
-					<a href="/test/main">tencoShop</a>
+					<a href="/user/main" style="font-size: 28px;">tencoShop</a>
 				</h3>
 				<div class="header-inner-menu">
-					<label><a href="/test/main">HOME</a></label>  <label><a href="#">STYLE</a></label>  <label><a href="#">SHOP</a></label> <label><a href="#">MY</a></label> 
+					<label><a href="/test/main">HOME</a></label>  <label><a href="#">STYLE</a></label>  <label><a href="#">SHOP</a></label> <label><a href="/user/myinfo">MY</a></label> 
 					<span class="material-symbols-outlined"><a href = "/user/search">search</a></span>
 				</div>
 			</div>
 		</div>
-		<div class="header">
-			<div class="header-menu">
-				<nav>
-					<ul class="home-menu">
-						<li><a href="#">추천</a>
-							<ul class="home-menu2">
-								<li><a href="#">남성추천</a></li>
-								<li><a href="#">여성추천</a></li>
-								<li><a href="#">인기브랜드</a></li>
-							</ul></li>
-						<ul class="home-menu">
-							<li><a href="#">남성</a>
-								<ul class="home-menu2">
-									<li><a href="#">상의</a></li>
-									<li><a href="#">하의</a></li>
-									<li><a href="#">인기브랜드</a></li>
-								</ul></li>
-							<ul class="home-menu">
-								<li><a href="#">여성</a>
-									<ul class="home-menu2">
-										<li><a href="#">상의</a></li>
-										<li><a href="#">하의</a></li>
-										<li><a href="#">인기브랜드</a></li>
-									</ul></li>
-								<ul class="home-menu">
-									<li><a href="#">브랜드</a>
-										<ul class="home-menu2">
-											<li><a href="#">모든브랜드</a></li>
-											<li><a href="#">여성추천</a></li>
-											<li><a href="#">남성추천</a></li>
-										</ul></li>
-									<ul class="home-menu">
-										<li><a href="#">공지사항</a>
-											<ul class="home-menu2">
-												<li><a href="#">공지사항</a></li>
-												<li><a href="#">자주묻는질문</a></li>
-												<li><a href="#">검수기준</a></li>
-											</ul></li>
-									</ul>
-				</nav>
-			</div>
-		</div>
+
 	</header>
