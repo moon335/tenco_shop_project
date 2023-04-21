@@ -6,10 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+body {
 }
 
 .top-inner {
@@ -37,7 +34,7 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 20px;
-	padding-left: 58px;
+	padding-left: 20.4px;
 }
 
 .header-inner-menu {
@@ -68,6 +65,11 @@
 	padding: 5px 40px;
 	background-color: white;
 	z-index: 2;
+}
+
+header {
+	width: 1200px;
+	margin: 0 auto;
 }
 
 .home-menu {
@@ -109,18 +111,18 @@ li {
 	list-style: none;
 }
 
-.header-inner-menu > label > a:hover {
+.header-inner-menu>label>a:hover {
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
 }
 
-.header-inner-menu > label > a {
+.header-inner-menu>label>a {
 	color: black;
 	text-decoration: none;
 }
 
-.header-inner-menu > span > a {
+.header-inner-menu>span>a {
 	color: black;
 	text-decoration: none;
 }
@@ -137,7 +139,6 @@ h3>a:hover {
 	color: black;
 	font-weight: bold;
 }
-
 
 .home-menu>li>a {
 	color: black;
@@ -186,8 +187,6 @@ button:hover {
 	border: none;
 	background: #fff;
 }
-
-
 </style>
 </head>
 <body>
@@ -212,8 +211,8 @@ button:hover {
 					<a href="/user/main" style="font-size: 28px;">tencoShop</a>
 				</h3>
 				<div class="header-inner-menu">
-					<label><a href="/test/main">HOME</a></label>  <label><a href="#">STYLE</a></label>  <label><a href="#">SHOP</a></label> <label><a href="/user/myinfo">MY</a></label> 
-					<span class="material-symbols-outlined"><a href = "/user/search">search</a></span>
+					<label><a href="/test/main">HOME</a></label> <label><a href="#">STYLE</a></label> <label><a href="#">SHOP</a></label> <label><a href="/user/myinfo">MY</a></label> <span
+						class="material-symbols-outlined"><a href="/user/search">search</a></span>
 				</div>
 			</div>
 		</div>

@@ -9,7 +9,7 @@
 </head>
 <style>
 body {
-	width: 1200px;
+	width: 1183px;
 	margin: 0 auto;
 }
 

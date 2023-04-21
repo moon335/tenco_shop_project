@@ -69,6 +69,19 @@ pre {
 .carousel-inner img {
 	height: 450px;
 }
+
+.header-menu {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.header-menu nav ul li {
+	margin-right: -40px;
+}
+
+.home-menu2 li {
+	margin-left: -40px;
+}
 </style>
 <div class="header">
 	<div class="header-menu">
