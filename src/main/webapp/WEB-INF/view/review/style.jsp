@@ -45,7 +45,7 @@ h3>a {
             href="#">의류</a> <a href="#">가방</a> <a href="#">액세서리</a>
       </div>
 
-      <div class="category--wrap">
+      <div class="">
          <!-- 인기순 : 하트 많은 순 / 최신순 : id order주기 -->
          <a href="#">인기순</a> <a href="#">최신순</a>
       </div>

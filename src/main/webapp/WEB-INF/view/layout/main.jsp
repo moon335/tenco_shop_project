@@ -1,11 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style type="text/css">
 .carousel-inner img {
 	width: 100%;
@@ -42,17 +48,6 @@
 	margin-top: 50px;
 	margin-left: 315px;
 	width: 1430px;
-}
-
-footer {
-	max-width: 100%;
-	display: flex;
-	justify-content: center;
-	border-top: 1px solid #ccc;
-}
-
-pre {
-	margin: 10px;
 }
 
 .content-box {
@@ -138,22 +133,28 @@ pre {
 		<!-- The slideshow -->
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img src="/images/banner1.jpg" alt="Los Angeles" width="1100" height="500">
+				<img src="/images/banner1.jpg" alt="Los Angeles" width="1100"
+					height="500">
 			</div>
 			<div class="carousel-item">
-				<img src="/images/banner2.jpg" alt="Chicago" width="1100" height="500">
+				<img src="/images/banner2.jpg" alt="Chicago" width="1100"
+					height="500">
 			</div>
 			<div class="carousel-item">
-				<img src="/images/banner3.jpg" alt="New York" width="1100" height="500">
+				<img src="/images/banner3.jpg" alt="New York" width="1100"
+					height="500">
 			</div>
 			<div class="carousel-item">
-				<img src="/images/banner4.jpg" alt="New York" width="1100" height="500">
+				<img src="/images/banner4.jpg" alt="New York" width="1100"
+					height="500">
 			</div>
 		</div>
 
 		<!-- Left and right controls -->
-		<a class="carousel-control-prev prev" href="#demo" data-slide="prev"> <span class="carousel-control-prev-icon"></span>
-		</a> <a class="carousel-control-next next" href="#demo" data-slide="next"> <span class="carousel-control-next-icon"></span>
+		<a class="carousel-control-prev prev" href="#demo" data-slide="prev">
+			<span class="carousel-control-prev-icon"></span>
+		</a> <a class="carousel-control-next next" href="#demo" data-slide="next">
+			<span class="carousel-control-next-icon"></span>
 		</a>
 	</div>
 </div>

@@ -208,10 +208,10 @@ button:hover {
 			</div>
 			<div class="header-inner">
 				<h3>
-					<a href="/user/main" style="font-size: 28px;">tencoShop</a>
+					<a href="/main" style="font-size: 28px;">TencoShop</a>
 				</h3>
 				<div class="header-inner-menu">
-					<label><a href="/test/main">HOME</a></label> <label><a href="#">STYLE</a></label> <label><a href="#">SHOP</a></label> <label><a href="/user/myinfo">MY</a></label> <span
+					<label><a href="/main">HOME</a></label> <label><a href="/review/style">STYLE</a></label> <label><a href="#">SHOP</a></label> <label><a href="/user/myinfo">MY</a></label> <span
 						class="material-symbols-outlined"><a href="/user/search">search</a></span>
 				</div>
 			</div>
