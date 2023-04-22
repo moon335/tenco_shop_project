@@ -15,7 +15,7 @@ import com.tenco.tencoshop.repository.model.Product;
 import com.tenco.tencoshop.service.ProductService;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class MainController {
 
    
@@ -28,8 +28,8 @@ public class MainController {
    
    @GetMapping("/main")
    public String mainTest(Model model) {
-      List<Product> list =  productService.readProduct();
-      model.addAttribute("list", list);
+//      List<Product> list =  productService.readProduct();
+//      model.addAttribute("list", list);
       return "layout/main";
    }
    

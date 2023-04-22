@@ -44,17 +44,6 @@
 	width: 1430px;
 }
 
-footer {
-	max-width: 100%;
-	display: flex;
-	justify-content: center;
-	border-top: 1px solid #ccc;
-}
-
-pre {
-	margin: 10px;
-}
-
 .content-box {
 	display: flex;
 	flex-direction: column;

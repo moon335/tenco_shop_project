@@ -87,7 +87,6 @@ header {
 .home-menu:hover .home-menu2 {
 	height: 135px;
 	position: absolute;
-	/*background-color: transparent;*/
 	z-index: 1;
 	border-left: 1px solid #ccc;
 }
@@ -193,7 +192,7 @@ button:hover {
 	<header>
 		<div class="main-inner">
 			<div class="top-inner">
-				<button type="button" onclick="#">관심상품</button>
+				<button type="button" onclick="location.href='/cart/list'">장바구니</button>
 				<c:choose>
 					<c:when test="${principal != null}">
 						<a href="/user/logout"> <label>로그아웃</label></a>
