@@ -71,6 +71,24 @@
 .home-menu2 li {
 	margin-left: -40px;
 }
+
+.article {
+	width: 1400px;
+	flex-wrap: wrap;
+}
+
+.article-prod {
+	display: flex;
+	flex-direction: column;
+}
+
+.article-prod p {
+	width: 260px;
+	height: 20px;
+}
+.article-img {
+	width: 260px;
+}
 </style>
 <div class="header">
 	<div class="header-menu">
@@ -155,12 +173,11 @@
 		<div class="article">
 			<c:forEach var="list" items="${list}">
 				<div class="article-prod">
-					<a href="#"><img alt="" class="article-img" src="${list.img}"></a>
+					<a href="#"><img alt="" class="article-img" src="${list.imgRoute}"></a>
 					<h5>Asics</h5>
-					<p>${list.prodName}</p>
-					<p>${list.prodDescription}</p>
-					<h5>169,000원</h5>
-				</div>
+					<p>${list.engName}</p>
+					<h5>${list.releasePrice}원</h5>
+					</div>
 			</c:forEach>
 		</div>
 	</div>

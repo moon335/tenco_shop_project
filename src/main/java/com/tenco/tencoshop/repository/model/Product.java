@@ -8,7 +8,7 @@ import lombok.Data;
 public class Product {
 
 	private Integer id;
-	private String engNmae;
+	private String engName;
 	private String korName;
 	private Integer purchase;
 	private String gender;
