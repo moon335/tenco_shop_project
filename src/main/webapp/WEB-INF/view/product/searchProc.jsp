@@ -38,43 +38,52 @@ form {
    background-color: transparent;
 }
 
-.producct {
+.product {
    display: flex;
+   flex-wrap: wrap;
    justify-content: center;
-   align-items: center;
 }
 
 .product-search {
-   font-size: small;
+   display: flex;
+   flex-direction: column;
    margin: 10px;
+   width: 280px;
 }
 
-.product-search>img {
+img {
+   width: 280px;
    background-color: #eee;
    size: 50px;
    border-radius: 10px;
-   margin: 5px;
+}
+
+p {
+   width: 280px;
+   height: 15px; 
+   font-size: 13px;
 }
 </style>
 </head>
 <body>
    <div class="search-container">
-      <form action="/user/search-proc" method="get">
+      <form action="/product/search-proc" method="get">
          <div class="search">
-            <input type="text" id="search" name="prodName"
+            <input type="text" id="search" name="title"
                placeholder="브랜드명,모델명 등">
                <input type="submit" value="검색">
          </div>
-         <div class="producct">
-            <c:forEach var="list" items="${list}">
-               <div class="product-search">
-                  <img src="${list.img}" />
-                  <p>${list.prodName}</p>
-                  <p>${list.prodDescription}</p>
-               </div>
-            </c:forEach>
-         </div>
       </form>
    </div>
+   <div class="product">
+      <c:forEach var="list" items="${list}">
+         <div class="product-search">
+            <img class = "img" src="${list.imgRoute}" />
+            <p>${list.engName}</p>
+            <p>${list.korName}</p>
+            <p>${list.releasePrice}원</p>
+         </div>
+      </c:forEach>
+   </div>
 </body>
-</html>
+</html>	

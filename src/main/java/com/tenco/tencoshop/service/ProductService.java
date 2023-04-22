@@ -21,9 +21,9 @@ public class ProductService {
    }
    
    // 제품 검색 기능
-   public List<Product> searchProduct(String prodName){
-      prodName = "%"+prodName+"%";
-      List<Product> list = productRepository.findProduct(prodName);
+   public List<Product> searchProduct(String title){
+	   title = "%"+title+"%";
+      List<Product> list = productRepository.findProduct(title);
       return list;
    }
 }

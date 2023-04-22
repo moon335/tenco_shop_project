@@ -10,5 +10,5 @@ import com.tenco.tencoshop.repository.model.Product;
 public interface ProductRepository {
 
    public List<Product> findAll();
-   public List<Product> findProduct(String prodName);
+   public List<Product> findProduct(String title);
 }

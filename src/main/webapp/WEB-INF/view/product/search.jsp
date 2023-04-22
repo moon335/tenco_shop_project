@@ -55,10 +55,11 @@ form {
 </style>
 </head>
 <body>
+   <body>
    <div class="search-container">
-      <form action="/user/search-proc" method = "get">
+      <form action="/product/search-proc" method = "get">
       <div class="search">
-         <input type="text" id ="search"  name ="prodName" placeholder="브랜드명,모델명 등">
+         <input type="text" id ="search"  name ="title" placeholder="브랜드명,모델명 등">
          <input type="submit" value="검색">
       </div>
       <div class="producct">

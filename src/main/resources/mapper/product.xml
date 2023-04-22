@@ -11,6 +11,6 @@
 
    <select id="findProduct"
       resultType="com.tenco.tencoshop.repository.model.Product">
-      select * from product_tb where prod_name LIKE #{prodName};
+      select * from product_tb where kor_name LIKE #{title} OR eng_name LIKE #{title}
    </select>
 </mapper>
