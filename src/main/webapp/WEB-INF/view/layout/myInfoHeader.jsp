@@ -1,15 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <style type="text/css">
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+}
+
+body {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.side {
+	margin: 30px;
+}
+
+.side a {
+	color: gray;
+	text-decoration-line: none;
+}
+
+.side a:hover {
+	color: black;
+}
+
+.side div {
+	margin-bottom: 25px;
 }
 
 .top-inner {
@@ -186,19 +212,25 @@ button:hover {
 }
 
 .body {
+	display: flex;
 	margin-top: 50px;
 }
+
+.side h4 {
+	color: black;
+}
+
 </style>
 </head>
 <body>
 	<header>
 		<div class="main-inner">
 			<div class="top-inner">
-				<button type="button" onclick="#">관심상품</button>
+				<button type="button" onclick="location.href='/cart/list'">장바구니</button>
 				<c:choose>
 					<c:when test="${principal != null}">
 						<a href="/user/logout"> <label>로그아웃</label></a>
-						<label>${principal.name}님</label>
+						<label>${user.name}님</label>
 					</c:when>
 					<c:otherwise>
 						<button type="button" onclick="location.href='/user/sign-in'">로그인</button>
@@ -212,7 +244,9 @@ button:hover {
 					<a href="/user/main" style="font-size: 28px;">tencoShop</a>
 				</h3>
 				<div class="header-inner-menu">
-					<label><a href="/test/main">HOME</a></label> <label><a href="/review/style">STYLE</a></label> <label><a href="#">SHOP</a></label> <label><a href="/user/myinfo">MY</a></label> <span
+					<label><a href="/test/main">HOME</a></label> <label><a
+						href="/review/style">STYLE</a></label> <label><a href="#">SHOP</a></label>
+					<label><a href="/user/myinfo">MY</a></label> <span
 						class="material-symbols-outlined"><a href="/user/search">search</a></span>
 				</div>
 			</div>
@@ -264,3 +298,4 @@ button:hover {
 				</p>
 			</div>
 		</div>
+		

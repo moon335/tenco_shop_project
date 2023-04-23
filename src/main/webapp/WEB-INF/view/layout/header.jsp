@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -207,7 +212,7 @@ button:hover {
 			</div>
 			<div class="header-inner">
 				<h3>
-					<a href="/user/main" style="font-size: 28px;">tencoShop</a>
+					<a href="/user/main" style="font-size: 28px;">TencoShop</a>
 				</h3>
 				<div class="header-inner-menu">
 					<label><a href="/test/main">HOME</a></label> <label><a href="#">STYLE</a></label> <label><a href="#">SHOP</a></label> <label><a href="/user/myinfo">MY</a></label> <span
