@@ -21,5 +21,4 @@ public class Product {
 	private Integer brandId;
 	private Integer categoryId;
 	private Integer sizeId;
-	
 } // end of class

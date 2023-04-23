@@ -85,6 +85,11 @@
 .article-prod p {
 	width: 260px;
 	height: 20px;
+	margin-left: 10px;
+}
+
+.article-prod h5 {
+	margin-left: 10px;
 }
 .article-img {
 	width: 260px;
@@ -173,8 +178,8 @@
 		<div class="article">
 			<c:forEach var="list" items="${list}">
 				<div class="article-prod">
-					<a href="#"><img alt="" class="article-img" src="${list.imgRoute}"></a>
-					<h5>Asics</h5>
+					<a href="/info-prod/${list.id}"><img alt="" class="article-img" src="${list.imgRoute}"></a>
+					<h5>${list.brandName}</h5>	
 					<p>${list.engName}</p>
 					<h5>${list.releasePrice}원</h5>
 					</div>

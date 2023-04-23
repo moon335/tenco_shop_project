@@ -2,10 +2,13 @@ package com.tenco.tencoshop.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,6 +39,13 @@ public class productController {
 			} else {
 				model.addAttribute("list", list);
 			}
+			return "/product/searchProc";
+		}
+		
+		@GetMapping("/info-prod/{id}")
+		public String productInfo(@PathVariable("id") Integer id, Model model) {
+			
+			productService.getProductInfo(id);
 			return "/product/searchProc";
 		}
 	
