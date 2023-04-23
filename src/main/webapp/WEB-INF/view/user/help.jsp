@@ -1,10 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 </head>
 <style>
@@ -97,41 +101,45 @@ body {
 }
 </style>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
-		<div class="content">
-			<div class="contentTitle">
-				<div style="border-bottom: 2px solid black">
-					<h3 style="margin-left: 80px;">QnA</h3>
-					<form action="/user/helpWriting">
-						<button type="submit">글쓰기</button>
-					</form>
-				</div>
-			</div>
-			<div class="requestStatus">
-				<div style="flex: 1;"></div>
-				<div style="flex: 5;">답변상태</div>
-				<div style="flex: 5;">제목/상품</div>
-			</div>
-			<div class="buyProduct">
-				<div style="flex: 1;"></div>
-				<div style="flex: 5;">답변상태</div>
-				<div style="flex: 5;">제목/상품</div>
-			</div>
-			<div class="buyProduct">
-				<div style="flex: 1;"></div>
-				<div style="flex: 5;">답변상태</div>
-				<div style="flex: 5;">제목/상품</div>
-			</div>
-			<div class="buyProduct">
-				<div style="flex: 1;"></div>
-				<div style="flex: 5;">답변상태</div>
-				<div style="flex: 5;">제목/상품</div>
-			</div>
-			<div class="buyProduct">
-				<div style="flex: 1;"></div>
-				<div style="flex: 5;">답변상태</div>
-				<div style="flex: 5;">제목/상품</div>
-			</div>
+<div class="content">
+	<div class="contentTitle">
+		<div style="border-bottom: 2px solid black">
+			<h3 style="margin-left: 80px;">QnA</h3>
+			<form action="/user/helpWriting">
+				<button type="submit">글쓰기</button>
+			</form>
 		</div>
 	</div>
+
+	<div class="requestStatus">
+		<div style="flex: 1;"></div>
+		<div style="flex: 5;">답변상태</div>
+		<div style="flex: 5;">제목/상품</div>
+	</div>
+
+	<div class="buyProduct">
+		<div style="flex: 1;"></div>
+		<div style="flex: 5;">답변상태</div>
+		<div style="flex: 5;">제목/상품</div>
+	</div>
+	<div class="buyProduct">
+		<div style="flex: 1;"></div>
+		<div style="flex: 5;">답변상태</div>
+		<div style="flex: 5;">제목/상품</div>
+	</div>
+	<div class="buyProduct">
+		<div style="flex: 1;"></div>
+		<div style="flex: 5;">답변상태</div>
+		<div style="flex: 5;">제목/상품</div>
+	</div>
+	<c:forEach var="questList" items="${questList}">
+		<div class="buyProduct">
+			<div style="flex: 1;"></div>
+			<div style="flex: 5;">${questList.reqStatus}</div>
+			<div style="flex: 5;">${questList.title}</div>
+		</div>
+	</c:forEach>
+</div>
+</div>
 </body>
 </html>
