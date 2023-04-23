@@ -98,6 +98,7 @@ body {
 
 .buyProduct div {
 	display: flex;
+	justify-content: center;
 	flex-direction: column;
 }
 
@@ -125,23 +126,26 @@ body {
 		</div>
 	</div>
 
-	<div class="requestStatus">
+	<div class="requestStatus" style="margin-left: -10px;">
 		<div style="flex: 1;"></div>
-		<div style="flex: 5;">답변상태</div>
-		<div style="flex: 5;">제목</div>
+		<div style="flex: 6;">답변상태</div>
+		<div style="flex: 6; margin-left: 17px;">제목</div>
 	</div>
 	<c:forEach var="questList" items="${questList}">
-		<div class="buyProduct">
-					<div style="flex: 1;"></div>
-			<div style="flex: 5;">
-				<a href="/question/detail?id=${questList.id}" value=""> ${questList.reqStatus}</a>
-			</div>
-			<div style="flex: 5;">
-				<a href="/question/detail?id=${questList.id}" value="${questList.id}">${questList.title}</a>
+		<div style="height:80px;">
+			<div class="buyProduct" style="height: 80px;">
+				<div style="flex: 1; height: 80px;"></div>
+				<div style="flex: 5;">
+					<a href="/question/detail?id=${questList.id}"
+						value="${questList.reqStatus}"> ${questList.reqStatus}</a>
+				</div>
+				<div style="flex: 5;">
+					<a href="/question/detail?id=${questList.id}"
+						value="${questList.id}">${questList.title}</a>
+				</div>
 			</div>
 		</div>
 	</c:forEach>
 </div>
 </div>
-</body>
-</html>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

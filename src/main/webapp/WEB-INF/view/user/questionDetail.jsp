@@ -144,8 +144,6 @@ body {
 	</div>
 	<div class="box">
 		<div>${quest.content}</div>
-		<div>ddddd</div>
-		<div>${quset.content}</div>
 	</div>
 	<div class="goList">
 		<button
@@ -154,5 +152,4 @@ body {
 	</div>
 </div>
 </div>
-</body>
-</html>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

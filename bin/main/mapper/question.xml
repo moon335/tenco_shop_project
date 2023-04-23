@@ -6,7 +6,8 @@
 	namespace="com.tenco.tencoshop.repository.interfaces.QuestionRepository">
 	<select id="readQuestion"
 		resultType="com.tenco.tencoshop.repository.model.Question">
-		select * from question_tb;
+		select * from question_tb
+		order by id desc;
 	</select>
 
 	<select id="searchQuestion"
@@ -14,13 +15,20 @@
 		select * from question_tb
 		where content like #{findWord}
 		or
-		title like #{findWord};
+		title like #{findWord}
+		order by id desc;
+
 	</select>
-	
+
 	<select id="questionDetail"
 		resultType="com.tenco.tencoshop.repository.model.Question">
 		select * from question_tb
 		where id=#{id};
 	</select>
-	
+	<insert id="questionWriting">
+		insert into question_tb(title,content,user_id,req_status)
+		value(#{title},#{content},#{userId},#{reqStatus});
+
+
+	</insert>
 </mapper>

@@ -296,5 +296,4 @@ body {
 
 		</div>
 	</div>
-</body>
-</html>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

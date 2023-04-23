@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tenco.tencoshop.dto.QuestionFormDto;
 import com.tenco.tencoshop.repository.model.Question;
+import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.QuestionService;
+import com.tenco.tencoshop.util.Define;
 
 @Controller
 @RequestMapping("/question")
@@ -58,5 +61,11 @@ public class QuestionController {
 		}
 		return "/user/questionDetail";
 	}
-
+	// QnA 작성하기
+	@PostMapping("/writing")
+	public String questionWriting(QuestionFormDto questionFormDto) {
+//		User principal=(User) session.getAttribute(Define.PRINCIPAL);
+		questionService.questionWrting(questionFormDto, 1);
+		return "redirect:/question/find";
+	}
 }

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 <style>
 body {
@@ -49,6 +50,11 @@ body {
 .contentTitle div {
 	display: flex;
 	justify-content: space-between;
+}
+
+.contentTitle h2 {
+	margin-bottom: 20px;
+	font-size: 30px;
 }
 
 .textbox-button {
@@ -112,37 +118,46 @@ body {
 .textbox textarea:focus {
 	outline: none;
 }
+
+.textbox input {
+	margin: 20px 0;
+	width: 800px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+.textbox input:focus {
+	outline: none;
+}
 </style>
-		<div class="content">
-			<div class="contentTitle">
-				<div style="border-bottom: 2px solid black">
-					<h3 style="margin-left: 80px;">QnA</h3>
-				</div>
-			</div>
-			<div class="textbox">
-				<form action="/user/help">
-					<textarea id="myTextarea" autofocus="autofocus" ></textarea>
-					<!-- <textarea rows="10	" cols="50" autofocus="autofocus"></textarea> -->
-					<div class="textbox-button">
-						<button type="submit" style="margin: 10px;">작성완료</button>
-					</div>
-				</form>
-			</div>
+<div class="content">
+	<div class="contentTitle">
+		<div style="border-bottom: 2px solid black">
+			<h2 style="margin-left: 80px;">QnA</h2>
 		</div>
 	</div>
-	<script
-    type="text/javascript"
-    src='https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'
-    referrerpolicy="origin">
-  </script>
-	<script>
-		tinymce.init({
-		  selector: 'textarea',  // change this value according to your HTML
-		  plugins: 'a_tinymce_plugin',
-		  a_plugin_option: true,
-		  a_configuration_option: 400
-		});
-		
-	</script>
-</body>
-</html>
+	<div class="textbox">
+		<form action="/question/writing" method="post">
+			제목 : <input type="text" autofocus="autofocus" name="title">
+			<textarea id="myTextarea" autofocus="autofocus" name="content"></textarea>
+			<div class="textbox-button">
+				<button type="submit" style="margin: 10px;">작성완료</button>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+<script type="text/javascript"
+	src='https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'
+	referrerpolicy="origin">
+	
+</script>
+<script>
+	tinymce.init({
+		selector : 'textarea', // change this value according to your HTML
+		plugins : 'a_tinymce_plugin',
+		a_plugin_option : true,
+		a_configuration_option : 400
+	});
+</script>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
