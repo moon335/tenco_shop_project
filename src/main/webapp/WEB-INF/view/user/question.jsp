@@ -61,6 +61,10 @@ body {
 	display: flex;
 	justify-content: space-between;
 }
+.contentTitle div form input{
+	border-radius: 10px;
+	width:400px;
+}
 
 .contentTitle div button {
 	border-radius: 10px;
@@ -105,9 +109,11 @@ body {
 	<div class="contentTitle">
 		<div style="border-bottom: 2px solid black">
 			<h3 style="margin-left: 80px;">QnA</h3>
-			<form action="/user/helpWriting">
-				<button type="submit">글쓰기</button>
+			<form action="/question/findProc" method="post">
+				<input type="text" name="findWord">
+				<button type="submit" style="background-color:white; color:black;" >검색</button>
 			</form>
+				<button type="button" ><a style="color:white;" href="/user/questWriting">글쓰기</a></button>
 		</div>
 	</div>
 
@@ -117,11 +123,6 @@ body {
 		<div style="flex: 5;">제목/상품</div>
 	</div>
 
-	<div class="buyProduct">
-		<div style="flex: 1;"></div>
-		<div style="flex: 5;">답변상태</div>
-		<div style="flex: 5;">제목/상품</div>
-	</div>
 	<div class="buyProduct">
 		<div style="flex: 1;"></div>
 		<div style="flex: 5;">답변상태</div>

@@ -292,7 +292,7 @@ button:hover {
 			</div>
 			<div>
 				<p>
-					<a href="/user/help">help</a>
+					<a href="/question/find">help</a>
 				</p>
 			</div>
 		</div>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,20 +33,20 @@ public class QuestionController {
 		} else {
 			model.addAttribute("questList", questList);
 		}
-		return "/user/help";
+		return "/user/question";
 	}
 
 	// QnA 검색하여찾기
-	@GetMapping("/findProc")
+	@PostMapping("/findProc")
 	public String findQuestionProc(String findWord, Model model) {
-		findWord = "사이";
+		System.out.println(findWord+"findowrd");
 		List<Question> questList = questionService.searchQuestion(findWord);
 		if (questList.isEmpty()) {
 			model.addAttribute("questList", null);
 		} else {
 			model.addAttribute("questList", questList);
 		}
-		return "/user/help";
+		return "/user/question";
 	}
 
 }

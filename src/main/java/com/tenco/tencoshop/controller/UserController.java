@@ -46,9 +46,9 @@ public class UserController {
 		return "/user/help";
 	}
 
-	@GetMapping("/helpWriting")
+	@GetMapping("/questWriting")
 	public String helpWriting() {
-		return "/user/helpWriting";
+		return "/user/questWriting";
 	}
 
 	@GetMapping("/myinfoEditor")
