@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -35,6 +37,7 @@ body {
 	align-items: center;
 	padding: 20px;
 	padding-left: 20.4px;
+	width:1200px;
 }
 
 .header-inner-menu {

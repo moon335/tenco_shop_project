@@ -4,8 +4,11 @@
 
 <mapper namespace="com.tenco.tencoshop.repository.interfaces.ReviewRepository">
 
-	<select id="findAll" resultType="com.tenco.tencoshop.dto.ReviewDto">
-		select * from review_tb
+	<select id="findAll" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+		select r.*, u.username
+		from review_tb as r 
+		inner join user_tb as u
+		on r.user_id = u.id
 	</select>
 
 </mapper>

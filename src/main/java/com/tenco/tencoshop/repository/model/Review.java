@@ -7,8 +7,8 @@ public class Review {
 
 	private Integer id;
 	private String content;
-	private String review_img;
-	private Integer user_id;
-	private Integer prod_id;
-	
+	private String reviewImg;
+	private Integer userId;
+	private Integer prodId;
+	private Integer heart;
 }
