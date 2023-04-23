@@ -26,4 +26,8 @@ public class ProductService {
       List<Product> list = productRepository.findProduct(prodName);
       return list;
    }
-}
+   
+   // 제품 상세 페이지 로직 구현
+   
+   
+} // end of class

@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-</head>
 <style>
+	body {
+		margin: 0 auto;
+	}
 	.header {
 		display: flex;
 		margin-bottom: 40px;
@@ -19,7 +16,7 @@
 	}
 	main {
 		margin: 30px;
-		width: 1000px;
+		width: 950px;
 	}
 	
 	.cart--title {
@@ -31,19 +28,19 @@
 	}
 	
 	.wish--list {
-		width: 1000px;
+		width: 950px;
 		padding: 20px;
 	}
 	
 	.wish--item {
-		width: 1000px;
+		width: 950px;
 		border-bottom: 1px solid #ebebeb;
 		padding: 20px;
 		display: flex;
 	}
 	
 	.wish--product {
-		width: 806px;
+		width: 746px;
 		display: flex;
 	}
 	
@@ -110,7 +107,6 @@
 	}
 	
 </style>
-<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 	<main>
 		<div class="cart--title">
 			<h4>장바구니</h4>
