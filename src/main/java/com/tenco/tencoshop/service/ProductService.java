@@ -23,8 +23,8 @@ public class ProductService {
    // 제품 검색 기능
    public List<Product> searchProduct(String prodName){
       prodName = "%"+prodName+"%";
-      List<Product> list = productRepository.findProduct(prodName);
-      return list;
+      List<Product> orderList = productRepository.findProduct(prodName);
+      return orderList;
    }
    
   
