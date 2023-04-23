@@ -172,8 +172,8 @@
 <div class="content">
 	<div class="content-box">
 		<div class="content-text">
-			<h5>Just Dropped</h5>
-			<p>발매 상품</p>
+			<h5>Most Popular</h5>
+			<p>인기 상품</p>
 		</div>
 		<div class="article">
 			<c:forEach var="list" items="${list}">

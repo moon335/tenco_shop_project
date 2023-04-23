@@ -9,7 +9,8 @@
 		select p.id, p.eng_name, p.kor_name, p.release_price, p.img_route, b.name as brand_name
 		from product_tb as p
 		inner join brand_tb as b
-		on p.brand_id = b.id;
+		on p.brand_id = b.id
+        limit 8;
 	</select>
 
 	<select id="findProduct"
