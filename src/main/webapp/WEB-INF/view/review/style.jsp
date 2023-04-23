@@ -109,11 +109,11 @@ h3>a {
 	padding: 0;
 }
 
-.review--like{
+.review--heart{
 	display: flex;
 }
 
-.review--like > span {
+.review--heart > span {
 	font-size: 17px;
 	margin-left: 5px;
 }
@@ -131,20 +131,21 @@ main{
 		</div>
 		<div class="order--wrap">
 			<!-- 인기순 : 하트 많은 순 order by 하트수 / 최신순 : id order주기 -->
-			<a href="#">인기순</a> <a href="#">최신순</a>
+			<a href="/review/style?type=orderByHeart">인기순</a> <a href="/review/style?type=orderByRecent">최신순</a>
 		</div>
 		<div class="img--wrap">
 			<c:forEach var="reviewList" items="${reviewList}">
 				<div class="review--box">
 					<div class="review--wrap">
 						<%-- 상세보기로 이동 --%>
-						<a href="#"><img src="/images/review/${reviewList.reviewImg}"
+						<%-- list 형식이 아닌데 forEach를 사용해서 발생하는 에러 --%>
+						<a href="/review/detail/${reviewList.userId}"><img src="/images/review/${reviewList.reviewImg}"
 							width=240 height=400></a>
 						<%-- 유저의 이미지와 아이디 select --%>
 					</div>
 					<div class="review--contents" id="review--id">
 						<a href="#">${reviewList.userName}</a>
-						<div class="review--like">
+						<div class="review--heart">
 						<button class="heartBtn" onclick="addLike()">
 							<i class=" xi-heart-o xi-2x" style="color:red;"></i>
 						</button>
