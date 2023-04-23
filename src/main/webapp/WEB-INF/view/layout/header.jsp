@@ -196,7 +196,6 @@ button:hover {
 				<c:choose>
 					<c:when test="${principal != null}">
 						<a href="/user/logout"> <label>로그아웃</label></a>
-						<label>${principal.name}님</label>
 					</c:when>
 					<c:otherwise>
 						<button type="button" onclick="location.href='/user/sign-in'">로그인</button>
@@ -207,10 +206,10 @@ button:hover {
 			</div>
 			<div class="header-inner">
 				<h3>
-					<a href="/user/main" style="font-size: 28px;">tencoShop</a>
+					<a href="/main" style="font-size: 28px;">tencoShop</a>
 				</h3>
 				<div class="header-inner-menu">
-					<label><a href="/test/main">HOME</a></label> <label><a href="#">STYLE</a></label> <label><a href="#">SHOP</a></label> <label><a href="/user/myinfo">MY</a></label> <span
+					<label><a href="/main">HOME</a></label> <label><a href="#">STYLE</a></label> <label><a href="#">SHOP</a></label> <label><a href="/user/myinfoProc">MY</a></label> <span
 						class="material-symbols-outlined"><a href="/user/search">search</a></span>
 				</div>
 			</div>

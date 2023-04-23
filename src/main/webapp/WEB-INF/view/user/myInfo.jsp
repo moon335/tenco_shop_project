@@ -1,17 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 </head>
 <style>
-body {
-	width: 1200px;
-	margin: 0 auto;
-}
+
 
 .header {
 	display: flex;
@@ -20,26 +21,7 @@ body {
 	justify-content: space-between;
 }
 
-.body {
-	display: flex;
-}
 
-.side {
-	margin: 30px;
-}
-
-.side a {
-	color: gray;
-	text-decoration-line: none;
-}
-
-.side a:hover {
-	color: black;
-}
-
-.side div {
-	margin-bottom: 25px;
-}
 
 .content_1 {
 	border: 1px solid #ccc;
@@ -119,8 +101,6 @@ body {
 	flex: 1;
 	flex-direction: column;
 	align-items: center;
-	flex-direction: column;
-	flex-direction: column;
 }
 
 .buyProduct {
@@ -130,14 +110,16 @@ body {
 	padding: 10px;
 	border-bottom: 1px solid #D2D2D2;
 	display: flex;
+	flex-direction: column;
 }
 
 .buyProduct div {
 	display: flex;
 	flex: auto;
-	flex-direction: column;
+	flex-direction: row;
 	margin: 0 20px;
-	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .buyDate {
@@ -145,9 +127,7 @@ body {
 	align-items: center;
 }
 
-.side h4 {
-	color: black;
-}
+
 </style>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 
@@ -202,28 +182,59 @@ body {
 		</div>
 	</div>
 	<div class="buyProduct">
+		<c:forEach var="orderList" items="${orderList}">
+			<div>
+				<div>
+					<img alt="" src="/images/1.png" width="120" height="120">
+				</div>
+				<div style="width: 400px;">
+					<p style="width:250px;">${orderList.engName}</p>
+					<pre
+						style="text-align:center; width: 100px;">${orderList.sizeId}</pre>
+				</div>
+				<div class="buyDate">
+					<pre>${orderList.releaseDate}</pre>
+				</div>
+				<div style="align-items: center; width:150px;">
+					<h6>
+						배송완료 <br>
+					</h6>
+					<form action="">
+						<button type="submit"
+							style="border: none; background-color: white; color: #088ff7">
+							후기 <br>올리기
+						</button>
+					</form>
+				</div>
+			</div>
+		</c:forEach>
+
 		<div>
-			<img alt="" src="/images/1.png" width="120" height="120">
-		</div>
-		<div style="width: 400px;">
-			<p>Dior Saddle Flap Card Holder Blue Dior Oblique Jacquard</p>
-			<pre>ONE SIZE</pre>
-		</div>
-		<div class="buyDate">
-			<pre>2023/01/23</pre>
-		</div>
-		<div style="align-items: center;">
-			<h6>
-				배송완료 <br>
-			</h6>
-			<form action="">
-				<button type="submit" style="border: none; background-color: white; color: #088ff7">
-					후기 <br>올리기
-				</button>
-			</form>
+			<div>
+				<img alt="" src="/images/1.png" width="120" height="120">
+			</div>
+			<div style="width: 400px;">
+				<p style="width:250px;">Dior Saddle Flap Card Holder Blue Dior Oblique Jacquard</p>
+				<pre style="text-align: center; width:100px;">ONE SIZE</pre>
+			</div>
+			<div class="buyDate">
+				<pre>2023/01/23</pre>
+			</div>
+			<div style="width:150px;">
+				<h6>
+					배송완료 <br>
+				</h6>
+				<form action="">
+					<button type="submit"
+						style="border: none; background-color: white; color: #088ff7">
+						후기 <br>올리기
+					</button>
+				</form>
+			</div>
 		</div>
 	</div>
 </div>
 </div>
 </body>
 </html>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

@@ -26,4 +26,6 @@ public class ProductService {
       List<Product> list = productRepository.findProduct(prodName);
       return list;
    }
+   
+  
 }

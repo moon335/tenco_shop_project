@@ -11,4 +11,6 @@ public interface ProductRepository {
 
    public List<Product> findAll();
    public List<Product> findProduct(String prodName);
+  
+   
 }
