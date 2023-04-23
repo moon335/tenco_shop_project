@@ -15,7 +15,6 @@ public class QuestionService {
 	// QnA 보기 
 	public List<Question> readQuestion(){
 		List<Question> questList = questionRepository.readQuestion();
-		System.out.println(questList+"2222222222222222");
 		return questList;
 	}
 	// QnA 검색하여 찾기 
@@ -23,5 +22,10 @@ public class QuestionService {
 		findWord = "%"+findWord+"%";
 		List<Question> questList = questionRepository.searchQuestion(findWord);
 		return questList;
+	}
+	// QnA 상세 정보 들어가기
+	public Question questionDetailPage(Integer id) {
+		Question quest = questionRepository.questionDetail(id);
+		return quest;
 	}
 }

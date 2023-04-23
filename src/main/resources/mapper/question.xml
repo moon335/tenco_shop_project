@@ -16,5 +16,11 @@
 		or
 		title like #{findWord};
 	</select>
-
+	
+	<select id="questionDetail"
+		resultType="com.tenco.tencoshop.repository.model.Question">
+		select * from question_tb
+		where id=#{id};
+	</select>
+	
 </mapper>

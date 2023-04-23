@@ -107,7 +107,20 @@ body {
 }
 
 .content>div:nth-child(3) {
-	border-top: 1px solid black;
+	border-top: 1px solid #ccc;
+}
+
+.box {
+	border: 1px solid #F9F9F9;
+	height: 400px;
+	background-color: #F9F9F9;
+	padding: 40px;
+}
+
+.goList {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
 }
 </style>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
@@ -126,21 +139,19 @@ body {
 	</div>
 
 	<div class="requestStatus">
-		<div style="flex: 1;"></div>
-		<div style="flex: 5;">답변상태</div>
-		<div style="flex: 5;">제목</div>
+		<div style="flex: 5;">제목 : ${quest.title}</div>
+		<div style="flex: 5;"></div>
 	</div>
-	<c:forEach var="questList" items="${questList}">
-		<div class="buyProduct">
-					<div style="flex: 1;"></div>
-			<div style="flex: 5;">
-				<a href="/question/detail?id=${questList.id}" value=""> ${questList.reqStatus}</a>
-			</div>
-			<div style="flex: 5;">
-				<a href="/question/detail?id=${questList.id}" value="${questList.id}">${questList.title}</a>
-			</div>
-		</div>
-	</c:forEach>
+	<div class="box">
+		<div>${quest.content}</div>
+		<div>ddddd</div>
+		<div>${quset.content}</div>
+	</div>
+	<div class="goList">
+		<button
+			style="border: 1px solid #ccc; border-radius: 15px; padding: 10px;">
+			<a href="/question/find">목록보기</a></button>
+	</div>
 </div>
 </div>
 </body>

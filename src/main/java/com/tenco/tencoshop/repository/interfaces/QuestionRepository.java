@@ -11,4 +11,5 @@ public interface QuestionRepository {
 
 	public List<Question> readQuestion();
 	public List<Question> searchQuestion(String findWord);
+	public Question questionDetail(Integer id);
 }

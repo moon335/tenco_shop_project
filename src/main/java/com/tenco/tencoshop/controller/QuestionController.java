@@ -39,7 +39,6 @@ public class QuestionController {
 	// QnA 검색하여찾기
 	@PostMapping("/findProc")
 	public String findQuestionProc(String findWord, Model model) {
-		System.out.println(findWord+"findowrd");
 		List<Question> questList = questionService.searchQuestion(findWord);
 		if (questList.isEmpty()) {
 			model.addAttribute("questList", null);
@@ -47,6 +46,17 @@ public class QuestionController {
 			model.addAttribute("questList", questList);
 		}
 		return "/user/question";
+	}
+	// QnA 상세 정보 들어가기 
+	@GetMapping("/detail")
+	public String questionDetail(@RequestParam Integer id, Model model) {
+		Question quest = questionService.questionDetailPage(id);
+		if (quest.getId()==null) {
+			model.addAttribute("quest", null);
+		} else {
+			model.addAttribute("quest", quest);
+		}
+		return "/user/questionDetail";
 	}
 
 }

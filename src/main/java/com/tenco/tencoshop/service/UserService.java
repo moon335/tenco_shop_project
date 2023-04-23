@@ -20,4 +20,6 @@ public class UserService {
 		List<Product> list = userRepository.buyList(userId);
 		return list;
 	}
+	
+
 }
