@@ -2,6 +2,7 @@ package com.tenco.tencoshop.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.handler.LoginException;
+import com.tenco.tencoshop.repository.model.Product;
+import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.LoginService;
+import com.tenco.tencoshop.service.UserService;
 
 @Controller
 @RequestMapping("/user")
@@ -21,6 +25,9 @@ public class UserController {
 
 	@Autowired // DI 처리
 	private LoginService loginService;
+	
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private HttpSession session;
