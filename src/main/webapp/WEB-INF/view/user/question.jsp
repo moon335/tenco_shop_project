@@ -89,6 +89,11 @@ body {
 	font-size: 13px;
 }
 
+.requestStatus div {
+	display: flex;
+	justify-content: center;
+}
+
 .buyProduct {
 	display: flex;
 	flex: 1;
@@ -100,6 +105,7 @@ body {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	text-align: center;
 }
 
 .buyProduct div a {
@@ -126,20 +132,28 @@ body {
 		</div>
 	</div>
 
-	<div class="requestStatus" style="margin-left: -10px;">
-		<div style="flex: 1;"></div>
-		<div style="flex: 6;">답변상태</div>
-		<div style="flex: 6; margin-left: 17px;">제목</div>
+	<div class="requestStatus">
+		<div style="flex: 2;">답변상태</div>
+		<div style="flex: 6;">제목</div>
 	</div>
 	<c:forEach var="questList" items="${questList}">
-		<div style="height:80px;">
+		<div style="height: 80px;">
 			<div class="buyProduct" style="height: 80px;">
-				<div style="flex: 1; height: 80px;"></div>
-				<div style="flex: 5;">
-					<a href="/question/detail?id=${questList.id}"
-						value="${questList.reqStatus}"> ${questList.reqStatus}</a>
-				</div>
-				<div style="flex: 5;">
+				<c:choose>
+					<c:when test="${questList.reqStatus == 0}">
+						<div style="flex: 2;">
+							<a href="/question/detail?id=${questList.id}" value="답변미완료">
+								답변미완료</a>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div style="flex: 2;">
+							<a href="/question/detail?id=${questList.id}" value="답변완료">
+								답변완료</a>
+						</div>
+					</c:otherwise>
+				</c:choose>
+				<div style="flex: 6;">
 					<a href="/question/detail?id=${questList.id}"
 						value="${questList.id}">${questList.title}</a>
 				</div>
