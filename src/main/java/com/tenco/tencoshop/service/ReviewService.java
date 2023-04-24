@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.tencoshop.dto.ReviewResponseDto;
 import com.tenco.tencoshop.repository.interfaces.ReviewRepository;
-import com.tenco.tencoshop.repository.model.Review;
 
 @Service // 서비스는 서비스 ~
 public class ReviewService {

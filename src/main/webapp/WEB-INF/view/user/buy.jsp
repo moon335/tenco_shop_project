@@ -174,30 +174,30 @@ body {
 </style>
 
 <body>
-   <div class="header">
-      <h1>TencoShop</h1>
-      <a href=""><img alt="" src="/images/search.png"></a>
-   </div>
-   <div class="content">
-      <hr>
-   </div>
-   <div class="buyProduct">
-      <div>
-         <div class="buyProductInfo">
-            <img alt="" src="/images/1.png" width="120" height="120">
-            <div style="width: 400px;">
-               <pre>모델 번호</pre>
-               <pre>Dior Saddle Flap Card Holder Blue Dior Oblique Jacquard</pre>
-               <pre>ONE SIZE</pre>
-            </div>
-         </div>
-      </div>
-      <div class="size">
-         <div>
-            <p>260</p>
-         </div>
-      </div>
-   </div>
-   </div>
+	<div class="header">
+		<h1>TencoShop</h1>
+		<a href=""><img alt="" src="/images/search.png"></a>
+	</div>
+	<div class="content">
+		<hr>
+	</div>
+	<div class="buyProduct">
+		<div>
+			<div class="buyProductInfo">
+				<img alt="" src="/images/1.png" width="120" height="120">
+				<div style="width: 400px;">
+					<pre>모델 번호</pre>
+					<pre>Dior Saddle Flap Card Holder Blue Dior Oblique Jacquard</pre>
+					<pre>ONE SIZE</pre>
+				</div>
+			</div>
+		</div>
+		<div class="size">
+			<div>
+				<p>260</p>
+			</div>
+		</div>
+	</div>
+	</div>
 </body>
 </html>
