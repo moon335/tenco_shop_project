@@ -215,16 +215,18 @@ button:hover {
 	display: flex;
 	margin-top: 50px;
 }
+
 .side h4 {
 	color: black;
 }
+
 </style>
 </head>
 <body>
 	<header>
 		<div class="main-inner">
 			<div class="top-inner">
-				<button type="button" onclick="#">관심상품</button>
+				<button type="button" onclick="location.href='/cart/list'">장바구니</button>
 				<c:choose>
 					<c:when test="${principal != null}">
 						<a href="/user/logout"> <label>로그아웃</label></a>
@@ -245,7 +247,7 @@ button:hover {
 					<label><a href="/main">HOME</a></label> <label><a
 						href="/review/style">STYLE</a></label> <label><a href="#">SHOP</a></label>
 					<label><a href="/user/myinfoProc">MY</a></label> <span
-						class="material-symbols-outlined"><a href="/user/search">search</a></span>
+						class="material-symbols-outlined"><a href="/product/search">search</a></span>
 				</div>
 			</div>
 		</div>
@@ -296,3 +298,4 @@ button:hover {
 				</p>
 			</div>
 		</div>
+		

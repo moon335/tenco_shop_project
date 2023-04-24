@@ -3,10 +3,10 @@
 <!DOCTYPE html>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet href="
-   https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0 " />
 <html>
 <head>
+<link rel="stylesheet href="
+   https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0 " />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
