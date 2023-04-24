@@ -1,12 +1,12 @@
-package com.tenco.tencoshop.repository.model;
+package com.tenco.tencoshop.dto;
 
 import java.sql.Date;
 
 import lombok.Data;
 
 @Data
-public class Product {
-
+public class ProductResponseDto {
+   
    private Integer id;
    private String engName;
    private String korName;
@@ -21,5 +21,9 @@ public class Product {
    private Integer brandId;
    private Integer categoryId;
    private Integer sizeId;
+   private String brandName;
+   private String categoryName;
+   private String sizename;
+   
    
 } // end of class
