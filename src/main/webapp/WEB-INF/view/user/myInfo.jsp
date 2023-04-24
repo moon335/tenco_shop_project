@@ -121,7 +121,6 @@
 	align-items: center;
 	justify-content: space-between;
 }
-
 .buyDate {
 	display: flex;
 	align-items: center;
@@ -184,7 +183,7 @@
 	<div class="buyProduct">
 		<c:forEach var="orderList" items="${orderList}">
 			<div>
-				<div>
+				<div class="buyProductImg">
 					<img alt="" src="/images/1.png" width="120" height="120">
 				</div>
 				<div style="width: 400px;">

@@ -15,5 +15,11 @@
 		where u.id=#{userId};
 	</select>
 
+	<select id="userInfoSelect"
+		resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where id=#{userId}
+	</select>
+	
 </mapper>
 	

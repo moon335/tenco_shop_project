@@ -3,15 +3,38 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
-	namespace="com.tenco.tencoshop.repository.interfaces.ProductRepository">
-	<select id="findAll"
-		resultType="com.tenco.tencoshop.repository.model.Product">
-		select * from product_tb
-	</select>
+   namespace="com.tenco.tencoshop.repository.interfaces.ProductRepository">
+   <select id="findAll"
+      resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+      select p.id, p.eng_name, p.kor_name, p.release_price, p.img_route, b.name as brand_name
+      from product_tb as p
+      inner join brand_tb as b
+      on p.brand_id = b.id
+        limit 8;
+   </select>
 
-	<select id="findProduct"
-		resultType="com.tenco.tencoshop.repository.model.Product">
-		select * from product_tb where prod_name LIKE #{prodName};
-	</select>
-	
+   <select id="findProduct"
+      resultType="com.tenco.tencoshop.repository.model.Product">
+      select * from product_tb where kor_name LIKE #{title} OR
+      eng_name LIKE
+      #{title}
+   </select>
+
+   <select id="getProdInfo"
+      resultType="com.tenco.tencoshop.repository.model.Product">
+      select * from product_tb where id = #{id}
+   </select>
+   
+   <select id="findProductById" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+         select p.*, b.name, c.name, s.name
+      from product_tb as p
+      inner join brand_tb as b
+      on p.brand_id = b.id
+      inner join category_tb as c
+      on p.category_id = c.id
+      inner join size_tb as s
+      on p.size_id = s.id
+      where p.id = #{id};
+   </select>
+   
 </mapper>

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
 import com.tenco.tencoshop.repository.model.Product;
+import com.tenco.tencoshop.repository.model.User;
 
 @Service
 public class UserService {
@@ -20,6 +21,13 @@ public class UserService {
 		List<Product> list = userRepository.buyList(userId);
 		return list;
 	}
-	
+
+	// myinfo에서 유저 정보 select하기
+	public User userInfo(Integer userId) {
+		userId=1;
+		User user = userRepository.userInfoSelect(userId);
+		System.out.println("service"+user);
+		return user;
+	}
 
 }

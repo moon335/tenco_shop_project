@@ -175,7 +175,7 @@ body {
 
 <body>
 	<div class="header">
-		<h1>tencoShop</h1>
+		<h1>TencoShop</h1>
 		<a href=""><img alt="" src="/images/search.png"></a>
 	</div>
 	<div class="content">
