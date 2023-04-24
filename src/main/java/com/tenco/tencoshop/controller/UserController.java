@@ -8,20 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.tenco.tencoshop.repository.model.Product;
-import com.tenco.tencoshop.repository.model.User;
-import com.tenco.tencoshop.service.UserService;
+import com.tenco.tencoshop.dto.LoginResponseDto;
+import com.tenco.tencoshop.handler.LoginException;
+import com.tenco.tencoshop.service.LoginService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
+	@Autowired // DI 처리
+	private LoginService loginService;
+
 	@Autowired
 	private HttpSession session;
-	@Autowired
-	private UserService userService;
 
 	@GetMapping("/myinfo")
 	public String myInfo() {
@@ -64,4 +66,7 @@ public class UserController {
 	public String buy() {
 		return "/user/buy";
 	}
+
+	
+
 }

@@ -17,4 +17,3 @@
       where c.user_id = #{userId};
    </select>
 </mapper>
-
