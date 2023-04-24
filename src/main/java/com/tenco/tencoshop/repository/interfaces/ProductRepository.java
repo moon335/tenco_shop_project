@@ -13,4 +13,6 @@ public interface ProductRepository {
    public List<ProductResponseDto> findAll();
    public List<Product> findProduct(String title);
    public Product getProdInfo(Integer id);
+   
+   public ProductResponseDto findProductById(Integer id);
 }

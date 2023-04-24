@@ -17,37 +17,36 @@ import com.tenco.tencoshop.service.ProductService;
 
 @Controller
 @RequestMapping("/product")
-public class productController {
+public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
+
 	// 검색 페이지
-		// 파싱 기술
+	// 파싱 기술
 
-		@GetMapping("/search")
-		public String search() {
+	@GetMapping("/search")
+	public String search() {
 
-			return "/product/search";
-		}
+		return "/product/search";
+	}
 
-		@GetMapping("/search-proc")
-		public String searchProduct(@RequestParam String title, Model model) {
-			List<Product> list = productService.searchProduct(title);
-			if (list.isEmpty()) {
-				model.addAttribute("list", null);
-			} else {
-				model.addAttribute("list", list);
-			}
-			return "/product/searchProc";
+	@GetMapping("/search-proc")
+	public String searchProduct(@RequestParam String title, Model model) {
+		List<Product> list = productService.searchProduct(title);
+		if (list.isEmpty()) {
+			model.addAttribute("list", null);
+		} else {
+			model.addAttribute("list", list);
 		}
-		
-		@GetMapping("/info-prod/{id}")
-		public String productInfo(@PathVariable("id") Integer id, Model model) {
-			
-			productService.getProductInfo(id);
-			return "/product/searchProc";
-		}
-	
-	
+		return "/product/searchProc";
+	}
+
+	@GetMapping("/prod-info/{id}")
+	public String productPage(@PathVariable Integer id) {
+
+		productService.getProductInfo(id);
+		return "/product/productDetail";
+	}
+
 }
