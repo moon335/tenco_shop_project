@@ -5,11 +5,11 @@
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <script>
-	function addLike() {
-		const pushHeartBtn = document.querySelector(".heartBtn");
-		pushHeartBtn.innerHTML = '<i class="xi-heart xi-2x"></i>';
-		pushHeartBtn.style.color = 'red';
-	}
+    function addLike(index) {
+        const pushHeartBtn = document.querySelectorAll(".heartBtn");
+        pushHeartBtn[index].innerHTML = '<i class="xi-heart xi-2x"></i>';
+        pushHeartBtn[index].style.color = 'red';
+    }
 </script>
 <style type="text/css">
 
@@ -126,37 +126,37 @@ main{
 	<div class="review--all--wrap">
 		<div class="category--wrap">
 			<!-- 카테고리로 이동 : pathVariable or queryParam -->
-			<a href="#">발견</a> <a href="#">스니커즈</a> <a href="#">럭셔리</a> <a
-				href="#">의류</a> <a href="#">가방</a> <a href="#">액세서리</a>
+			<a href="/review/prod-category/${list.categoryId}">발견</a> <a href="/review/prod-category/${list.categoryId}">스니커즈</a> <a href="/review/prod-category/${list.categoryId}">럭셔리</a> 
+			<a href="/review/prod-category/${list.categoryId}">의류</a> <a href="/review/prod-category/${list.categoryId}">가방</a> <a href="/review/prod-category/${list.categoryId}">액세서리</a>
 		</div>
 		<div class="order--wrap">
 			<!-- 인기순 : 하트 많은 순 order by 하트수 / 최신순 : id order주기 -->
 			<a href="/review/style?type=orderByHeart">인기순</a> <a href="/review/style?type=orderByRecent">최신순</a>
 		</div>
 		<div class="img--wrap">
-			<c:forEach var="reviewList" items="${reviewList}">
-				<div class="review--box">
-					<div class="review--wrap">
-						<%-- 상세보기로 이동 --%>
-						<%-- list 형식이 아닌데 forEach를 사용해서 발생하는 에러 --%>
-						<a href="/review/detail/${reviewList.userId}"><img src="/images/review/${reviewList.reviewImg}"
-							width=240 height=400></a>
-						<%-- 유저의 이미지와 아이디 select --%>
-					</div>
-					<div class="review--contents" id="review--id">
-						<a href="#">${reviewList.userName}</a>
-						<div class="review--heart">
-						<button class="heartBtn" onclick="addLike()">
-							<i class=" xi-heart-o xi-2x" style="color:red;"></i>
-						</button>
-						<span>${reviewList.heart}</span> 
-						</div>
-					</div>
-					<div class="review--contents">
-						<a href="#">${reviewList.content}</a>
-					</div>
-				</div>
-			</c:forEach>
+			<c:forEach var="reviewList" items="${reviewList}" varStatus="status">
+		        <div class="review--box">
+		            <div class="review--wrap">
+		                <%-- 상세보기로 이동 --%>
+		                <%-- list 형식이 아닌데 forEach를 사용해서 발생하는 에러 --%>
+		                <a href="/review/detail/${reviewList.userId}">
+		                <img src="/images/review/${reviewList.reviewImg}" width=240 height=400></a>
+		                <%-- 유저의 이미지와 아이디 select --%>
+		            </div>
+		            <div class="review--contents" id="review--id">
+		                <a href="#">${reviewList.userName}</a>
+		                <div class="review--heart">
+		                    <button class="heartBtn" onclick="addLike(${status.index})">
+		                        <i class=" xi-heart-o xi-2x" style="color:red;"></i>
+		                    </button>
+		                    <span>${reviewList.heart}</span>
+		                </div>
+		            </div>
+		            <div class="review--contents">
+		                <a href="#">${reviewList.content}</a>
+		            </div>
+		        </div>
+		    </c:forEach>
 		</div>
 	</div>
 </main>

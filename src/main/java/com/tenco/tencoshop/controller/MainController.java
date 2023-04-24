@@ -9,9 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tenco.tencoshop.repository.model.Product;
+import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.service.ProductService;
 
 @Controller
@@ -26,30 +25,9 @@ public class MainController {
 
 	@GetMapping("/main")
 	public String mainTest(Model model) {
-//		List<Product> list = productService.readProduct();
-//		model.addAttribute("list", list);
-		return "/layout/main";
+		List<ProductResponseDto> list = productService.readProduct();
+		model.addAttribute("list", list);
+		return "layout/main";
 	}
-
-	// 검색 페이지
-	// 파싱 기술
-
-	@GetMapping("/search")
-	public String search() {
-
-		return "/user/search";
-	}
-
-	@GetMapping("/search-proc")
-	public String searchProduct(@RequestParam String prodName, Model model) {
-		List<Product> list = productService.searchProduct(prodName);
-		if (list.isEmpty()) {
-			model.addAttribute("list", null);
-		} else {
-			model.addAttribute("list", list);
-		}
-		return "/user/searchProc";
-	}
-   
 
 }

@@ -31,4 +31,11 @@
 		where u.id=#{userId}
 	</select>
 	
+	<select id="findByProdCategoryId" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+		select p.category_id, p.category_id
+		from review_tb as r
+		inner join product_tb as p
+		where r.prod_id=#{prodId};
+	</select>
+	
 </mapper>

@@ -26,4 +26,9 @@ public class ReviewService {
 		ReviewResponseDto reviewDto = reviewRepository.findDetail(reviewResponseDto, userId);
 		return reviewDto;
 	}
+	
+	public List<ReviewResponseDto> readReviewByProdId(ReviewResponseDto reviewResponseDto, Integer prodId){
+		List<ReviewResponseDto> list =  reviewRepository.findByProdCategoryId(reviewResponseDto, prodId);
+		return list;
+	}
 }

@@ -18,4 +18,7 @@ public interface ReviewRepository {
 	// 리뷰 상세 페이지
 	public ReviewResponseDto findDetail(@Param("reviewResponseDto") ReviewResponseDto reviewResponseDto, @Param("userId")Integer userId);
 	
+	// 상품 카테고리 별 출력
+	public List<ReviewResponseDto> findByProdCategoryId(@Param("reviewResponseDto") ReviewResponseDto reviewResponseDto, @Param("prodId")Integer prodId);
+	
 }

@@ -44,4 +44,13 @@ public class ReviewController {
 		return "/review/detail";
 	}
 	
+	// 상품 카테고리 별 출력
+	@GetMapping("/prod-category/{prodId}")
+	public String categoryProd(Model model, ReviewResponseDto reviewResponseDto, @PathVariable Integer prodId) {
+		List<ReviewResponseDto> list = reviewService.readReviewByProdId(reviewResponseDto, prodId);
+		model.addAttribute("list", list);
+		
+		// redirect 수정할 수도 있음.
+		return "redirect:/review/style";
+	}
 }
