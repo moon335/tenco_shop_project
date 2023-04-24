@@ -10,5 +10,4 @@ public class Cart {
    private Integer prodId;
    private Integer userId;
    
-   
 } // end of class

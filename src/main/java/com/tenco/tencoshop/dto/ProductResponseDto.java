@@ -25,5 +25,4 @@ public class ProductResponseDto {
    private String categoryName;
    private String sizename;
    
-   
 } // end of class

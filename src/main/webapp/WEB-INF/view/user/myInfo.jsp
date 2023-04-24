@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,17 +10,12 @@
    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
 <style>
-
-
 .header {
    display: flex;
    margin-bottom: 40px;
    padding: 20px;
    justify-content: space-between;
 }
-
-
-
 .content_1 {
    border: 1px solid #ccc;
    border-radius: 10px;
