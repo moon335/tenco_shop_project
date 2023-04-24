@@ -249,20 +249,21 @@ body {
 				</div>
 			</div>
 		</div>
-		<form action="#">
+		<form action="/user/myinfoupdate" method="post">
 			<div class="myinfoDetail">
 				<div class="myinfoLogin">
 					<h4>
 						<b>로그인 정보</b>
 					</h4>
-					<div>
-						<p>이메일 주소</p>
-						<input type="text" value="${user.address}" name="address">
-					</div>
-					<div>
-						<p>비밀번호</p>
-						<input type="password" value="${user.password}" name="password">
-					</div>
+					<form>
+						<div>
+							<p>이메일 주소</p>
+							<input type="text" value="${user.email}" name="email">
+						</div>
+						<div>
+							<p>비밀번호</p>
+							<input type="password" value="${user.password}" name="password">
+						</div>
 				</div>
 			</div>
 			<div class="myinfoDetail">
@@ -283,6 +284,7 @@ body {
 			<div class="submit">
 				<input type="submit" value="수정">
 			</div>
+		</form>
 		</form>
 	</div>
 

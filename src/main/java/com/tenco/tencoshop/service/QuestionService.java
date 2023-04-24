@@ -43,7 +43,6 @@ public class QuestionService {
 		//principle로 수정해야함
 //		quest.setUserId(principalId);
 		quest.setUserId(1);
-		System.out.println(quest +"@2222222222");
 		int result = questionRepository.questionWriting(quest);
 		if(result !=1) {
 			//수정해야함 던져줘야한다.

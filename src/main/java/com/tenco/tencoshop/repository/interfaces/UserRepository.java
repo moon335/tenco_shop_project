@@ -14,4 +14,7 @@ public interface UserRepository {
 
 	// 유저 정보 보기
 	public User userInfoSelect(Integer userId);
+	
+	// 유저 정보 수정하기
+	public int userInfoUpdate(User user);
 }

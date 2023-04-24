@@ -8,11 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.repository.model.Product;
 import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.UserService;
+
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 
 @Controller
 @RequestMapping("/user")
@@ -22,11 +26,6 @@ public class UserController {
 	private HttpSession session;
 	@Autowired
 	private UserService userService;
-
-	@GetMapping("/myinfo")
-	public String myInfo() {
-		return "/user/myInfo";
-	}
 
 	@GetMapping("/myinfoProc")
 	public String myInfoProc(Integer userId, Model model) {
@@ -39,11 +38,6 @@ public class UserController {
 			model.addAttribute("orderList", orderList);
 		}
 		return "/user/myInfo";
-	}
-
-	@GetMapping("/help")
-	public String help() {
-		return "/user/help";
 	}
 
 	@GetMapping("/questWriting")
@@ -63,5 +57,10 @@ public class UserController {
 	@GetMapping("/buy")
 	public String buy() {
 		return "/user/buy";
+	}
+	@PostMapping("/myinfoupdate")
+	public String myinfoupdate(UserInfoRequestDto userInfoRequestDto) {
+		userService.userInfoUpdate(userInfoRequestDto,1);
+		return "redirect:/user/myinfoEditor";
 	}
 }

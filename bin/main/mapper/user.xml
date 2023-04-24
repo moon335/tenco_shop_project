@@ -20,6 +20,14 @@
 		select * from user_tb
 		where id=#{userId}
 	</select>
-	
+
+	<update id="userInfoUpdate">
+		update user_tb set
+		email=#{email},
+		password=#{password},
+		last_name=#{lastName},
+		tel=#{tel}
+		where id=#{id};
+	</update>
 </mapper>
 	
