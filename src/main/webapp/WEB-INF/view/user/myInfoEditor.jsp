@@ -233,7 +233,7 @@ body {
 		</div>
 		<div class="myinfo">
 			<div class="myimage">
-				<img alt="" src="/images/myinfo.png" width="150px" height="150">
+				<img alt="" src="/images/myinfo.png" width="150px" height="150" style="margin-top:-20px;">
 			</div>
 			<div id="profileediter">
 				<div>

@@ -1,18 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 </head>
 <style>
-body {
-	width: 1200px;
-	margin: 0 auto;
-}
-
 .header {
 	display: flex;
 	margin-bottom: 40px;
@@ -20,30 +19,7 @@ body {
 	justify-content: space-between;
 }
 
-.body {
-	display: flex;
-}
-
-.side {
-	margin: 30px;
-}
-
-.side a {
-	color: gray;
-	text-decoration-line: none;
-}
-
-.side a:hover {
-	color: black;
-}
-
-.side div {
-	margin-bottom: 25px;
-}
-
 .content_1 {
-	border: 1px solid #ccc;
-	border-radius: 10px;
 	margin: 20px;
 	padding: 20px;
 }
@@ -104,55 +80,39 @@ body {
 	background-color: #EBEBEB;
 }
 
-.buyProduct {
-	margin: 0 auto;
-	width: 1000px;
+.buyProgress {
 	display: flex;
-	flex-direction: column;
-	flex: 1;
-	padding: 10px;
-	border: 1px solid #D2D2D2;
-	flex: 1;
+	border: 1px solid #ccc;
+	background-color: #F9F7F7;
+	border-style: none;
+	justify-content: space-between;
+	padding: 20px;
 }
 
-.buyProduct div {
+.buyProgress div {
 	display: flex;
-	margin: 0 20px;
-	flex: auto;
+	flex: 1;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
 }
 
-.buyProductInfo {
+.buyProduct {
 	display: flex;
+	flex: 1;
+	align-items: center;
+	padding: 10px;
 	border-bottom: 1px solid #D2D2D2;
-	width: 900px;
-}
-
-.buyProductInfo div {
 	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
+	flex-direction: column;
 }
 
 .buyProduct div {
 	display: flex;
-	align-items: flex-start;
-	justify-content: flex-start;
-}
-
-.buyProduct div div {
-	display: flex;
+	flex: auto;
 	flex-direction: row;
-}
-
-.buyProduct div div div {
-	display: flex;
-	align-items: flex-start;
-	justify-content: flex-end;
-	flex-direction: column;
-	margin-top: 10px;
+	margin: 0 20px;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .buyDate {
@@ -160,44 +120,109 @@ body {
 	align-items: center;
 }
 
-.size {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.search__input {
+	height: 45px;
+	width: 100%;
+	color: rgb(100, 98, 98);
+	font-size: 15px;
+	border: 1px solid rgb(230, 227, 227);
 }
 
-.size div {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.order_date td {
+	width: 50px;
+	text-align: center;
+}
+
+.order_date td button {
+	background-color: black;
+	color: white;
+	height: 43px;
 }
 </style>
+<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 
-<body>
-	<div class="header">
-		<h1>TencoShop</h1>
-		<a href=""><img alt="" src="/images/search.png"></a>
+<div class="content">
+	<div class="content_1">
+		<h3>구매내역</h3>
 	</div>
-	<div class="content">
-		<hr>
-	</div>
-	<div class="buyProduct">
+	<div class="buyProgress ">
 		<div>
-			<div class="buyProductInfo">
-				<img alt="" src="/images/1.png" width="120" height="120">
+			<form action="/user/buylistProc" method="get">
+				<table class="order_date">
+					<tr>
+						<td><input class="search__input" type="date"
+							name="orderStartDate" /></td>
+						<td>~</td>
+						<td><input class="search__input" type="date" name="orderEndDate" /></td>
+						<td>
+							<button type="submit" style="width: 70px">조회</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<hr>
+	<div class="buyProduct">
+
+		<c:choose>
+			<c:when test="">
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>
+
+		<c:forEach var="orderList" items="${orderList}">
+			<div>
+				<div class="buyProductImg">
+					<img alt="" src="/images/1.png" width="120" height="120">
+				</div>
 				<div style="width: 400px;">
-					<pre>모델 번호</pre>
-					<pre>Dior Saddle Flap Card Holder Blue Dior Oblique Jacquard</pre>
-					<pre>ONE SIZE</pre>
+					<p style="width: 250px;">${orderList.engName}</p>
+					<pre style="text-align: center; width: 100px;">${orderList.sizeId}</pre>
+				</div>
+				<div class="buyDate">
+					<pre>${orderList.buyDate}</pre>
+				</div>
+				<div style="align-items: center; width: 150px;">
+					<h6>
+						배송완료 <br>
+					</h6>
+					<form action="">
+						<button type="submit"
+							style="border: none; background-color: white; color: #088ff7">
+							후기 <br>올리기
+						</button>
+					</form>
 				</div>
 			</div>
-		</div>
-		<div class="size">
+		</c:forEach>
+
+		<div>
 			<div>
-				<p>260</p>
+				<img alt="" src="/images/1.png" width="120" height="120">
+			</div>
+			<div style="width: 400px;">
+				<p style="width: 250px;">Dior Saddle Flap Card Holder Blue Dior
+					Oblique Jacquard</p>
+				<pre style="text-align: center; width: 100px;">ONE SIZE</pre>
+			</div>
+			<div class="buyDate">
+				<pre>2023/01/23</pre>
+			</div>
+			<div style="width: 150px;">
+				<h6>
+					배송완료 <br>
+				</h6>
+				<form action="">
+					<button type="submit"
+						style="border: none; background-color: white; color: #088ff7">
+						후기 <br>올리기
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>
-	</div>
-</body>
-</html>
+</div>
+</div>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

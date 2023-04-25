@@ -263,7 +263,7 @@ button:hover {
 			</div>
 			<div>
 				<p>
-					<a href="/user/buy">구매내역</a>
+					<a href="/user/buylist">구매내역</a>
 				</p>
 			</div>
 			<div>

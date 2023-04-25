@@ -138,7 +138,7 @@
 			</div>
 			<div id="profileediter">
 				<div>
-					<h3>jdy1787</h3>
+					<h3>${user.username}</h3>
 				</div>
 				<div>
 					<form action="/user/myinfoEditor" method="get">
@@ -192,7 +192,7 @@
 						style="text-align:center; width: 100px;">${orderList.sizeId}</pre>
 				</div>
 				<div class="buyDate">
-					<pre>${orderList.releaseDate}</pre>
+					<pre>${orderList.orderDate}</pre>
 				</div>
 				<div style="align-items: center; width:150px;">
 					<h6>
@@ -234,6 +234,4 @@
 	</div>
 </div>
 </div>
-</body>
-</html>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
