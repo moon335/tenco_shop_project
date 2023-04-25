@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -199,7 +198,7 @@
             <c:choose>
                <c:when test="${principal != null}">
                   <a href="/user/logout"> <label>로그아웃</label></a>
-                  <label>${principal.name}님</label>
+                  <label>${principal.username}님</label>
                </c:when>
                <c:otherwise>
                   <button type="button" onclick="location.href='/user/sign-in'">로그인</button>

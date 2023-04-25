@@ -10,6 +10,7 @@ import com.tenco.tencoshop.dto.ReviewResponseDto;
 @Mapper
 public interface ReviewRepository {
 
+   
    // 리뷰 전체 목록 
    // + 인기순, 최신순 기능 구현
    public List<ReviewResponseDto> findByType(String type);

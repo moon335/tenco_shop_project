@@ -7,6 +7,17 @@ html, body {
   background: #ffffff;
 }
 
+.text-center{
+	height: 700px;
+}
+.input-form-box{
+	justify-content: center;
+	font-weight: bold;
+}
+span{
+	width:300px;	
+}
+
 #container {
   display: flex;
   flex-direction: row;

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <style type="text/css">
 * {
    margin: 0;
@@ -36,6 +36,28 @@ body {
 
 .side div {
    margin-bottom: 25px;
+}
+
+body {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.side {
+	margin: 30px;
+}
+
+.side a {
+	color: gray;
+	text-decoration-line: none;
+}
+
+.side a:hover {
+	color: black;
+}
+
+.side div {
+	margin-bottom: 25px;
 }
 
 .top-inner {
@@ -212,90 +234,94 @@ button:hover {
 }
 
 .body {
-   display: flex;
-   margin-top: 50px;
+	display: flex;
+	margin-top: 50px;
 }
 
 .side h4 {
-   color: black;
+	color: black;
 }
-
 </style>
 </head>
 <body>
-   <header>
-      <div class="main-inner">
-         <div class="top-inner">
-            <button type="button" onclick="location.href='/cart/list'">장바구니</button>
-            <c:choose>
-               <c:when test="${principal != null}">
-                  <a href="/user/logout"> <label>로그아웃</label></a>
-                  <label>${user.name}님</label>
-               </c:when>
-               <c:otherwise>
-                  <button type="button" onclick="location.href='/user/sign-in'">로그인</button>
-                  <button type="button" onclick="location.href='/user/sign-up'">회원가입</button>
-               </c:otherwise>
-            </c:choose>
+	<header>
+		<div class="main-inner">
+			<div class="top-inner">
+				<button type="button" onclick="location.href='/cart/list'">장바구니</button>
+				<c:choose>
+					<c:when test="${principal != null}">
+						<a href="/user/logout"> <label>로그아웃</label></a>
+						<label>${user.name}님</label>
+					</c:when>
+					<c:otherwise>
+						<button type="button" onclick="location.href='/user/sign-in'">로그인</button>
+						<button type="button" onclick="location.href='/user/sign-up'">회원가입</button>
+					</c:otherwise>
+				</c:choose>
 
-         </div>
-         <div class="header-inner">
-            <h3>
-               <a href="/main" style="font-size: 28px;">TencoShop</a>
-            </h3>
-            <div class="header-inner-menu">
-               <label><a href="/main">HOME</a></label> <label><a
-                  href="/review/style">STYLE</a></label> <label><a href="#">SHOP</a></label>
-               <label><a href="/user/myinfoProc">MY</a></label> <span
-                  class="material-symbols-outlined"><a href="/product/search">search</a></span>
-            </div>
-         </div>
-      </div>
+			</div>
+			<div class="header-inner">
+				<h3>
+					<a href="/main" style="font-size: 28px;">TencoShop</a>
+				</h3>
+				<div class="header-inner-menu">
+					<label><a href="/main">HOME</a></label> <label><a
+						href="/review/style">STYLE</a></label> <label><a href="#">SHOP</a></label>
+					<label><a href="/user/myinfoProc">MY</a></label> <span
+						class="material-symbols-outlined"><a href="/product/search">search</a></span>
+				</div>
+			</div>
+		</div>
 
-   </header>
-   <div class="body">
-      <div class="side">
-         <div>
-            <h4 style="margin-bottom: 50px;">
-               <a href="" style="color: black;">마이 페이지</a>
-            </h4>
-         </div>
-         <div>
-            <h5>쇼핑정보</h5>
-         </div>
-         <div>
-            <p>
-               <a href="/user/buy">구매내역</a>
-            </p>
-         </div>
-         <div>
-            <p>
-               <a href="">관심상품</a>
-            </p>
-            <br>
-         </div>
-         <div>
-            <h5>내정보</h5>
-         </div>
-         <div>
-            <p>
-               <a href="/user/myinfo">프로필 정보</a>
-            </p>
-         </div>
-         <div>
-            <p>
-               <a href="">주소록</a>
-            </p>
-         </div>
-         <div>
-            <p>
-               <a href="">결제 정보</a>
-            </p>
-         </div>
-         <div>
-            <p>
-               <a href="/question/find">QnA</a>
-            </p>
-         </div>
-      </div>
-      
+	</header>
+	<div class="body">
+		<div class="side">
+			<div>
+				<h4 style="margin-bottom: 50px;">
+					<a href="" style="color: black;">마이 페이지</a>
+				</h4>
+			</div>
+			<div>
+				<h5>쇼핑정보</h5>
+			</div>
+			<div>
+				<p>
+					<a href="/user/buy">구매내역</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="">관심상품</a>
+				</p>
+				<br>
+			</div>
+			<div>
+				<h5>내정보</h5>
+			</div>
+			<div>
+				<p>
+					<a href="/user/myinfo">프로필 정보</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="">주소록</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="">결제 정보</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="/question/find">QnA</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="/user/withdraw">회원 탈퇴</a>
+				</p>
+			</div>
+		</div>
+		

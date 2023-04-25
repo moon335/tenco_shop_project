@@ -8,19 +8,36 @@
 		resultType="com.tenco.tencoshop.repository.model.Product">
 		select * from user_tb as u
 		join order_tb as o
-		on o.user_id =
+		on o.id =
 		u.id
 		join product_tb as p
 		on p.id = o.product_id
-		where u.id=#{userId};
+		where u.id=#{id};
 	</select>
 
 	<select id="userInfoSelect"
 		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
-		where id=#{userId}
+		where id=#{id}
 	</select>
-	
+
+	<select id="findByPassword"
+		resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where username = #{username}
+	</select>
+
+	<insert id="insert">
+		insert into user_tb (username, password, tel,
+		address, email, first_name, last_name)
+		values( #{username},
+		#{password}, #{tel}, #{address},#{email},#{firstName},#{lastName} );
+	</insert>
+
+	<delete id="delete">
+		delete from user_tb where username=#{username}
+	</delete>
+
 </mapper>
 	
 
