@@ -1,28 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-	<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style type="text/css">
-
 .container {
-	display: flex; 
+	display: flex;
 	padding-top: 30px;
-	
 }
 
 .side-menu {
 	display: flex;
 	flex-direction: column;
 }
-.side-menu h2 {
-	margin-left: 40px;
+
+h2,h3 {
+	font-weight: bold;
+}
+.side-menu-list {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 }
 
-.side-menu-list li {
-	padding: 5px;
+.side-menu-list a {
+	margin-top: 10px;
 }
 
-li {
+.customer-notice li {
 	list-style: none;
 	border-bottom: 1px solid #ccc;
 }
@@ -33,13 +37,14 @@ li {
 }
 
 .content-area {
-	width: 600px;
+	width: 880px;
 	margin-left: 50px;
 }
 
 .content-title-border {
 	border-bottom: 3px solid black;
 }
+
 .content-title-border h2 {
 	margin-top: 25px;
 	height: 25px;
@@ -58,15 +63,10 @@ li {
 <body>
 	<div class="container">
 		<div class="side-menu">
-			<div>
-				<h2>고객센터</h2>
-			</div>
-
-			<div>
-				<ul class="side-menu-list">
-					<li><a href="notice">공지사항</a></li>
-					<li><a href="#">자주 묻는 질문</a></li>
-				</ul>
+			<h2 class="side-menu-title">고객센터</h2>
+			<div class="side-menu-list">
+				<a href="notice">공지사항</a>
+				<a href="#">자주 묻는 질문</a>
 			</div>
 		</div>
 		<div class="content-area">
@@ -75,10 +75,10 @@ li {
 			</div>
 			<div class="customer-notice">
 				<c:forEach var="list" items="${list}">
-				<li><a href="#${list.id}">${list.title}</a></li>
+					<li><a href="#${list.id}">${list.title}</a></li>
 				</c:forEach>
 			</div>
-		<button>글쓰기</button>
+			<button>글쓰기</button>
 		</div>
 	</div>
 </body>
