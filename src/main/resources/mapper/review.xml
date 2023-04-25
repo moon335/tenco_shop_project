@@ -35,12 +35,20 @@
 	</select>
 	
 	<!-- id를 기반으로 상세페이지 들어가야 됨 -->
-	<select id="findDetailByUserId" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select u.username, u.id as user_id
+	<select id="findDetailById" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+		select u.username, u.id as user_id, r.*
 		from review_tb as r 
 		inner join user_tb as u
 		on r.user_id = u.id
-		where u.id=#{userId}
+		where r.id=#{id}
+	</select>
+	
+	<select id="findReviewByUserId" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+		select u.id as user_id, r.*, u.*
+		from review_tb as r
+		inner join user_tb as u
+		on u.id = r.user_id
+		where user_id=#{userId}
 	</select>
 	
 </mapper>

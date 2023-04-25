@@ -16,6 +16,10 @@ public interface ReviewRepository {
 	// 상품 카테고리 별 출력
 	public List<ReviewResponseDto> findByProdCategoryId(Integer reviewCategoryId);
 
-	// 리뷰 상세 페이지
-	public ReviewResponseDto findDetailByUserId(Integer userId);
+	// id 기반 리뷰 상세 페이지
+	public ReviewResponseDto findDetailById(Integer id);
+	
+	// userId 기반 내 리뷰 페이지 -> principal로 수정 예정?
+	public ReviewResponseDto findReviewByUserId(Integer userId);
+	
 }

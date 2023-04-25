@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.tencoshop.dto.ReviewResponseDto;
 import com.tenco.tencoshop.repository.interfaces.ReviewRepository;
-import com.tenco.tencoshop.repository.model.Review;
 
 @Service // 서비스는 서비스 ~
 public class ReviewService {
@@ -30,9 +29,15 @@ public class ReviewService {
       return list;
    }
    
-   // userId 기반 상세 페이지 출력
-   public ReviewResponseDto findDetailById(Integer userId) {
-	   ReviewResponseDto reviewDto = reviewRepository.findDetailByUserId(userId);
+   // id 기반 상세 페이지 출력
+   public ReviewResponseDto readDetailById(Integer id) {
+	   ReviewResponseDto reviewDto = reviewRepository.findDetailById(id);
 	   return reviewDto;
+   }
+   
+   // userId 기반 리뷰 페이지 출력
+   public ReviewResponseDto readReviewByUserId(Integer userId) {
+	   ReviewResponseDto list = reviewRepository.findReviewByUserId(userId);
+	   return list;
    }
 }
