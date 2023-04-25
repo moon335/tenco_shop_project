@@ -32,7 +32,6 @@ public class UserService {
 	@Transactional
 	public List<ProductRequestDto> searchProductList(ProductRequestDto productRequestDto) {
 		List<ProductRequestDto> searchList = userRepository.searchBuyList(productRequestDto);
-		System.out.println("!@#@!#!@#!#"+searchList);
 		return searchList;
 	}
 

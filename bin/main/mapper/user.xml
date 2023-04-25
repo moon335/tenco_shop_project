@@ -21,14 +21,16 @@
 		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
 		select
 		o.user_id,p.eng_name,o.quantity,buy_date
-		from user_tb as u
+		from user_tb
+		as u
 		join order_tb as o
 		on o.user_id =
 		u.id
 		join
 		product_tb
 		as p
-		on p.id = o.product_id
+		on p.id =
+		o.product_id
 		where u.id=#{userId}
 		AND
 		buy_date
@@ -52,5 +54,23 @@
 		tel=#{tel}
 		where id=#{id};
 	</update>
+
+	<select id="findByPassword"
+		resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where username = #{username}
+	</select>
+
+	<insert id="insert">
+		insert into user_tb (username, password, tel,
+		address, email, first_name, last_name)
+		values( #{username},
+		#{password}, #{tel}, #{address},#{email},#{firstName},#{lastName} );
+	</insert>
+
+	<delete id="delete">
+		delete from user_tb where username=#{username}
+	</delete>
+
 </mapper>
 	
