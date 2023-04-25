@@ -12,6 +12,8 @@ import com.tenco.tencoshop.repository.model.Product;
 @Service
 public class ProductService {
 
+	// 메서드 이름 CRUD + 이름;
+	
    @Autowired // DI 의존 주입
    ProductRepository productRepository;
 

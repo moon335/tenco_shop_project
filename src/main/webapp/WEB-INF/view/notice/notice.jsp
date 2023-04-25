@@ -75,7 +75,7 @@ h2,h3 {
 			</div>
 			<div class="customer-notice">
 				<c:forEach var="list" items="${list}">
-					<li><a href="/notice/${list.id}">${list.title}</a></li>
+					<li><a href="/notice/${list.id}">[${list.categoryName}]  ${list.title}</a></li>
 				</c:forEach>
 			</div>
 			<button>글쓰기</button>

@@ -9,6 +9,8 @@ public class NoticeResponseDto {
 	public static class BoardTitleDto {
 		private String title;
 		private Integer id;
+		private Integer boardCategoryId;
+		private String categoryName;
 	}
 	
 	@Data

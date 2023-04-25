@@ -2,13 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.tenco.tencoshop.repository.interfaces.NoticeRepository">
+<mapper
+	namespace="com.tenco.tencoshop.repository.interfaces.NoticeRepository">
 
-	<select id="findBoardTitle" resultType="com.tenco.tencoshop.dto.NoticeResponseDto$BoardTitleDto">
-		select id, title from board_tb;
+	<select id="findBoardTitle"
+		resultType="com.tenco.tencoshop.dto.NoticeResponseDto$BoardTitleDto">
+		select b.id, b.title, bc.name as category_name
+		from board_tb as b
+		inner join board_category_tb as bc
+		on b.board_category_id = bc.id
+		order by b.id;
 	</select>
-	
-	<select id="noticeContent" resultType="com.tenco.tencoshop.dto.NoticeResponseDto$NoticeContent">
+
+	<select id="noticeContent"
+		resultType="com.tenco.tencoshop.dto.NoticeResponseDto$NoticeContent">
 		select title, content from board_tb where id = #{id};
 	</select>
 </mapper> 
