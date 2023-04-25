@@ -20,11 +20,11 @@
 </style>
 <body>
 	<div class="container my-3">
-		<form action="/notice/noticeForm" method="get" class="mb-1">
+		<form action="/notice/insert" method="post" class="mb-1">
 			<div class="form-group">
 			<div class="category-box">
 				<label>
-					<select>
+					<select name="boardCategoryId" id="boardCategoryId">
 						<option value="1">공지</option>
 						<option value="2">이벤트 발표</option>
 						<option value="3">쇼룸</option>
@@ -38,8 +38,8 @@
 				<textarea class="form-control summernote" rows="5" id="content"
 					name="content"></textarea>
 			</div>
+		<button type="submit" class="btn btn-primary" style="background-color: black">작성 완료</button>
 		</form>
-		<button onClick="save()" type="button" class="btn btn-primary" style="background-color: black">작성 완료</button>
 	</div>
 	<script>
         $('.summernote').summernote({

@@ -7,8 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.tenco.tencoshop.dto.NoticeRequestDto;
 import com.tenco.tencoshop.dto.NoticeResponseDto;
 import com.tenco.tencoshop.service.NoticeService;
 
@@ -17,6 +18,7 @@ public class NoticeController {
 
 	@Autowired
 	NoticeService noticeService;
+	
 	
 	@GetMapping("/notice")
 	public String notice(Model model) {
@@ -34,10 +36,18 @@ public class NoticeController {
 		return "/notice/noticeDetail";
 	}
 	
+	// 공지사항 작성 페이지
 	@GetMapping("/notice/noticeForm")
 	public String noticeForm() {
 		return "/notice/noticeForm";
 	}
 	
+	
+	// 공지사항 작성 제출
+	@PostMapping("/notice/insert")
+	public String noticeInsert(NoticeRequestDto.insertDto insertDto) {
+		noticeService.insertNotice(insertDto);
+		return "redirect:/notice";
+	}
 	
 }

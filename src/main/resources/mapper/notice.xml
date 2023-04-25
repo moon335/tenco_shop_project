@@ -8,7 +8,8 @@
 	<select id="findBoardTitle"
 		resultType="com.tenco.tencoshop.dto.NoticeResponseDto$BoardTitleDto">
 		select b.id, b.title, bc.name as category_name
-		from board_tb as b
+		from board_tb
+		as b
 		inner join board_category_tb as bc
 		on b.board_category_id = bc.id
 		order by b.id;
@@ -18,4 +19,9 @@
 		resultType="com.tenco.tencoshop.dto.NoticeResponseDto$NoticeContent">
 		select title, content from board_tb where id = #{id};
 	</select>
+
+	<insert id="insert">
+		insert into board_tb(title, content, board_category_id)
+		values(#{title}, #{content}, #{boardCategoryId});
+	</insert>
 </mapper> 

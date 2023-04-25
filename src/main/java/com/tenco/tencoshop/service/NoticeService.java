@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tenco.tencoshop.dto.NoticeRequestDto;
 import com.tenco.tencoshop.dto.NoticeResponseDto;
 import com.tenco.tencoshop.repository.interfaces.NoticeRepository;
 
@@ -28,6 +29,12 @@ public class NoticeService {
 	public NoticeResponseDto.NoticeContent noticeContent(Integer id){
 		NoticeResponseDto.NoticeContent noticeList = noticeRepository.noticeContent(id);
 		return noticeList;
+	}
+	
+	// 공지사항 작성
+	@Transactional
+	public void insertNotice(NoticeRequestDto.insertDto insertDto) {
+		int result = noticeRepository.insert(insertDto);
 	}
 	
 	

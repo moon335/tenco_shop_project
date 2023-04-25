@@ -6,6 +6,7 @@
 .container {
 	display: flex;
 	padding-top: 30px;
+	height: 800px;
 }
 
 .side-menu {
@@ -50,11 +51,6 @@ h3 {
 	margin-top: 10px;
 }
 
-.board {
-	height: 500px;
-	padding: 20px;
-	border-top: 1px solid #ccc;
-}
 
 .button {
 	display: flex;
@@ -67,6 +63,13 @@ h3 {
 	border-radius: 7px;
 	padding: 5px;
 }
+
+.content {
+	border-top: 1px solid #ccc;
+	height: 600px; 
+	
+}
+
 </style>
 </head>
 <body>
@@ -83,7 +86,9 @@ h3 {
 			</div>
 			<div class="notice-content">
 				<p class="title">제목 : ${noticeList.title}</p>
-				<p class ="board">${noticeList.content}</p>
+				<div class="content">
+				<p>${noticeList.content}</p>
+				</div>
 			</div>
 			<div class="button">
 			<a href="/notice">목록보기</a>
