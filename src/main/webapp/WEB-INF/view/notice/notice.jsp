@@ -78,7 +78,7 @@ h2,h3 {
 					<li><a href="/notice/${list.id}">[${list.categoryName}]  ${list.title}</a></li>
 				</c:forEach>
 			</div>
-			<button>글쓰기</button>
+			<button onclick="location.href='/notice/noticeForm'">글쓰기</button>
 		</div>
 	</div>
 </body>

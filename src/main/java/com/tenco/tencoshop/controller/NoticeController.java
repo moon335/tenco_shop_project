@@ -34,5 +34,10 @@ public class NoticeController {
 		return "/notice/noticeDetail";
 	}
 	
+	@GetMapping("/notice/noticeForm")
+	public String noticeForm() {
+		return "/notice/noticeForm";
+	}
+	
 	
 }
