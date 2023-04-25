@@ -11,22 +11,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
-import com.tenco.tencoshop.dto.ProductResponseDto;
-import com.tenco.tencoshop.dto.SearchBuyListResponseDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.handler.LoginException;
-import com.tenco.tencoshop.repository.model.Product;
 import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.LoginService;
 import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
-
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 
 @Controller
 @RequestMapping("/user")
@@ -42,9 +36,10 @@ public class UserController {
 	// myinfo에서 주문한 제품 보기
 	@GetMapping("/myinfoProc")
 	public String myInfoProc(Integer userId, Model model) {
-		userId = 1;
-		User user = userService.userInfo(userId);
-		List<ProductRequestDto> orderList = userService.buyProductList(userId);
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		System.out.println(principal+"@#@##");
+		User user = userService.userInfo(principal.getId());
+		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
 			model.addAttribute("orderList", null);
@@ -57,9 +52,9 @@ public class UserController {
 	// 구매목록화면 들어가기
 	@GetMapping("buylist")
 	public String buyList(Integer userId, Model model) {
-		userId = 1;
-		User user = userService.userInfo(userId);
-		List<ProductRequestDto> orderList = userService.buyProductList(userId);
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		User user = userService.userInfo(principal.getId());
+		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
 			model.addAttribute("orderList", null);
@@ -73,8 +68,8 @@ public class UserController {
 	// 주문한 제품 search하기
 	@GetMapping("/buylistProc")
 	public String buyListProc(ProductRequestDto productRequestDto, Model model) {
-		int userId = 1;
-		productRequestDto.setUserId(userId);
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		productRequestDto.setUserId(principal.getId());
 		List<ProductRequestDto> orderList = userService.searchProductList(productRequestDto);
 		System.out.println("orderList" + orderList);
 		if (orderList.isEmpty()) {
@@ -94,16 +89,21 @@ public class UserController {
 	// 내 정보 수정 화면 들어가기
 	@GetMapping("/myinfoEditor")
 	public String myinfoEditor(Integer userId, Model model) {
-		userId = 1;
-		User user = userService.userInfo(userId);
+		
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		User user = userService.userInfo(principal.getId());
+		System.out.println("ser"+principal.getId());
 		model.addAttribute("user", user);
+		System.out.println(user);
+		user.getPassword();
 		return "/user/myInfoEditor";
 	}
 
 	// 내 정보 수정하기
 	@PostMapping("/myinfoupdate")
 	public String myinfoUpdate(UserInfoRequestDto userInfoRequestDto) {
-		userService.userInfoUpdate(userInfoRequestDto, 1);
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
 		return "redirect:/user/myinfoEditor";
 	}
 
@@ -125,6 +125,7 @@ public class UserController {
 		LoginResponseDto principal = loginService.signIn(loginResponseDto);
 		principal.setPassword(null);
 		session.setAttribute(Define.PRINCIPAL, principal);
+		
 		return "/layout/main";
 	}
 
@@ -178,7 +179,7 @@ public class UserController {
 		principal.setPassword(null);
 		session.setAttribute(Define.PRINCIPAL, principal);
 
-		return "/layout/main";
+		return "redirect:/layout/main";
 	}
 
 	// 로그아웃

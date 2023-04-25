@@ -228,7 +228,7 @@ button:hover {
 				<c:choose>
 					<c:when test="${principal != null}">
 						<a href="/user/logout"> <label>로그아웃</label></a>
-						<label>${user.name}님</label>
+						<label>${user.username}님</label>
 					</c:when>
 					<c:otherwise>
 						<button type="button" onclick="location.href='/user/sign-in'">로그인</button>
