@@ -1,6 +1,9 @@
 package com.tenco.tencoshop.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.util.TimestampUtil;
 
@@ -10,24 +13,29 @@ import lombok.Data;
 @Data
 public class ReviewResponseDto {
 
-   private Integer id;
-   private String content;
-   private String reviewImg;
-   private Integer userId;
-   private Integer prodId;
-   private Integer heart;
-   private Timestamp createdAt;
-   
-   // user_tb
-   private String userName;
-   
-   // review_category_tb
-   private Integer reviewCategoryId;
-   
-   // join해서 들고올 product_tb의 상품 사진, 이름, 가격
-   
-   public String formatCreatedAt() {
-	   return TimestampUtil.timestampToString(createdAt);
-   }
-   
+	private Integer id;
+	private String content;
+	private String reviewImg;
+	private Integer userId;
+	private Integer prodId;
+	private Integer heart;
+	private Timestamp createdAt;
+
+	// user_tb
+	private String userName;
+
+	// review_category_tb
+	private Integer reviewCategoryId;
+
+	// join해서 들고올 product_tb의 상품 사진, 이름, 가격
+
+	// 파일 업로드 기능 ReviewFormDto 클래스를 하나 만들어야 할지 고민중
+	private List<MultipartFile> fileList;
+	private String originFileName;
+	private String uploadFileName;
+
+	public String formatCreatedAt() {
+		return TimestampUtil.timestampToString(createdAt);
+	}
+
 }

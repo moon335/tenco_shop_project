@@ -1,6 +1,8 @@
 package com.tenco.tencoshop.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.dto.ReviewResponseDto;
 import com.tenco.tencoshop.repository.model.ReviewCategory;
@@ -88,19 +91,54 @@ public class ReviewController {
 	}
 
 	// myInfo의 후기 올리기 기능
+	// productId, principal을 매개변수로 받아서 productId기준
 	@GetMapping("/reviewInsert/{userId}")
 	public String reviewInsert(Model model, @PathVariable Integer userId) {
 		ReviewResponseDto review = reviewService.readReviewByUserId(userId);
 		model.addAttribute("review", review);
-		
+
 		return "/review/reviewInsert";
 	}
-	
+
 	@PostMapping("/reviewInsert-proc")
-	public String reviewInsertProc() {
+	public String reviewInsertProc(ReviewResponseDto reviewResponseDto) {
+		List<MultipartFile> fileList = reviewResponseDto.getFileList();
+
+		if (fileList.isEmpty() == false) {
+
+			if (fileList.size() > Define.MAX_FILE_SISE) {
+				// 예외 처리 던져주기 "파일 크기는 50MB보다 클 수 없습니다.", HttpStatus.BAD_REQUEST
+			}
+
+			try {
+				String saveDirectory = Define.UPLOAD_DIRECTORY;
+				File dir = new File(saveDirectory);
+
+				if (dir.exists() == false) {
+					dir.mkdirs(); // 폴더 없으면 생성해줌 굿 ~
+				}
+
+				for (int i=0; i<fileList.size(); i++) {
+					UUID uuid = UUID.randomUUID();
+					
+//					 이게 맞음 ? 잘 모르겠다. 
+					String fileName = uuid + "_" + fileList.get(i).getOriginalFilename();
+					System.out.println("1111111 fileName : " + fileName);
+					String uploadPath = Define.UPLOAD_DIRECTORY + File.separator + fileName;
+					File destination = new File(uploadPath);
+					
+					// 콘솔창에 입력은 됨. 로컬 저장소에 파일이 들어가진 않음.
+					reviewResponseDto.setOriginFileName(fileList.get(i).getOriginalFilename());
+					reviewResponseDto.setUploadFileName(fileName);
+				}
+
+			} catch (Exception e) {
+				
+			}
+		}
 		
-		return "";
+		// redirect 추가 ? 
+		return "redirect:/user/myinfo";
 	}
 
-	
 }

@@ -14,5 +14,7 @@ public class Review {
    private Integer prodId;
    private Integer heart;
    private Timestamp createdAt;
+   private String originFileName;
+   private String uploadFileName;
    
 }
