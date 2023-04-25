@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tenco.tencoshop.dto.CartResponseDto;
@@ -23,6 +24,7 @@ public class CartController {
    @Autowired
    private HttpSession session;
    
+   
    @GetMapping("/list")
    public String cart(Model model) {
       
@@ -37,7 +39,15 @@ public class CartController {
       return "/product/cart";
    }
    
-   
+   @PostMapping("/addCart")
+   public String addCart(String size, Integer prodId) {
+	   // 세션에서 로그인 유저 정보 받아와서 처리
+	   
+	   // 서비스 불러서 insert 처리
+	   cartService.createCart(size, prodId, "aaaa");
+	   
+	   return "/cart/list";
+   }
    
 } // end of class
 	

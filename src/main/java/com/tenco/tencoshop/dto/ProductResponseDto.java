@@ -12,6 +12,7 @@ public class ProductResponseDto {
    private String korName;
    private Integer purchase;
    private String gender;
+   private String modelNumber;
    private Date releaseDate;
    private String color;
    private Integer releasePrice;

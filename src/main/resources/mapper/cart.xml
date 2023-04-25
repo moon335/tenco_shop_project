@@ -16,4 +16,8 @@
       on p.size_id = s.id
       where c.user_id = #{userId};
    </select>
+   <insert id="insert">
+   		insert into cart_tb (amount, prod_id, user_id)
+   		values (1, #{prodId}, #{userId})
+   </insert>
 </mapper>

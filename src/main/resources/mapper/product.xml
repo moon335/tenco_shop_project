@@ -26,7 +26,7 @@
    </select>
    
    <select id="findProductById" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
-         select p.*, b.name, c.name, s.name
+      select p.*, b.name as brand_name, c.name as category_name, s.name as size_name
       from product_tb as p
       inner join brand_tb as b
       on p.brand_id = b.id
@@ -34,7 +34,7 @@
       on p.category_id = c.id
       inner join size_tb as s
       on p.size_id = s.id
-      where p.id = #{id};
+      where p.id = #{id}
    </select>
    
 </mapper>

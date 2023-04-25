@@ -14,4 +14,8 @@ public interface UserRepository {
 
 	// 유저 정보 보기
 	public User userInfoSelect(Integer userId);
+	
+	// username 기반 검색
+	public User findByUsername(String username);
+	
 }

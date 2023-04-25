@@ -29,13 +29,16 @@ public class ProductService {
    }
    
    
-   // 제품 상세페이지로 넘기기 
+   // 메인, 검색 페이지에서 사용
    public Product getProductInfo(Integer id) {
       Product prodInfo = productRepository.getProdInfo(id);
-      System.out.println(prodInfo);
       return prodInfo;
    }
    
+   // 제품 상세 페이지에서 사용
+   public ProductResponseDto readProductById(Integer prodId) {
+	   ProductResponseDto responseProduct = productRepository.findProductById(prodId);
+	   return responseProduct;
+   }
    
-   
-}
+} // end of class

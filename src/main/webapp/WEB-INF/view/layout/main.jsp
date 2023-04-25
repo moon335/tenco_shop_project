@@ -150,16 +150,16 @@
       <!-- The slideshow -->
       <div class="carousel-inner">
          <div class="carousel-item active">
-            <img src="/images/banner1.jpg" alt="Los Angeles" width="1100" height="500">
+            <img src="/static/images/banner1.jpg" alt="Los Angeles" width="1100" height="500">
          </div>
          <div class="carousel-item">
-            <img src="/images/banner2.jpg" alt="Chicago" width="1100" height="500">
+            <img src="/static/images/banner2.jpg" alt="Chicago" width="1100" height="500">
          </div>
          <div class="carousel-item">
-            <img src="/images/banner3.jpg" alt="New York" width="1100" height="500">
+            <img src="/static/images/banner3.jpg" alt="New York" width="1100" height="500">
          </div>
          <div class="carousel-item">
-            <img src="/images/banner4.jpg" alt="New York" width="1100" height="500">
+            <img src="/static/images/banner4.jpg" alt="New York" width="1100" height="500">
          </div>
       </div>
 
@@ -178,8 +178,8 @@
       <div class="article">
          <c:forEach var="list" items="${list}">
             <div class="article-prod">
-               <a href="/info-prod/${list.id}"><img alt="" class="article-img" src="${list.imgRoute}"></a>
-               <h5>${list.brandName}</h5>   
+               <a href="/product/prod-info/${list.id}"><img alt="" class="article-img" src="/static/images/prodimages/${list.imgRoute}"></a>
+               <h5>${list.brandName}</h5>
                <p>${list.engName}</p>
                <h5>${list.releasePrice}원</h5>
                </div>

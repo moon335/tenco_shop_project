@@ -10,6 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tenco.tencoshop.dto.CartResponseDto;
 import com.tenco.tencoshop.repository.interfaces.CartRepository;
 import com.tenco.tencoshop.repository.interfaces.ProductRepository;
+import com.tenco.tencoshop.repository.interfaces.SizeRepository;
+import com.tenco.tencoshop.repository.interfaces.UserRepository;
+import com.tenco.tencoshop.repository.model.Product;
+import com.tenco.tencoshop.repository.model.Size;
+import com.tenco.tencoshop.repository.model.User;
 
 @Service // IoC
 public class CartService {
@@ -19,6 +24,12 @@ public class CartService {
    
    @Autowired
    private ProductRepository productRepository;
+   
+   @Autowired
+   private UserRepository userRepository;
+   
+   @Autowired
+   private SizeRepository sizeRepository;
    
    // 유저 아이디 기반으로 검색 기능
    // 장바구니에 담겨있는 해당 유저의 모든 상품 받아오기
@@ -34,6 +45,22 @@ public class CartService {
    
    // todo
    // 장바구니에서 주문 후 장바구니 내용 삭제 요청해줘야함
+   
+   // 상세 페이지에서 장바구니 담기를 눌렀을 때 테이블에 추가하기
+   @Transactional
+   public void createCart(String size, Integer prodId, String username) {
+	   
+	 User targetUser = userRepository.findByUsername(username);
+	 
+	 Size targetSize = sizeRepository.findByName(size);
+	 
+	 Product targetProduct = productRepository.getProdInfo(prodId);
+	 
+	 int resultRow = cartRepository.insert(targetUser.getId(), targetProduct.getId(), targetSize.getId());
+	 if(resultRow != 1) {
+		 System.out.println("장바구니 등록 실패");
+	 }
+   } 
    
    
 } // end of class
