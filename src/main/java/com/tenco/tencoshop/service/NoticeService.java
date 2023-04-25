@@ -23,6 +23,13 @@ public class NoticeService {
 		
 	}
 	
+	// 공지사항 상세페이지
+	@Transactional
+	public NoticeResponseDto.NoticeContent noticeContent(Integer id){
+		NoticeResponseDto.NoticeContent noticeList = noticeRepository.noticeContent(id);
+		return noticeList;
+	}
+	
 	
 	
 }

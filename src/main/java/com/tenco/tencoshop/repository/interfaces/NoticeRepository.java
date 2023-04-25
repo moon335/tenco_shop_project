@@ -10,5 +10,7 @@ import com.tenco.tencoshop.dto.NoticeResponseDto;
 public interface NoticeRepository {
 
 	public List<NoticeResponseDto.BoardTitleDto> findBoardTitle();
+	//공지사항 상세페이지
+	public NoticeResponseDto.NoticeContent noticeContent(Integer id);
 		
 }

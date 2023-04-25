@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<style type="text/css">
+<style>
 .container {
 	display: flex;
 	padding-top: 30px;
@@ -13,9 +13,14 @@
 	flex-direction: column;
 }
 
-h2,h3 {
+.content-title-border {
+	border-bottom: 3px solid black;
+}
+
+h3 {
 	font-weight: bold;
 }
+
 .side-menu-list {
 	display: flex;
 	flex-direction: column;
@@ -41,22 +46,26 @@ h2,h3 {
 	margin-left: 50px;
 }
 
-.content-title-border {
-	border-bottom: 3px solid black;
+.title {
+	margin-top: 10px;
 }
 
-.content-title-border h2 {
-	margin-top: 25px;
-	height: 25px;
+.board {
+	height: 500px;
+	padding: 20px;
+	border-top: 1px solid #ccc;
 }
 
-.customer-notice a {
-	text-decoration: none;
-	color: black;
+.button {
+	display: flex;
+	justify-content: center;
+	
 }
-
-.customer-notice li {
-	padding: 10px;
+.button a {
+	color:black;
+	border: 1px solid #ccc;
+	border-radius: 7px;
+	padding: 5px;
 }
 </style>
 </head>
@@ -65,20 +74,20 @@ h2,h3 {
 		<div class="side-menu">
 			<h2 class="side-menu-title">고객센터</h2>
 			<div class="side-menu-list">
-				<a href="notice">공지사항</a>
-				<a href="#">자주 묻는 질문</a>
+				<a href="notice">공지사항</a> <a href="#">자주 묻는 질문</a>
 			</div>
 		</div>
 		<div class="content-area">
 			<div class="content-title-border">
 				<h3>공지사항</h3>
 			</div>
-			<div class="customer-notice">
-				<c:forEach var="list" items="${list}">
-					<li><a href="/notice/${list.id}">${list.title}</a></li>
-				</c:forEach>
+			<div class="notice-content">
+				<p class="title">제목 : ${noticeList.title}</p>
+				<p class ="board">${noticeList.content}</p>
 			</div>
-			<button>글쓰기</button>
+			<div class="button">
+			<a href="/notice">목록보기</a>
+			</div>
 		</div>
 	</div>
 </body>

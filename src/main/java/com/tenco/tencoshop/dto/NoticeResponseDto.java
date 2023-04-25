@@ -10,6 +10,13 @@ public class NoticeResponseDto {
 		private String title;
 		private Integer id;
 	}
+	
+	@Data
+	public static class NoticeContent{
+		private String title;
+		private Integer id;
+		private String content;
+	}
 
 	private String adminName;
 	private String title;
