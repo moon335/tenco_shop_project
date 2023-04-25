@@ -37,14 +37,15 @@ public class UserController {
 	@GetMapping("/myinfoProc")
 	public String myInfoProc(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		System.out.println(principal+"@#@##");
-		User user = userService.userInfo(principal.getId());
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
+		System.out.println(principal.getPassword() + "@#@##");
+		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
 			model.addAttribute("orderList", null);
 		} else {
 			model.addAttribute("orderList", orderList);
+			model.addAttribute("principal", principal);
 		}
 		return "/user/myInfo";
 	}
@@ -89,12 +90,10 @@ public class UserController {
 	// 내 정보 수정 화면 들어가기
 	@GetMapping("/myinfoEditor")
 	public String myinfoEditor(Integer userId, Model model) {
-		
+
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		User user = userService.userInfo(principal.getId());
-		System.out.println("ser"+principal.getId());
 		model.addAttribute("user", user);
-		System.out.println(user);
 		user.getPassword();
 		return "/user/myInfoEditor";
 	}
@@ -104,6 +103,7 @@ public class UserController {
 	public String myinfoUpdate(UserInfoRequestDto userInfoRequestDto) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
+		principal.setPassword(userInfoRequestDto.getPassword());
 		return "redirect:/user/myinfoEditor";
 	}
 
@@ -123,10 +123,10 @@ public class UserController {
 			throw new LoginException("비밀번호를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		LoginResponseDto principal = loginService.signIn(loginResponseDto);
-		principal.setPassword(null);
+		principal.setPassword(loginResponseDto.getPassword());
 		session.setAttribute(Define.PRINCIPAL, principal);
-		
-		return "/layout/main";
+
+		return "redirect:/main";
 	}
 
 	// 회원가입

@@ -262,7 +262,7 @@ body {
 						</div>
 						<div>
 							<p>비밀번호</p>
-							<input type="password" value="${user.password}" name="password">
+							<input type="password" value="${principal.password}" name="password">
 						</div>
 				</div>
 			</div>
