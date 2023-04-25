@@ -16,7 +16,9 @@ public class ReviewResponseDto {
    // user_tb
    private String userName;
    
-   private String cateogyId;
+   // review_category_tb
+   private Integer reviewCategoryId;
    
    // join해서 들고올 product_tb의 상품 사진, 이름, 가격
+   
 }

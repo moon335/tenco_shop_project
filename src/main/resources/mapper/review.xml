@@ -10,7 +10,9 @@
 			from review_tb as r 
 			inner join user_tb as u
 			on r.user_id = u.id
-			order by heart desc
+			inner join product_tb as p
+			on r.prod_id = p.id
+			order by r.heart desc
 		</if>
 		
 		<if test="type == 'orderByRecent'">
@@ -18,24 +20,27 @@
 			from review_tb as r 
 			inner join user_tb as u
 			on r.user_id = u.id
-			order by id desc
+			inner join product_tb as p
+			on r.prod_id = p.id
+			order by r.id desc
 		</if>
 	</select>
 
-	<!-- id를 기반으로 상세페이지 들어가야 됨 -->
-	<select id="findDetail" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+	<select id="findByProdCategoryId" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
 		select r.*, u.username
+		from review_tb as r
+        inner join user_tb as u
+        on r.user_id = u.id
+		where review_category_id=#{reviewCategoryId}
+	</select>
+	
+	<!-- id를 기반으로 상세페이지 들어가야 됨 -->
+	<select id="findDetailByUserId" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+		select u.username, u.id as user_id
 		from review_tb as r 
 		inner join user_tb as u
 		on r.user_id = u.id
 		where u.id=#{userId}
-	</select>
-	
-	<select id="findByProdCategoryId" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select p.category_id, p.category_id
-		from review_tb as r
-		inner join product_tb as p
-		where r.prod_id=#{prodId};
 	</select>
 	
 </mapper>

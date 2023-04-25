@@ -12,13 +12,8 @@
     }
 </script>
 <style type="text/css">
-
-body {
-	margin: 0;
-}
-
 .header-inner {
-	padding: 0 20px;
+	padding: 20px 20px;
 }
 
 .review--all--wrap {
@@ -196,12 +191,14 @@ main{
 <main>
    <div class="review--all--wrap">
       <div class="category--wrap">
-         <!-- 카테고리로 이동 : pathVariable or queryParam -->
-         <a href="/review/prod-category/${list.categoryId}">발견</a> <a href="/review/prod-category/${list.categoryId}">스니커즈</a> <a href="/review/prod-category/${list.categoryId}">럭셔리</a> 
-         <a href="/review/prod-category/${list.categoryId}">의류</a> <a href="/review/prod-category/${list.categoryId}">가방</a> <a href="/review/prod-category/${list.categoryId}">액세서리</a>
+	     <a href="/review/style">전체</a>  
+         <%-- 카테고리로 이동 : pathVariable or queryParam --%>
+         <c:forEach var="reviewCategoryList" items="${reviewCategoryList}">
+	         <a href="/review/prod-category/${reviewCategoryList.id}">${reviewCategoryList.name}</a>  
+         </c:forEach>
       </div>
       <div class="order--wrap">
-         <!-- 인기순 : 하트 많은 순 order by 하트수 / 최신순 : id order주기 -->
+         <%-- 인기순 : 하트 많은 순 order by 하트수 / 최신순 : id order주기 --%>
          <a href="/review/style?type=orderByHeart">인기순</a> <a href="/review/style?type=orderByRecent">최신순</a>
       </div>
       <div class="img--wrap">
@@ -224,7 +221,7 @@ main{
                       </div>
                   </div>
                   <div class="review--contents">
-                      <a href="#">${reviewList.content}</a>
+                      <a href="/review/detail/${reviewList.userId}">${reviewList.content}</a>
                   </div>
               </div>
           </c:forEach>
