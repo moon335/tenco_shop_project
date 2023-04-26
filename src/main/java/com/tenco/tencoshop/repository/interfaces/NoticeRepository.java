@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.tenco.tencoshop.dto.NoticeRequestDto;
 import com.tenco.tencoshop.dto.NoticeResponseDto;
+import com.tenco.tencoshop.repository.model.Notice;
 
 @Mapper
 public interface NoticeRepository {
@@ -18,4 +19,7 @@ public interface NoticeRepository {
 	public int insert(NoticeRequestDto.insertDto insertDto);
 	// 공지사항 삭제
 	public int delete(Integer id);
+	 
+	
+	
 }

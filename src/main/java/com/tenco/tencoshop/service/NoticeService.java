@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tenco.tencoshop.dto.NoticeRequestDto;
 import com.tenco.tencoshop.dto.NoticeResponseDto;
 import com.tenco.tencoshop.repository.interfaces.NoticeRepository;
+import com.tenco.tencoshop.repository.model.Notice;
 
 @Service
 public class NoticeService {
@@ -37,14 +38,18 @@ public class NoticeService {
 		int result = noticeRepository.insert(insertDto);
 	}
 	
-	// 공지사항 삭제
-	@Transactional
-	public void deleteNotice(Integer id) {
-		int delete =  noticeRepository.delete(id);
-		if(delete != 1) {
-			System.out.println("삭제안됨");
-		}
-	}
+	
+	 // 공지사항 삭제
+	  
+	  @Transactional public void deleteNotice(Integer id) { 
+		  int delete = noticeRepository.delete(id); 
+		  	if(delete != 1) { 
+			  System.out.println("삭제안됨"); 
+		  	}
+	  }
+	 
+	
+	
 	
 	
 	

@@ -79,13 +79,13 @@ h2,h3 {
 			</div>
 		</div>
 		<div class="content-area">
-			<form action="/notice/delete" method="get">
+			<form action="/notice/delete/${id}" method="get">
 				<div class="content-title-border">
 					<h3>공지사항</h3>
 				</div>
 					<c:forEach var="list" items="${list}">
 				<div class="customer-notice-delete">
-						<input type="checkbox" name ="id" value="${list.id}">
+						<input type="checkbox" name ="id" value="${list.id}" onclick="OneCheck(this)">
 						<li><a href="/notice/${list.id}">[${list.categoryName}] ${list.title}</a></li>
 				</div>
 					</c:forEach>
@@ -94,5 +94,15 @@ h2,h3 {
 			</form>
 		</div>
 	</div>
+	<script type="text/javascript">
+	function OneCheck(chk){
+		  var obj = document.getElementsByName("id");
+		   for(var i=0; i<obj.length; i++){
+		     if(obj[i] != chk){
+		       obj[i].checked = false;
+		     }
+		   }
+		}
+	</script>
 </body>
 </html>

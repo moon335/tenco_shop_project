@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tenco.tencoshop.dto.NoticeRequestDto;
 import com.tenco.tencoshop.dto.NoticeResponseDto;
+import com.tenco.tencoshop.repository.model.Notice;
 import com.tenco.tencoshop.service.NoticeService;
 
 @Controller
@@ -62,10 +63,12 @@ public class NoticeController {
 		return "/notice/noticeDelete";
 	}
 	
-	@GetMapping("/notice/delete")
-	public String noticeDelete(@RequestParam Integer id) {
-		noticeService.deleteNotice(id);
-		return "redirect:/notice";
-	}
+
+	 // 공지사항 게시물 삭제	
+	 @GetMapping("/notice/delete") 
+	 public String noticeDelete(@RequestParam Integer id) {
+		 noticeService.deleteNotice(id); 
+		 return "redirect:/notice"; 
+	 }
 	
 }
