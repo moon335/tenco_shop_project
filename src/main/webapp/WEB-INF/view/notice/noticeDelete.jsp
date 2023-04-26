@@ -26,9 +26,13 @@ h2,h3 {
 	margin-top: 10px;
 }
 
-.customer-notice li {
-	list-style: none;
+.customer-notice-delete {
+	display: flex;
 	border-bottom: 1px solid #ccc;
+}
+.customer-notice-delete li {
+	list-style: none;
+	padding: 10px;
 }
 
 .side-menu a {
@@ -50,14 +54,19 @@ h2,h3 {
 	height: 25px;
 }
 
-.customer-notice a {
+.customer-notice-delete a {
 	text-decoration: none;
 	color: black;
 }
 
-.customer-notice li {
-	padding: 10px;
+.list {
+	color: gray;
 }
+
+.list:hover {
+	color: #ccc;
+}
+
 </style>
 </head>
 <body>
@@ -70,16 +79,19 @@ h2,h3 {
 			</div>
 		</div>
 		<div class="content-area">
-			<div class="content-title-border">
-				<h3>공지사항</h3>
-			</div>
-			<div class="customer-notice">
-				<c:forEach var="list" items="${list}">
-					<li><a href="/notice/${list.id}">[${list.categoryName}]  ${list.title}</a></li>
-				</c:forEach>
-			</div>
-			<button onclick="location.href='/notice/noticeForm'">글쓰기</button>
-			<button onclick="location.href='/notice/deleteForm'">삭제하기</button>
+			<form action="/notice/delete" method="get">
+				<div class="content-title-border">
+					<h3>공지사항</h3>
+				</div>
+					<c:forEach var="list" items="${list}">
+				<div class="customer-notice-delete">
+						<input type="checkbox" name ="id" value="${list.id}">
+						<li><a href="/notice/${list.id}">[${list.categoryName}] ${list.title}</a></li>
+				</div>
+					</c:forEach>
+				<button type="submit">삭제</button>
+				<a href="/notice" class="list">목록</a>
+			</form>
 		</div>
 	</div>
 </body>

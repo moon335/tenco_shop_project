@@ -37,6 +37,15 @@ public class NoticeService {
 		int result = noticeRepository.insert(insertDto);
 	}
 	
+	// 공지사항 삭제
+	@Transactional
+	public void deleteNotice(Integer id) {
+		int delete =  noticeRepository.delete(id);
+		if(delete != 1) {
+			System.out.println("삭제안됨");
+		}
+	}
+	
 	
 	
 }

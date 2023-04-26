@@ -38,7 +38,7 @@
 				<textarea class="form-control summernote" rows="5" id="content"
 					name="content"></textarea>
 			</div>
-		<button type="submit" class="btn btn-primary" style="background-color: black">작성 완료</button>
+		<button type="submit" class="btn btn-primary" style="background-color: black; border-color: black">작성 완료</button>
 		</form>
 	</div>
 	<script>

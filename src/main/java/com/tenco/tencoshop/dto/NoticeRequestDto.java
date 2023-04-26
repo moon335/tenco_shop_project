@@ -12,4 +12,10 @@ public class NoticeRequestDto {
 		private String content;
 		private Integer boardCategoryId;
 	}
+	
+	@Data
+	public static class deleteDto {
+		private Integer id;
+	}
+	
 }

@@ -12,7 +12,7 @@
 		as b
 		inner join board_category_tb as bc
 		on b.board_category_id = bc.id
-		order by b.id;
+		order by b.id desc;
 	</select>
 
 	<select id="noticeContent"
@@ -24,4 +24,8 @@
 		insert into board_tb(title, content, board_category_id)
 		values(#{title}, #{content}, #{boardCategoryId});
 	</insert>
+	
+	<delete id="delete">
+		delete from board_tb where id = #{id};
+	</delete>
 </mapper> 
