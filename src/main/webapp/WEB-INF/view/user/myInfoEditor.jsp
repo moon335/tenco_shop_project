@@ -223,10 +223,41 @@ body {
 .submit input:hover {
    color: #909090;
 }
+
+#result_card img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	padding: 5px;
+	margin-top: 10px;
+	margin: auto;
+}
+
+#result_card {
+	position: relative;
+}
+
+.imgDeleteBtn {
+	position: absolute;
+	top: 0;
+	right: 5%;
+	background-color: #ef7d7d;
+	color: wheat;
+	font-weight: 900;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	line-height: 26px;
+	text-align: center;
+	border: none;
+	display: block;
+	cursor: pointer;
+}
 </style>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 
 <div class="content">
+<<<<<<< HEAD
    <div class="content_1">
       <div class="title" style="padding-bottom: 10px;">
          <h2>프로필 정보</h2>
@@ -287,8 +318,99 @@ body {
    </div>
 <<<<<<< HEAD
 =======
+=======
+	<div class="content_1">
+		<div class="title" style="padding-bottom: 10px;">
+			<h2>프로필 정보</h2>
+		</div>
+		<div class="myinfo">
+			<form action="/user/myinfoupdateimage" method="post"
+				enctype="multipart/form-data" style="display: flex;">
+				<div class="myimage">
+					<c:choose>
+						<c:when test="${principal.image!=null}">
+							<label for="customFile"> <input type="file"
+								class="cutom-file-input" id="customFile" name="file"
+								accept=".jpg,.jpeg,.png" style="display: none;"> <img
+								class="m--profile" alt=""src=" <c:url value="/images/uploads/${principal.image}"/>" width="150px"
+								height="150" style="margin-top: -20px;border-radius: 150px;">
+							</label>
+						</c:when>
+						<c:otherwise>
+							<label for="customFile"><input type="file"
+								class="cutom-file-input" id="customFile" name="file"
+								accept=".jpg,.jpeg,.png" style="display: none;"> <img
+								class="m--profile" alt="" src="/images/myinfo.png" width="150px"
+								height="150" style="margin-top: -20px; border-radius: 150px;"></label>
+
+						</c:otherwise>
+					</c:choose>
+
+
+					<div id="uploadResult"></div>
+				</div>
+				<div id="profileediter">
+					<div>
+						<h3>${user.username}</h3>
+					</div>
+					<div>
+						<button type="submit" class="btn btn-outline-dark">이미지 변경</button>
+						<button type="submit" class="btn btn-outline-dark">삭제</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<form action="/user/myinfoupdate" method="post">
+			<div class="myinfoDetail">
+				<div class="myinfoLogin">
+					<h4>
+						<b>로그인 정보</b>
+					</h4>
+					<form>
+						<div>
+							<p>이메일 주소</p>
+							<input type="text" value="${user.email}" name="email">
+						</div>
+						<div>
+							<p>비밀번호</p>
+							<input type="password" value="${principal.password}"
+								name="password">
+						</div>
+				</div>
+			</div>
+			<div class="myinfoDetail">
+				<div class="myinfoLogin">
+					<h4>
+						<b>개인 정보</b>
+					</h4>
+					<div>
+						<p>이름</p>
+						<input type="text" value="${user.lastName}" name="lastName">
+					</div>
+					<div>
+						<p>휴대폰 번호</p>
+						<input type="text" value="${user.tel}" name="tel">
+					</div>
+				</div>
+			</div>
+			<div class="submit">
+				<input type="submit" value="수정">
+			</div>
+		</form>
+		</form>
+	</div>
+>>>>>>> feature/QnA
 
 >>>>>>> feature/review
 </div>
 </div>
+<script>
+	$(".custom-file-input").on(
+			"change",
+			function() {
+				var fileName = $(this).val().split("\\").pop();
+				$(this).siblings(".custom-file-label").addClass("selected")
+						.html(fileName);
+			});
+</script>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

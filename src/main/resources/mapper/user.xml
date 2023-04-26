@@ -5,22 +5,79 @@
 <mapper
 	namespace="com.tenco.tencoshop.repository.interfaces.UserRepository">
 	<select id="buyList"
-		resultType="com.tenco.tencoshop.repository.model.Product">
-		select * from user_tb as u
+		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
+		select *, date_format(buy_date,'%Y-%m-%d')as order_date
+		from user_tb as u
 		join order_tb as o
 		on o.user_id =
 		u.id
-		join product_tb as p
+		join product_tb
+		as p
 		on p.id = o.product_id
 		where u.id=#{userId};
 	</select>
 
+	<select id="searchBuyList"
+		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
+		select
+		o.user_id,p.eng_name,o.quantity,buy_date
+		from user_tb
+		as u
+		join order_tb as o
+		on o.user_id =
+		u.id
+		join
+		product_tb
+		as p
+		on p.id =
+		o.product_id
+		where u.id=#{userId}
+		AND
+		buy_date
+		BETWEEN #{orderStartDate}
+		AND
+		#{orderEndDate};
+	</select>
+
+
 	<select id="userInfoSelect"
 		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
-		where id=#{userId}
+		where id=#{id}
 	</select>
+
+	<update id="userInfoUpdate">
+		update user_tb set
+		email=#{email},
+		password=#{password},
+		last_name=#{lastName},
+		tel=#{tel}
+		where id=#{id};
+	</update>
 	
+	<update id="userInfoUpdateImage">
+		update user_tb set
+		image=#{image}
+		where id=#{id};
+	</update>
+
+	<select id="findByPassword"
+		resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where username = #{username}
+	</select>
+
+	<insert id="insert">
+		insert into user_tb (username, password, tel,
+		address, email, first_name, last_name)
+		values( #{username},
+		#{password}, #{tel}, #{address},#{email},#{firstName},#{lastName} );
+	</insert>
+
+	<delete id="delete">
+		delete from user_tb where username=#{username}
+	</delete>
+
 </mapper>
 	
 

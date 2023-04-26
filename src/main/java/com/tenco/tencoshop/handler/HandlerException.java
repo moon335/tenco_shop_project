@@ -3,6 +3,7 @@ package com.tenco.tencoshop.handler;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+<<<<<<< HEAD
 @RestControllerAdvice
 public class HandlerException {
 
@@ -13,9 +14,37 @@ public class HandlerException {
 		// 諛섎뱶�떆 留덉�留됱뿉 �꽭誘몄퐳濡좎쓣 遺숈뿬�꽌 �궗�슜�븯�옄
 		sb.append("alert('" + e.getMessage() + "');");
 		sb.append("history.back();");
+=======
+import com.tenco.tencoshop.handler.exception.LoginException;
+
+@RestControllerAdvice
+public class HandlerException {
+
+//   @ExceptionHandler(LoginException.class)
+//   public String basicException(LoginException e) {
+//      StringBuffer sb = new StringBuffer();
+//      sb.append("<script>");
+//      sb.append("alert('" + e.getMessage() + "');");
+//      sb.append("location.href='/user/sign-in';");
+//      sb.append("</script>");
+//      return sb.toString();
+//   }
+
+//   //사용자 로그인 안했을 때
+	@ExceptionHandler(LoginException.class)
+	public String unAuthorizedException(LoginException e) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("<script>");
+		sb.append("alert('" + e.getMessage() + "');");
+		sb.append("location.href='/user/sign-in';");
+>>>>>>> feature/QnA
 		sb.append("</script>");
 
 		return sb.toString();
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> feature/QnA

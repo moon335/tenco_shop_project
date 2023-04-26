@@ -223,6 +223,7 @@ button:hover {
 </style>
 </head>
 <body>
+<<<<<<< HEAD
    <header>
       <div class="main-inner">
          <div class="top-inner">
@@ -237,6 +238,22 @@ button:hover {
                   <button type="button" onclick="location.href='/user/sign-up'">회원가입</button>
                </c:otherwise>
             </c:choose>
+=======
+	<header>
+		<div class="main-inner">
+			<div class="top-inner">
+				<button type="button" onclick="#">관심상품</button>
+				<c:choose>
+					<c:when test="${principal != null}">
+						<a href="/user/logout"> <label>로그아웃</label></a>
+						<label>${user.username}님</label>
+					</c:when>
+					<c:otherwise>
+						<button type="button" onclick="location.href='/user/sign-in'">로그인</button>
+						<button type="button" onclick="location.href='/user/sign-up'">회원가입</button>
+					</c:otherwise>
+				</c:choose>
+>>>>>>> feature/QnA
 
          </div>
          <div class="header-inner">
@@ -252,6 +269,7 @@ button:hover {
          </div>
       </div>
 
+<<<<<<< HEAD
    </header>
    <div class="body">
       <div class="side">
@@ -299,3 +317,51 @@ button:hover {
          </div>
       </div>
       
+=======
+	</header>
+	<div class="body">
+		<div class="side">
+			<div>
+				<h4 style="margin-bottom: 50px;">
+					<a href="" style="color: black;">마이 페이지</a>
+				</h4>
+			</div>
+			<div>
+				<h5>쇼핑정보</h5>
+			</div>
+			<div>
+				<p>
+					<a href="/user/buylist">구매내역</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="">관심상품</a>
+				</p>
+				<br>
+			</div>
+			<div>
+				<h5>내정보</h5>
+			</div>
+			<div>
+				<p>
+					<a href="/user/myinfo">프로필 정보</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="">주소록</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="">결제 정보</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="/question/find">QnA</a>
+				</p>
+			</div>
+		</div>
+>>>>>>> feature/QnA
