@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.tencoshop.dto.ProductResponseDto;
+import com.tenco.tencoshop.dto.ReviewRequestDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
 import com.tenco.tencoshop.repository.interfaces.ProductRepository;
 import com.tenco.tencoshop.repository.interfaces.ReviewRepository;
+import com.tenco.tencoshop.repository.interfaces.UserRepository;
+import com.tenco.tencoshop.repository.model.User;
 
 @Service // 서비스는 서비스 ~
 public class ReviewService {
@@ -18,6 +21,8 @@ public class ReviewService {
    private ReviewRepository reviewRepository;
    @Autowired
    private ProductRepository productRepository;
+   @Autowired
+   private UserRepository userRepository;
 
    // 최신순, 인기순 기능 
    @Transactional
@@ -63,17 +68,17 @@ public class ReviewService {
 	// 가져온 prodId(order_tb -> join으로 cartId 하면 -> prodId가 있음)
 	// reviewService.createReview(String coment, String review_img, int userId, int prodId, int review_category_id)
    @Transactional
-   public void createReview(String username, Integer orderId, String categoryName) {
+   public void createReview(String username, ReviewRequestDto reviewRequestDto) {
 	   // 1. username으로 userId 조회
-	   ReviewResponseDto reviewList = reviewRepository.findByUserName(username);
-	   
-	   // 2. orderId 사용해서 prodId 조회
-	   
-	   // 3. categoryName 사용해서 조회
+	   User user = userRepository.findByUserName(username);
+	   reviewRequestDto.setUserId(user.getId()); 
 	   
 	   // 4. insert 진행
+	   int resultCnt = reviewRepository.insertReview(reviewRequestDto);
 	   
-	   
+	   if(resultCnt!=1) {
+		   System.out.println("insert 실패");
+	   }
    }
    
    public List<ReviewResponseDto> findReviewByUsername(String userName){
@@ -88,5 +93,7 @@ public class ReviewService {
 	   
 	   return list;
    }
+   
+   // 리뷰 쓰는 기능
    
 }

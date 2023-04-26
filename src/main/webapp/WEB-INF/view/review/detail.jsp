@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <link rel="stylesheet" href="/css/reviewCategory.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 <script>
@@ -13,8 +11,7 @@
         pushHeartBtn[index].style.color = 'red';
     }
 </script>
-<link rel="stylesheet"
-	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <style>
 .header-inner {
 	padding: 20px 20px;
@@ -79,7 +76,6 @@ html, body {
 	margin: 22px;
 	padding: 10px 45px;
 } */
-
 .detail--user--wrap, .detail--picture--wrap, .detail--product--wrap,
 	.detail--content--wrap, .detail--heart--wrap, .detail--heart {
 	display: flex;
@@ -144,7 +140,7 @@ main {
 			</div>
 
 			<div class="detail--user--wrap">
-				<span>유저프사 ${review.userName}</span> <span>${review.formatCreatedAt()}</span>
+				<span>유저프사 ${review.userName}</span> <span>${review.formatCreatedAt()}</span> <img src="/images/review/${review.reviewImg}" width=550 height=auto>
 			</div>
 			<c:choose>
 				<c:when test="${review.reviewImg != null}">
@@ -152,8 +148,7 @@ main {
 						<div class="swiper mySwiper">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
-									<img src="/images/review/${review.reviewImg}" width=550
-										height=auto>
+									<img src="/images/review/${review.reviewImg}" width=550 height=auto>
 								</div>
 								<div class="swiper-slide">Slide 2</div>
 								<div class="swiper-slide">Slide 3</div>
@@ -166,7 +161,7 @@ main {
 						</div>
 					</div>
 				</c:when>
-				</c:choose>
+			</c:choose>
 			<div class="detail--product--wrap">
 				<h2>여기는 상품 태그</h2>
 			</div>
@@ -181,8 +176,7 @@ main {
 	</div>
 
 	<!-- Swiper JS -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
 	<!-- Initialize Swiper -->
 	<script>

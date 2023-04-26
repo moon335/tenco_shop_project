@@ -74,12 +74,12 @@
 	</select>
 	
 	<insert id="insertReview">
-		insert into review_tb(content, origin_file_name, created_at)
-		values(#{content}, #{originFileName}, now())
+		insert into review_tb(title, content, user_id, prod_id, review_category_id, upload_file_name, origin_file_name)
+		values(#{title}, #{content}, #{userId}, #{prodId}, #{reviewCategoryId}, #{uploadFileName}, #{originFileName})
 	</insert>
 	
 	<select id="findMyReviewByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select r.id, r.content, r.created_at, r.origin_file_name, p.model_number, p.color, p.eng_name, p.kor_name, s.name as size_name, b.name as brand_name
+		select r.id, r.title, r.content, r.created_at, r.origin_file_name, p.model_number, p.color, p.eng_name, p.kor_name, s.name as size_name, b.name as brand_name
 		from review_tb as r
 		inner join product_tb as p
 		on r.prod_id=p.id
@@ -90,6 +90,7 @@
 		inner join user_tb as u
 		on r.user_id = u.id
 		where u.username=#{userName}
+		order by r.id desc
 	</select>
 	
 </mapper>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.tenco.tencoshop.dto.ReviewRequestDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
 
 @Mapper
@@ -31,9 +32,10 @@ public interface ReviewRepository {
 	public ReviewResponseDto findByUserName(String userName);
 	
 	// 리뷰 쓰는 기능
-	public int insertReview();
+	public int insertReview(ReviewRequestDto reviewRequestDto);
 	
 	// 내 리뷰 목록 확인 기능
 	public List<ReviewResponseDto> findMyReviewByUserName(String userName);
+	
 	
 }

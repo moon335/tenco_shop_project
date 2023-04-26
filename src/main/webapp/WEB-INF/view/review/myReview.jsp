@@ -58,6 +58,16 @@ main thead {
 .my--review--title h3 {
 	font-size: 1.75rem;
 }
+
+tbody tr td a {
+	text-decoration: none;
+	color: black;
+}
+
+tbody tr td a:hover {
+	color: black;
+	text-decoration: underline;
+}
 </style>
 <main>
 	<div class="my--review--title">
@@ -69,7 +79,7 @@ main thead {
 		<thead>
 			<tr>
 				<td>NO</td>
-				<td>내용</td>
+				<td>제목</td>
 				<td>사진</td>
 				<td>상품명</td>
 				<td>사이즈</td>
@@ -80,14 +90,14 @@ main thead {
 		<tbody>
 			<c:forEach var="review" items="${reviewList}">
 				<tr>
-					<td>${review.id}</td>
-					<td>${review.content}</td>
-					<td><img alt="" src="/images/review/${review.originFileName}" width=100 height=100></td>
-					<td>${review.engName}<br> ${review.korName}
-					</td>
-					<td>${review.sizeName}</td>
-					<td>${review.brandName}</td>
-					<td>${review.formatCreatedAt()}</td>
+					<td><a href="#">${review.id}</a></td>
+					<td><a href="#">${review.title}</a></td>
+					<td><a href="#"><img alt="" src="/images/uploads/${review.uploadFileName}" width=100 height=100></a></td>
+					<td><a href="#">${review.engName}<br> ${review.korName}
+					</a></td>
+					<td><a href="#">${review.sizeName}</a></td>
+					<td><a href="#">${review.brandName}</a></td>
+					<td><a href="#">${review.formatCreatedAt()}</a></td>
 					<%--/${review.id} --%>
 					<td><a href="/review/reviewUpdate">수정</a></td>
 				</tr>

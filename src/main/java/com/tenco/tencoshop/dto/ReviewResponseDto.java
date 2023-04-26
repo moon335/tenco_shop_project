@@ -14,6 +14,7 @@ import lombok.Data;
 public class ReviewResponseDto {
 
 	private Integer id;
+	private String title;
 	private String content;
 	private String reviewImg;
 	private Integer userId;
@@ -36,7 +37,7 @@ public class ReviewResponseDto {
 	private String brandName;
 
 	// 파일 업로드 기능 ReviewFormDto 클래스를 하나 만들어야 할지 고민중
-	private List<MultipartFile> fileList;
+	private List<MultipartFile> files;
 	private String originFileName;
 	private String uploadFileName;
 
