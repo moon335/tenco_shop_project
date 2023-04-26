@@ -28,6 +28,12 @@ public class ReviewResponseDto {
 	private Integer reviewCategoryId;
 
 	// join해서 들고올 product_tb의 상품 사진, 이름, 가격
+	private String modelNumber;
+	private String color;
+	private String engName;
+	private String korName;
+	private String sizeName;
+	private String brandName;
 
 	// 파일 업로드 기능 ReviewFormDto 클래스를 하나 만들어야 할지 고민중
 	private List<MultipartFile> fileList;

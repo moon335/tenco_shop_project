@@ -22,4 +22,18 @@ public interface ReviewRepository {
 	// userId 기반 내 리뷰 페이지 -> principal로 수정 예정?
 	public ReviewResponseDto findReviewByUserId(Integer userId);
 	
+	public Integer findByOrderId(Integer orderId);
+	
+	// 유저 아이디 기반 리뷰 목록
+	public List<ReviewResponseDto> findReviewListByUserName(String userName);
+	
+	// 유저 아이디 기반 리뷰
+	public ReviewResponseDto findByUserName(String userName);
+	
+	// 리뷰 쓰는 기능
+	public int insertReview();
+	
+	// 내 리뷰 목록 확인 기능
+	public List<ReviewResponseDto> findMyReviewByUserName(String userName);
+	
 }

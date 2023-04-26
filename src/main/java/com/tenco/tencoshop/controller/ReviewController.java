@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
 import com.tenco.tencoshop.repository.model.ReviewCategory;
 import com.tenco.tencoshop.service.ProductService;
@@ -78,28 +79,40 @@ public class ReviewController {
 		return "/review/detail";
 	}
 
-	// myInfo의 내 후기 기능
-	// type ?
-	// 물건을 하나도 안 산 고객의 리뷰 0
-	// 물건을 하나 산 고객의 리뷰 1
-	// 물건을 여러 개 산 고객의 리뷰 1++
-	@GetMapping("/myReview/{userId}")
-	public String myReview(Model model, @PathVariable Integer userId) {
-		ReviewResponseDto review = reviewService.readReviewByUserId(userId);
-		model.addAttribute("review", review);
+	// myInfo의 내 후기로 들어가기
+	@GetMapping("/myReview")
+	public String myReview(Model model) {
+		// list 받아야 됨 id
+//		ReviewResponseDto principal = (ReviewResponseDto)session.getAttribute(Define.PRINCIPAL);
+		List<ReviewResponseDto> reviewList = reviewService.findMyReviewByUserName("cccc");
+		model.addAttribute("reviewList", reviewList);
+		
 		return "/review/myReview";
 	}
 
-	// myInfo의 후기 올리기 기능
+//	@PostMapping("/myReview-proc")
+//	public String myReviewProc(Model model) {
+//		List<ProductResponseDto> product = productService.readProduct();
+//		model.addAttribute("product", product);
+//
+//		return "";
+//	}
+
+	// 후기 페이지로 이동
 	// productId, principal을 매개변수로 받아서 productId기준
-	@GetMapping("/reviewInsert/{userId}")
-	public String reviewInsert(Model model, @PathVariable Integer userId) {
-		ReviewResponseDto review = reviewService.readReviewByUserId(userId);
-		model.addAttribute("review", review);
+	@GetMapping("/reviewInsert/{orderId}")
+	public String reviewInsert(Model model, @PathVariable Integer orderId) {
+
+		ProductResponseDto product = reviewService.readByOrderId(orderId);
+		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
+
+		model.addAttribute("product", product);
+		model.addAttribute("reviewCategoryList", reviewCategoryList);
 
 		return "/review/reviewInsert";
 	}
 
+	// 후기 올리는 기능
 	@PostMapping("/reviewInsert-proc")
 	public String reviewInsertProc(ReviewResponseDto reviewResponseDto) {
 		List<MultipartFile> fileList = reviewResponseDto.getFileList();
@@ -118,27 +131,37 @@ public class ReviewController {
 					dir.mkdirs(); // 폴더 없으면 생성해줌 굿 ~
 				}
 
-				for (int i=0; i<fileList.size(); i++) {
+				for (int i = 0; i < fileList.size(); i++) {
 					UUID uuid = UUID.randomUUID();
-					
+
 //					 이게 맞음 ? 잘 모르겠다. 
 					String fileName = uuid + "_" + fileList.get(i).getOriginalFilename();
 					System.out.println("1111111 fileName : " + fileName);
 					String uploadPath = Define.UPLOAD_DIRECTORY + File.separator + fileName;
 					File destination = new File(uploadPath);
-					
+
+					fileList.get(i).transferTo(destination);
+
 					// 콘솔창에 입력은 됨. 로컬 저장소에 파일이 들어가진 않음.
 					reviewResponseDto.setOriginFileName(fileList.get(i).getOriginalFilename());
 					reviewResponseDto.setUploadFileName(fileName);
 				}
 
 			} catch (Exception e) {
-				
+				System.out.println("파일 업로드 실패");
 			}
 		}
-		
-		// redirect 추가 ? 
+
+		// redirect 추가 ?
 		return "redirect:/user/myinfo";
+	}
+	
+	// 내 리뷰 수정 기능
+	// /{id}, @PathVariable Integer id
+	@GetMapping("/reviewUpdate")
+	public String reviewUpdate() {
+		
+		return "/review/myReviewUpdate";
 	}
 
 }

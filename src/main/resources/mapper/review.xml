@@ -51,4 +51,45 @@
 		where user_id=#{userId}
 	</select>
 	
+	<select id="findByOrderId" resultType="Integer">
+		select product_id
+		from order_tb
+		where id=#{orderId}
+	</select>
+	
+	<select id="findReviewListByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+		select r.*
+		from review_tb as r
+		inner join user_tb as u
+		on r.user_id=u.id
+		where u.username=#{userName}
+	</select>
+	
+	<select id="findByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+		select r.*
+		from review_tb as r
+		inner join user_tb as u
+		on r.user_id=u.id
+		where u.username=#{userName}
+	</select>
+	
+	<insert id="insertReview">
+		insert into review_tb(content, origin_file_name, created_at)
+		values(#{content}, #{originFileName}, now())
+	</insert>
+	
+	<select id="findMyReviewByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+		select r.id, r.content, r.created_at, r.origin_file_name, p.model_number, p.color, p.eng_name, p.kor_name, s.name as size_name, b.name as brand_name
+		from review_tb as r
+		inner join product_tb as p
+		on r.prod_id=p.id
+		inner join size_tb as s
+		on s.id=p.size_id
+		inner join brand_tb as b
+		on b.id = p.brand_id
+		inner join user_tb as u
+		on r.user_id = u.id
+		where u.username=#{userName}
+	</select>
+	
 </mapper>

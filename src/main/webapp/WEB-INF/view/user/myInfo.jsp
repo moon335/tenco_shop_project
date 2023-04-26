@@ -137,7 +137,7 @@
 					<form action="/user/myinfoEditor" method="get">
 						<button type="submit" class="btn btn-outline-dark">프로필 수정</button>
 					</form>
-					<a href="/review/myReview/1">
+					<a href="/review/myReview">
 						<button type="submit" class="btn btn-outline-dark">내 후기</button>
 					</a>
 				</div>
@@ -177,7 +177,7 @@
 		<c:forEach var="orderList" items="${orderList}">
 			<div>
 				<div class="buyProductImg">
-					<img alt="" src="/images/1.png" width="120" height="120">
+					<img alt="" src="/images/prodImages/img1.png" width="120" height="120">
 				</div>
 				<div style="width: 400px;">
 					<p style="width: 250px;">${orderList.engName}</p>
@@ -190,6 +190,7 @@
 					<h6>
 						배송완료 <br>
 					</h6>
+					<%--  --%>
 					<button type="submit"
 						onclick="location.href='/review/reviewInsert/1'"
 						style="border: none; background-color: white; color: #088ff7">
@@ -201,7 +202,7 @@
 
 		<div>
 			<div>
-				<img alt="" src="/images/1.png" width="120" height="120">
+				<img alt="" src="/images/prodImages/img1.png" width="120" height="120">
 			</div>
 			<div style="width: 400px;">
 				<p style="width: 250px;">Dior Saddle Flap Card Holder Blue Dior
