@@ -12,14 +12,6 @@
 
 </head>
 <style>
-<<<<<<< HEAD
-body {
-   width: 1200px;
-   margin: 0 auto;
-}
-
-=======
->>>>>>> feature/QnA
 .header {
    display: flex;
    margin-bottom: 40px;
@@ -27,38 +19,9 @@ body {
    justify-content: space-between;
 }
 
-<<<<<<< HEAD
-.body {
-   display: flex;
-}
-
-.side {
-   margin: 30px;
-}
-
-.side a {
-   color: gray;
-   text-decoration-line: none;
-}
-
-.side a:hover {
-   color: black;
-}
-
-.side div {
-   margin-bottom: 25px;
-}
-
-.content_1 {
-   border: 1px solid #ccc;
-   border-radius: 10px;
-   margin: 20px;
-   padding: 20px;
-=======
 .content_1 {
 	margin: 20px;
 	padding: 20px;
->>>>>>> feature/QnA
 }
 
 .content_1 div {
@@ -117,57 +80,6 @@ body {
    background-color: #EBEBEB;
 }
 
-<<<<<<< HEAD
-.buyProduct {
-   margin: 0 auto;
-   width: 1000px;
-   display: flex;
-   flex-direction: column;
-   flex: 1;
-   padding: 10px;
-   border: 1px solid #D2D2D2;
-   flex: 1;
-}
-
-.buyProduct div {
-   display: flex;
-   margin: 0 20px;
-   flex: auto;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-}
-
-.buyProductInfo {
-   display: flex;
-   border-bottom: 1px solid #D2D2D2;
-   width: 900px;
-}
-
-.buyProductInfo div {
-   display: flex;
-   align-items: flex-start;
-   justify-content: flex-start;
-}
-
-.buyProduct div {
-   display: flex;
-   align-items: flex-start;
-   justify-content: flex-start;
-}
-
-.buyProduct div div {
-   display: flex;
-   flex-direction: row;
-}
-
-.buyProduct div div div {
-   display: flex;
-   align-items: flex-start;
-   justify-content: flex-end;
-   flex-direction: column;
-   margin-top: 10px;
-=======
 .buyProgress {
 	display: flex;
 	border: 1px solid #ccc;
@@ -201,7 +113,6 @@ body {
 	margin: 0 20px;
 	align-items: center;
 	justify-content: space-between;
->>>>>>> feature/QnA
 }
 
 .buyDate {
@@ -209,18 +120,6 @@ body {
    align-items: center;
 }
 
-<<<<<<< HEAD
-.size {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-}
-
-.size div {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-=======
 .search__input {
 	height: 45px;
 	width: 100%;
@@ -238,7 +137,6 @@ body {
 	background-color: black;
 	color: white;
 	height: 43px;
->>>>>>> feature/QnA
 }
 </style>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>

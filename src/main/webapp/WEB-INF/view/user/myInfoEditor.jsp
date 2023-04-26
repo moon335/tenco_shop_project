@@ -257,68 +257,6 @@ body {
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 
 <div class="content">
-<<<<<<< HEAD
-   <div class="content_1">
-      <div class="title" style="padding-bottom: 10px;">
-         <h2>프로필 정보</h2>
-      </div>
-      <div class="myinfo">
-         <div class="myimage">
-            <img alt="" src="/images/myinfo.png" width="150px" height="150">
-         </div>
-         <div id="profileediter">
-            <div>
-               <h3>${user.username}</h3>
-            </div>
-            <div>
-               <form action="">
-                  <button type="submit" class="btn btn-outline-dark">이미지 변경</button>
-               </form>
-               <form action="">
-                  <button type="submit" class="btn btn-outline-dark">삭제</button>
-               </form>
-            </div>
-         </div>
-      </div>
-      <form action="#">
-         <div class="myinfoDetail">
-            <div class="myinfoLogin">
-               <h4>
-                  <b>로그인 정보</b>
-               </h4>
-               <div>
-                  <p>이메일 주소</p>
-                  <input type="text" value="${user.address}" name="address">
-               </div>
-               <div>
-                  <p>비밀번호</p>
-                  <input type="password" value="${user.password}" name="password">
-               </div>
-            </div>
-         </div>
-         <div class="myinfoDetail">
-            <div class="myinfoLogin">
-               <h4>
-                  <b>개인 정보</b>
-               </h4>
-               <div>
-                  <p>이름</p>
-                  <input type="text" value="${user.lastName}" name="lastName">
-               </div>
-               <div>
-                  <p>휴대폰 번호</p>
-                  <input type="text" value="${user.tel}" name="tel">
-               </div>
-            </div>
-         </div>
-         <div class="submit">
-            <input type="submit" value="수정">
-         </div>
-      </form>
-   </div>
-<<<<<<< HEAD
-=======
-=======
 	<div class="content_1">
 		<div class="title" style="padding-bottom: 10px;">
 			<h2>프로필 정보</h2>
@@ -399,9 +337,6 @@ body {
 		</form>
 		</form>
 	</div>
->>>>>>> feature/QnA
-
->>>>>>> feature/review
 </div>
 </div>
 <script>

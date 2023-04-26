@@ -20,9 +20,6 @@ public interface UserRepository {
 
 	// 유저 정보 보기
 	public User userInfoSelect(Integer userId);
-<<<<<<< HEAD
-}
-=======
 
 	// 유저 정보 수정하기
 	public int userInfoUpdate(User user);
@@ -33,4 +30,3 @@ public interface UserRepository {
 
 	public int insert(JoinResponseDto joinResponseDto);
 }
->>>>>>> feature/QnA

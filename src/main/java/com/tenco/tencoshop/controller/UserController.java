@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-<<<<<<< HEAD
-import com.tenco.tencoshop.dto.LoginResponseDto;
-import com.tenco.tencoshop.handler.LoginException;
-import com.tenco.tencoshop.repository.model.Product;
-=======
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
-import com.tenco.tencoshop.handler.HandlerException;
 import com.tenco.tencoshop.handler.exception.LoginException;
->>>>>>> feature/QnA
 import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.LoginService;
 import com.tenco.tencoshop.service.UserService;
@@ -42,16 +34,10 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private LoginService loginService;
-
-<<<<<<< HEAD
+	
 	@Autowired
 	private HttpSession session;
 
-	@GetMapping("/myinfo")
-	public String myInfo() {
-=======
 	// myinfo에서 주문한 제품 보기
 	@GetMapping("/myinfoProc")
 	public String myInfoProc(Integer userId, Model model) {
@@ -70,7 +56,6 @@ public class UserController {
 			model.addAttribute("orderList", orderList);
 			model.addAttribute("principal", principal);
 		}
->>>>>>> feature/QnA
 		return "/user/myInfo";
 	}
 
@@ -131,9 +116,6 @@ public class UserController {
 		return "redirect:/user/myinfoEditor";
 	}
 
-<<<<<<< HEAD
-	
-=======
 	// 내정보 이미지 넣기
 	@PostMapping("/myinfoupdateimage")
 	public String myinfoUpdateImage(UserInfoRequestDto userInfoRequestDto) {
@@ -231,6 +213,7 @@ public class UserController {
 		return "user/login";
 	}
 
+	// 회원탈퇴
 	@GetMapping("/withdraw")
 	public String withDraw() {
 
@@ -256,6 +239,5 @@ public class UserController {
 		return "/layout/main";
 
 	}
->>>>>>> feature/QnA
 
 }
