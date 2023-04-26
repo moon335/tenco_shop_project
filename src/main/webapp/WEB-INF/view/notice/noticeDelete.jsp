@@ -30,8 +30,7 @@ h2,h3 {
 	display: flex;
 	border-bottom: 1px solid #ccc;
 }
-.customer-notice-delete li {
-	list-style: none;
+.customer-notice-delete a {
 	padding: 10px;
 }
 
@@ -86,7 +85,7 @@ h2,h3 {
 					<c:forEach var="list" items="${list}">
 				<div class="customer-notice-delete">
 						<input type="checkbox" name ="id" value="${list.id}" onclick="OneCheck(this)">
-						<li><a href="/notice/${list.id}">[${list.categoryName}] ${list.title}</a></li>
+						<a>[${list.categoryName}] ${list.title}</a>
 				</div>
 					</c:forEach>
 				<button type="submit">삭제</button>
