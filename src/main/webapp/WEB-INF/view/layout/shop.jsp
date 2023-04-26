@@ -7,6 +7,11 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style type="text/css">
+body {
+	width: 1183px;
+	margin: 0 auto;
+}
+
 .carousel-inner {
 	text-align: center;
 }
@@ -95,8 +100,8 @@
 	width: 260px;
 }
 
-.list{
-	display: flex;
+.list {
+	display : flex;
 	margin-top: 60px;
 	padding: 0 30px;
 }
@@ -105,8 +110,12 @@
 	text-align: center;
 	flex: 1;
 }
+
+.title {
+	text-align: center;
+}
 </style>
-<div>
+<div class="title">
 	<div id="demo" class="carousel slide" data-ride="carousel">
 
 		<div class="carousel-inner">
@@ -117,30 +126,30 @@
 
 	</div>
 	<div class="list">
-			<div>
-				<button type="submit" style="border-style: none" name="name" value="all" onclick="location.href='/shopCategorySelect'">전체</button>
-			</div>
-			<div>
-				<button type="submit" style="border-style: none" name="name" value="신발" onclick="location.href='/shopCategorySelect?type=신발'">신발</button>
-			</div>
-			<div>
-				<button type="submit" style="border-style: none" name="name" value="outer" onclick="location.href='/shopCategorySelect?type=아우터'">아우터</button>
-			</div>
-			<div>
-				<button type="submit" style="border-style: none" name="name" value="top" onclick="location.href='/shopCategorySelect?type=상의'">상의</button>
-			</div>
-			<div>
-				<button type="submit" style="border-style: none" name="name" value="pants" onclick="location.href='/shopCategorySelect?type=하의'">하의</button>
-			</div>
-			<div>
-				<button type="submit" style="border-style: none" name="name" value="bag"onclick="location.href='/shopCategorySelect?type=가방'">가방</button>
-			</div>
-			<div>
-				<button type="submit" style="border-style: none" name="name" value="wallet"onclick="location.href='/shopCategorySelect?type=지갑'">지갑</button>
-			</div>
-			<div>
-				<button type="submit" style="border-style: none" name="name" value="watch" onclick="location.href='/shopCategorySelect?type=시계'">시계</button>
-			</div>
+		<div>
+			<button type="submit" style="border-style: none" name="name" value="all" onclick="location.href='/shopCategorySelect'">전체</button>
+		</div>
+		<div>
+			<button type="submit" style="border-style: none" name="name" value="신발" onclick="location.href='/shopCategorySelect?type=신발'">신발</button>
+		</div>
+		<div>
+			<button type="submit" style="border-style: none" name="name" value="outer" onclick="location.href='/shopCategorySelect?type=아우터'">아우터</button>
+		</div>
+		<div>
+			<button type="submit" style="border-style: none" name="name" value="top" onclick="location.href='/shopCategorySelect?type=상의'">상의</button>
+		</div>
+		<div>
+			<button type="submit" style="border-style: none" name="name" value="pants" onclick="location.href='/shopCategorySelect?type=하의'">하의</button>
+		</div>
+		<div>
+			<button type="submit" style="border-style: none" name="name" value="bag" onclick="location.href='/shopCategorySelect?type=가방'">가방</button>
+		</div>
+		<div>
+			<button type="submit" style="border-style: none" name="name" value="wallet" onclick="location.href='/shopCategorySelect?type=지갑'">지갑</button>
+		</div>
+		<div>
+			<button type="submit" style="border-style: none" name="name" value="watch" onclick="location.href='/shopCategorySelect?type=시계'">시계</button>
+		</div>
 	</div>
 	<div class="header"></div>
 </div>
