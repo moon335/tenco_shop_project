@@ -111,7 +111,10 @@ public class UserController {
 	public String myinfoUpdate(UserInfoRequestDto userInfoRequestDto) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
-		principal.setPassword(userInfoRequestDto.getPassword());
+		if(principal.getPassword().equals(userInfoRequestDto.getPassword()) == false) {
+			session.invalidate();
+			return "redirect:/user/sign-in";
+		}
 
 		return "redirect:/user/myinfoEditor";
 	}
