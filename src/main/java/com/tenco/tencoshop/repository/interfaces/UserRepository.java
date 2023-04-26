@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
+import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.repository.model.User;
 
 @Mapper
@@ -22,6 +23,8 @@ public interface UserRepository {
 
 	// 유저 정보 수정하기
 	public int userInfoUpdate(User user);
+	// 유저 정보 수정하기 이미지
+	public int userInfoUpdateImage(LoginResponseDto loginResponseDto);
 
 	public User findByPassword(LoginResponseDto loginResponseDto);
 

@@ -1,6 +1,8 @@
 package com.tenco.tencoshop.controller;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,12 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
-import com.tenco.tencoshop.handler.LoginException;
+import com.tenco.tencoshop.handler.HandlerException;
+import com.tenco.tencoshop.handler.exception.LoginException;
 import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.LoginService;
 import com.tenco.tencoshop.service.UserService;
@@ -37,8 +41,12 @@ public class UserController {
 	@GetMapping("/myinfoProc")
 	public String myInfoProc(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		if (principal == null) {
+			throw new LoginException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		userId = principal.getId();
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
-		System.out.println(principal.getPassword() + "@#@##");
+		System.out.println(userId + "@#@##");
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
@@ -90,7 +98,6 @@ public class UserController {
 	// 내 정보 수정 화면 들어가기
 	@GetMapping("/myinfoEditor")
 	public String myinfoEditor(Integer userId, Model model) {
-
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
@@ -104,6 +111,46 @@ public class UserController {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
 		principal.setPassword(userInfoRequestDto.getPassword());
+
+		return "redirect:/user/myinfoEditor";
+	}
+
+	// 내정보 이미지 넣기
+	@PostMapping("/myinfoupdateimage")
+	public String myinfoUpdateImage(UserInfoRequestDto userInfoRequestDto) {
+		// 이미지넣기
+		MultipartFile file = userInfoRequestDto.getFile();
+		if (file.isEmpty() == false) {
+
+			if (file.getSize() > Define.MAX_FILE_SIZE) {
+				throw new LoginException("이거 익셉션 하나 더 만들어야함", HttpStatus.BAD_REQUEST);
+			}
+			try {
+				String saveDirectory = Define.UPLOAD_DIRECTORY;
+
+				File dir = new File(saveDirectory);
+				if (dir.exists() == false) {
+					dir.mkdirs();
+				}
+				UUID uuid = UUID.randomUUID();
+				String fileName = uuid + "_" + file.getOriginalFilename();
+				String uploadPath = Define.UPLOAD_DIRECTORY + File.separator + fileName;
+				File destination = new File(uploadPath);
+				file.transferTo(destination);
+
+				userInfoRequestDto.setOriginFileName(file.getOriginalFilename());
+				userInfoRequestDto.setUploadFileName(fileName);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+			userService.userInfoUpdateImage(userInfoRequestDto, principal.getId());
+			User user = userService.userInfo(principal.getId());
+			principal.setImage(user.getImage());
+			return "redirect:/user/myinfoEditor";
+
+		}
+
 		return "redirect:/user/myinfoEditor";
 	}
 
@@ -125,7 +172,6 @@ public class UserController {
 		LoginResponseDto principal = loginService.signIn(loginResponseDto);
 		principal.setPassword(loginResponseDto.getPassword());
 		session.setAttribute(Define.PRINCIPAL, principal);
-
 		return "redirect:/main";
 	}
 

@@ -54,6 +54,12 @@
 		tel=#{tel}
 		where id=#{id};
 	</update>
+	
+	<update id="userInfoUpdateImage">
+		update user_tb set
+		image=#{image}
+		where id=#{id};
+	</update>
 
 	<select id="findByPassword"
 		resultType="com.tenco.tencoshop.repository.model.User">

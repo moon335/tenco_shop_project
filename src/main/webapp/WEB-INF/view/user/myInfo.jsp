@@ -12,16 +12,12 @@
 
 </head>
 <style>
-
-
 .header {
 	display: flex;
 	margin-bottom: 40px;
 	padding: 20px;
 	justify-content: space-between;
 }
-
-
 
 .content_1 {
 	border: 1px solid #ccc;
@@ -121,12 +117,11 @@
 	align-items: center;
 	justify-content: space-between;
 }
+
 .buyDate {
 	display: flex;
 	align-items: center;
 }
-
-
 </style>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 
@@ -134,11 +129,27 @@
 	<div class="content_1">
 		<div>
 			<div>
-				<img alt="" src="/images/myinfo.png">
+				<c:choose>
+					<c:when test="${principal.image!=null}">
+						<input type="file" class="cutom-file-input" id="customFile"
+							name="file" accept=".jpg,.jpeg,.png" style="display: none;">
+						<img class="m--profile" alt=""
+							src=" <c:url value="/images/uploads/${principal.image}"/>"
+							width="150px" height="150" style="border-radius: 150px;">
+
+					</c:when>
+					<c:otherwise>
+						<input type="file" class="cutom-file-input" id="customFile"
+							name="file" accept=".jpg,.jpeg,.png" style="display: none;">
+						<img class="m--profile" alt="" src="/images/myinfo.png"
+							width="150px" height="150" style="margin-top: -20px;">
+
+					</c:otherwise>
+				</c:choose>
 			</div>
-			<div id="profileediter">
+			<div id="profileediter" style="margin-top: 20px;">
 				<div>
-					<h3>${user.username}</h3>
+					<h3 style="margin-left: 10px;">${user.username}</h3>
 				</div>
 				<div>
 					<form action="/user/myinfoEditor" method="get">
@@ -187,14 +198,13 @@
 					<img alt="" src="/images/1.png" width="120" height="120">
 				</div>
 				<div style="width: 400px;">
-					<p style="width:250px;">${orderList.engName}</p>
-					<pre
-						style="text-align:center; width: 100px;">${orderList.sizeId}</pre>
+					<p style="width: 250px;">${orderList.engName}</p>
+					<pre style="text-align: center; width: 100px;">${orderList.sizeId}</pre>
 				</div>
 				<div class="buyDate">
 					<pre>${orderList.orderDate}</pre>
 				</div>
-				<div style="align-items: center; width:150px;">
+				<div style="align-items: center; width: 150px;">
 					<h6>
 						배송완료 <br>
 					</h6>
@@ -213,13 +223,14 @@
 				<img alt="" src="/images/1.png" width="120" height="120">
 			</div>
 			<div style="width: 400px;">
-				<p style="width:250px;">Dior Saddle Flap Card Holder Blue Dior Oblique Jacquard</p>
-				<pre style="text-align: center; width:100px;">ONE SIZE</pre>
+				<p style="width: 250px;">Dior Saddle Flap Card Holder Blue Dior
+					Oblique Jacquard</p>
+				<pre style="text-align: center; width: 100px;">ONE SIZE</pre>
 			</div>
 			<div class="buyDate">
 				<pre>2023/01/23</pre>
 			</div>
-			<div style="width:150px;">
+			<div style="width: 150px;">
 				<h6>
 					배송완료 <br>
 				</h6>

@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
-import com.tenco.tencoshop.handler.LoginException;
+import com.tenco.tencoshop.handler.exception.LoginException;
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
 import com.tenco.tencoshop.repository.model.User;
 
@@ -33,6 +33,7 @@ public class LoginService {
       dtoResult.setId(userEntity.getId());
       dtoResult.setUsername(userEntity.getUsername());
       dtoResult.setPassword(userEntity.getPassword());
+      dtoResult.setImage(userEntity.getImage());
       
       return dtoResult;
    }

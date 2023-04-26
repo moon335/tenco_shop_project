@@ -45,8 +45,6 @@ public class UserService {
 	public User userInfo(Integer userId) {
 
 		User user = userRepository.userInfoSelect(userId);
-		System.out.println(user.getPassword() + "passowrd?");
-
 		return user;
 	}
 
@@ -61,12 +59,25 @@ public class UserService {
 		user.setLastName(userInfoRequestDto.getLastName());
 		user.setTel(userInfoRequestDto.getTel());
 		user.setId(principalId);
-		System.out.println(user + "usre");
 		int result = userRepository.userInfoUpdate(user);
 		if (result != 1) {
 			System.out.println("정보 수정에 실패하였습니다.");
 		}
 		return result;
 	}
+	// myinfo에서 유저정보 update하기
+		@Transactional
+		public int userInfoUpdateImage(UserInfoRequestDto userInfoRequestDto, Integer principalId) {
+			LoginResponseDto user = new LoginResponseDto();
+			user.setImage(userInfoRequestDto.getUploadFileName());
+			user.setId(principalId);
+			System.out.println(user + "usre");
+			int result = userRepository.userInfoUpdateImage(user);
+			if (result != 1) {
+				System.out.println("정보 수정에 실패하였습니다.");
+			}
+			return result;
+		}
+
 
 }

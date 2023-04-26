@@ -1,4 +1,4 @@
-package com.tenco.tencoshop.handler;
+package com.tenco.tencoshop.handler.exception;
 
 import org.springframework.http.HttpStatus;
 
