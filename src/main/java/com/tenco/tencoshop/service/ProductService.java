@@ -12,30 +12,33 @@ import com.tenco.tencoshop.repository.model.Product;
 @Service
 public class ProductService {
 
-   @Autowired // DI 의존 주입
-   ProductRepository productRepository;
+	@Autowired // DI 의존 주입
+	ProductRepository productRepository;
 
-   public List<ProductResponseDto> readProduct() {
-      List<ProductResponseDto> list =  productRepository.findAll();
-      
-      return list;
-   }
-   
-   // 제품 검색 기능
-   public List<Product> searchProduct(String title){
-      title = "%"+title+"%";
-      List<Product> list = productRepository.findProduct(title);
-      return list;
-   }
-   
-   
-   // 제품 상세페이지로 넘기기 
-   public Product getProductInfo(Integer id) {
-      Product prodInfo = productRepository.getProdInfo(id);
-      System.out.println(prodInfo);
-      return prodInfo;
-   }
-   
-   
-   
+	public List<ProductResponseDto> readProduct() {
+		List<ProductResponseDto> list = productRepository.findAll();
+		return list;
+	}
+
+	// 제품 검색 기능
+	public List<Product> searchProduct(String title) {
+		title = "%" + title + "%";
+		List<Product> list = productRepository.findProduct(title);
+		return list;
+	}
+
+	// 제품 카테고리 선택 시 상품 나열
+	public List<ProductResponseDto> shopCategory(String name) {
+		name = "%" + name + "%";
+		List<ProductResponseDto> list = productRepository.CategorySelect(name);
+		return list;
+	}
+
+	// 제품 상세페이지로 넘기기
+	public Product getProductInfo(Integer id) {
+		Product prodInfo = productRepository.getProdInfo(id);
+		System.out.println(prodInfo);
+		return prodInfo;
+	}
+
 }

@@ -213,7 +213,7 @@
                <a href="/main" style="font-size: 28px;">TencoShop</a>
             </h3>
             <div class="header-inner-menu">
-               <label><a href="/main">HOME</a></label> <label><a href="/review/style">STYLE</a></label> <label><a href="#">SHOP</a></label> <label><a href="/user/myinfoProc">MY</a></label> <span
+               <label><a href="/main">HOME</a></label> <label><a href="/review/style">STYLE</a></label> <label><a href="/shop">SHOP</a></label> <label><a href="/user/myinfoProc">MY</a></label> <span
                   class="material-symbols-outlined"><a href="/product/search">search</a></span>
             </div>
          </div>
