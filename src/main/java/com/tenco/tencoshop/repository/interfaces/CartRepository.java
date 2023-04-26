@@ -12,5 +12,6 @@ public interface CartRepository {
 
 	public List<CartResponseDto> findByUserId(Integer userId);
 	public int insert(@Param("userId") Integer userId,@Param("prodId") Integer prodId,@Param("sizeId") Integer sizeId);
+	public int delete(Integer cartId);
 
 } // end of class

@@ -166,7 +166,7 @@
 		<div class="prod--img">
 			<img alt="상품 이미지" src="/static/images/prodimages/${product.imgRoute}" width="560px" height="560px">
 		</div>
-		<form id="prodForm" action="#">
+		<form id="prodForm" action="#" enctype="application/x-www-form-urlencoded">
 			<div class="prod--info">
 				<div class="prod--title">
 					<div class="brand--name">

@@ -5,6 +5,7 @@
 function submitBuy() {
 	let myForm = document.getElementById('prodForm');
 	formData = new FormData(myForm);
+	myForm.action="/main";
 	fetch('/order/purchase', {
 		method: 'post',
 		body : formData
@@ -13,11 +14,11 @@ function submitBuy() {
 
 function submitCart() {
 	let myForm = document.getElementById('prodForm');
-	formData = new FormData(myForm);
+	let formData = new FormData(myForm);
+	myForm.action="/cart/list";
 	fetch('/cart/addCart', {
 		method: 'post',
 		body : formData
 	});
-	location.href="/cart/list";
 }
  

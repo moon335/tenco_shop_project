@@ -62,5 +62,13 @@ public class CartService {
 	 }
    } 
    
+   // 장바구니에서 삭제 처리
+   public void deleteCart(Integer cartId) {
+	   int resultRow = cartRepository.delete(cartId);
+	   if(resultRow != 1) {
+		   System.out.println("장바구니 삭제 실패");
+	   }
+   }
+   
    
 } // end of class

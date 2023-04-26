@@ -14,10 +14,14 @@
       on p.category_id = ct.id
       inner join size_tb as s
       on p.size_id = s.id
-      where c.user_id = #{userId};
+      where c.user_id = #{userId}
+      order by c.id desc;
    </select>
    <insert id="insert">
    		insert into cart_tb (amount, prod_id, user_id)
    		values (1, #{prodId}, #{userId})
    </insert>
+   <delete id="delete">
+   		delete from cart_tb where id = #{orderId}
+   </delete>
 </mapper>
