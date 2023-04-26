@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -245,7 +244,7 @@ button:hover {
             </h3>
             <div class="header-inner-menu">
                <label><a href="/main">HOME</a></label> <label><a
-                  href="/review/style">STYLE</a></label> <label><a href="#">SHOP</a></label>
+                  href="/review/style">STYLE</a></label> <label><a href="/shop">SHOP</a></label>
                <label><a href="/user/myinfoProc">MY</a></label> <span
                   class="material-symbols-outlined"><a href="/product/search">search</a></span>
             </div>

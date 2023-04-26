@@ -17,4 +17,8 @@ public interface ProductRepository {
 	public Product getProdInfo(Integer id);
 
 	public ProductResponseDto findProductById(Integer id);
+	
+	// 제품 카테고리 선택 시 상품 나열
+	public List<ProductResponseDto> CategorySelect(String name);
+	
 }

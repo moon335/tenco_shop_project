@@ -1,126 +1,124 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 <link rel="stylesheet"
    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-</head>
 <style>
+	body {
+	   width: 1183px;
+	   margin: 0 auto;
+	}
 .header {
-   display: flex;
-   margin-bottom: 40px;
-   padding: 20px;
-   justify-content: space-between;
+	display: flex;
+	margin-bottom: 40px;
+	padding: 20px;
+	justify-content: space-between;
 }
+
 .content_1 {
-   border: 1px solid #ccc;
-   border-radius: 10px;
-   margin: 20px;
-   padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	margin: 20px;
+	padding: 20px;
 }
 
 .content_1 div {
-   display: flex;
+	display: flex;
 }
 
 .content_1 button {
-   border-color: #ccc;
-   border-radius: 10px;
-   margin: 15px 2px 10px 4px;
-   border-radius: 10px;
+	border-color: #ccc;
+	border-radius: 10px;
+	margin: 15px 2px 10px 4px;
+	border-radius: 10px;
 }
 
 .content {
-   display: flex;
-   flex-direction: column;
-   width: 950px;
+	display: flex;
+	flex-direction: column;
+	width: 950px;
 }
 
 .userGrade {
-   border-right: 1px solid #ccc;
-   justify-content: center;
-   flex: 1;
+	border-right: 1px solid #ccc;
+	justify-content: center;
+	flex: 1;
 }
 
 .userPoint {
-   flex: 1;
-   justify-content: center;
+	flex: 1;
+	justify-content: center;
 }
 
 .buylist {
-   display: flex;
-   justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .buylist a {
-   color: #6A6A6A;
-   font-size: 13px;
+	color: #6A6A6A;
+	font-size: 13px;
 }
 
 .buylist a:hover {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 #profileediter {
-   display: flex;
-   flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 #profileediter button:hover {
-   background-color: white;
-   color: black;
+	background-color: white;
+	color: black;
 }
 
 #profileediter div button:focus {
-   background-color: #EBEBEB;
+	background-color: #EBEBEB;
 }
 
 .buyProgress {
-   display: flex;
-   border: 1px solid #ccc;
-   border-radius: 20px;
-   background-color: #f8f6f6;
-   border-style: none;
-   justify-content: space-between;
-   padding: 20px;
+	display: flex;
+	border: 1px solid #ccc;
+	border-radius: 20px;
+	background-color: #f8f6f6;
+	border-style: none;
+	justify-content: space-between;
+	padding: 20px;
 }
 
 .buyProgress div {
-   display: flex;
-   flex: 1;
-   flex-direction: column;
-   align-items: center;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	align-items: center;
 }
 
 .buyProduct {
-   display: flex;
-   flex: 1;
-   align-items: center;
-   padding: 10px;
-   border-bottom: 1px solid #D2D2D2;
-   display: flex;
-   flex-direction: column;
+	display: flex;
+	flex: 1;
+	align-items: center;
+	padding: 10px;
+	border-bottom: 1px solid #D2D2D2;
+	display: flex;
+	flex-direction: column;
 }
 
 .buyProduct div {
-   display: flex;
-   flex: auto;
-   flex-direction: row;
-   margin: 0 20px;
-   align-items: center;
-   justify-content: space-between;
+	display: flex;
+	flex: auto;
+	flex-direction: row;
+	margin: 0 20px;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .buyDate {
-   display: flex;
-   align-items: center;
+	display: flex;
+	align-items: center;
 }
 </style>
-<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 
 <div class="content">
 	<div class="content_1">
@@ -128,18 +126,13 @@
 			<div>
 				<c:choose>
 					<c:when test="${principal.image!=null}">
-						<input type="file" class="cutom-file-input" id="customFile"
-							name="file" accept=".jpg,.jpeg,.png" style="display: none;">
-						<img class="m--profile" alt=""
-							src=" <c:url value="/images/uploads/${principal.image}"/>"
-							width="150px" height="150" style="border-radius: 150px;">
+						<input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;">
+						<img class="m--profile" alt="" src=" <c:url value="/images/uploads/${principal.image}"/>" width="150px" height="150" style="border-radius: 150px;">
 
 					</c:when>
 					<c:otherwise>
-						<input type="file" class="cutom-file-input" id="customFile"
-							name="file" accept=".jpg,.jpeg,.png" style="display: none;">
-						<img class="m--profile" alt="" src="/images/myinfo.png"
-							width="150px" height="150" style="margin-top: -20px;">
+						<input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;">
+						<img class="m--profile" alt="" src="/images/myinfo.png" width="150px" height="150" style="margin-top: -20px;">
 
 					</c:otherwise>
 				</c:choose>
@@ -206,8 +199,7 @@
 						배송완료 <br>
 					</h6>
 					<form action="">
-						<button type="submit"
-							style="border: none; background-color: white; color: #088ff7">
+						<button type="submit" style="border: none; background-color: white; color: #088ff7">
 							후기 <br>올리기
 						</button>
 					</form>
@@ -220,8 +212,7 @@
 				<img alt="" src="/images/1.png" width="120" height="120">
 			</div>
 			<div style="width: 400px;">
-				<p style="width: 250px;">Dior Saddle Flap Card Holder Blue Dior
-					Oblique Jacquard</p>
+				<p style="width: 250px;">Dior Saddle Flap Card Holder Blue Dior Oblique Jacquard</p>
 				<pre style="text-align: center; width: 100px;">ONE SIZE</pre>
 			</div>
 			<div class="buyDate">
@@ -232,8 +223,7 @@
 					배송완료 <br>
 				</h6>
 				<form action="">
-					<button type="submit"
-						style="border: none; background-color: white; color: #088ff7">
+					<button type="submit" style="border: none; background-color: white; color: #088ff7">
 						후기 <br>올리기
 					</button>
 				</form>

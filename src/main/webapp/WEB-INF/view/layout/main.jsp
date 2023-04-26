@@ -178,7 +178,7 @@
       <div class="article">
          <c:forEach var="list" items="${list}">
             <div class="article-prod">
-               <a href="/info-prod/${list.id}"><img alt="" class="article-img" src="${list.imgRoute}"></a>
+               <a href="/info-prod/${list.id}"><img alt="" class="article-img" src="/images/prodImages/${list.imgRoute}"></a>
                <h5>${list.brandName}</h5>   
                <p>${list.engName}</p>
                <h5>${list.releasePrice}원</h5>

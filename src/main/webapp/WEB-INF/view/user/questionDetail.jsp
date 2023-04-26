@@ -1,20 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
-</head>
+   href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
-	width: 1200px;
-	margin: 0 auto;
+   width: 1183px;
+   margin: 0 auto;
 }
 
 .header {
@@ -123,7 +115,6 @@ body {
 	margin-top: 10px;
 }
 </style>
-<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 <div class="content">
 	<div class="contentTitle">
 		<div style="border-bottom: 2px solid black">
