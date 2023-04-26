@@ -40,7 +40,6 @@ public class NoticeService {
 	
 	
 	 // 공지사항 삭제
-	  
 	  @Transactional public void deleteNotice(Integer id) { 
 		  int delete = noticeRepository.delete(id); 
 		  	if(delete != 1) { 
@@ -48,7 +47,11 @@ public class NoticeService {
 		  	}
 	  }
 	 
-	
+	// 공지사항 수정
+	  @Transactional
+	  public void noticeUpdate(NoticeRequestDto.updateDto updateDto){
+		  int result = noticeRepository.noticeUpdate(updateDto);
+	  }
 	
 	
 	

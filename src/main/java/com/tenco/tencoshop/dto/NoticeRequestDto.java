@@ -18,4 +18,13 @@ public class NoticeRequestDto {
 		private Integer id;
 	}
 	
+	@Data
+	public static class updateDto {
+		private Integer id;
+		private String title;
+		private String content;
+		private Integer boardCategoryId;
+		
+	}
+	
 }

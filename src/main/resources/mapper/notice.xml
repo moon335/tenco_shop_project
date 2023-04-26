@@ -21,11 +21,18 @@
 	</select>
 
 	<insert id="insert">
-		insert into board_tb(title, content, board_category_id)
+		insert into board_tb(title, content,
+		board_category_id)
 		values(#{title}, #{content}, #{boardCategoryId});
 	</insert>
-	
+
 	<delete id="delete">
 		delete from board_tb where id = #{id};
 	</delete>
+
+	<update id="noticeUpdate">
+		update board_tb
+		set title =#{title}, content =#{content}, board_category_id =#{boardCategoryId}
+		where id =#{id};
+	</update>
 </mapper> 

@@ -19,6 +19,8 @@ public interface NoticeRepository {
 	public int insert(NoticeRequestDto.insertDto insertDto);
 	// 공지사항 삭제
 	public int delete(Integer id);
+	// 공지사항 수정
+	public int noticeUpdate(NoticeRequestDto.updateDto updateDto);
 	 
 	
 	

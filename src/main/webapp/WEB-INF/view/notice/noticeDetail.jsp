@@ -62,6 +62,7 @@ h3 {
 	border: 1px solid #ccc;
 	border-radius: 7px;
 	padding: 5px;
+	margin: 5px;
 }
 
 .content {
@@ -92,6 +93,7 @@ h3 {
 			</div>
 			<div class="button">
 			<a href="/notice">목록보기</a>
+			<a href="/notice/update/${id}">수정하기</a>
 			</div>
 		</div>
 	</div>

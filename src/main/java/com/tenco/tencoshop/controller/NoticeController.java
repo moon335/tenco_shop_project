@@ -63,7 +63,6 @@ public class NoticeController {
 		return "/notice/noticeDelete";
 	}
 	
-
 	 // 공지사항 게시물 삭제	
 	 @GetMapping("/notice/delete") 
 	 public String noticeDelete(@RequestParam Integer id) {
@@ -71,4 +70,18 @@ public class NoticeController {
 		 return "redirect:/notice"; 
 	 }
 	
+	 // 공지사항 수정 페이지
+	 @GetMapping("/notice/update/{id}")
+	 public String noticeUpdate(@PathVariable Integer id, Model model) {
+		 NoticeResponseDto.NoticeContent update = noticeService.noticeContent(id);
+		 model.addAttribute("update",update);
+		 return"/notice/noticeUpdate";
+	 }
+	 
+	 // 공지사항 수정하기
+	 @PostMapping("/notice/update/{id}")
+	 public String  noticeUpdate(NoticeRequestDto.updateDto updateDto) {
+		 noticeService.noticeUpdate(updateDto);
+		 return "redirect:/notice";
+	 }
 }
