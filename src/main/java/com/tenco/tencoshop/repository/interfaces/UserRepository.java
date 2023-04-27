@@ -14,7 +14,7 @@ public interface UserRepository {
 	
 	public User findByPassword(LoginResponseDto loginResponseDto);
 	public int insert(JoinResponseDto joinResponseDto);
-	public int deleteUser(LoginResponseDto loginResponseDto);
+	public int delete(String username);
 	
 	// 구매목록 보기
 	public List<Product> buyList(Integer userId);

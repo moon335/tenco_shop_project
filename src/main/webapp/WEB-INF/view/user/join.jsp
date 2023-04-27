@@ -26,11 +26,11 @@
 				<form action="/user/sign-up" method="POST">
 					<div class="input-form-box">
 						<span class="input-form-login-box">아이디* <input type="text"
-							class="form-control" placeholder="예)tenco@tenco.kr" id="username"
+							class="form-control" id="username"
 							name="username"></span>
 					</div>
 					<div class="input-form-box">
-						<span class="input-form-login-box">비밀번호* <input type="text"
+						<span class="input-form-login-box">비밀번호* <input type="password"
 							class="form-control" id="password" name="password"></span>
 					</div>
 					<div class="input-form-box">

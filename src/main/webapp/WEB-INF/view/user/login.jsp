@@ -26,13 +26,14 @@
 			<div id="inputBox">
 				<form action="/user/sign-in" method="POST">
 					<div class="input-form-box">
-						<span class="input-form-login-box">아이디 <input type="text" class="form-control"
-							placeholder="예)tenco@tenco.kr" id="username" name="username"
-							value="aaaa"></span>
+						<span class="input-form-login-box">아이디 <input type="text"
+							class="form-control" id="username"
+							name="username" value="aaaa"></span>
 					</div>
 					<div class="input-form-box">
-						<span class="input-form-login-box">비밀번호 <input type="password" class="form-control"
-							id="password" name="password" value="1234"></span>
+						<span class="input-form-login-box">비밀번호 <input
+							type="password" class="form-control" id="password"
+							name="password" value="1234"></span>
 					</div>
 					<div class="button-login-box">
 						<button type="submit" class="btn btn-primary btn-xs"

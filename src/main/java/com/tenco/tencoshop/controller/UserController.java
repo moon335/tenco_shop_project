@@ -17,7 +17,6 @@ import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.handler.LoginException;
 import com.tenco.tencoshop.repository.model.Product;
 import com.tenco.tencoshop.repository.model.User;
-import com.tenco.tencoshop.service.LoginService;
 import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
 
@@ -25,15 +24,12 @@ import com.tenco.tencoshop.util.Define;
 @RequestMapping("/user")
 public class UserController {
 
-	@Autowired // DI 처리
-	private LoginService loginService;
-	
 	@Autowired
 	private UserService userService;
 
 	@Autowired
 	private HttpSession session;
-
+	
 	@GetMapping("/myinfo")
 	public String myInfo() {
 		return "/user/myInfo";
@@ -76,12 +72,15 @@ public class UserController {
 		return "/user/buy";
 	}
 
+	// 로그인 페이지
 	@GetMapping("/sign-in")
 	public String signIn() {
 
 		return "user/login";
 	}
-
+	
+	// 로그인 기능
+	// null 값 확인
 	@PostMapping("/sign-in")
 	public String signInProc(LoginResponseDto loginResponseDto) {
 
@@ -91,19 +90,22 @@ public class UserController {
 		if (loginResponseDto.getPassword() == null || loginResponseDto.getPassword().isEmpty()) {
 			throw new LoginException("비밀번호를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		LoginResponseDto principal = loginService.signIn(loginResponseDto);
+		LoginResponseDto principal = userService.signIn(loginResponseDto);
 		principal.setPassword(null);
 		session.setAttribute(Define.PRINCIPAL, principal);
 		return "/layout/main";
 	}
+	
 
-	// 회원가입
+	// 회원가입 페이지
 	@GetMapping("/sign-up")
 	public String signUp() {
 
 		return "user/join";
 	}
-
+	
+	// 회원가입 기능
+	// null 값 확인
 	@PostMapping("/sign-up")
 	public String signUpProc(JoinResponseDto joinResponseDto) {
 
@@ -129,24 +131,41 @@ public class UserController {
 			throw new LoginException("이름을 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 		
-		loginService.createUser(joinResponseDto);
+		userService.createUser(joinResponseDto);
 
 		return "user/login";
 	}
-	
+	// 회원탈퇴 페이지
 	@GetMapping("/withdraw")
 	public String withDraw() {
 		
 		return "user/delete";
 	}
 
+	// 회원탈퇴 기능
+	// 체크박스 체크 확인
 	@PostMapping("/withdraw")
 	public String withDrawProc(LoginResponseDto loginResponseDto) {
 		
-		LoginResponseDto principal = loginService.signIn(loginResponseDto);
+		LoginResponseDto principal = userService.signIn(loginResponseDto);
 		principal.setPassword(null);
 		session.setAttribute(Define.PRINCIPAL, principal);
 		
+		return "/layout/main";
+	}
+	// 회원탈퇴 확인 페이지
+	@GetMapping("/real-withdrawal")
+	public String realWithdrawal() {
+		
+		return "user/realWithdrawal";
+	}
+	// 회원 탈퇴 확인 기능
+	@PostMapping("/real-withdrawal")
+	public String realWithdrawalProc(String username) {
+		LoginResponseDto principal = (LoginResponseDto)session.getAttribute(Define.PRINCIPAL);
+		userService.deleteUser(principal.getUsername());
+		
+		session.invalidate();
 		return "/layout/main";
 	}
 
