@@ -10,7 +10,7 @@ public class LoginResponseDto {
 	private int id;
 	private String username;
 	private String password;
-
+	private String role;
 	private String image;
 	private MultipartFile file;
 	private String originFileName;

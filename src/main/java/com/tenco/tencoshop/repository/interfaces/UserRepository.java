@@ -23,10 +23,14 @@ public interface UserRepository {
 
 	// 유저 정보 수정하기
 	public int userInfoUpdate(User user);
+
 	// 유저 정보 수정하기 이미지
 	public int userInfoUpdateImage(LoginResponseDto loginResponseDto);
 
 	public User findByPassword(LoginResponseDto loginResponseDto);
 
-	public int insert(JoinResponseDto joinResponseDto);
+	public int signUp(JoinResponseDto joinResponseDto);
+
+	// 관리자 계정 회원가입
+	public int signUpAdmin(JoinResponseDto joinResponseDto);
 }

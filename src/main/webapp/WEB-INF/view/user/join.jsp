@@ -53,6 +53,10 @@
                   <span class="input-form-login-box">이름* <input type="text"
                      class="form-control" id="lastName" name="lastName"></span>
                </div>
+               <div class="input-form-box">
+                  <span class="input-form-login-box">관리자코드 <input type="text"
+                     class="form-control" id="role" name="role"></span>
+               </div>
                <div class="button-login-box">
                   <button type="submit" class="btn btn-primary btn-xs"
                      style="width: 100%">가입하기</button>
