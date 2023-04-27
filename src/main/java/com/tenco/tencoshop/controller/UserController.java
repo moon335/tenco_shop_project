@@ -163,6 +163,11 @@ public class UserController {
 
 		return "user/login";
 	}
+	@GetMapping("/admin")
+	public String signInAdmin() {
+
+		return "user/admin";
+	}
 
 	@PostMapping("/sign-in")
 	public String signInProc(LoginResponseDto loginResponseDto) {
@@ -174,6 +179,10 @@ public class UserController {
 			throw new LoginException("비밀번호를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		LoginResponseDto principal = loginService.signIn(loginResponseDto);
+		System.out.println(loginResponseDto.getRole()+"rolde");
+		if(!principal.getRole().equals("admin")) {
+			return "redirect:/admin";
+		}			
 		principal.setPassword(loginResponseDto.getPassword());
 		session.setAttribute(Define.PRINCIPAL, principal);
 		return "redirect:/main";

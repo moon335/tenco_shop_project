@@ -54,7 +54,7 @@
 		tel=#{tel}
 		where id=#{id};
 	</update>
-	
+
 	<update id="userInfoUpdateImage">
 		update user_tb set
 		image=#{image}
@@ -67,11 +67,20 @@
 		where username = #{username}
 	</select>
 
-	<insert id="insert">
+	<insert id="signUp">
 		insert into user_tb (username, password, tel,
 		address, email, first_name, last_name)
 		values( #{username},
-		#{password}, #{tel}, #{address},#{email},#{firstName},#{lastName} );
+		#{password}, #{tel},
+		#{address},#{email},#{firstName},#{lastName});
+	</insert>
+	
+	<insert id="signUpAdmin">
+		insert into user_tb (username, password, tel,
+		address, email, first_name, last_name,role)
+		values( #{username},
+		#{password}, #{tel},
+		#{address},#{email},#{firstName},#{lastName},'admin');
 	</insert>
 
 	<delete id="delete">
