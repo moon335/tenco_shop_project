@@ -24,4 +24,9 @@
    <delete id="delete">
    		delete from cart_tb where id = #{orderId}
    </delete>
+   <select id="findById" resultType="com.tenco.tencoshop.repository.model.Cart">
+   		select * 
+		from cart_tb
+		where id = #{cartId};
+   </select>
 </mapper>

@@ -5,7 +5,7 @@
 function submitBuy() {
 	let myForm = document.getElementById('prodForm');
 	formData = new FormData(myForm);
-	myForm.action="/main";
+	myForm.action="/order/purchase";
 	fetch('/order/purchase', {
 		method: 'post',
 		body : formData

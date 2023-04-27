@@ -18,4 +18,5 @@ public interface UserRepository {
 	// username 기반 검색
 	public User findByUsername(String username);
 	
+	public User findByUserId(Integer userId);
 }

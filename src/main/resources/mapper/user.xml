@@ -26,6 +26,11 @@
 		where username = #{username}
 	</select>
 	
+	<select id="findByUserId" resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where id = #{userId}
+	</select>
+	
 </mapper>
 	
 

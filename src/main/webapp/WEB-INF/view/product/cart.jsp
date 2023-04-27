@@ -158,7 +158,7 @@
 				</div>
 				<div class="button--wrap">
 					<div class="wish--buy">
-						<button type="button" onclick="location.href='/order/${list.id}'">
+						<button type="button" onclick="location.href='/order/purchase/${list.id}'">
 							<span class="wish--purchase">구매</span>
 							<div class="button--line"> </div>
 							<span class="wish--price">${list.purchase}원</span>

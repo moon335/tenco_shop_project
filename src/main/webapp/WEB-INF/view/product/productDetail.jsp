@@ -201,6 +201,7 @@
 						<div class="detail--box--model">
 							<dt class="product--title">모델번호</dt>
 							<dd class="product--info" style="font-weight: 600">${product.modelNumber}</dd>
+							<input type="hidden" name="modelNumber" value="${product.modelNumber}">
 						</div>
 					</dl>
 					<dl class="detail--product--dl">

@@ -29,5 +29,15 @@ public class UserService {
 		System.out.println("service"+user);
 		return user;
 	}
+	
+	public User readUserByUsername(String username) {
+		User user = userRepository.findByUsername(username);
+		return user;
+	}
+	
+	public User readUserByUserId(Integer userId) {
+		User user = userRepository.findByUserId(userId);
+		return user;
+	}
 
 }

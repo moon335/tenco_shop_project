@@ -12,6 +12,7 @@ import com.tenco.tencoshop.repository.interfaces.CartRepository;
 import com.tenco.tencoshop.repository.interfaces.ProductRepository;
 import com.tenco.tencoshop.repository.interfaces.SizeRepository;
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
+import com.tenco.tencoshop.repository.model.Cart;
 import com.tenco.tencoshop.repository.model.Product;
 import com.tenco.tencoshop.repository.model.Size;
 import com.tenco.tencoshop.repository.model.User;
@@ -68,6 +69,11 @@ public class CartService {
 	   if(resultRow != 1) {
 		   System.out.println("장바구니 삭제 실패");
 	   }
+   }
+   
+   public Cart readCartById(Integer cartId) {
+	   Cart cart = cartRepository.findById(cartId);
+	   return cart;
    }
    
    

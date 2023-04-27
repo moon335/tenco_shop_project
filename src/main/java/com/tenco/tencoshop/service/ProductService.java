@@ -41,4 +41,10 @@ public class ProductService {
 	   return responseProduct;
    }
    
+   // 주문 페이지에서 사용 (상품 아이디와 사이즈 아이디로 상품 검색)
+   public ProductResponseDto readProductByModelNumberAndSize(String modelNumber, String sizeName) {
+	   ProductResponseDto responseProduct = productRepository.findProductByModelNumberAndSize(modelNumber, sizeName);
+	   return responseProduct;
+   }
+   
 } // end of class
