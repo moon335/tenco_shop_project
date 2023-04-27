@@ -243,9 +243,9 @@ button:hover {
                <a href="/user/admin" style="font-size: 28px;">TencoShop</a>
             </h3>
             <div class="header-inner-menu">
-               <label><a href="/user/admin">HOME</a></label> <label><a
+               <label><a href="/admin/admin">HOME</a></label> <label><a
                   href="/review/style">STYLE</a></label> <label><a href="/shop">SHOP</a></label>
-               <label><a href="/user/admin">MY</a></label> 
+               <label><a href="/admin/admin">MY</a></label> 
             </div>
          </div>
       </div>
@@ -275,7 +275,12 @@ button:hover {
 			</div>
 			<div>
 				<p>
-					<a href="/question/find">공지사항</a>
+					<a href="/question/find">QnA</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="/admin/find">공지사항</a>
 				</p>
 			</div>
 		</div>

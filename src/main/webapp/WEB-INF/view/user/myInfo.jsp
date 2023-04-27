@@ -139,7 +139,7 @@
 			</div>
 			<div id="profileediter" style="margin-top: 20px;">
 				<div>
-					<h3 style="margin-left: 10px;">${user.username}</h3>
+					<h3 style="margin-left: 10px;">${user.username}님 반갑습니다.</h3>
 				</div>
 				<div>
 					<form action="/user/myinfoEditor" method="get">

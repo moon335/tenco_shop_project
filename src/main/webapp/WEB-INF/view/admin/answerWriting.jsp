@@ -1,13 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 <link rel="stylesheet"
-   href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
-   width: 1183px;
-   margin: 0 auto;
+	width: 1183px;
+	margin: 0 auto;
 }
+
 .header {
 	display: flex;
 	margin-bottom: 40px;
@@ -138,9 +140,15 @@ body {
 		</div>
 	</div>
 	<div class="textbox">
-		<form action="/question/writing" method="post" >
-			제목 : <input type="text" autofocus="autofocus" name="title">
-			<textarea id="myTextarea" autofocus="autofocus" name="content"></textarea>
+		<form action="/answer/writing" method="post">
+			<input type="hidden" name="questionId" value="${id}">
+			<input type="hidden" name="questionId" value="${quest.id}">
+			<input type="hidden" name="questionTitle" value="${quest.title}">
+			<input type="hidden" name="questionContent" value="${quest.content}">
+			<input type="hidden" name="questionUserId" value="${quest.userId}">
+			<input type="hidden" name="questionReqStatus" value="${quest.reqStatus}">
+			<textarea id="myTextarea" autofocus="autofocus" name="content">
+			</textarea>
 			<div class="textbox-button">
 				<button type="submit" style="margin: 10px;">작성완료</button>
 			</div>

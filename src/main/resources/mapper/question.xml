@@ -25,10 +25,19 @@
 		select * from question_tb
 		where id=#{id};
 	</select>
+
 	<insert id="questionWriting">
-		insert into question_tb(title,content,user_id,req_status)
+		insert into
+		question_tb(title,content,user_id,req_status)
 		value(#{title},#{content},#{userId},#{reqStatus});
-
-
 	</insert>
+
+	<update id="questionUpdate">
+		update question_tb set
+		req_status = #{reqStatus} ,
+		title = #{title},
+		content= #{content},
+		user_id=#{userId}
+		where id = #{id};
+	</update>
 </mapper>

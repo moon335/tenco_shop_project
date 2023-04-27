@@ -171,6 +171,7 @@ public class AdminController {
 		return "/admin/salesList";
 
 	}
+	
 
 	
 }
