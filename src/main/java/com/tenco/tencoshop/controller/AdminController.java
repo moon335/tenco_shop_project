@@ -13,16 +13,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.handler.exception.LoginException;
+import com.tenco.tencoshop.repository.model.Answer;
 import com.tenco.tencoshop.repository.model.Product;
+import com.tenco.tencoshop.repository.model.Question;
 import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.AdminService;
+import com.tenco.tencoshop.service.AnswerService;
 import com.tenco.tencoshop.service.LoginService;
+import com.tenco.tencoshop.service.QuestionService;
 import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
 
@@ -41,6 +46,12 @@ public class AdminController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private QuestionService questionService;
+	
+	@Autowired
+	private AnswerService answerService;
 
 	// 관리자가 유저 정보 들어가기
 	@GetMapping("/userList")
@@ -171,7 +182,41 @@ public class AdminController {
 		return "/admin/salesList";
 
 	}
-	
+	// QnA 모두 검색
+	@GetMapping("/find")
+	public String findQuestion(Model model) {
+		List<Question> questList = questionService.readQuestion();
+		if (questList.isEmpty()) {
+			model.addAttribute("questList", null);
+		} else {
+			model.addAttribute("questList", questList);
+		}
+		return "/admin/adminQuestion";
+	}
 
+	// QnA 상세 정보 들어가기
+	@GetMapping("/detail")
+	public String questionDetail(@RequestParam Integer id, Model model) {
+		Question quest = questionService.questionDetailPage(id);
+		Answer answer = answerService.answerDetailPage(id);
+		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		if (user == null) {
+			model.addAttribute("user", null);
+		} else {
+			model.addAttribute("user", user);
+		}
+		if (answer == null) {
+			model.addAttribute("answer", null);
+		} else {
+			model.addAttribute("answer", answer);
+		}
+
+		if (quest.getId() == null) {
+			model.addAttribute("quest", null);
+		} else {
+			model.addAttribute("quest", quest);
+		}
+		return "/admin/adminQuestionDetail";
+	}
 	
 }

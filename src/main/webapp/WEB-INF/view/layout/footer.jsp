@@ -6,6 +6,8 @@ footer {
 	display: flex;
 	justify-content: center;
 	border-top: 1px solid #ccc;
+	position: relative;
+	transform: translateY(350%);
 }
 
 pre {
