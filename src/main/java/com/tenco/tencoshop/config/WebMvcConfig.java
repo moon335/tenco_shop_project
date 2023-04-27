@@ -15,10 +15,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
       return new BCryptPasswordEncoder();
    }
-   
-	@Override
+   @Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/images/uploads/**").addResourceLocations("file:///C:\\spring_uplaod\\tenco_shop\\upload/");
+		registry.addResourceHandler("/images/uploads/**")
+				.addResourceLocations("file:///C:\\review_upload\\tenco_shop\\upload/");
 	}
 
 }

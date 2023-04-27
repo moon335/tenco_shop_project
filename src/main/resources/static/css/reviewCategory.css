@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.category--wrap {
+	display: flex;
+	width: 1200px;
+	margin: 0 auto;
+	border-bottom: 1px solid #eee;
+	
+}
+
+.category--wrap>a {
+	text-decoration: none;
+	color: black;
+	margin: 15px;
+	padding: 10px 30px;
+	flex: 1 1 auto;
+}

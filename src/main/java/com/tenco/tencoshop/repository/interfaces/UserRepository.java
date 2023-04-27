@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
-import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.repository.model.User;
 
 @Mapper
@@ -36,4 +35,7 @@ public interface UserRepository {
 
 	// 관리자 계정 회원가입
 	public int signUpAdmin(JoinResponseDto joinResponseDto);
+	
+	
+	public User findByUserName(String username);
 }

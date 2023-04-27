@@ -65,11 +65,6 @@
 		where id=#{id};
 	</update>
 
-	<select id="findByPassword"
-		resultType="com.tenco.tencoshop.repository.model.User">
-		select * from user_tb
-		where username = #{username}
-	</select>
 
 	<insert id="signUp">
 		insert into user_tb (username, password, tel,
@@ -90,7 +85,17 @@
 	<delete id="delete">
 		delete from user_tb where username=#{username}
 	</delete>
-
+	
+	<select id="findByUserName" resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where username=#{username}
+	</select>
+	
+	<select id="findByPassword" resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where username=#{username}
+	</select>
+	
 </mapper>
 	
 

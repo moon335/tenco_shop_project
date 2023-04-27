@@ -6,6 +6,7 @@ footer {
 	display: flex;
 	justify-content: center;
 	border-top: 1px solid #ccc;
+	margin-top: 50px;
 }
 
 pre {

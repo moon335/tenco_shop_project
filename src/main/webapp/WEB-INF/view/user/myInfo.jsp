@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 <link rel="stylesheet"
-   href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 	body {
 	   width: 1183px;
@@ -145,9 +145,9 @@
 					<form action="/user/myinfoEditor" method="get">
 						<button type="submit" class="btn btn-outline-dark">프로필 수정</button>
 					</form>
-					<form action="">
+					<a href="/review/myReview">
 						<button type="submit" class="btn btn-outline-dark">내 후기</button>
-					</form>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -198,11 +198,12 @@
 					<h6>
 						배송완료 <br>
 					</h6>
-					<form action="">
-						<button type="submit" style="border: none; background-color: white; color: #088ff7">
-							후기 <br>올리기
-						</button>
-					</form>
+					
+					<button type="submit"
+					onclick="location.href='/review/reviewInsert/${reviewList.userId}'"
+					style="border: none; background-color: white; color: #088ff7">
+					후기 <br>올리기
+				</button>
 				</div>
 			</div>
 		</c:forEach>
@@ -222,11 +223,11 @@
 				<h6>
 					배송완료 <br>
 				</h6>
-				<form action="">
-					<button type="submit" style="border: none; background-color: white; color: #088ff7">
+				<button type="submit"
+						onclick="location.href='/review/reviewInsert/1'"
+						style="border: none; background-color: white; color: #088ff7">
 						후기 <br>올리기
 					</button>
-				</form>
 			</div>
 		</div>
 	</div>

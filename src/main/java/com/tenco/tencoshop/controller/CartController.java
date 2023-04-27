@@ -37,7 +37,5 @@ public class CartController {
       return "/product/cart";
    }
    
-   
-   
 } // end of class
 	
