@@ -6,14 +6,19 @@
 	namespace="com.tenco.tencoshop.repository.interfaces.ProductRepository">
 	<select id="findAll"
 		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
-		select p.id, p.eng_name, p.kor_name, p.release_price, p.img_route, b.name as
+		select p.id, p.eng_name, p.kor_name, p.release_price,
+		p.img_route, b.name as
 		brand_name
 		from product_tb as p
-		inner join brand_tb as b
+		inner join
+		brand_tb as b
 		on p.brand_id = b.id
 		limit 8;
 	</select>
-
+	<select id="findProductAll"
+		resultType="com.tenco.tencoshop.repository.model.Product">
+		select * from product_tb
+	</select>
 	<select id="findProduct"
 		resultType="com.tenco.tencoshop.repository.model.Product">
 		select * from product_tb where kor_name LIKE #{title} OR
@@ -32,7 +37,8 @@
 		from product_tb as p
 		inner join brand_tb as b
 		on p.brand_id = b.id
-		inner join category_tb as c
+		inner join category_tb as
+		c
 		on p.category_id = c.id
 		inner join size_tb as s
 		on p.size_id = s.id
@@ -43,7 +49,8 @@
 		select *
 		from product_tb as p
 		join category_tb as c
-		on p.category_id = c.id
+		on
+		p.category_id = c.id
 		where c.name like #{name};
 	</select>
 

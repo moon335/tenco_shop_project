@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.handler.exception.LoginException;
+import com.tenco.tencoshop.repository.model.Product;
 import com.tenco.tencoshop.repository.model.User;
+import com.tenco.tencoshop.service.AdminService;
 import com.tenco.tencoshop.service.LoginService;
 import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
@@ -37,6 +38,9 @@ public class AdminController {
 
 	@Autowired
 	private HttpSession session;
+	
+	@Autowired
+	private AdminService adminService;
 
 	// 관리자가 유저 정보 들어가기
 	@GetMapping("/userList")
@@ -57,7 +61,7 @@ public class AdminController {
 		} else {
 			model.addAttribute("userList", userList);
 		}
-		return "/user/userList";
+		return "/admin/userList";
 	}
 
 	// 내 정보 수정 화면 들어가기
@@ -67,7 +71,7 @@ public class AdminController {
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		user.getPassword();
-		return "/user/adminInfoEditor";
+		return "/admin/adminInfoEditor";
 	}
 
 	// 내 정보 수정하기
@@ -132,12 +136,6 @@ public class AdminController {
 		return "redirect:/admin/adminInfoEditor";
 	}
 
-	@GetMapping("/sign-in")
-	public String signIn() {
-
-		return "user/login";
-	}
-
 	@GetMapping("/admin")
 	public String signInAdmin(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
@@ -155,91 +153,24 @@ public class AdminController {
 			model.addAttribute("orderList", orderList);
 			model.addAttribute("principal", principal);
 		}
-		return "/user/admin";
+		return "/admin/admin";
 	}
-
-	@PostMapping("/sign-in")
-	public String signInProc(LoginResponseDto loginResponseDto) {
-
-		if (loginResponseDto.getUsername() == null || loginResponseDto.getUsername().isEmpty()) {
-			throw new LoginException("아이디를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+	
+	
+	@GetMapping("salesList")
+	public String salesList(Model model) {
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		User user = userService.userInfo(principal.getId());
+		List<Product> salesList = adminService.findProductAll();
+		model.addAttribute("user", user);
+		if (salesList.isEmpty()) {
+			model.addAttribute("salesList", null);
+		} else {
+			model.addAttribute("salesList", salesList);
 		}
-		if (loginResponseDto.getPassword() == null || loginResponseDto.getPassword().isEmpty()) {
-			throw new LoginException("비밀번호를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		LoginResponseDto principal = loginService.signIn(loginResponseDto);
-		if (principal.getRole().equals("admin")) {
-			principal.setPassword(loginResponseDto.getPassword());
-			session.setAttribute(Define.PRINCIPAL, principal);
-			return "redirect:/user/admin";
-		}
-		principal.setPassword(loginResponseDto.getPassword());
-		session.setAttribute(Define.PRINCIPAL, principal);
-		return "redirect:/main";
-	}
-
-	// 회원가입
-	@GetMapping("/sign-up")
-	public String signUp() {
-
-		return "user/join";
-	}
-
-	@PostMapping("/sign-up")
-	public String signUpProc(JoinResponseDto joinResponseDto) {
-
-		if (joinResponseDto.getUsername() == null || joinResponseDto.getUsername().isEmpty()) {
-			throw new LoginException("이메일 주소를 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getPassword() == null || joinResponseDto.getPassword().isEmpty()) {
-			throw new LoginException("비밀번호를 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getTel() == null || joinResponseDto.getTel().isEmpty()) {
-			throw new LoginException("전화번호를 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getAddress() == null || joinResponseDto.getAddress().isEmpty()) {
-			throw new LoginException("주소를 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getEmail() == null || joinResponseDto.getEmail().isEmpty()) {
-			throw new LoginException("이메일을 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getFirstName() == null || joinResponseDto.getFirstName().isEmpty()) {
-			throw new LoginException("성을 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getLastName() == null || joinResponseDto.getLastName().isEmpty()) {
-			throw new LoginException("이름을 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-
-		loginService.createUser(joinResponseDto);
-
-		return "user/login";
-	}
-
-	// 회원탈퇴
-	@GetMapping("/withdraw")
-	public String withDraw() {
-
-		return "/layout/main";
-	}
-
-	@PostMapping("/withdraw")
-	public String withDrawProc(LoginResponseDto loginResponseDto) {
-
-		LoginResponseDto principal = loginService.signIn(loginResponseDto);
-		principal.setPassword(null);
-		session.setAttribute(Define.PRINCIPAL, principal);
-
-		return "redirect:/layout/main";
-	}
-
-	// 로그아웃
-	@GetMapping("/logout")
-	public String logout() {
-
-		session.invalidate();
-
-		return "/layout/main";
+		return "/admin/salesList";
 
 	}
 
+	
 }

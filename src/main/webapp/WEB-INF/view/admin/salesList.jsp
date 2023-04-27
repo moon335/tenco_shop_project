@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
+<%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
@@ -94,31 +94,35 @@ body {
 	align-items: center;
 }
 
-.userList {
+.salesProductList {
 	display: flex;
 	flex: 1;
 	align-items: center;
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
-	border-bottom: 1px solid #D2D2D2;
 }
 
-.userList div {
+.salesProductList div {
 	display: flex;
 	flex: auto;
 	flex-direction: row;
-	margin: 0 20px;
 	align-items: center;
 	justify-content: space-between;
 	width: 950px;
-	justify-content: center; align-items : center;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
 	align-items: center;
+	margin-bottom: 35px;
 }
 
-.userList div p {
-	
+.salesListLine {
+	border-bottom: 1px solid #ccc;
+}
+
+.salesProductList div div p {
+	margin-bottom: -12px;
 }
 
 .buyDate {
@@ -148,46 +152,59 @@ body {
 
 <div class="content">
 	<div class="content_1">
-		<h3>회원정보</h3>
+		<h3>구매내역</h3>
+	</div>
+	<div class="buyProgress ">
+		<div>
+			<form action="/user/buylistProc" method="get">
+				<table class="order_date">
+					<tr>
+						<td><input class="search__input" type="date"
+							name="orderStartDate" /></td>
+						<td>~</td>
+						<td><input class="search__input" type="date"
+							name="orderEndDate" /></td>
+						<td>
+							<button type="submit" style="width: 70px">조회</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
 	</div>
 	<hr>
-	<div class="userList">
+	<div class="salesProductList">
 
-		<c:forEach var="userList" items="${userList}">
-			<div>
-				<c:choose>
-					<c:when test="${userList.image!=null}">
-						<img alt=""
-							src=" <c:url value="/images/uploads/${principal.image}"/>"
-							width="40px" height="40px" style="border-radius: 150px;">
-					</c:when>
-					<c:otherwise>
-						<img alt="" src="/images/myinfo.png" width="40px" height="40px"
-							style="margin-top: -20px;">
-					</c:otherwise>
-				</c:choose>
+		<c:choose>
+			<c:when test="">
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+		</c:choose>
+
+		<c:forEach var="salesList" items="${salesList}">
+			<div class="salesListLine" style="">
 				<div style="width: 10px;">
-					<p>${userList.id}</p>
+					<img alt="" src="/images/prodImages/${salesList.imgRoute}"
+						width="100px" height="100px">
 				</div>
-				<div style="width: 30px;">
-					<p>${userList.username}</p>
-				</div>
-				<div style="width: 70px;">
-					<p>${userList.tel}</p>
+				<div style="width: 10px;">
+					<p>${salesList.id}</p>
 				</div>
 				<div style="width: 100px;">
-					<p>${userList.address}</p>
+					<p>${salesList.korName}</p>
 				</div>
-				<div style="width: 80px;">
-					<p>${userList.email}</p>
+				<div style="width: 70px;">
+					<p>${salesList.color}</p>
 				</div>
-				<div style="width: 30px;">
-					<p>${userList.role}</p>
+				<div style="width: 50px;">
+					<p>${salesList.releasePrice}</p>
+				</div>
+				<div style="width: 10px;">
+					<p>${salesList.sizeId}</p>
 				</div>
 			</div>
-			<hr>
 		</c:forEach>
-
 	</div>
 </div>
 </div>

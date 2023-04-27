@@ -206,7 +206,7 @@ public class UserController {
 		if(principal.getRole().equals("admin")) {
 			principal.setPassword(loginResponseDto.getPassword());
 			session.setAttribute(Define.PRINCIPAL, principal);
-			return "redirect:/user/admin";
+			return "redirect:/admin/admin";
 		}			
 		principal.setPassword(loginResponseDto.getPassword());
 		session.setAttribute(Define.PRINCIPAL, principal);

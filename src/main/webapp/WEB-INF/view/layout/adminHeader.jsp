@@ -265,7 +265,7 @@ button:hover {
 			</div>
 			<div>
 				<p>
-					<a href="/admin/myinfo">판매내역</a>
+					<a href="/admin/salesList">판매내역</a>
 				</p>
 			</div>
 			<div>
