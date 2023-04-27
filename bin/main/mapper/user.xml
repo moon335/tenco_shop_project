@@ -21,7 +21,7 @@
 		where id=#{id}
 	</select>
 
-	<select id="findByPassword"
+	<select id="findByUsername"
 		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
 		where username = #{username}

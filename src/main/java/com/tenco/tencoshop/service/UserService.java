@@ -39,17 +39,18 @@ public class UserService {
 	
 	// 로그인 서비스
 	// 예외
-	// 아이디 입력, 비밀번호 입력
-	// 아이디 잘못 입력
-	// 오류로 인한 로그인
+	// 비밀번호만 검사해서 id를 잘못입력했을 때 발생하는 에러
 	@Transactional
 	public LoginResponseDto signIn(LoginResponseDto loginResponseDto) {
-		User userEntity = userRepository.findByPassword(loginResponseDto);
+		User userEntity = userRepository.findByUsername(loginResponseDto);
+		if(userEntity == null) {
+			throw new LoginException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		boolean isMatched = passwordEncoder.matches(loginResponseDto.getPassword(), userEntity.getPassword());
-		
 		if (isMatched == false) {
 			throw new LoginException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		
 		LoginResponseDto dtoResult = new LoginResponseDto();
 		dtoResult.setUsername(userEntity.getUsername());
 		dtoResult.setPassword(userEntity.getPassword());
@@ -59,7 +60,7 @@ public class UserService {
 	// 회원가입 서비스
 	// 예외처리 할거
 	// 이미 가입된 아이디
-	// 사용중인 아이디, 비번 ...
+	// 사용중인 아이디
 	// 아이디 형식(영문, 소문자, 특수기호, 금칙어)
 	// 비밀번호 형식(영문 대,소문자, 숫자, 특수기호)
 	@Transactional
@@ -75,7 +76,6 @@ public class UserService {
 		}
 	}
 	// 회원탈퇴 서비스
-	// 필수 동의 선택
 	@Transactional
 	public void deleteUser(String username) {
 		

@@ -12,7 +12,7 @@ import com.tenco.tencoshop.repository.model.User;
 @Mapper
 public interface UserRepository {
 	
-	public User findByPassword(LoginResponseDto loginResponseDto);
+	public User findByUsername(LoginResponseDto loginResponseDto);
 	public int insert(JoinResponseDto joinResponseDto);
 	public int delete(String username);
 	
