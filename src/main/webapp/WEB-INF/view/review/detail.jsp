@@ -27,7 +27,6 @@ html, body {
 }
 
 .swiper {
-	width: 100%;
 	height: 100%;
 }
 
@@ -41,7 +40,7 @@ html, body {
 
 .swiper-slide img {
 	display: block;
-	width: 100%;
+	width: 550px;
 	height: 100%;
 	object-fit: cover;
 	border-radius: 20px;
@@ -63,20 +62,6 @@ html, body {
 	flex-direction: column;
 }
 
-/* .category--wrap {
-	border-bottom: 1px solid #eee;
-	display: flex;
-	justify-content: center;
-	margin: 0 auto;
-	width: 1200px;
-}
-
-.category--wrap>a {
-	text-decoration: none;
-	color: black;
-	margin: 22px;
-	padding: 10px 45px;
-} */
 .detail--user--wrap, .detail--picture--wrap, .detail--product--wrap,
 	.detail--content--wrap, .detail--heart--wrap, .detail--heart {
 	display: flex;
@@ -100,12 +85,14 @@ html, body {
 .detail--product--wrap {
 	justify-content: flex-start;
 	margin-top: 10px;
+	border-bottom: 1px solid #eee;
 }
 
 .detail--content--wrap {
 	justify-content: flex-start;
 	margin-top: 15px;
 	font-size: 20px;
+	padding-top: 20px;
 }
 
 .detail--heart--wrap {
@@ -118,7 +105,8 @@ html, body {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	font-size: 15px;
+	font-size: 14px;
+	padding-top: 8px;
 }
 
 .heartBtn {
@@ -136,6 +124,8 @@ main {
 	width: 550px;
 	margin: 0 auto;
 	margin-top: 20px;
+	border-top: 1px solid #eee;
+	padding-top: 20px;
 }
 
 .engName--korName--wrap {
@@ -147,8 +137,29 @@ main {
 
 .user--userName--wrap {
 	display: flex;
-	flex-direction: column;
 }
+
+.user--userImg--wrap>img {
+	width: 70px;
+	height: 70px;
+	border-radius: 50px;
+}
+
+.user--userImg--wrap{
+	margin-right: 20px;
+}
+
+.detail--createdAt--wrap {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 18px;
+}
+
+.detail--userName--wrap {
+	display: flex;
+}
+
 </style>
 <main>
 	<div class="detail--all--wrap">
@@ -162,40 +173,22 @@ main {
 
 			<div class="detail--user--wrap">
 				<div class="user--userName--wrap">
-					<span>유저프사</span> <span>${review.userName}</span>
+					<div class="user--userImg--wrap">
+						<img src=" <c:url value="/images/uploads/${principal.image}"/>">
+					</div>
+					<div class="user--info">
+						<span class="detail--userName--wrap">${review.userName}</span>
+						<span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+					</div>
 				</div>
-				<span>${review.formatCreatedAt()}</span>
 			</div>
 			<%-- choose, when 사용해서  --%>
 			<c:choose>
 				<c:when test="${review != null}">
-					<div class="detail--picture--wrap">
-						<div class="swiper mySwiper">
-							<div class="swiper-wrapper">
-								<div class="swiper-slide">
-									<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
-								</div>
-							</div>
-							<div class="swiper-button-next"></div>
-							<div class="swiper-button-prev"></div>
-							<div class="swiper-pagination"></div>
-						</div>
+					<div class="swiper-slide">
+						<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
 					</div>
 				</c:when>
-				<c:otherwise>
-					<div class="detail--picture--wrap">
-						<div class="swiper mySwiper">
-							<div class="swiper-wrapper">
-								<div class="swiper-slide">
-									<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
-								</div>
-							</div>
-							<div class="swiper-button-next"></div>
-							<div class="swiper-button-prev"></div>
-							<div class="swiper-pagination"></div>
-						</div>
-					</div>
-				</c:otherwise>
 			</c:choose>
 			<div class="productInfo--content--wrap">상품 정보</div>
 			<div class="detail--product--wrap">
@@ -209,8 +202,8 @@ main {
 				<button class="heartBtn" onclick="addLike(${status.index})">
 					<i class=" xi-heart-o xi-2x" style="color: black;"></i>
 				</button>
+				<div class="detail--heart">좋아요 ${review.heart}개</div>
 			</div>
-			<div class="detail--heart">좋아요 ${review.heart}개</div>
 			<div class="detail--content--wrap">${review.content}</div>
 		</div>
 	</div>

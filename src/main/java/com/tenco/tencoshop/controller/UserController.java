@@ -47,7 +47,6 @@ public class UserController {
 		}
 		userId = principal.getId();
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
-		System.out.println(userId + "@#@##");
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
@@ -100,6 +99,7 @@ public class UserController {
 	@GetMapping("/myinfoEditor")
 	public String myinfoEditor(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		System.out.println(principal);
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		user.getPassword();
@@ -110,7 +110,6 @@ public class UserController {
 	@PostMapping("/myinfoupdate")
 	public String myinfoUpdate(UserInfoRequestDto userInfoRequestDto) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
 		if(principal.getPassword().equals(userInfoRequestDto.getPassword()) == false) {
 			session.invalidate();
 			return "redirect:/user/sign-in";
@@ -181,7 +180,6 @@ public class UserController {
 		}
 		userId = principal.getId();
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
-		System.out.println(userId + "@#@##");
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {

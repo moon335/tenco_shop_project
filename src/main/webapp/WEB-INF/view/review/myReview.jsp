@@ -8,35 +8,11 @@ body {
 	width: 1200px;
 }
 
-.side>div:nth-child(2)>h5 {
-	font-size: 1.25rem;
-	margin-bottom: 0.5rem;
-	font-weight: 500;
-	line-height: 1.2;
-}
-
-.side>div:nth-child(5)>h5 {
-	font-size: 1.25rem;
-	margin-bottom: 0.5rem;
-	font-weight: 500;
-	line-height: 1.2;
-}
-
-.side>div:nth-child(1)>h4>a {
-	font-size: 1.5rem;
-	font-weight: 500;
-	line-height: 1.2;
-}
-
-.side>div:nth-child(1)>h4>a:hover {
-	font-weight: bolder;
-}
-
 #main--table {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin-left: 20px;
+	margin-top: 20px;
 }
 
 main>table tr td {
@@ -52,7 +28,17 @@ main thead {
 }
 
 .my--review--title {
-	padding-left: 50px;
+	width: 950px;
+	display: flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content: center;
+}
+
+.myReview--img--wrap img {
+	width: 150px;
+	height: 150px;
+	border-radius: 100px;
 }
 
 .my--review--title h3 {
@@ -72,14 +58,16 @@ tbody tr td a:hover {
 .no--review--wrap {
 	width: 950px;
 	text-align: center;
-	padding: 10px;
+}
+
+.myReview--username--wrap{
+	
 }
 </style>
 <main>
 	<div class="my--review--title">
-		<h4>내 후기</h4>
-		<!--  <h1>수정 추가하기</h1>-->
-		<!-- <h3>작성된 후기가 없습니다. jstl type으로 보내서 c:choose 사용하기</h3> -->
+		<span class="myReview--img--wrap"><img src=" <c:url value="/images/uploads/${principal.image}"/>"></span>
+		<span class="myReview--username--wrap">${principal.username}</span>
 	</div>
 	<table id="main--table">
 		<thead>

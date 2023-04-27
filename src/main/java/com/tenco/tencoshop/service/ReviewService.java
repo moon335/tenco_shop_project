@@ -95,8 +95,8 @@ public class ReviewService {
 	// userName 기반 내 리뷰 확인하기
 	@Transactional
 	public List<ReviewResponseDto> findMyReviewByUserName(String userName) {
+		
 		List<ReviewResponseDto> list = reviewRepository.findMyReviewByUserName(userName);
-
 		return list;
 	}
 

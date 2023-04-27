@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.dto.ReviewRequestDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
@@ -83,10 +84,15 @@ public class ReviewController {
 	@GetMapping("/myReview")
 	public String myReview(Model model) {
 		// list 받아야 됨 id
-//		ReviewResponseDto principal = (ReviewResponseDto)session.getAttribute(Define.PRINCIPAL);
-
-		List<ReviewResponseDto> reviewList = reviewService.findMyReviewByUserName("aaaa");
-		model.addAttribute("reviewList", reviewList);
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		
+		List<ReviewResponseDto> reviewList = reviewService.findMyReviewByUserName(principal.getUsername());
+		System.out.println(reviewList);
+		if (reviewList.isEmpty()) {
+			model.addAttribute("reviewList", null);
+		} else {
+			model.addAttribute("reviewList", reviewList);
+		}
 
 		return "/review/myReview";
 	}
@@ -108,7 +114,7 @@ public class ReviewController {
 	// 후기 올리는 기능
 	@PostMapping("/reviewInsert-proc")
 	public String reviewInsertProc(ReviewRequestDto reviewRequestDto, ReviewResponseDto reviewResponseDto) {
-//		session.getAttribute(Define.PRINCIPAL);
+		LoginResponseDto principal = (LoginResponseDto)session.getAttribute(Define.PRINCIPAL);
 
 		MultipartFile file = reviewRequestDto.getFile();
 
@@ -139,7 +145,7 @@ public class ReviewController {
 				System.out.println("파일 업로드 오류");
 			}
 		}
-		reviewService.createReview("aaaa", reviewRequestDto);
+		reviewService.createReview(principal.getUsername(), reviewRequestDto);
 		return "redirect:/user/myinfoProc";
 	}
 
@@ -201,12 +207,5 @@ public class ReviewController {
 
 		return "redirect:/review/myReview";
 	}
-
-	// 리뷰 수정 작성 완료
-//	@GetMapping("/update/{id}")
-//	public String update(@PathVariable Integer id, ReviewResponseDto reviewResponseDto) {
-//		reviewService.updateMyReviewById(id, reviewResponseDto);
-//		return "/review/myReview";
-//	}
 
 }
