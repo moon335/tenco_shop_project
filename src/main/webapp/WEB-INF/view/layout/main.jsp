@@ -127,9 +127,9 @@
                            <li><a href="#">남성추천</a></li>
                         </ul></li>
                      <ul class="home-menu">
-                        <li><a href="#">공지사항</a>
+                        <li><a href="/notice">공지사항</a>
                            <ul class="home-menu2">
-                              <li><a href="#">공지사항</a></li>
+                              <li><a href="/notice">공지사항</a></li>
                               <li><a href="#">자주묻는질문</a></li>
                               <li><a href="#">검수기준</a></li>
                            </ul></li>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="installedFeatures">
+		<item value="de.jcup.sqleditor:1.4.0"/>
 		<item value="org.eclipse.buildship:3.1.6.v20220511-1359"/>
 		<item value="org.eclipse.eclemma.feature:3.1.6.202206011447"/>
 		<item value="org.eclipse.egit.gitflow.feature:6.5.0.202303070854-r"/>
