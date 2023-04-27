@@ -3,9 +3,11 @@ package com.tenco.tencoshop.repository.interfaces;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.tenco.tencoshop.dto.ReviewRequestDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
+import com.tenco.tencoshop.repository.model.Review;
 
 @Mapper
 public interface ReviewRepository {
@@ -37,5 +39,10 @@ public interface ReviewRepository {
 	// 내 리뷰 목록 확인 기능
 	public List<ReviewResponseDto> findMyReviewByUserName(String userName);
 	
+	// 내 리뷰 삭제 기능
+	public int deleteMyReviewById(Integer id);
+	
+	// 내 리뷰 수정 기능
+	public int updateMyReviewById(ReviewRequestDto reviewRequestDto);
 	
 }

@@ -152,28 +152,20 @@ body>div>main>form>div.container.mt-3 {
 	width: 650px;
 }
 
+.myReview--content--wrap {
+	border-bottom: 1px solid #eee;
+	padding-bottom: 20px;
+}
 </style>
 
 <main>
-<form action="/review/reviewInsert-proc" method="post" class="mb-1" enctype="Multipart/form-data">
-		<div class="reviewInsert--wrap--title">
-			<h4>상품 정보</h4>
+	<form action="/review/reviewUpdate-proc" method="post" class="mb-1" enctype="Multipart/form-data">
+		<div class="myReview--content--wrap">
+			<h4>리뷰 수정</h4>
 		</div>
-		<div class="wish--item">
-			<div class="wish--product">
-				<div class="wish--box">
-					<img alt="상품" src="/images/prodImages/${product.imgRoute}" width="110" height="110">
-				</div>
-				<div class="reviewInsert--detail">
-					<span class="brand--name">${product.brandName}</span> <span class="brand--name">${product.modelNumber}</span> <span class="brand--name">${product.color}</span> <span class="name">${product.engName}</span>
-					<span class="name">${product.korName}</span> <span class="size">${product.sizename}</span>
-				</div>
-			</div>
-		</div>
-		<input type="hidden" value="${product.id}" name="prodId"> <input type="hidden" value="${orderId}" name="orderId">
 		<div class="form-group">
 			<div class="title--category--wrap">
-				<input type="text" class="form-control" placeholder="제목을 입력하세요" name="title" id="title"> <select name="reviewCategoryId" id="boardCategoryId">
+				<input type="text" class="form-control" placeholder="제목을 입력하세요" name="title" id="title"> <select name="reviewCategoryId" id="boardCategoryId" value="">
 					<optgroup label="카테고리">
 						<c:forEach var="reviewCategoryList" items="${reviewCategoryList}">
 							<option value="${reviewCategoryList.id}">${reviewCategoryList.name}</option>
@@ -181,32 +173,39 @@ body>div>main>form>div.container.mt-3 {
 					</optgroup>
 				</select>
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="customFile" name="files" accept=".jpg, .jpeg, .png"> <label class="custom-file-label" for="customFile">Choose file</label>
+					<input type="hidden" name="id" value="${reviewId}"> <input type="file" class="custom-file-input" id="customFile" name="file" accept=".jpg, .jpeg, .png"> <label
+						class="custom-file-label" for="customFile">Choose file</label>
 				</div>
 			</div>
 		</div>
 		<div class="form-group bg-white">
 			<textarea class="form-control summernote" rows="5" id="content" name="content"></textarea>
 		</div>
+		<%-- onclick="loaction.href='/review/update/${review.id}'" --%>
 		<button type="submit" class="btn btn-primary" style="background-color: black; border-color: black">작성 완료</button>
 	</form>
 </main>
 </div>
 <script>
-$('.summernote').summernote({
-    tabsize: 2,
-    height: 500,
-    toolbar: [
-        ['style', ['style']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['table', ['table']],
-        ['insert', []],
-      ]
-});
-$(document).ready(function() {
-	  $('#summernote').summernote();
+	$('.summernote').summernote(
+			{
+				tabsize : 2,
+				height : 500,
+				toolbar : [ [ 'style', [ 'style' ] ], [ 'color', [ 'color' ] ],
+						[ 'para', [ 'ul', 'ol', 'paragraph' ] ],
+						[ 'table', [ 'table' ] ], [ 'insert', [] ], ]
+			});
+	$(document).ready(function() {
+		$('#summernote').summernote();
 	});
+
+	$(".custom-file-input").on(
+			"change",
+			function() {
+				var fileName = $(this).val().split("\\").pop();
+				$(this).siblings(".custom-file-label").addClass("selected")
+						.html(fileName);
+			});
 </script>
 
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

@@ -68,10 +68,16 @@ tbody tr td a:hover {
 	color: black;
 	text-decoration: underline;
 }
+
+.no--review--wrap {
+	width: 950px;
+	text-align: center;
+	padding: 10px;
+}
 </style>
 <main>
 	<div class="my--review--title">
-		<h3>내 후기</h3>
+		<h4>내 후기</h4>
 		<!--  <h1>수정 추가하기</h1>-->
 		<!-- <h3>작성된 후기가 없습니다. jstl type으로 보내서 c:choose 사용하기</h3> -->
 	</div>
@@ -88,20 +94,27 @@ tbody tr td a:hover {
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="review" items="${reviewList}">
-				<tr>
-					<td><a href="#">${review.id}</a></td>
-					<td><a href="#">${review.title}</a></td>
-					<td><a href="#"><img alt="" src="/images/uploads/${review.uploadFileName}" width=100 height=100></a></td>
-					<td><a href="#">${review.engName}<br> ${review.korName}
-					</a></td>
-					<td><a href="#">${review.sizeName}</a></td>
-					<td><a href="#">${review.brandName}</a></td>
-					<td><a href="#">${review.formatCreatedAt()}</a></td>
-					<%--/${review.id} --%>
-					<td><a href="/review/reviewUpdate">수정</a></td>
-				</tr>
-			</c:forEach>
+			<c:choose>
+				<c:when test="${reviewList.isEmpty() == false}">
+					<c:forEach var="review" items="${reviewList}">
+						<tr>
+							<td><a href="/review/detail/${review.id}">${review.id}</a></td>
+							<td><a href="/review/detail/${review.id}">${review.title}</a></td>
+							<td><a href="/review/detail/${review.id}"><img alt="" src="/images/uploads/${review.setUpReviewImage()}" width=100 height=100></a></td>
+							<td><a href="/review/detail/${review.id}">${review.engName}<br> ${review.korName}
+							</a></td>
+							<td><a href="/review/detail/${review.id}">${review.sizeName}</a></td>
+							<td><a href="/review/detail/${review.id}">${review.brandName}</a></td>
+							<td><a href="/review/detail/${review.id}">${review.formatCreatedAt()}</a></td>
+							<%--/${review.id} --%>
+							<td><a href="/review/reviewUpdate/${review.id}">수정</a> | <a href="/review/delete/${review.id}">삭제</a></td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<td class="no--review--wrap"><h5>작성된 후기가 없습니다.</h5></td>
+				</c:otherwise>
+			</c:choose>
 		</tbody>
 
 	</table>

@@ -181,7 +181,7 @@ body>div>main>form>div.container.mt-3 {
 					</optgroup>
 				</select>
 				<div class="custom-file">
-					<input type="file" class="custom-file-input" id="customFile" name="files" accept=".jpg, .jpeg, .png"> <label class="custom-file-label" for="customFile">Choose file</label>
+					<input type="file" class="custom-file-input" id="customFile" name="file" accept=".jpg, .jpeg, .png"> <label class="custom-file-label" for="customFile">Choose file</label>
 				</div>
 			</div>
 		</div>

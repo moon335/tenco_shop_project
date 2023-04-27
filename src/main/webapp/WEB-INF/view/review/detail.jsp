@@ -44,6 +44,7 @@ html, body {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	border-radius: 20px;
 }
 
 .swiper {
@@ -128,6 +129,26 @@ html, body {
 main {
 	margin-bottom: 50px;
 }
+
+.productInfo--content--wrap {
+	display: flex;
+	font-size: 20px;
+	width: 550px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+.engName--korName--wrap {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+}
+
+.user--userName--wrap {
+	display: flex;
+	flex-direction: column;
+}
 </style>
 <main>
 	<div class="detail--all--wrap">
@@ -140,20 +161,20 @@ main {
 			</div>
 
 			<div class="detail--user--wrap">
-				<span>유저프사 ${review.userName}</span> <span>${review.formatCreatedAt()}</span> <img src="/images/review/${review.reviewImg}" width=550 height=auto>
+				<div class="user--userName--wrap">
+					<span>유저프사</span> <span>${review.userName}</span>
+				</div>
+				<span>${review.formatCreatedAt()}</span>
 			</div>
+			<%-- choose, when 사용해서  --%>
 			<c:choose>
-				<c:when test="${review.reviewImg != null}">
+				<c:when test="${review != null}">
 					<div class="detail--picture--wrap">
 						<div class="swiper mySwiper">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
-									<img src="/images/review/${review.reviewImg}" width=550 height=auto>
+									<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
 								</div>
-								<div class="swiper-slide">Slide 2</div>
-								<div class="swiper-slide">Slide 3</div>
-								<div class="swiper-slide">Slide 4</div>
-								<div class="swiper-slide">Slide 5</div>
 							</div>
 							<div class="swiper-button-next"></div>
 							<div class="swiper-button-prev"></div>
@@ -161,9 +182,28 @@ main {
 						</div>
 					</div>
 				</c:when>
+				<c:otherwise>
+					<div class="detail--picture--wrap">
+						<div class="swiper mySwiper">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
+								</div>
+							</div>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-button-prev"></div>
+							<div class="swiper-pagination"></div>
+						</div>
+					</div>
+				</c:otherwise>
 			</c:choose>
+			<div class="productInfo--content--wrap">상품 정보</div>
 			<div class="detail--product--wrap">
-				<h2>여기는 상품 태그</h2>
+				<img src="/images/prodImages/${review.imgRoute}" width="110" height="110">
+				<div class="engName--korName--wrap">
+					<div class="">${review.engName}</div>
+					<div class="">${review.korName}</div>
+				</div>
 			</div>
 			<div class="detail--heart--wrap">
 				<button class="heartBtn" onclick="addLike(${status.index})">

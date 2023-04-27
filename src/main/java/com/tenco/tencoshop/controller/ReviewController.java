@@ -71,11 +71,10 @@ public class ReviewController {
 	@GetMapping("/detail/{id}")
 	public String style(Model model, @PathVariable Integer id) {
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
-
 		ReviewResponseDto review = reviewService.readDetailById(id);
+
 		model.addAttribute("reviewCategoryList", reviewCategoryList);
 		model.addAttribute("review", review);
-
 		// redirect 수정할 수도 있음.
 		return "/review/detail";
 	}
@@ -84,11 +83,9 @@ public class ReviewController {
 	@GetMapping("/myReview")
 	public String myReview(Model model) {
 		// list 받아야 됨 id
-		
 //		ReviewResponseDto principal = (ReviewResponseDto)session.getAttribute(Define.PRINCIPAL);
-		
+
 		List<ReviewResponseDto> reviewList = reviewService.findMyReviewByUserName("aaaa");
-//		System.out.println(reviewList.get(0).getOriginFileName());
 		model.addAttribute("reviewList", reviewList);
 
 		return "/review/myReview";
@@ -113,13 +110,12 @@ public class ReviewController {
 	public String reviewInsertProc(ReviewRequestDto reviewRequestDto, ReviewResponseDto reviewResponseDto) {
 //		session.getAttribute(Define.PRINCIPAL);
 
-		List<MultipartFile> files = reviewRequestDto.getFiles();
-		if (files.isEmpty() == false) {
+		MultipartFile file = reviewRequestDto.getFile();
 
-			for (int i = 0; i < files.size(); i++) {
-				if (files.get(i).getSize() > Define.MAX_FILE_SIZE) {
-					// 예외처리 : "파일 크기가 50MB 이상일 수 없습니다.", HttpStatus.BAD_REQUEST
-				}
+		if (file.isEmpty() == false) {
+
+			if (file.getSize() > Define.MAX_FILE_SIZE) {
+				// 예외처리 : "파일 크기가 50MB 이상일 수 없습니다.", HttpStatus.BAD_REQUEST
 			}
 
 			try {
@@ -131,16 +127,14 @@ public class ReviewController {
 				}
 
 				UUID uuid = UUID.randomUUID();
-				for (int i = 0; i < files.size(); i++) {
-					String fileName = uuid + "_" + files.get(i).getOriginalFilename();
-					String uploadPath = Define.UPLOAD_DIRECTORY + File.separator + fileName;
+				String fileName = uuid + "_" + file.getOriginalFilename();
+				String uploadPath = Define.UPLOAD_DIRECTORY + File.separator + fileName;
 
-					File destiination = new File(uploadPath);
-					files.get(i).transferTo(destiination);
+				File destiination = new File(uploadPath);
+				file.transferTo(destiination);
 
-					reviewRequestDto.setOriginFileName(files.get(i).getOriginalFilename());
-					reviewRequestDto.setUploadFileName(fileName);
-				}
+				reviewRequestDto.setOriginFileName(file.getOriginalFilename());
+				reviewRequestDto.setUploadFileName(fileName);
 			} catch (Exception e) {
 				System.out.println("파일 업로드 오류");
 			}
@@ -149,32 +143,27 @@ public class ReviewController {
 		return "redirect:/user/myinfo";
 	}
 
-	// 내 리뷰 수정 기능
-	@GetMapping("/reviewUpdate")
-	public String reviewUpdate(Model model) {
+	// 내 리뷰 수정페이지로 이동
+	@GetMapping("/reviewUpdate/{id}")
+	public String reviewUpdate(Model model, @PathVariable Integer id) {
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
-
+//		ReviewResponseDto review = reviewService.readReviewByUserId(userId); // 세션에서 로그인한 유저 받아와서 처리
 		model.addAttribute("reviewCategoryList", reviewCategoryList);
-		
+		model.addAttribute("reviewId", id);
+
 		return "/review/myReviewUpdate";
 	}
-	
+
 	@PostMapping("/reviewUpdate-proc")
-	public String reviewUpdateProc(Model model, @PathVariable Integer orderId, ReviewRequestDto reviewRequestDto) {
-		
-		ProductResponseDto product = reviewService.readByOrderId(orderId);
+	public String reviewUpdateProc(Model model, Integer id, ReviewRequestDto reviewRequestDto) {
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
 
-		model.addAttribute("product", product);
-		model.addAttribute("reviewCategoryList", reviewCategoryList);
-		
-		List<MultipartFile> files = reviewRequestDto.getFiles();
-		if (files.isEmpty() == false) {
+		MultipartFile file = reviewRequestDto.getFile();
 
-			for (int i = 0; i < files.size(); i++) {
-				if (files.get(i).getSize() > Define.MAX_FILE_SIZE) {
-					// 예외처리 : "파일 크기가 50MB 이상일 수 없습니다.", HttpStatus.BAD_REQUEST
-				}
+		if (file.isEmpty() == false) {
+
+			if (file.getSize() > Define.MAX_FILE_SIZE) {
+				// 예외처리 : "파일 크기가 50MB 이상일 수 없습니다.", HttpStatus.BAD_REQUEST
 			}
 
 			try {
@@ -186,22 +175,38 @@ public class ReviewController {
 				}
 
 				UUID uuid = UUID.randomUUID();
-				for (int i = 0; i < files.size(); i++) {
-					String fileName = uuid + "_" + files.get(i).getOriginalFilename();
-					String uploadPath = Define.UPLOAD_DIRECTORY + File.separator + fileName;
+				String fileName = uuid + "_" + file.getOriginalFilename();
+				String uploadPath = Define.UPLOAD_DIRECTORY + File.separator + fileName;
 
-					File destiination = new File(uploadPath);
-					files.get(i).transferTo(destiination);
+				File destiination = new File(uploadPath);
+				file.transferTo(destiination);
 
-					reviewRequestDto.setOriginFileName(files.get(i).getOriginalFilename());
-					reviewRequestDto.setUploadFileName(fileName);
-				}
+				reviewRequestDto.setOriginFileName(file.getOriginalFilename());
+				reviewRequestDto.setUploadFileName(fileName);
 			} catch (Exception e) {
 				System.out.println("파일 업로드 오류");
 			}
 		}
-		
+
+		reviewService.updateMyReviewById(id, reviewRequestDto);
+		model.addAttribute("reviewCategoryList", reviewCategoryList);
+
 		return "redirect:/review/myReview";
 	}
+
+	// 리뷰 삭제 기능
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable Integer id) {
+		reviewService.deleteMyReviewById(id);
+
+		return "redirect:/review/myReview";
+	}
+
+	// 리뷰 수정 작성 완료
+//	@GetMapping("/update/{id}")
+//	public String update(@PathVariable Integer id, ReviewResponseDto reviewResponseDto) {
+//		reviewService.updateMyReviewById(id, reviewResponseDto);
+//		return "/review/myReview";
+//	}
 
 }

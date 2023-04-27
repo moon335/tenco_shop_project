@@ -36,10 +36,12 @@
 	
 	<!-- id를 기반으로 상세페이지 들어가야 됨 -->
 	<select id="findDetailById" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select u.username, u.id as user_id, r.*
+		select u.username, u.id as user_id, r.*, p.img_route, p.eng_name, p.kor_name
 		from review_tb as r 
-		inner join user_tb as u
-		on r.user_id = u.id
+		inner join product_tb as p
+		on r.prod_id = p.id
+        inner join user_tb as u
+        on r.user_id=u.id
 		where r.id=#{id}
 	</select>
 	
@@ -79,7 +81,7 @@
 	</insert>
 	
 	<select id="findMyReviewByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select r.id, r.title, r.content, r.created_at, r.origin_file_name, p.model_number, p.color, p.eng_name, p.kor_name, s.name as size_name, b.name as brand_name
+		select r.id, r.user_id, r.title, r.content, r.created_at, r.origin_file_name, r.upload_file_name, p.model_number, p.color, p.eng_name, p.kor_name, s.name as size_name, b.name as brand_name
 		from review_tb as r
 		inner join product_tb as p
 		on r.prod_id=p.id
@@ -92,5 +94,16 @@
 		where u.username=#{userName}
 		order by r.id desc
 	</select>
+	
+	<delete id="deleteMyReviewById">
+		delete from review_tb
+		where id = #{id}
+	</delete>
+	
+	<update id="updateMyReviewById">
+		update review_tb
+		set title=#{title}, content=#{content}, review_category_id=#{reviewCategoryId}, origin_file_name=#{originFileName}, upload_file_name=#{uploadFileName}
+		where id=#{id}
+	</update>
 	
 </mapper>

@@ -35,14 +35,19 @@ public class ReviewResponseDto {
 	private String korName;
 	private String sizeName;
 	private String brandName;
+	private String imgRoute;
 
 	// 파일 업로드 기능 ReviewFormDto 클래스를 하나 만들어야 할지 고민중
-	private List<MultipartFile> files;
+	private MultipartFile file;
 	private String originFileName;
 	private String uploadFileName;
 
 	public String formatCreatedAt() {
 		return TimestampUtil.timestampToString(createdAt);
+	}
+	
+	public String setUpReviewImage() {
+		return uploadFileName;
 	}
 
 }

@@ -8,6 +8,7 @@ import lombok.Data;
 public class Review {
 
    private Integer id;
+   private String title;
    private String content;
    private Integer userId;
    private Integer prodId;
