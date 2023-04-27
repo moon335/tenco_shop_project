@@ -65,8 +65,8 @@ h2,h3 {
 		<div class="side-menu">
 			<h2 class="side-menu-title">고객센터</h2>
 			<div class="side-menu-list">
-				<a href="notice">공지사항</a>
-				<a href="#">자주 묻는 질문</a>
+				<a href="list">공지사항</a>
+				<a href="faq">자주 묻는 질문</a>
 			</div>
 		</div>
 		<div class="content-area">

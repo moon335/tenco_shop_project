@@ -11,4 +11,6 @@ public class Notice {
 	private String content;
 	private Integer adminId;
 	private Integer boardCategoryId;
+	
+	private String category;
 }

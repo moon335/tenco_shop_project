@@ -78,10 +78,16 @@ h3 {
 		<div class="side-menu">
 			<h2 class="side-menu-title">고객센터</h2>
 			<div class="side-menu-list">
-				<a href="notice">공지사항</a> <a href="#">자주 묻는 질문</a>
+				<a href="list">공지사항</a> <a href="#">자주 묻는 질문</a>
 			</div>
 		</div>
 		<div class="content-area">
+		<a href=#none id="show" onclick="if(hide.style.display=='none') {hide.style.display='';show.innerText='- 내용접기'} 
+else {hide.style.display='none';show.innerText='+ 내용펼치기'}">+ 내용펼치기</a>
+
+<div id="hide" style="display: none">
+펼치기 눌렀을 때 출력할 내용 
+</div>
 			<div class="content-title-border">
 				<h3>공지사항</h3>
 			</div>
@@ -92,7 +98,7 @@ h3 {
 				</div>
 			</div>
 			<div class="button">
-			<a href="/notice">목록보기</a>
+			<a href="list">목록보기</a>
 			<a href="/notice/update/${id}">수정하기</a>
 			</div>
 		</div>

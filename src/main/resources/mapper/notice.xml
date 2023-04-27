@@ -35,4 +35,8 @@
 		set title =#{title}, content =#{content}, board_category_id =#{boardCategoryId}
 		where id =#{id};
 	</update>
+	
+	<select id="selectFaq" resultType="com.tenco.tencoshop.dto.NoticeResponseDto$faqDto">
+		 select * from faq_tb;
+	</select>
 </mapper> 

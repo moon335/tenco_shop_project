@@ -54,6 +54,11 @@ public class NoticeService {
 	  }
 	
 	
+	  // 자주 묻는 질문 
+	  public List<NoticeResponseDto.faqDto> selectFaq(){
+		  List<NoticeResponseDto.faqDto> list = noticeRepository.selectFaq();
+		  return list;
+	  }
 	
 	
 }

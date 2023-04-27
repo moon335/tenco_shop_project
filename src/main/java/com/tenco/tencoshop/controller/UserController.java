@@ -180,7 +180,7 @@ public class UserController {
 		}
 		LoginResponseDto principal = loginService.signIn(loginResponseDto);
 		System.out.println(loginResponseDto.getRole()+"rolde");
-		if(!principal.getRole().equals("admin")) {
+		if(principal.getRole().equals("admin")) {
 			return "redirect:/admin";
 		}			
 		principal.setPassword(loginResponseDto.getPassword());
