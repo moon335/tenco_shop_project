@@ -18,7 +18,7 @@ public class AnswerService {
 	
 	
 	/**
-	 * QnA 답글 페이지
+	 * QnA 답글 페이지로 이동 
 	 * @param questionId
 	 * @return
 	 */
@@ -27,7 +27,11 @@ public class AnswerService {
 		Answer answer = answerRepository.answerDetail(questionId);
 		return answer;
 	}
-	
+	/**
+	 * QnA 답글 다는 기능 
+	 * @param answerRequsetDto
+	 * @param userId
+	 */
 	@Transactional
 	public void answerWritinng(AnswerRequsetDto answerRequsetDto,Integer userId) {
 		Answer answer = new Answer();

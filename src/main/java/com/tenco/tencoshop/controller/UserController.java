@@ -47,7 +47,6 @@ public class UserController {
 		}
 		userId = principal.getId();
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
-		System.out.println(userId + "@#@##");
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {

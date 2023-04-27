@@ -38,6 +38,11 @@
 		title = #{title},
 		content= #{content},
 		user_id=#{userId}
-		where id = #{id};
+		where id =
+		#{id};
 	</update>
+	<delete id="questionDelete">
+		delete from question_tb
+		where id=#{id};
+	</delete>
 </mapper>

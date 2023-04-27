@@ -55,6 +55,7 @@ public class QuestionService {
 		}
 	}
 
+	// 질문에 답글달리면 상태 변경하기 
 	@Transactional
 	public void questionUpdate(QuestionResponseDto questionResponseDto,AnswerRequsetDto answerRequsetDto, Integer principalId) {
 		Question quest = new Question();
@@ -63,10 +64,18 @@ public class QuestionService {
 		quest.setReqStatus(1);
 		quest.setUserId(questionResponseDto.getQuestionUserId());
 		quest.setId(answerRequsetDto.getQuestionId());
-		System.out.println(quest+"@@@@@@@@@@@@@@@@");
 		int result = questionRepository.questionUpdate(quest);
 		if (result != 1) {
 			System.out.println("수정실패");
+		}
+	}
+	
+	// 질문 삭제하기 
+	@Transactional
+	public void questionDelete(Integer id) {
+		int result = questionRepository.questionDelete(id);
+		if(result != 1) {
+			System.out.println("수정 실패 ");
 		}
 	}
 }

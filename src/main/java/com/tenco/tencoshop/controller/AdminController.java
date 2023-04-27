@@ -43,30 +43,30 @@ public class AdminController {
 
 	@Autowired
 	private HttpSession session;
-	
+
 	@Autowired
 	private AdminService adminService;
-	
+
 	@Autowired
 	private QuestionService questionService;
-	
+
 	@Autowired
 	private AnswerService answerService;
 
 	// 관리자가 유저 정보 들어가기
 	@GetMapping("/userList")
-	public String buyList(Integer userId, Model model) {
+	public String buyList(Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new LoginException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		userId = principal.getId();
-		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
+		if (!principal.getRole().equals("admin")) {
+			throw new LoginException("관리자 계정으로 로그인 해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		List<User> userList = userService.userInfoAll();
 		model.addAttribute("userList", userList);
-		System.out.println(userList + "!1111111111111111111");
 		if (userList.isEmpty()) {
 			model.addAttribute("userList", null);
 		} else {
@@ -147,15 +147,14 @@ public class AdminController {
 		return "redirect:/admin/adminInfoEditor";
 	}
 
+	// 관리자 계정 로그인
 	@GetMapping("/admin")
 	public String signInAdmin(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new LoginException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		userId = principal.getId();
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
-		System.out.println(userId + "@#@##");
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
@@ -166,8 +165,8 @@ public class AdminController {
 		}
 		return "/admin/admin";
 	}
-	
-	
+
+	// 판매 목록 들어가기
 	@GetMapping("salesList")
 	public String salesList(Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
@@ -182,10 +181,17 @@ public class AdminController {
 		return "/admin/salesList";
 
 	}
+
 	// QnA 모두 검색
 	@GetMapping("/find")
 	public String findQuestion(Model model) {
 		List<Question> questList = questionService.readQuestion();
+		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		if (user == null) {
+			model.addAttribute("user", null);
+		} else {
+			model.addAttribute("user", user);
+		}
 		if (questList.isEmpty()) {
 			model.addAttribute("questList", null);
 		} else {
@@ -218,5 +224,12 @@ public class AdminController {
 		}
 		return "/admin/adminQuestionDetail";
 	}
-	
+
+	// question 삭제하기
+	@GetMapping("/delete")
+	public String questionDelete(Integer id) {
+		questionService.questionDelete(id);
+		return "redirect:/admin/find";
+	}
+
 }

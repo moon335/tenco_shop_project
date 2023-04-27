@@ -29,7 +29,7 @@ public class AnswerController {
 	@Autowired
 	private QuestionService questionService;
 	
-	// 질문 글쓰기
+	// 질문 답글 달기 
 	@GetMapping("/answerWriting")
 	public String helpWriting(@RequestParam Integer id,Model model) {
 		Question quest = questionService.questionDetailPage(id);
@@ -41,6 +41,7 @@ public class AnswerController {
 		}
 		return "/admin/answerWriting";
 	}
+	
 
 	// QnA 답글달기
 	@PostMapping("/writing")

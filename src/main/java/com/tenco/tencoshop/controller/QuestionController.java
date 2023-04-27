@@ -39,6 +39,12 @@ public class QuestionController {
 	@GetMapping("/find")
 	public String findQuestion(Model model) {
 		List<Question> questList = questionService.readQuestion();
+		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		if (user == null) {
+			model.addAttribute("user", null);
+		} else {
+			model.addAttribute("user", user);
+		}
 		if (questList.isEmpty()) {
 			model.addAttribute("questList", null);
 		} else {
@@ -89,6 +95,12 @@ public class QuestionController {
 	public String questionWriting(QuestionFormDto questionFormDto) {
 		LoginResponseDto userId = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		questionService.questionWriting(questionFormDto, userId.getId());
+		return "redirect:/question/find";
+	}
+
+	@GetMapping("/delete")
+	public String questionDelete(Integer id) {
+		questionService.questionDelete(id);
 		return "redirect:/question/find";
 	}
 }
