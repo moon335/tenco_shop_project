@@ -48,6 +48,14 @@ public class UserService {
 		return user;
 	}
 
+	// myinfo에서 유저 정보 select하기
+	@Transactional
+	public List<User> userInfoAll() {
+
+		List<User> userList = userRepository.userInfoAll();
+		return userList;
+	}
+
 	// myinfo에서 유저정보 update하기
 	@Transactional
 	public int userInfoUpdate(UserInfoRequestDto userInfoRequestDto, Integer principalId) {
@@ -65,19 +73,19 @@ public class UserService {
 		}
 		return result;
 	}
-	// myinfo에서 유저정보 update하기
-		@Transactional
-		public int userInfoUpdateImage(UserInfoRequestDto userInfoRequestDto, Integer principalId) {
-			LoginResponseDto user = new LoginResponseDto();
-			user.setImage(userInfoRequestDto.getUploadFileName());
-			user.setId(principalId);
-			System.out.println(user + "usre");
-			int result = userRepository.userInfoUpdateImage(user);
-			if (result != 1) {
-				System.out.println("정보 수정에 실패하였습니다.");
-			}
-			return result;
-		}
 
+	// myinfo에서 유저정보 update하기
+	@Transactional
+	public int userInfoUpdateImage(UserInfoRequestDto userInfoRequestDto, Integer principalId) {
+		LoginResponseDto user = new LoginResponseDto();
+		user.setImage(userInfoRequestDto.getUploadFileName());
+		user.setId(principalId);
+		System.out.println(user + "usre");
+		int result = userRepository.userInfoUpdateImage(user);
+		if (result != 1) {
+			System.out.println("정보 수정에 실패하였습니다.");
+		}
+		return result;
+	}
 
 }

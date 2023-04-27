@@ -26,84 +26,48 @@ import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
 
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/admin")
+public class AdminController {
 
 	@Autowired // DI 처리
 	private LoginService loginService;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private HttpSession session;
 
-	// myinfo에서 주문한 제품 보기
-	@GetMapping("/myinfoProc")
-	public String myInfoProc(Integer userId, Model model) {
+	// 관리자가 유저 정보 들어가기
+	@GetMapping("/userList")
+	public String buyList(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new LoginException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		userId = principal.getId();
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
-		System.out.println(userId + "@#@##");
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
-		if (orderList.isEmpty()) {
-			model.addAttribute("orderList", null);
+		List<User> userList = userService.userInfoAll();
+		model.addAttribute("userList", userList);
+		System.out.println(userList + "!1111111111111111111");
+		if (userList.isEmpty()) {
+			model.addAttribute("userList", null);
 		} else {
-			model.addAttribute("orderList", orderList);
-			model.addAttribute("principal", principal);
+			model.addAttribute("userList", userList);
 		}
-		return "/user/myInfo";
-	}
-
-	// 구매목록화면 들어가기
-	@GetMapping("buylist")
-	public String buyList(Integer userId, Model model) {
-		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		User user = userService.userInfo(principal.getId());
-		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
-		model.addAttribute("user", user);
-		if (orderList.isEmpty()) {
-			model.addAttribute("orderList", null);
-		} else {
-			model.addAttribute("orderList", orderList);
-		}
-		return "/user/buy";
-
-	}
-
-	// 주문한 제품 search하기
-	@GetMapping("/buylistProc")
-	public String buyListProc(ProductRequestDto productRequestDto, Model model) {
-		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		productRequestDto.setUserId(principal.getId());
-		List<ProductRequestDto> orderList = userService.searchProductList(productRequestDto);
-		System.out.println("orderList" + orderList);
-		if (orderList.isEmpty()) {
-			model.addAttribute("orderList", null);
-		} else {
-			model.addAttribute("orderList", orderList);
-		}
-		return "/user/buy";
-	}
-
-	// 질문 글쓰기
-	@GetMapping("/questWriting")
-	public String helpWriting() {
-		return "/user/questWriting";
+		return "/user/userList";
 	}
 
 	// 내 정보 수정 화면 들어가기
-	@GetMapping("/myinfoEditor")
+	@GetMapping("/adminInfoEditor")
 	public String myinfoEditor(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		user.getPassword();
-		return "/user/myInfoEditor";
+		return "/user/adminInfoEditor";
 	}
 
 	// 내 정보 수정하기
@@ -111,16 +75,16 @@ public class UserController {
 	public String myinfoUpdate(UserInfoRequestDto userInfoRequestDto) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
-		if(principal.getPassword().equals(userInfoRequestDto.getPassword()) == false) {
+		if (principal.getPassword().equals(userInfoRequestDto.getPassword()) == false) {
 			session.invalidate();
 			return "redirect:/user/sign-in";
 		}
 
-		return "redirect:/user/myinfoEditor";
+		return "redirect:/admin/adminInfoEditor";
 	}
 
 	// 내정보 이미지 넣기
-	@PostMapping("/myinfoupdateimage")
+	@PostMapping("/adminInfoupdateimage")
 	public String myinfoUpdateImage(UserInfoRequestDto userInfoRequestDto) {
 		// 이미지넣기
 		MultipartFile file = userInfoRequestDto.getFile();
@@ -151,21 +115,21 @@ public class UserController {
 			userService.userInfoUpdateImage(userInfoRequestDto, principal.getId());
 			User user = userService.userInfo(principal.getId());
 			principal.setImage(user.getImage());
-			return "redirect:/user/myinfoEditor";
+			return "redirect:/admin/adminInfoEditor";
 
 		}
 
-		return "redirect:/user/myinfoEditor";
+		return "redirect:/admin/adminInfoEditor";
 	}
-	
+
 	// 내정보 이미지 삭제하기
-	@PostMapping("/userInfoDeleteimage")
-	public String userInfoDeleteimage(UserInfoRequestDto userInfoRequestDto) {
+	@PostMapping("/adminInfoDeleteimage")
+	public String adminDeleteimage(UserInfoRequestDto userInfoRequestDto) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		userService.userInfoUpdateImage(userInfoRequestDto, principal.getId());
 		User user = userService.userInfo(principal.getId());
 		principal.setImage(null);
-		return "redirect:/user/myinfoEditor";
+		return "redirect:/admin/adminInfoEditor";
 	}
 
 	@GetMapping("/sign-in")
@@ -173,6 +137,7 @@ public class UserController {
 
 		return "user/login";
 	}
+
 	@GetMapping("/admin")
 	public String signInAdmin(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
@@ -203,11 +168,11 @@ public class UserController {
 			throw new LoginException("비밀번호를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		LoginResponseDto principal = loginService.signIn(loginResponseDto);
-		if(principal.getRole().equals("admin")) {
+		if (principal.getRole().equals("admin")) {
 			principal.setPassword(loginResponseDto.getPassword());
 			session.setAttribute(Define.PRINCIPAL, principal);
 			return "redirect:/user/admin";
-		}			
+		}
 		principal.setPassword(loginResponseDto.getPassword());
 		session.setAttribute(Define.PRINCIPAL, principal);
 		return "redirect:/main";

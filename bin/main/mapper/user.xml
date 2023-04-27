@@ -38,7 +38,11 @@
 		AND
 		#{orderEndDate};
 	</select>
-
+	
+	<select id="userInfoAll"
+		resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+	</select>
 
 	<select id="userInfoSelect"
 		resultType="com.tenco.tencoshop.repository.model.User">
@@ -74,7 +78,7 @@
 		#{password}, #{tel},
 		#{address},#{email},#{firstName},#{lastName});
 	</insert>
-	
+
 	<insert id="signUpAdmin">
 		insert into user_tb (username, password, tel,
 		address, email, first_name, last_name,role)

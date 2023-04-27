@@ -240,13 +240,12 @@ button:hover {
          </div>
          <div class="header-inner">
             <h3>
-               <a href="/main" style="font-size: 28px;">TencoShop</a>
+               <a href="/user/admin" style="font-size: 28px;">TencoShop</a>
             </h3>
             <div class="header-inner-menu">
-               <label><a href="/main">HOME</a></label> <label><a
+               <label><a href="/user/admin">HOME</a></label> <label><a
                   href="/review/style">STYLE</a></label> <label><a href="/shop">SHOP</a></label>
-               <label><a href="/user/myinfoProc">MY</a></label> <span
-                  class="material-symbols-outlined"><a href="/product/search">search</a></span>
+               <label><a href="/user/admin">MY</a></label> 
             </div>
          </div>
       </div>
@@ -260,30 +259,13 @@ button:hover {
 				</h4>
 			</div>
 			<div>
-				<h5>쇼핑정보</h5>
-			</div>
-			<div>
 				<p>
-					<a href="/user/buylist">구매내역</a>
+					<a href="/admin/userList">회원정보</a>
 				</p>
 			</div>
 			<div>
 				<p>
-					<a href="">관심상품</a>
-				</p>
-				<br>
-			</div>
-			<div>
-				<h5>내정보</h5>
-			</div>
-			<div>
-				<p>
-					<a href="/user/myinfo">프로필 정보</a>
-				</p>
-			</div>
-			<div>
-				<p>
-					<a href="">주소록</a>
+					<a href="/admin/myinfo">판매내역</a>
 				</p>
 			</div>
 			<div>
@@ -293,7 +275,7 @@ button:hover {
 			</div>
 			<div>
 				<p>
-					<a href="/question/find">QnA</a>
+					<a href="/question/find">공지사항</a>
 				</p>
 			</div>
 		</div>

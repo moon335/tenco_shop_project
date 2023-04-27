@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
+<%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
@@ -254,7 +254,7 @@ body {
 			<h2>프로필 정보</h2>
 		</div>
 		<div class="myinfo">
-			<form action="/user/myinfoupdateimage" method="post"
+			<form action="/admin/adminInfoupdateimage" method="post"
 				enctype="multipart/form-data" style="display: flex;">
 				<div class="myimage">
 					<c:choose>
@@ -288,15 +288,14 @@ body {
 					<div>
 						<button type="submit" class="btn btn-outline-dark">이미지 변경</button>
 			</form>
-			<form action="/user/userInfoDeleteimage" method="post"
+			<form action="/admin/adminInfoDeleteimage" method="post"
 				enctype="multipart/form-data" style="display: flex;">
 				<button type="submit" class="btn btn-outline-dark">삭제</button>
 			</form>
 		</div>
 	</div>
-	</form>
 </div>
-<form action="/user/myinfoupdate" method="post">
+<form action="/admin/myinfoupdate" method="post">
 	<div class="myinfoDetail">
 		<div class="myinfoLogin">
 			<h4>
