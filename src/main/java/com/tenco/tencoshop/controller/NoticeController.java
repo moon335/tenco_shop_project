@@ -54,7 +54,7 @@ public class NoticeController {
 	@PostMapping("/insert")
 	public String noticeInsert(NoticeRequestDto.insertDto insertDto) {
 		noticeService.insertNotice(insertDto);
-		return "redirect:/notice";
+		return "redirect:/notice/list";
 	}
 	
 	// 공지사항 게시물 삭제페이지
@@ -84,7 +84,7 @@ public class NoticeController {
 	 @PostMapping("/update/{id}")
 	 public String  noticeUpdate(NoticeRequestDto.updateDto updateDto) {
 		 noticeService.noticeUpdate(updateDto);
-		 return "redirect:/notice";
+		 return "redirect:/notice/list";
 	 }
 	 
 	 // 자주묻는질문 페이지

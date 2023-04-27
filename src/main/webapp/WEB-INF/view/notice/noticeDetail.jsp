@@ -51,14 +51,13 @@ h3 {
 	margin-top: 10px;
 }
 
-
 .button {
 	display: flex;
 	justify-content: center;
-	
 }
+
 .button a {
-	color:black;
+	color: black;
 	border: 1px solid #ccc;
 	border-radius: 7px;
 	padding: 5px;
@@ -67,10 +66,8 @@ h3 {
 
 .content {
 	border-top: 1px solid #ccc;
-	height: 600px; 
-	
+	height: 600px;
 }
-
 </style>
 </head>
 <body>
@@ -82,24 +79,18 @@ h3 {
 			</div>
 		</div>
 		<div class="content-area">
-		<a href=#none id="show" onclick="if(hide.style.display=='none') {hide.style.display='';show.innerText='- 내용접기'} 
-else {hide.style.display='none';show.innerText='+ 내용펼치기'}">+ 내용펼치기</a>
 
-<div id="hide" style="display: none">
-펼치기 눌렀을 때 출력할 내용 
-</div>
 			<div class="content-title-border">
 				<h3>공지사항</h3>
 			</div>
 			<div class="notice-content">
 				<p class="title">제목 : ${noticeList.title}</p>
 				<div class="content">
-				<p>${noticeList.content}</p>
+					<p>${noticeList.content}</p>
 				</div>
 			</div>
 			<div class="button">
-			<a href="list">목록보기</a>
-			<a href="/notice/update/${id}">수정하기</a>
+				<a href="list">목록보기</a> <a href="/notice/update/${id}">수정하기</a>
 			</div>
 		</div>
 	</div>
