@@ -89,9 +89,18 @@ h3 {
 					<p>${noticeList.content}</p>
 				</div>
 			</div>
-			<div class="button">
-				<a href="list">목록보기</a> <a href="/notice/update/${id}">수정하기</a>
-			</div>
+			<c:choose>
+				<c:when test="${user.getRole().equals('admin')}">
+					<div class="button">
+						<a href="list">목록보기</a> <a href="/notice/update/${id}">수정하기</a>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="button">
+					<a href="list">목록보기</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </body>
