@@ -3,113 +3,113 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tenco.tencoshop.repository.interfaces.ReviewRepository">
-	
-	<select id="findByType" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		<if test="type == 'orderByHeart'">
-			select r.*, u.username
-			from review_tb as r 
-			inner join user_tb as u
-			on r.user_id = u.id
-			inner join product_tb as p
-			on r.prod_id = p.id
-			order by r.heart desc
-		</if>
-		
-		<if test="type == 'orderByRecent'">
-			select r.*, u.username
-			from review_tb as r 
-			inner join user_tb as u
-			on r.user_id = u.id
-			inner join product_tb as p
-			on r.prod_id = p.id
-			order by r.id desc
-		</if>
-	</select>
+   
+   <select id="findByType" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+      <if test="type == 'orderByHeart'">
+         select r.*, u.username
+         from review_tb as r 
+         inner join user_tb as u
+         on r.user_id = u.id
+         inner join product_tb as p
+         on r.prod_id = p.id
+         order by r.heart desc
+      </if>
+      
+      <if test="type == 'orderByRecent'">
+         select r.*, u.username
+         from review_tb as r 
+         inner join user_tb as u
+         on r.user_id = u.id
+         inner join product_tb as p
+         on r.prod_id = p.id
+         order by r.id desc
+      </if>
+   </select>
 
-	<select id="findByProdCategoryId" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select r.*, u.username
-		from review_tb as r
+   <select id="findByProdCategoryId" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+      select r.*, u.username
+      from review_tb as r
         inner join user_tb as u
         on r.user_id = u.id
-		where review_category_id=#{reviewCategoryId}
-	</select>
-	
-	<!-- id를 기반으로 상세페이지 들어가야 됨 -->
-	<select id="findDetailById" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select u.username, u.id as user_id, r.*, p.img_route, p.eng_name, p.kor_name, u.image, p.*
-		from review_tb as r 
-		inner join product_tb as p
-		on r.prod_id = p.id
+      where review_category_id=#{reviewCategoryId}
+   </select>
+   
+   <!-- id를 기반으로 상세페이지 들어가야 됨 -->
+   <select id="findDetailById" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+      select u.username, u.id as user_id, r.*, p.img_route, p.eng_name, p.kor_name, u.image, p.*
+      from review_tb as r 
+      inner join product_tb as p
+      on r.prod_id = p.id
         inner join user_tb as u
         on r.user_id=u.id
-		where r.id=#{id}
-	</select>
-	
-	<select id="findReviewByUserId" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select u.id as user_id, r.*, u.*
-		from review_tb as r
-		inner join user_tb as u
-		on u.id = r.user_id
-		where user_id=#{userId}
-	</select>
-	
-	<select id="findByOrderId" resultType="Integer">
-		select product_id
-		from order_tb
-		where id=#{orderId}
-	</select>
-	
-	<select id="findReviewListByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select r.*, p.*, s.name as size_name, b.name as brand_name
-		from review_tb as r
-		inner join user_tb as u
-		on r.user_id=u.id
-		inner join product_tb as p
-		on r.prod_id=p.id
-		inner join size_tb as s
-		on p.size_id=s.id
-		inner join brand_tb as b
-		on b.id=p.brand_id
-		where u.username=#{userName}
-	</select>
-	
-	<select id="findByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select r.*
-		from review_tb as r
-		inner join user_tb as u
-		on r.user_id=u.id
-		where u.username=#{userName}
-	</select>
-	
-	<insert id="insertReview">
-		insert into review_tb(title, content, user_id, prod_id, review_category_id, upload_file_name, origin_file_name)
-		values(#{title}, #{content}, #{userId}, #{prodId}, #{reviewCategoryId}, #{uploadFileName}, #{originFileName})
-	</insert>
-	
-	<select id="findMyReviewByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-		select r.id, r.user_id, r.title, r.content, r.created_at, r.origin_file_name, r.upload_file_name, p.model_number, p.color, p.eng_name, p.kor_name, s.name as size_name, b.name as brand_name
-		from review_tb as r
-		inner join product_tb as p
-		on r.prod_id=p.id
-		inner join size_tb as s
-		on s.id=p.size_id
-		inner join brand_tb as b
-		on b.id = p.brand_id
-		inner join user_tb as u
-		on r.user_id = u.id
-		where u.username=#{userName}
-		order by r.id desc
-	</select>
-	
-	<delete id="deleteMyReviewById">
-		delete from review_tb
-		where id = #{id}
-	</delete>
-	
-	<update id="updateMyReviewById">
-		update review_tb
-		set title=#{title}, content=#{content}, review_category_id=#{reviewCategoryId}, origin_file_name=#{originFileName}, upload_file_name=#{uploadFileName}
-		where id=#{id}
-	</update>
-	
+      where r.id=#{id}
+   </select>
+   
+   <select id="findReviewByUserId" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+      select u.id as user_id, r.*, u.*
+      from review_tb as r
+      inner join user_tb as u
+      on u.id = r.user_id
+      where user_id=#{userId}
+   </select>
+   
+   <select id="findByOrderId" resultType="Integer">
+      select product_id
+      from order_tb
+      where id=#{orderId}
+   </select>
+   
+   <select id="findReviewListByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+      select r.*, p.*, s.name as size_name, b.name as brand_name
+      from review_tb as r
+      inner join user_tb as u
+      on r.user_id=u.id
+      inner join product_tb as p
+      on r.prod_id=p.id
+      inner join size_tb as s
+      on p.size_id=s.id
+      inner join brand_tb as b
+      on b.id=p.brand_id
+      where u.username=#{userName}
+   </select>
+   
+   <select id="findByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+      select r.*
+      from review_tb as r
+      inner join user_tb as u
+      on r.user_id=u.id
+      where u.username=#{userName}
+   </select>
+   
+   <insert id="insertReview">
+      insert into review_tb(title, content, user_id, prod_id, review_category_id, upload_file_name, origin_file_name)
+      values(#{title}, #{content}, #{userId}, #{prodId}, #{reviewCategoryId}, #{uploadFileName}, #{originFileName})
+   </insert>
+   
+   <select id="findMyReviewByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
+      select r.id, r.user_id, r.title, r.content, r.created_at, r.origin_file_name, r.upload_file_name, p.model_number, p.color, p.eng_name, p.kor_name, s.name as size_name, b.name as brand_name
+      from review_tb as r
+      inner join product_tb as p
+      on r.prod_id=p.id
+      inner join size_tb as s
+      on s.id=p.size_id
+      inner join brand_tb as b
+      on b.id = p.brand_id
+      inner join user_tb as u
+      on r.user_id = u.id
+      where u.username=#{userName}
+      order by r.id desc
+   </select>
+   
+   <delete id="deleteMyReviewById">
+      delete from review_tb
+      where id = #{id}
+   </delete>
+   
+   <update id="updateMyReviewById">
+      update review_tb
+      set title=#{title}, content=#{content}, review_category_id=#{reviewCategoryId}, origin_file_name=#{originFileName}, upload_file_name=#{uploadFileName}
+      where id=#{id}
+   </update>
+   
 </mapper>

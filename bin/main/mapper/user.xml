@@ -6,21 +6,24 @@
 	namespace="com.tenco.tencoshop.repository.interfaces.UserRepository">
 	<select id="buyList"
 		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
-		select *, date_format(buy_date,'%Y-%m-%d')as order_date
-		from user_tb as u
+		select o.id, u.id AS user_id ,p.eng_name,o.delivery_status, s.name as
+		size_name, date_format(order_date,'%Y-%m-%d')as order_date
+		from user_tb
+		as u
 		join order_tb as o
-		on o.user_id =
-		u.id
-		join product_tb
-		as p
-		on p.id = o.product_id
-		where u.id=#{userId};
+		on o.user_id = u.id
+		join product_tb as p
+		on p.id =
+		o.product_id
+		join size_tb as s
+		on p.size_id = s.id
+		where u.id=6;
 	</select>
 
 	<select id="searchBuyList"
 		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
 		select
-		o.user_id,p.eng_name,o.quantity,buy_date
+		o.user_id,p.eng_name,order_date
 		from user_tb
 		as u
 		join order_tb as o

@@ -106,7 +106,7 @@ public class ReviewController {
 
 		ProductResponseDto product = reviewService.readByOrderId(orderId);
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
-
+			
 		model.addAttribute("product", product);
 		model.addAttribute("orderId", orderId);
 		model.addAttribute("reviewCategoryList", reviewCategoryList);
