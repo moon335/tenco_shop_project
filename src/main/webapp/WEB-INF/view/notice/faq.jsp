@@ -159,7 +159,7 @@ button:hover{
 						</ul>
 					</div>
 					<div class="faqContent">
-						<p id="hide-${faqList.id}">[${faqList.content}</p>
+						<p id="hide-${faqList.id}">${faqList.content}</p>
 					</div>
 				</c:forEach>
 			</div>
