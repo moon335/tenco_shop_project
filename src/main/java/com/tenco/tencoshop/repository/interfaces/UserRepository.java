@@ -11,6 +11,11 @@ import com.tenco.tencoshop.repository.model.User;
 
 @Mapper
 public interface UserRepository {
+	
+	public User findByUsername(LoginResponseDto loginResponseDto);
+	public int insert(JoinResponseDto joinResponseDto);
+	public int delete(String username);
+	
 	// 구매목록 보기
 	public List<ProductRequestDto> buyList(Integer userId);
 
@@ -36,6 +41,7 @@ public interface UserRepository {
 	// 관리자 계정 회원가입
 	public int signUpAdmin(JoinResponseDto joinResponseDto);
 	
-	
 	public User findByUserName(String username);
+	
+	
 }

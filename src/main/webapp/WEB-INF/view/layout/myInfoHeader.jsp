@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-   href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <style type="text/css">
 * {
    margin: 0;
@@ -35,6 +35,28 @@ body {
 
 .side div {
    margin-bottom: 25px;
+}
+
+body {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.side {
+	margin: 30px;
+}
+
+.side a {
+	color: gray;
+	text-decoration-line: none;
+}
+
+.side a:hover {
+	color: black;
+}
+
+.side div {
+	margin-bottom: 25px;
 }
 
 .top-inner {
@@ -211,21 +233,20 @@ button:hover {
 }
 
 .body {
-   display: flex;
-   margin-top: 50px;
+	display: flex;
+	margin-top: 50px;
 }
 
 .side h4 {
-   color: black;
+	color: black;
 }
-
 </style>
 </head>
 <body>
 	<header>
 		<div class="main-inner">
 			<div class="top-inner">
-				<button type="button" onclick="#">관심상품</button>
+				<button type="button" onclick="location.href='/cart/list'">장바구니</button>
 				<c:choose>
 					<c:when test="${principal != null}">
 						<a href="/user/logout"> <label>로그아웃</label></a>
@@ -296,4 +317,10 @@ button:hover {
 					<a href="/question/find">QnA</a>
 				</p>
 			</div>
+			<div>
+				<p>
+					<a href="/user/withdraw">회원 탈퇴</a>
+				</p>
+			</div>
 		</div>
+		

@@ -2,6 +2,7 @@ package com.tenco.tencoshop.dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+
 import lombok.Data;
 
 @Data

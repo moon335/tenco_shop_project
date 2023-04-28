@@ -287,6 +287,7 @@ body {
 					</div>
 					<div>
 						<button type="submit" class="btn btn-outline-dark">이미지 변경</button>
+					</div>
 			</form>
 			<form action="/user/userInfoDeleteimage" method="post"
 				enctype="multipart/form-data" style="display: flex;">
@@ -294,7 +295,6 @@ body {
 			</form>
 		</div>
 	</div>
-	</form>
 </div>
 <form action="/user/myinfoupdate" method="post">
 	<div class="myinfoDetail">
@@ -302,7 +302,6 @@ body {
 			<h4>
 				<b>로그인 정보</b>
 			</h4>
-			<form>
 				<div>
 					<p>이메일 주소</p>
 					<input type="text" value="${user.email}" name="email">
@@ -332,7 +331,6 @@ body {
 	<div class="submit">
 		<input type="submit" value="수정">
 	</div>
-</form>
 </form>
 </div>
 </div>

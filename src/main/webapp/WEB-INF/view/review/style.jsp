@@ -18,10 +18,10 @@
 }
 
 .review--all--wrap {
-	display: flex;
-	flex-direction: column;
-	padding: 0 40px;
-	align-items: center;
+   display: flex;
+   flex-direction: column;
+   padding: 0 40px;
+   align-items: center;
 }
 
 h3>a {

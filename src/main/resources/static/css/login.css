@@ -8,14 +8,14 @@ html, body {
 }
 
 .text-center{
-   height: 700px;
+	height: 700px;
 }
 .input-form-box{
-   justify-content: center;
-   font-weight: bold;
+	justify-content: center;
+	font-weight: bold;
 }
 span{
-   width:300px;   
+	width:300px;	
 }
 
 #container {
