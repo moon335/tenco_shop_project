@@ -13,6 +13,7 @@ import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.handler.LoginException;
+import com.tenco.tencoshop.handler.exception.CustomRestfullException;
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
 import com.tenco.tencoshop.repository.model.User;
 
@@ -32,7 +33,6 @@ public class UserService {
 		int resultAdmin = 0;
 		int result = 0;
 		joinResponseDto.setPassword(hashPwd);
-//			if(joinResponseDto.getUsername())
 		if (joinResponseDto.getRole() == null || !joinResponseDto.getRole().isEmpty()) {
 			if (!joinResponseDto.getRole().equals("green")) {
 				throw new LoginException("관리자 비밀번호가 일치하지 않습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,14 +53,14 @@ public class UserService {
 	public LoginResponseDto signIn(LoginResponseDto loginResponseDto) {
 		User userEntity = userRepository.findByPassword(loginResponseDto);
 		if (userEntity == null) {
-			throw new LoginException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (userEntity.getWithdraw() == 0) {
-			throw new LoginException("탈퇴한 아이디입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("탈퇴한 아이디입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		boolean isMatched = passwordEncoder.matches(loginResponseDto.getPassword(), userEntity.getPassword());
 		if (isMatched == false) {
-			throw new LoginException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		LoginResponseDto dtoResult = new LoginResponseDto();
 		dtoResult.setId(userEntity.getId());

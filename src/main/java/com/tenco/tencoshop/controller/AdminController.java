@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
+import com.tenco.tencoshop.handler.exception.CustomRestfullException;
 import com.tenco.tencoshop.handler.exception.LoginException;
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
 import com.tenco.tencoshop.repository.model.Answer;
@@ -59,10 +60,10 @@ public class AdminController {
 	public String buyList(Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
-			throw new LoginException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (!principal.getRole().equals("admin")) {
-			throw new LoginException("관리자 계정으로 로그인 해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("관리자 계정으로 로그인 해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
@@ -107,7 +108,7 @@ public class AdminController {
 		if (file.isEmpty() == false) {
 
 			if (file.getSize() > Define.MAX_FILE_SIZE) {
-				throw new LoginException("이거 익셉션 하나 더 만들어야함", HttpStatus.BAD_REQUEST);
+				throw new CustomRestfullException("이거 익셉션 하나 더 만들어야함", HttpStatus.BAD_REQUEST);
 			}
 			try {
 				String saveDirectory = Define.UPLOAD_DIRECTORY;
@@ -153,7 +154,7 @@ public class AdminController {
 	public String signInAdmin(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
-			throw new LoginException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
 		User user = userService.userInfo(principal.getId());
