@@ -76,6 +76,8 @@ html, body {
 	margin-bottom: 20px;
 	justify-content: space-between;
 	margin-top: 20px;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
 }
 
 .detail--picture--wrap>img {
@@ -92,7 +94,6 @@ html, body {
 	justify-content: flex-start;
 	margin-top: 15px;
 	font-size: 20px;
-	padding-top: 20px;
 }
 
 .detail--heart--wrap {
@@ -139,7 +140,7 @@ main {
 	display: flex;
 }
 
-.user--userImg--wrap>a>img{
+.user--userImg--wrap>a>img {
 	width: 70px;
 	height: 70px;
 	border-radius: 50px;
@@ -160,12 +161,23 @@ main {
 	display: flex;
 }
 
-.detail--title--wrap{
+.detail--title--wrap {
 	display: flex;
 	justify-content: flex-start;
-	width:550px;
+	width: 550px;
 	margin: 0 auto;
 	font-size: 20px;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+
+.user--info {
+	padding-top: 5px;
+}
+
+.detail--wrap{
+	font-size: 2.5rem;
 }
 </style>
 <main>
@@ -186,7 +198,9 @@ main {
 								<a href="/review/author-style/${review.userName}"><img src="/images/uploads/${principal.image}"></a>
 							</div>
 							<div class="user--info">
-								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>							</div>
+								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span
+									class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+							</div>
 						</div>
 					</div>
 				</c:when>
@@ -197,7 +211,8 @@ main {
 								<a href="/review/author-style/${review.userName}"><img src="/images/myinfo.png"></a>
 							</div>
 							<div class="user--info">
-								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span
+									class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
 							</div>
 						</div>
 					</div>
