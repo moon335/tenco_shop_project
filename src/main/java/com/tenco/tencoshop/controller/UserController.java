@@ -20,8 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
+import com.tenco.tencoshop.dto.OrderResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
+import com.tenco.tencoshop.handler.exception.CustomRestfullException;
 import com.tenco.tencoshop.handler.exception.LoginException;
 import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.UserService;
@@ -42,12 +44,14 @@ public class UserController {
 	public String myInfoProc(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
-			throw new LoginException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		userId = principal.getId();
+		OrderResponseDto orderCount = userService.orderCounter(principal.getId());
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
+		model.addAttribute("orderCount", orderCount);
 		if (orderList.isEmpty()) {
 			model.addAttribute("orderList", null);
 		} else {
@@ -128,7 +132,7 @@ public class UserController {
 		if (file.isEmpty() == false) {
 
 			if (file.getSize() > Define.MAX_FILE_SIZE) {
-				throw new LoginException("이거 익셉션 하나 더 만들어야함", HttpStatus.BAD_REQUEST);
+				throw new CustomRestfullException("이거 익셉션 하나 더 만들어야함", HttpStatus.BAD_REQUEST);
 			}
 			try {
 				String saveDirectory = Define.UPLOAD_DIRECTORY;
@@ -180,10 +184,10 @@ public class UserController {
 	public String signInProc(LoginResponseDto loginResponseDto) {
 
 		if (loginResponseDto.getUsername() == null || loginResponseDto.getUsername().isEmpty()) {
-			throw new LoginException("아이디를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("아이디를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (loginResponseDto.getPassword() == null || loginResponseDto.getPassword().isEmpty()) {
-			throw new LoginException("비밀번호를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("비밀번호를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		LoginResponseDto principal = userService.signIn(loginResponseDto);
 		if (principal.getRole().equals("admin")) {
@@ -207,25 +211,25 @@ public class UserController {
 	public String signUpProc(JoinResponseDto joinResponseDto) {
 
 		if (joinResponseDto.getUsername() == null || joinResponseDto.getUsername().isEmpty()) {
-			throw new LoginException("이메일 주소를 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfullException("이메일 주소를 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 		if (joinResponseDto.getPassword() == null || joinResponseDto.getPassword().isEmpty()) {
-			throw new LoginException("비밀번호를 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfullException("비밀번호를 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 		if (joinResponseDto.getTel() == null || joinResponseDto.getTel().isEmpty()) {
-			throw new LoginException("전화번호를 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfullException("전화번호를 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 		if (joinResponseDto.getAddress() == null || joinResponseDto.getAddress().isEmpty()) {
-			throw new LoginException("주소를 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfullException("주소를 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 		if (joinResponseDto.getEmail() == null || joinResponseDto.getEmail().isEmpty()) {
-			throw new LoginException("이메일을 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfullException("이메일을 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 		if (joinResponseDto.getFirstName() == null || joinResponseDto.getFirstName().isEmpty()) {
-			throw new LoginException("성을 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfullException("성을 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 		if (joinResponseDto.getLastName() == null || joinResponseDto.getLastName().isEmpty()) {
-			throw new LoginException("이름을 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new CustomRestfullException("이름을 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 
 		userService.createUser(joinResponseDto);
@@ -262,7 +266,7 @@ public class UserController {
 		session.invalidate();
 
 		return "/layout/main";
-
 	}
+	
 
 }

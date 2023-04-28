@@ -94,6 +94,16 @@
 .article-img {
    width: 260px;
 }
+.word {
+	outline: 1px solid black;
+	outline-style:none;
+	display: block;
+	color: black;
+	width: 630px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
 </style>
 <div class="header">
    <div class="header-menu">
@@ -180,7 +190,7 @@
             <div class="article-prod">
                <a href="/info-prod/${list.id}"><img alt="" class="article-img" src="/images/prodImages/${list.imgRoute}"></a>
                <h5>${list.brandName}</h5>   
-               <p>${list.engName}</p>
+               <p class="word">${list.engName}</p>
                <h5>${list.releasePrice}원</h5>
                </div>
          </c:forEach>
