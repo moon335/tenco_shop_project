@@ -80,7 +80,7 @@ h2, h3 {
 							${list.title}</a></li>
 				</c:forEach>
 			</div>
-			<c:if test="${user.getRole().equals('admin')}">
+			<c:if test="${principal.role eq 'admin'}">
 					<button onclick="location.href='/notice/noticeForm'">글쓰기</button>
 					<button onclick="location.href='/notice/deleteForm'">삭제하기</button>
 			</c:if>
