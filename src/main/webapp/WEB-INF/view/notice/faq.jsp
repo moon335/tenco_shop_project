@@ -7,6 +7,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <style type="text/css">
+
 .material-symbols-outlined {
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
@@ -14,6 +15,7 @@
 .container {
 	display: flex;
 	padding-top: 30px;
+	height: 100vh;
 }
 
 .side-menu {
@@ -93,6 +95,28 @@ h2, h3 {
 	padding: 20px;
 	height: 100px;
 }
+
+.category-list-table {
+	margin: 10px 0 10px 0;
+	width: 100%;
+}
+
+.category-list-table td {
+	border: 1px solid #ebebeb;
+}
+
+.category-list {
+	width: 300px;
+	height: 80px;
+	text-align: center;
+}
+
+button:hover{
+	color: black;
+	font-weight: bold;
+}
+
+
 </style>
 </head>
 <body>
@@ -106,6 +130,25 @@ h2, h3 {
 		<div class="content-area">
 			<div class="content-title-border">
 				<h3>자주 묻는 질문(FAQ)</h3>
+			</div>
+			<div class="category-list-table">
+				<table>
+					<tr>
+						<td class="category-list">
+							<button type="submit" name="category" value="all" onclick="location.href='/notice/categorySelect'">전체</button>
+						</td>
+						<td class="category-list">
+							<button type="submit" name="category" value="이용정책" onclick="location.href='/notice/categorySelect?type=이용정책'">이용정책</button>
+						</td>
+						<td class="category-list">
+							<button type="submit" name="category" value="공통" onclick="location.href='/notice/categorySelect?type=공통'">공통</button>
+						</td>
+						<td class="category-list">
+							<button type="submit" name="category" value="구매" onclick="location.href='/notice/categorySelect?type=구매'">구매</button>
+						</td>
+						
+					</tr>
+				</table>
 			</div>
 			<div class="customer-notice">
 				<c:forEach var="faqList" items="${faqList}">
@@ -133,5 +176,4 @@ h2, h3 {
 			});
 		});
 	</script>
-</body>
-</html>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

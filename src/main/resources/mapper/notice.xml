@@ -39,4 +39,8 @@
 	<select id="selectFaq" resultType="com.tenco.tencoshop.dto.NoticeResponseDto$faqDto">
 		 select * from faq_tb;
 	</select>
+	
+	<select id="selectFaqCategory" resultType="com.tenco.tencoshop.dto.NoticeResponseDto$faqDto">
+		select * from faq_tb where category like #{category};
+	</select>
 </mapper> 

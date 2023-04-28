@@ -6,6 +6,7 @@
 .container {
 	display: flex;
 	padding-top: 30px;
+	height: 100vh;
 }
 
 .side-menu {
@@ -85,5 +86,4 @@ h2, h3 {
 			</c:if>
 		</div>
 	</div>
-</body>
-</html>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
