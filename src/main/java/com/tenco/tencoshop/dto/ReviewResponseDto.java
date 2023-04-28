@@ -1,6 +1,7 @@
 package com.tenco.tencoshop.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +24,7 @@ public class ReviewResponseDto {
 
 	// user_tb
 	private String userName;
+	private String image;
 
 	// review_category_tb
 	private Integer reviewCategoryId;

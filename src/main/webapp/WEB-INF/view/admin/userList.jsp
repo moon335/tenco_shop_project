@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
 	width: 1183px;
@@ -112,7 +110,8 @@ body {
 	align-items: center;
 	justify-content: space-between;
 	width: 950px;
-	justify-content: center; align-items : center;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
 	align-items: center;
 }
@@ -155,17 +154,7 @@ body {
 
 		<c:forEach var="userList" items="${userList}">
 			<div>
-				<c:choose>
-					<c:when test="${userList.image!=null}">
-						<img alt=""
-							src=" <c:url value="/images/uploads/${principal.image}"/>"
-							width="40px" height="40px" style="border-radius: 150px;">
-					</c:when>
-					<c:otherwise>
-						<img alt="" src="/images/myinfo.png" width="40px" height="40px"
-							style="margin-top: -20px;">
-					</c:otherwise>
-				</c:choose>
+				<img alt="" src="/images/myinfo.png" width="40px" height="40px" style="margin-top: -20px;">
 				<div style="width: 10px;">
 					<p>${userList.id}</p>
 				</div>
@@ -183,6 +172,9 @@ body {
 				</div>
 				<div style="width: 30px;">
 					<p>${userList.role}</p>
+				</div>
+				<div style="width: 30px; margin-top: -12px;">
+					<a href=""><button>X</button></a>
 				</div>
 			</div>
 			<hr>

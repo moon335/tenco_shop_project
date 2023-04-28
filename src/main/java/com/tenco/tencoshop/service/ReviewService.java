@@ -2,7 +2,6 @@ package com.tenco.tencoshop.service;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,8 +50,8 @@ public class ReviewService {
 
 	// userId 기반 리뷰 페이지 출력
 	public ReviewResponseDto readReviewByUserId(Integer userId) {
-		ReviewResponseDto list = reviewRepository.findReviewByUserId(userId);
-		return list;
+		ReviewResponseDto reviewDto = reviewRepository.findReviewByUserId(userId);
+		return reviewDto;
 	}
 
 	// 리뷰 작성 페이지에 넘길 상품 정보 조회 기능
@@ -96,12 +95,10 @@ public class ReviewService {
 	// userName 기반 내 리뷰 확인하기
 	@Transactional
 	public List<ReviewResponseDto> findMyReviewByUserName(String userName) {
+		
 		List<ReviewResponseDto> list = reviewRepository.findMyReviewByUserName(userName);
-
 		return list;
 	}
-
-	// 리뷰 쓰는 기능
 
 	// 리뷰 삭제 기능
 	public void deleteMyReviewById(Integer id) {
@@ -118,7 +115,6 @@ public class ReviewService {
 //	 update처리 해야 됨?
 	@Transactional
 	public void updateMyReviewById(Integer id, ReviewRequestDto reviewRequestDto) {
-
 
 		int resultCnt = reviewRepository.updateMyReviewById(reviewRequestDto);
 

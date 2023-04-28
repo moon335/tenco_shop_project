@@ -3,9 +3,11 @@ package com.tenco.tencoshop.repository.interfaces;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.tenco.tencoshop.dto.ReviewRequestDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
+import com.tenco.tencoshop.repository.model.Review;
 
 @Mapper
 public interface ReviewRepository {

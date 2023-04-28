@@ -146,7 +146,7 @@
 						<button type="submit" class="btn btn-outline-dark">프로필 수정</button>
 					</form>
 					<a href="/review/myReview">
-						<button type="submit" class="btn btn-outline-dark">내 후기</button>
+						<button type="submit" class="btn btn-outline-dark">내 스타일</button>
 					</a>
 				</div>
 			</div>
@@ -207,6 +207,7 @@
 				</div>
 			</div>
 		</c:forEach>
+
 		<div>
 			<div>
 				<img alt="" src="/images/1.png" width="120" height="120">
@@ -223,10 +224,10 @@
 					배송완료 <br>
 				</h6>
 				<button type="submit"
-					onclick="location.href='/review/reviewInsert/1'"
-					style="border: none; background-color: white; color: #088ff7">
-					후기 <br>올리기
-				</button>
+						onclick="location.href='/review/reviewInsert/1'"
+						style="border: none; background-color: white; color: #088ff7">
+						스타일 <br>올리기
+					</button>
 			</div>
 		</div>
 	</div>

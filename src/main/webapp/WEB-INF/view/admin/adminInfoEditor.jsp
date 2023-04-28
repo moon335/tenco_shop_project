@@ -123,7 +123,6 @@ body {
 	background-color: #f8f6f6;
 	border-style: none;
 	justify-content: space-between;
-	padding: 20px;
 }
 
 .buyProgress div {
@@ -187,9 +186,9 @@ body {
 
 .submit {
 	display: flex;
-	width: 500px;
 	justify-content: flex-end;
 	align-items: flex-end;
+	margin-left: 10px;
 }
 
 .submit input {
@@ -245,6 +244,17 @@ body {
 	border: none;
 	display: block;
 	cursor: pointer;
+}
+
+.button {
+	display: flex;
+	width: 550px;
+	justify-content: flex-end;
+}
+
+.userinfo {
+	margin-left: 20px;
+	padding: 20px;
 }
 </style>
 
@@ -328,11 +338,17 @@ body {
 			</div>
 		</div>
 	</div>
-	<div class="submit">
-		<input type="submit" value="수정">
-	</div>
+	<div class="button">
+		<div class="submit">
+			<input type="submit" value="수정">
+		</div>
 </form>
-</form>
+<div class="submit">
+	<form action="/user/withdraw" method="get">
+		<input type="submit" value="탈퇴">
+	</form>
+</div>
+</div>
 </div>
 </div>
 </div>
