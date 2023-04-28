@@ -38,8 +38,6 @@ public class UserService {
 	}
 	
 	// 로그인 서비스
-	// 예외
-	// 비밀번호만 검사해서 id를 잘못입력했을 때 발생하는 에러
 	@Transactional
 	public LoginResponseDto signIn(LoginResponseDto loginResponseDto) {
 		User userEntity = userRepository.findByUsername(loginResponseDto);
@@ -60,7 +58,6 @@ public class UserService {
 	// 회원가입 서비스
 	// 예외처리 할거
 	// 이미 가입된 아이디
-	// 사용중인 아이디
 	// 아이디 형식(영문, 소문자, 특수기호, 금칙어)
 	// 비밀번호 형식(영문 대,소문자, 숫자, 특수기호)
 	@Transactional
@@ -68,8 +65,9 @@ public class UserService {
 		String rawPwd = joinResponseDto.getPassword();
 		String hashPwd = passwordEncoder.encode(rawPwd);
 		joinResponseDto.setPassword(hashPwd);
-
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+joinResponseDto);
 		int result = userRepository.insert(joinResponseDto);
+		
 		
 		if (result != 1) {
 			throw new LoginException("회원가입 실패", HttpStatus.INTERNAL_SERVER_ERROR);

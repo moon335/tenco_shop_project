@@ -110,7 +110,7 @@ public class UserController {
 	public String signUpProc(JoinResponseDto joinResponseDto) {
 
 		if (joinResponseDto.getUsername() == null || joinResponseDto.getUsername().isEmpty()) {
-			throw new LoginException("이메일 주소를 입력해주세요", HttpStatus.BAD_REQUEST);
+			throw new LoginException("아이디를 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 		if (joinResponseDto.getPassword() == null || joinResponseDto.getPassword().isEmpty()) {
 			throw new LoginException("비밀번호를 입력해주세요", HttpStatus.BAD_REQUEST);

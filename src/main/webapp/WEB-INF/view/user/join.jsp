@@ -27,31 +27,31 @@
 					<div class="input-form-box">
 						<span class="input-form-login-box">아이디* <input type="text"
 							class="form-control" id="username"
-							name="username"></span>
+							name="username" required></span>
 					</div>
 					<div class="input-form-box">
 						<span class="input-form-login-box">비밀번호* <input type="password"
-							class="form-control" id="password" name="password"></span>
+							class="form-control" id="password" name="password" required></span>
 					</div>
 					<div class="input-form-box">
 						<span class="input-form-login-box">전화번호* <input type="text"
-							class="form-control" id="tel" name="tel"></span>
+							class="form-control" id="tel" name="tel" required></span>
 					</div>
 					<div class="input-form-box">
 						<span class="input-form-login-box">주소* <input type="text"
-							class="form-control" id="address" name="address"></span>
+							class="form-control" id="address" name="address" required></span>
 					</div>
 					<div class="input-form-box">
 						<span class="input-form-login-box">이메일 주소* <input
-							type="email" class="form-control" id="email" name="email"></span>
+							type="email" class="form-control" id="email" name="email" required></span>
 					</div>
 					<div class="input-form-box">
 						<span class="input-form-login-box">성* <input type="text"
-							class="form-control" id="firstName" name="firstName"></span>
+							class="form-control" id="firstName" name="firstName" required></span>
 					</div>
 					<div class="input-form-box">
 						<span class="input-form-login-box">이름* <input type="text"
-							class="form-control" id="lastName" name="lastName"></span>
+							class="form-control" id="lastName" name="lastName" required></span>
 					</div>
 					<div class="button-login-box">
 						<button type="submit" class="btn btn-primary btn-xs"
