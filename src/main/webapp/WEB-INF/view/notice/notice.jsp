@@ -6,6 +6,7 @@
 .container {
 	display: flex;
 	padding-top: 30px;
+	height: 100vh;
 }
 
 .side-menu {
@@ -13,9 +14,10 @@
 	flex-direction: column;
 }
 
-h2,h3 {
+h2, h3 {
 	font-weight: bold;
 }
+
 .side-menu-list {
 	display: flex;
 	flex-direction: column;
@@ -65,8 +67,7 @@ h2,h3 {
 		<div class="side-menu">
 			<h2 class="side-menu-title">고객센터</h2>
 			<div class="side-menu-list">
-				<a href="notice">공지사항</a>
-				<a href="#">자주 묻는 질문</a>
+				<a href="list">공지사항</a> <a href="faq">자주 묻는 질문</a>
 			</div>
 		</div>
 		<div class="content-area">
@@ -75,12 +76,14 @@ h2,h3 {
 			</div>
 			<div class="customer-notice">
 				<c:forEach var="list" items="${list}">
-					<li><a href="/notice/${list.id}">[${list.categoryName}]  ${list.title}</a></li>
+					<li><a href="/notice/${list.id}">[${list.categoryName}]
+							${list.title}</a></li>
 				</c:forEach>
 			</div>
-			<button onclick="location.href='/notice/noticeForm'">글쓰기</button>
-			<button onclick="location.href='/notice/deleteForm'">삭제하기</button>
+			<c:if test="${user.getRole().equals('admin')}">
+					<button onclick="location.href='/notice/noticeForm'">글쓰기</button>
+					<button onclick="location.href='/notice/deleteForm'">삭제하기</button>
+			</c:if>
 		</div>
 	</div>
-</body>
-</html>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

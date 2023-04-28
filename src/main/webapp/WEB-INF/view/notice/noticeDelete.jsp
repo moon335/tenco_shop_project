@@ -73,7 +73,7 @@ h2,h3 {
 		<div class="side-menu">
 			<h2 class="side-menu-title">고객센터</h2>
 			<div class="side-menu-list">
-				<a href="notice">공지사항</a>
+				<a href="notice/delete">공지사항</a>
 				<a href="#">자주 묻는 질문</a>
 			</div>
 		</div>
@@ -89,7 +89,7 @@ h2,h3 {
 				</div>
 					</c:forEach>
 				<button type="submit">삭제</button>
-				<a href="/notice" class="list">목록</a>
+				<a href="/notice/list" class="list">목록</a>
 			</form>
 		</div>
 	</div>
