@@ -89,12 +89,6 @@
 		delete from user_tb where username=#{username}
 	</delete>
 
-	<select id="findByUserName"
-		resultType="com.tenco.tencoshop.repository.model.User">
-		select * from user_tb
-		where username=#{username}
-	</select>
-
 	<select id="findByPassword"
 		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
@@ -108,6 +102,16 @@
 		where id = #{id};
 	</update>
 
+	<select id="findByUsername" resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where username = #{username}
+	</select>
+	
+	<select id="findByUserId" resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where id = #{userId}
+	</select>
+	
 </mapper>
 	
 

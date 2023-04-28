@@ -106,6 +106,37 @@
 		flex: 3;
 	}
 	
+	.button--wrap {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.delete--prod {
+		display: flex;
+		justify-content: flex-end;
+	}
+	
+	.delete--button {
+		margin-top: 6px;
+	    padding: 0 3px;
+	    display: inline-flex;
+	    font-size: 12px;
+	    letter-spacing: -.06px;
+	    color: rgba(34,34,34,.8);
+	    text-decoration: underline;
+	}
+	
+	.delete--button:hover {
+		margin-top: 6px;
+	    padding: 0 3px;
+	    display: inline-flex;
+	    font-size: 12px;
+	    letter-spacing: -.06px;
+	    color: rgba(34,34,34,.8);
+	    text-decoration: underline;
+	    font-weight: normal;
+	}
+	
 </style>
 	<main>
 		<div class="cart--title">
@@ -117,7 +148,7 @@
 			<div class="wish--item">
 				<div class="wish--product">
 					<div class="wish--box">
-						<img alt="상품" src="/images/${list.imgRoute}" width="80" height="80">
+						<img alt="상품" src="/static/images/prodImages/${list.imgRoute}" width="80" height="80">
 					</div>
 					<div class="wish--detail">
 						<span class="brand--name">${list.brandName}</span>
@@ -125,12 +156,17 @@
 						<span class="size">${list.sizeName}</span>
 					</div>
 				</div>
-				<div class="wish--buy">
-					<button type="button" onclick="location.href='/order/${list.id}'">
-						<span class="wish--purchase">구매</span>
-						<div class="button--line"> </div>
-						<span class="wish--price">${list.purchase}원</span>
-					</button>
+				<div class="button--wrap">
+					<div class="wish--buy">
+						<button type="button" onclick="location.href='/order/purchase/${list.id}'">
+							<span class="wish--purchase">구매</span>
+							<div class="button--line"> </div>
+							<span class="wish--price">${list.purchase}원</span>
+						</button>
+					</div>
+					<div class="delete--prod">
+						<a href="/cart/delete/${list.id}" class="delete--button">삭제</a>
+					</div>
 				</div>
 			</div>
 			</c:forEach>

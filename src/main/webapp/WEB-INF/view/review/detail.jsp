@@ -200,7 +200,7 @@ main {
 					<div class="detail--user--wrap">
 						<div class="user--userName--wrap">
 							<div class="user--userImg--wrap">
-								<a href="/review/author-style/${review.userName}"><img src="/images/uploads/${principal.image}"></a>
+								<a href="/review/author-style/${review.userName}"><img src="/static/images/uploads/${principal.image}"></a>
 							</div>
 							<div class="user--info">
 								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
@@ -212,7 +212,7 @@ main {
 					<div class="detail--user--wrap">
 						<div class="user--userName--wrap">
 							<div class="user--userImg--wrap">
-								<a href="/review/author-style/${review.userName}"><img src="/images/myinfo.png"></a>
+								<a href="/review/author-style/${review.userName}"><img src="/static/images/myinfo.png"></a>
 							</div>
 							<div class="user--info">
 								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
@@ -223,11 +223,11 @@ main {
 			</c:choose>
 			<div class="detail--title--wrap">${review.title}</div>
 			<div class="swiper-slide">
-				<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
+				<img src="/static/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
 			</div>
 			<div class="productInfo--content--wrap">상품 정보</div>
 			<div class="detail--product--wrap">
-				<img src="/images/prodImages/${review.imgRoute}" width="110" height="110">
+				<img src="/static/images/prodImages/${review.imgRoute}" width="110" height="110">
 				<div class="engName--korName--wrap">
 					<div class="">${review.engName}</div>
 					<div class="">${review.korName}</div>

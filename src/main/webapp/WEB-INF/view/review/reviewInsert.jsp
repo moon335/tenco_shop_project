@@ -166,7 +166,7 @@ body>div>main>form>div.container.mt-3 {
 		<div class="wish--item">
 			<div class="wish--product">
 				<div class="wish--box">
-					<img alt="상품" src="/images/prodImages/${product.imgRoute}" width="110" height="110">
+					<img alt="상품" src="/static/images/prodImages/${product.imgRoute}" width="110" height="110">
 				</div>
 				<div class="reviewInsert--detail">
 					<span class="brand--name">${product.brandName}</span> <span class="brand--name">${product.modelNumber}</span> <span class="brand--name">${product.color}</span> <span class="name">${product.engName}</span>

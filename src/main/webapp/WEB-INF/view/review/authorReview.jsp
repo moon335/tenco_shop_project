@@ -68,11 +68,11 @@ tbody tr td a:hover {
 	<div class="my--review--title">
 		<c:choose>
 			<c:when test="${user.image != null}">
-				<span class="myReview--img--wrap"><img src=" <c:url value="/images/uploads/${principal.image}"/>"></span>
+				<span class="myReview--img--wrap"><img src=" <c:url value="/static/images/uploads/${principal.image}"/>"></span>
 				<span class="myReview--username--wrap">${user.username}</span>
 			</c:when>
 			<c:otherwise>
-				<span class="myReview--img--wrap"><img src="/images/myinfo.png"></span>
+				<span class="myReview--img--wrap"><img src="/static/images/myinfo.png"></span>
 				<span class="myReview--username--wrap">${user.username}</span>
 			</c:otherwise>
 		</c:choose>
@@ -96,7 +96,7 @@ tbody tr td a:hover {
 						<tr>
 							<td><a href="/review/detail/${review.id}">${review.id}</a></td>
 							<td><a href="/review/detail/${review.id}">${review.title}</a></td>
-							<td><a href="/review/detail/${review.id}"><img alt="" src="/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
+							<td><a href="/review/detail/${review.id}"><img alt="" src="/static/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
 							<td><a href="/review/detail/${review.id}">${review.engName}<br> ${review.korName}
 							</a></td>
 							<td><a href="/review/detail/${review.id}">${review.sizeName}</a></td>

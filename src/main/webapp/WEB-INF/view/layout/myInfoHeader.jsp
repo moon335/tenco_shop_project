@@ -109,7 +109,6 @@ body {
 .home-menu:hover .home-menu2 {
    height: 135px;
    position: absolute;
-   /*background-color: transparent;*/
    z-index: 1;
    border-left: 1px solid #ccc;
 }

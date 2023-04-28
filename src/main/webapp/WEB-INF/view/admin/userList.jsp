@@ -154,7 +154,7 @@ body {
 
 		<c:forEach var="userList" items="${userList}">
 			<div>
-				<img alt="" src="/images/myinfo.png" width="40px" height="40px" style="margin-top: -20px;">
+				<img alt="" src="/static/images/myinfo.png" width="40px" height="40px" style="margin-top: -20px;">
 				<div style="width: 10px;">
 					<p>${userList.id}</p>
 				</div>

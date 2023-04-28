@@ -78,7 +78,7 @@ p {
    <div class="product">
          <c:forEach var="list" items="${list}">
             <div class="product-search">
-               <a href="/info-prod/${list.id}"><img class="img" src="/images/prodImages/${list.imgRoute}" /></a>
+               <a href="/info-prod/${list.id}"><img class="img" src="/static/images/prodImages/${list.imgRoute}" /></a>
                <p>${list.engName}</p>
                <p>${list.korName}</p>
                <p>${list.releasePrice}원</p>

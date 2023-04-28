@@ -2,6 +2,7 @@ package com.tenco.tencoshop.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,7 @@ import com.tenco.tencoshop.repository.model.Review;
 import com.tenco.tencoshop.repository.model.ReviewCategory;
 import com.tenco.tencoshop.repository.model.User;
 
-@Service // 서비스는 서비스 ~
+@Service // 서비스는 서비스 ~ ㅎㅎ
 public class ReviewService {
 
 	@Autowired
@@ -75,7 +76,7 @@ public class ReviewService {
 	@Transactional
 	public void createReview(String username, ReviewRequestDto reviewRequestDto) {
 		// 1. username으로 userId 조회
-		User user = userRepository.findByUserName(username);
+		User user = userRepository.findByUsername(username);
 		reviewRequestDto.setUserId(user.getId());
 
 		// 4. insert 진행

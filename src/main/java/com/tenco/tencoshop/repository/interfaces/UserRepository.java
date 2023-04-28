@@ -2,6 +2,7 @@ package com.tenco.tencoshop.repository.interfaces;
 
 import java.util.List;
 
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
@@ -36,9 +37,10 @@ public interface UserRepository {
 	// 관리자 계정 회원가입
 	public int signUpAdmin(JoinResponseDto joinResponseDto);
 	
-	
-	public User findByUserName(String username);
-	
 	// 유저 회원 탈퇴하기
 	public int userDelete(LoginResponseDto loginResponseDto);
+	// username 기반 검색
+	public User findByUsername(String username);
+	
+	public User findByUserId(Integer userId);
 }

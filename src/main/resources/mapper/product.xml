@@ -51,7 +51,15 @@
       on p.category_id = c.id
       inner join size_tb as s
       on p.size_id = s.id
-      where p.id = #{id};
+      where p.id = #{id}
+   </select>
+   
+   <select id="findProductByModelNumberAndSize" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+      select p.*, s.name as size_name
+      from product_tb as p
+      inner join size_tb as s
+      on p.size_id = s.id
+      where p.model_number = #{modelNumber} and s.name = #{sizeName}
    </select>
    
 </mapper>

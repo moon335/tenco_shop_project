@@ -185,7 +185,7 @@ body {
 		<c:forEach var="salesList" items="${salesList}">
 			<div class="salesListLine" style="">
 				<div style="width: 10px;">
-					<img alt="" src="/images/prodImages/${salesList.imgRoute}"
+					<img alt="" src="/static/images/prodImages/${salesList.imgRoute}"
 						width="100px" height="100px">
 				</div>
 				<div style="width: 10px;">

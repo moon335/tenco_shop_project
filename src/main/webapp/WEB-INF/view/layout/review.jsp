@@ -60,7 +60,7 @@ table tr td {
 				<tr>
 					<td>${review.id}</td>
 					<td>${review.content}</td>
-					<td><img alt="" src="/images/review/${review.originFileName}" width=100 height=100></td>
+					<td><img alt="" src="/static/images/review/${review.originFileName}" width=100 height=100></td>
 					<td>${review.engName} <br> ${review.korName}
 					</td>
 					<td>${review.sizeName}</td>

@@ -187,7 +187,7 @@ main {
 					<div class="review--wrap">
 						<%-- 상세보기로 이동 --%>
 						<%-- list 형식이 아닌데 forEach를 사용해서 발생하는 에러 --%>
-						<a href="/review/detail/${reviewList.id}"> <img src="/images/uploads/${reviewList.setUpReviewImage()}" class="img--element" width=250
+						<a href="/review/detail/${reviewList.id}"> <img src="/static/images/uploads/${reviewList.setUpReviewImage()}" class="img--element" width=250
 							height=400></a>
 						<%-- 유저의 이미지와 아이디 select --%>
 					</div>

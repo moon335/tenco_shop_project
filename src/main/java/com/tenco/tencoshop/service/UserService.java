@@ -2,6 +2,7 @@ package com.tenco.tencoshop.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -98,6 +99,16 @@ public class UserService {
 		User user = userRepository.userInfoSelect(userId);
 		return user;
 	}
+	
+	public User readUserByUsername(String username) {
+		User user = userRepository.findByUsername(username);
+		return user;
+	}
+	
+	public User readUserByUserId(Integer userId) {
+		User user = userRepository.findByUserId(userId);
+		return user;
+	}
 
 	// myinfo에서 유저 정보 전부 select하기
 	@Transactional
@@ -152,7 +163,7 @@ public class UserService {
 
 	
 	public User readUserByUserName(String username) {
-		User user = userRepository.findByUserName(username);
+		User user = userRepository.findByUsername(username);
 		
 		return user;
 	}

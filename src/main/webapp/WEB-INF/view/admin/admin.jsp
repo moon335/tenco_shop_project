@@ -127,12 +127,12 @@
 				<c:choose>
 					<c:when test="${principal.image!=null}">
 						<input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;">
-						<img class="m--profile" alt="" src=" <c:url value="/images/uploads/${principal.image}"/>" width="150px" height="150" style="border-radius: 150px;">
+						<img class="m--profile" alt="" src=" <c:url value="/static/images/uploads/${principal.image}"/>" width="150px" height="150" style="border-radius: 150px;">
 
 					</c:when>
 					<c:otherwise>
 						<input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;">
-						<img class="m--profile" alt="" src="/images/myinfo.png" width="150px" height="150" style="margin-top: -20px;">
+						<img class="m--profile" alt="" src="/static/images/myinfo.png" width="150px" height="150" style="margin-top: -20px;">
 
 					</c:otherwise>
 				</c:choose>
