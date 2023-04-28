@@ -20,6 +20,7 @@ import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.handler.exception.LoginException;
+import com.tenco.tencoshop.repository.interfaces.UserRepository;
 import com.tenco.tencoshop.repository.model.Answer;
 import com.tenco.tencoshop.repository.model.Product;
 import com.tenco.tencoshop.repository.model.Question;
@@ -35,8 +36,8 @@ import com.tenco.tencoshop.util.Define;
 @RequestMapping("/admin")
 public class AdminController {
 
-	@Autowired // DI 처리
-	private LoginService loginService;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private UserService userService;
@@ -170,9 +171,8 @@ public class AdminController {
 	@GetMapping("salesList")
 	public String salesList(Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		User user = userService.userInfo(principal.getId());
-		List<Product> salesList = adminService.findProductAll();
-		model.addAttribute("user", user);
+		List<ProductRequestDto> salesList = userRepository.salesList();
+		model.addAttribute("principal", principal);
 		if (salesList.isEmpty()) {
 			model.addAttribute("salesList", null);
 		} else {
@@ -180,6 +180,14 @@ public class AdminController {
 		}
 		return "/admin/salesList";
 
+	}
+
+	// 해당 유저 정보 보기(판매 리스트에서)
+	@GetMapping("userSelect")
+	public String userSelect(@RequestParam Integer userId, Model model) {
+		User user = userRepository.userInfoSelect(userId);
+		model.addAttribute("user", user);
+		return "/admin/userSelect";
 	}
 
 	// QnA 모두 검색

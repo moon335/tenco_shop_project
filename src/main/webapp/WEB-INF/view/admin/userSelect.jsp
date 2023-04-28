@@ -78,7 +78,7 @@ body {
 
 .buyProgress {
 	display: flex;
-	border: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 	background-color: #F9F7F7;
 	border-style: none;
 	justify-content: space-between;
@@ -92,7 +92,7 @@ body {
 	align-items: center;
 }
 
-.salesProductList {
+.userSelect {
 	display: flex;
 	flex: 1;
 	align-items: center;
@@ -101,7 +101,7 @@ body {
 	flex-direction: column;
 }
 
-.salesProductList div {
+.userSelect div {
 	display: flex;
 	flex: auto;
 	flex-direction: row;
@@ -115,12 +115,17 @@ body {
 	margin-bottom: 35px;
 }
 
-.salesListLine {
+.userInfo {
 	border-bottom: 1px solid #ccc;
 }
 
-.salesProductList div div p {
-	margin-bottom: -12px;
+.Info {
+	border-bottom: 1px solid #ccc;
+}
+
+.Info p {
+	font-size:18px;
+	margin-bottom: -62px;
 }
 
 .buyDate {
@@ -147,50 +152,52 @@ body {
 	height: 43px;
 }
 
-.salesListLine a {
-	text-decoration: underline;
-	color: black;
+.userInfo p {
+	margin-bottom: 0;
 }
+
 </style>
 
 <div class="content">
 	<div class="content_1">
-		<h3>판매내역</h3>
+		<h3>회원정보</h3>
 	</div>
-	<hr>
-	<div class="salesProductList">
+	<div class="userSelect">
 
-		<c:choose>
-			<c:when test="">
-			</c:when>
-			<c:otherwise>
-			</c:otherwise>
-		</c:choose>
-
-		<c:forEach var="salesList" items="${salesList}">
-			<div class="salesListLine" style="">
-				<div style="width: 10px;">
-					<img alt="" src="/static/images/prodImages/${salesList.imgRoute}" width="100px" height="100px">
-				</div>
-				<div style="width: 10px;">
-					<a href="/admin/userSelect?userId=${salesList.userId}">
-						<p>${salesList.username}</p>
-					</a>
-				</div>
-				<div style="width: 100px;">
-					<p>${salesList.engName}</p>
-				</div>
-				<div style="width: 50px;">
-					<p>${salesList.sizeName}</p>
-				</div>
-				<div style="width: 10px;">
-					<p>${salesList.orderDate}</p>
-				</div>
-				<div style="width: 70px;">
-					<p>${salesList.deliveryStatus}</p>
-				</div>
+		<div class="Info" style="">
+			<div style="width: 30px;">
+				<p>이름</p>
 			</div>
-		</c:forEach>
+			<div style="width: 100px;">
+				<p>이메일</p>
+			</div>
+			<div style="width: 50px;">
+				<p>전화번호</p>
+			</div>
+			<div style="width: 100px;">
+				<p>주소</p>
+			</div>
+			<div style="width: 30px;">
+				<p>관리자</p>
+			</div>
+		</div>
+		<div class="userInfo" style="">
+			<div style="width: 30px;">
+				<p>${user.username}</p>
+			</div>
+			<div style="width: 100px;">
+				<p>${user.email}</p>
+			</div>
+			<div style="width: 50px;">
+				<p>${user.tel}</p>
+			</div>
+			<div style="width: 100px;">
+				<p>${user.address}</p>
+			</div>
+			<div style="width: 30px;">
+				<p>${user.role}</p>
+			</div>
+		</div>
 	</div>
 </div>
 </div>

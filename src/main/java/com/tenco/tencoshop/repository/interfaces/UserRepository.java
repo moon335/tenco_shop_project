@@ -2,7 +2,6 @@ package com.tenco.tencoshop.repository.interfaces;
 
 import java.util.List;
 
-
 import org.apache.ibatis.annotations.Mapper;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
@@ -20,7 +19,7 @@ public interface UserRepository {
 
 	// 유저 정보 보기
 	public User userInfoSelect(Integer userId);
-	
+
 	// 유저 정보 전부 보기
 	public List<User> userInfoAll();
 
@@ -36,11 +35,15 @@ public interface UserRepository {
 
 	// 관리자 계정 회원가입
 	public int signUpAdmin(JoinResponseDto joinResponseDto);
-	
+
 	// 유저 회원 탈퇴하기
 	public int userDelete(LoginResponseDto loginResponseDto);
+
 	// username 기반 검색
 	public User findByUsername(String username);
-	
+
 	public User findByUserId(Integer userId);
+
+	// 판매 내역 보기( 관리자)
+	public List<ProductRequestDto> salesList();
 }

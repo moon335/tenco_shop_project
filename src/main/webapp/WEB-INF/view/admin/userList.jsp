@@ -143,6 +143,10 @@ body {
 	color: white;
 	height: 43px;
 }
+.userList a {
+	text-decoration: underline;
+	color: black;
+}
 </style>
 
 <div class="content">
@@ -159,7 +163,9 @@ body {
 					<p>${userList.id}</p>
 				</div>
 				<div style="width: 30px;">
-					<p>${userList.username}</p>
+				<a href="/admin/userSelect?userId=${userList.id}">
+						<p>${userList.username}</p>
+					</a>
 				</div>
 				<div style="width: 70px;">
 					<p>${userList.tel}</p>
