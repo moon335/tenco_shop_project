@@ -17,6 +17,7 @@ import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.repository.model.Cart;
 import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.CartService;
+import com.tenco.tencoshop.service.OrderService;
 import com.tenco.tencoshop.service.ProductService;
 import com.tenco.tencoshop.service.UserService;
 
@@ -32,6 +33,9 @@ public class OrderController {
 	
 	@Autowired
 	private CartService cartService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	@GetMapping("/purchase")
 	public String orderPage(HttpServletRequest request, Model model) {
@@ -58,7 +62,7 @@ public class OrderController {
 		ProductResponseDto responseProduct = productService.readProductByModelNumberAndSize(modelNumber, sizeName);
 		model.addAttribute("product", responseProduct);
 		model.addAttribute("loginUser", loginUser);
-		
+			
 		return "/product/order";
 	}
 	
@@ -88,8 +92,9 @@ public class OrderController {
 	}
 	
 	@PostMapping("/input-order")
-	public void inputOrder(OrderRequestDto orderRequestDto) {
-		System.out.println(orderRequestDto);
+	public String inputOrder(OrderRequestDto orderRequestDto) {
+		orderService.createOrder(orderRequestDto, "aaaa");
+		return "redirect:/main";
 	}
 	
 } // end of class

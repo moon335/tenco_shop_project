@@ -167,9 +167,7 @@
 	<main>
 		<form action="/order/input-order" method="post">
 			<div class="main--contents">
-			 	<c:if test="${cart.id} != null">
-					<input type="hidden" name="cartId" value="${cart.id}">
-				</c:if>
+				<input type="hidden" name="cartId" value="${cart.id}">
 				<div class="prod--info--area">
 					<div class="prod--info">
 						<div class="product">
@@ -212,7 +210,7 @@
 						<span>총 결제금액</span>
 					</div>
 					<div class="price--total--order--info">
-						<span class="amount">333333원</span>
+						<span class="amount">${product.purchase}원</span>
 					</div>
 				</div>
 				<div class="button--box">
