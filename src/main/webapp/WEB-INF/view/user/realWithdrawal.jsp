@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
 	margin: 0 auto;
@@ -100,7 +98,7 @@ h2 {
 	margin-bottom: 5px;
 }
 
-.withdrawal a{
+.withdrawal a {
 	color: #B2B2B2;
 }
 
@@ -108,7 +106,8 @@ h2 {
 	margin-top: 20px;
 	margin-bottom: 20px;
 }
-#withdrawalUser{
+
+#withdrawalUser {
 	font-size: 13px;
 	text-decoration: underline;
 	cursor: pointer;
@@ -122,40 +121,39 @@ h2 {
 	background-color: #666666;
 }
 </style>
-	<div class="container">
-		<a href="#" class="btn-layer-close"></a>
-		<div class="real-withdrawal--header">
-			<h2>정말 탈퇴하시겠습니까?</h2>
-		</div>
-		<div class="content">
-			<p>탈퇴하기 클릭 시 바로 탈퇴 처리됩니다.</p>
-			<p>탈퇴 후 14일 이내 재가입할 수 없으며,</p>
-			<p>재가입 시 동일 이메일을 사용할 수 없습니다.</p>
-			<div class="content--footer">
-				<div class="content-footer-check">
-					<input type="checkbox" class="withdrawal-check"
-						id="check1" name="open"> <label
-						for="check1" class="check-label"><span
-						class="label-txt">TENCO 회원을 탈퇴하겠습니다.</span></label>
-				</div>
-				<div class="none--withdrawal">
-					<a href="/user/withdraw" class="none--withdrawal-a">탈퇴 안 할래요</a>
-				</div>
-				<form action="/user/real-withdrawal" method="POST"
-					class="withdrawal--border">
-					<label for="withdrawalUser" class="withdrawal">
-					<button type="submit" id="withdrawalUser" onclick="if(document.querySelectorAll('#check1:checked').length === 1) { 
-						alert('탈퇴가 완료되었습니다.');
-						return true;
-				    } else { 
-				      alert('약관에 동의해주세요');
-				      return false; 
-				    }"> 탈퇴하기 </button></label>
-					
-				</form>
+<div class="container">
+	<a href="#" class="btn-layer-close"></a>
+	<div class="real-withdrawal--header">
+		<h2>정말 탈퇴하시겠습니까?</h2>
+	</div>
+	<div class="content">
+		<p>탈퇴하기 클릭 시 바로 탈퇴 처리됩니다.</p>
+		<p>탈퇴 후 14일 이내 재가입할 수 없으며,</p>
+		<p>재가입 시 동일 이메일을 사용할 수 없습니다.</p>
+		<div class="content--footer">
+			<div class="content-footer-check">
+				<input type="checkbox" class="withdrawal-check" id="check1" name="open"> <label for="check1" class="check-label"><span class="label-txt">TENCO 회원을 탈퇴하겠습니다.</span></label>
 			</div>
+			<div class="none--withdrawal">
+				<a href="/user/withdraw" class="none--withdrawal-a">탈퇴 안 할래요</a>
+			</div>
+			<form action="/user/withdraw" method="post" class="withdrawal--border">
+				<label for="withdrawalUser" class="withdrawal">
+					<button type="submit" id="withdrawalUser"
+						onclick="if(document.querySelectorAll('#check1:checked').length === 1) { 
+                  alert('탈퇴가 완료되었습니다.');
+                  return true;
+                } else { 
+                  alert('약관에 동의해주세요');
+                  return false; 
+                }">
+						탈퇴하기</button>
+				</label>
+
+			</form>
 		</div>
 	</div>
+</div>
 </div>
 
 

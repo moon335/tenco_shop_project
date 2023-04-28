@@ -2,7 +2,6 @@ package com.tenco.tencoshop.service;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -119,6 +118,7 @@ public class ReviewService {
 	@Transactional
 	public void updateMyReviewById(Integer id, ReviewRequestDto reviewRequestDto) {
 
+		System.out.println("0000000000000000000000000000000" + id);
 
 		int resultCnt = reviewRepository.updateMyReviewById(reviewRequestDto);
 

@@ -240,7 +240,7 @@ button:hover {
          </div>
          <div class="header-inner">
             <h3>
-               <a href="/user/admin" style="font-size: 28px;">TencoShop</a>
+               <a href="/admin/admin" style="font-size: 28px;">TencoShop</a>
             </h3>
             <div class="header-inner-menu">
                <label><a href="/admin/admin">HOME</a></label> <label><a

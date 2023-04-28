@@ -9,12 +9,12 @@
 		select *, date_format(buy_date,'%Y-%m-%d')as order_date
 		from user_tb as u
 		join order_tb as o
-		on o.id =
+		on o.user_id =
 		u.id
 		join product_tb
 		as p
 		on p.id = o.product_id
-		where u.id=#{id};
+		where u.id=#{userId};
 	</select>
 
 	<select id="searchBuyList"
@@ -38,7 +38,7 @@
 		AND
 		#{orderEndDate};
 	</select>
-	
+
 	<select id="userInfoAll"
 		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
@@ -85,28 +85,25 @@
 	<delete id="delete">
 		delete from user_tb where username=#{username}
 	</delete>
-	
-	<select id="findByUserName" resultType="com.tenco.tencoshop.repository.model.User">
-		select * from user_tb
-		where username=#{username}
-	</select>
-	
-	<select id="findByUsername" resultType="com.tenco.tencoshop.repository.model.User">
-		select * from user_tb
-		where username=#{username}
-	</select>
-	
-	<select id="findByPassword" resultType="com.tenco.tencoshop.repository.model.User">
+
+	<select id="findByUserName"
+		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
 		where username=#{username}
 	</select>
 
-	<insert id="insert">
-		insert into user_tb (username, password, tel,
-		address, email, first_name, last_name)
-		values( #{username},
-		#{password}, #{tel}, #{address},#{email},#{firstName},#{lastName});
-	</insert>
+	<select id="findByPassword"
+		resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where username=#{username}
+	</select>
+
+	<update id="userDelete">
+		update user_tb set
+		withdraw = 0,
+		username=#{id}000
+		where id = #{id};
+	</update>
 
 </mapper>
 	

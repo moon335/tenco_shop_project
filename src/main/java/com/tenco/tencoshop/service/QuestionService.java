@@ -2,8 +2,6 @@ package com.tenco.tencoshop.service;
 
 import java.util.List;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -12,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tenco.tencoshop.dto.AnswerRequsetDto;
 import com.tenco.tencoshop.dto.QuestionFormDto;
 import com.tenco.tencoshop.dto.QuestionResponseDto;
-import com.tenco.tencoshop.handler.exception.LoginException;
+import com.tenco.tencoshop.handler.LoginException;
 import com.tenco.tencoshop.repository.interfaces.QuestionRepository;
 import com.tenco.tencoshop.repository.model.Question;
 

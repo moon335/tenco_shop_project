@@ -56,6 +56,4 @@ public class MainController {
 		return "layout/shop";
 	}
 
-   
-
 }

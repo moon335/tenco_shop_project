@@ -1,7 +1,6 @@
 package com.tenco.tencoshop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,12 +29,16 @@ public class LoginService {
 		if (isMatched == false) {
 			throw new LoginException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		if (userEntity.getWithdraw() == 0) {
+			throw new LoginException("탈퇴한 아이디입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 		LoginResponseDto dtoResult = new LoginResponseDto();
 		dtoResult.setId(userEntity.getId());
 		dtoResult.setUsername(userEntity.getUsername());
 		dtoResult.setPassword(userEntity.getPassword());
 		dtoResult.setImage(userEntity.getImage());
 		dtoResult.setRole(userEntity.getRole());
+		dtoResult.setWithdraw(userEntity.getWithdraw());
 
 		return dtoResult;
 	}
@@ -63,13 +66,4 @@ public class LoginService {
 		}
 	}
 
-	// 회원 탈퇴
-	@Transactional
-	public void deleteUser(LoginResponseDto loginResponseDto) {
-		LoginResponseDto dtoResult = new LoginResponseDto();
-		User userEntity = userRepository.findByPassword(loginResponseDto);
-		System.out.println(userEntity);
-		String userPassword = dtoResult.getPassword();
-		System.out.println(userPassword);
-	}
 }

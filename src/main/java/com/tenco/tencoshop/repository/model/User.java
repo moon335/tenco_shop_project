@@ -16,5 +16,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String image;
+	private Integer withdraw;
+
 	
 } // end of class
