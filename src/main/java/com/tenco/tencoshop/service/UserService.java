@@ -8,16 +8,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mysql.cj.protocol.a.authentication.MysqlOldPasswordPlugin;
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
-import com.tenco.tencoshop.dto.ProductResponseDto;
-import com.tenco.tencoshop.dto.SearchBuyListResponseDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.handler.LoginException;
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
-import com.tenco.tencoshop.repository.model.Product;
 import com.tenco.tencoshop.repository.model.User;
 
 @Service
@@ -154,4 +150,10 @@ public class UserService {
 
 	}
 
+	
+	public User readUserByUserName(String username) {
+		User user = userRepository.findByUserName(username);
+		
+		return user;
+	}
 }

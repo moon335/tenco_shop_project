@@ -24,6 +24,7 @@ public class ReviewResponseDto {
 
 	// user_tb
 	private String userName;
+	private String image;
 
 	// review_category_tb
 	private Integer reviewCategoryId;

@@ -1,6 +1,7 @@
 package com.tenco.tencoshop.controller;
 
 import java.io.File;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -95,6 +96,7 @@ public class UserController {
 	@GetMapping("/myinfoEditor")
 	public String myinfoEditor(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		System.out.println(principal);
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		user.getPassword();
