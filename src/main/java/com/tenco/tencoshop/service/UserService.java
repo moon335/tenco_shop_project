@@ -24,32 +24,30 @@ public class UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	
 	// 회원가입
-		@Transactional
-		public void createUser(JoinResponseDto joinResponseDto) {
-			String rawPwd = joinResponseDto.getPassword();
-			String hashPwd = passwordEncoder.encode(rawPwd);
-			int resultAdmin = 0;
-			int result = 0;
-			joinResponseDto.setPassword(hashPwd);
+	@Transactional
+	public void createUser(JoinResponseDto joinResponseDto) {
+		String rawPwd = joinResponseDto.getPassword();
+		String hashPwd = passwordEncoder.encode(rawPwd);
+		int resultAdmin = 0;
+		int result = 0;
+		joinResponseDto.setPassword(hashPwd);
 //			if(joinResponseDto.getUsername())
-			if (joinResponseDto.getRole() == null || !joinResponseDto.getRole().isEmpty()) {
-				if (!joinResponseDto.getRole().equals("green")) {
-					throw new LoginException("관리자 비밀번호가 일치하지 않습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
-				} else {
-					resultAdmin = userRepository.signUpAdmin(joinResponseDto);
-				}
+		if (joinResponseDto.getRole() == null || !joinResponseDto.getRole().isEmpty()) {
+			if (!joinResponseDto.getRole().equals("green")) {
+				throw new LoginException("관리자 비밀번호가 일치하지 않습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 			} else {
-				result = userRepository.signUp(joinResponseDto);
+				resultAdmin = userRepository.signUpAdmin(joinResponseDto);
 			}
-			if (result != 1 && resultAdmin == 0) {
-				throw new LoginException("회원가입 실패", HttpStatus.INTERNAL_SERVER_ERROR);
-			} else if (result == 1 && resultAdmin == 0) {
-			}
+		} else {
+			result = userRepository.signUp(joinResponseDto);
 		}
+		if (result != 1 && resultAdmin == 0) {
+			throw new LoginException("회원가입 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+		} else if (result == 1 && resultAdmin == 0) {
+		}
+	}
 
-	
 	// 로그인
 	@Transactional
 	public LoginResponseDto signIn(LoginResponseDto loginResponseDto) {
@@ -75,7 +73,6 @@ public class UserService {
 		return dtoResult;
 	}
 
-	
 	// myinfo에서 주문한 제품 보기
 	@Transactional
 	public List<ProductRequestDto> buyProductList(Integer userId) {
@@ -150,10 +147,9 @@ public class UserService {
 
 	}
 
-	
 	public User readUserByUserName(String username) {
 		User user = userRepository.findByUserName(username);
-		
+
 		return user;
 	}
 }

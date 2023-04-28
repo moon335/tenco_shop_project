@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
@@ -77,8 +78,9 @@ public class UserController {
 	public String buyListProc(ProductRequestDto productRequestDto, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		productRequestDto.setUserId(principal.getId());
+		User user = userService.userInfo(principal.getId());
 		List<ProductRequestDto> orderList = userService.searchProductList(productRequestDto);
-		System.out.println("orderList" + orderList);
+		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
 			model.addAttribute("orderList", null);
 		} else {

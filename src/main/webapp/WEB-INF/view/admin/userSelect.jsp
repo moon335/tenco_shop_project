@@ -16,8 +16,6 @@ body {
 }
 
 .content_1 {
-	border: 1px solid #ccc;
-	border-radius: 10px;
 	margin: 20px;
 	padding: 20px;
 }
@@ -80,9 +78,8 @@ body {
 
 .buyProgress {
 	display: flex;
-	border: 1px solid #ccc;
-	border-radius: 20px;
-	background-color: #f8f6f6;
+	border-bottom: 1px solid #ccc;
+	background-color: #F9F7F7;
 	border-style: none;
 	justify-content: space-between;
 	padding: 20px;
@@ -95,62 +92,111 @@ body {
 	align-items: center;
 }
 
-.buyProduct {
+.userSelect {
 	display: flex;
 	flex: 1;
 	align-items: center;
 	padding: 10px;
-	border-bottom: 1px solid #D2D2D2;
 	display: flex;
 	flex-direction: column;
 }
 
-.buyProduct div {
+.userSelect div {
 	display: flex;
 	flex: auto;
 	flex-direction: row;
-	margin: 0 20px;
 	align-items: center;
 	justify-content: space-between;
+	width: 950px;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	align-items: center;
+	margin-bottom: 35px;
+}
+
+.userInfo {
+	border-bottom: 1px solid #ccc;
+}
+
+.Info {
+	border-bottom: 1px solid #ccc;
+}
+
+.Info p {
+	font-size:18px;
+	margin-bottom: -62px;
 }
 
 .buyDate {
 	display: flex;
 	align-items: center;
 }
+
+.search__input {
+	height: 45px;
+	width: 100%;
+	color: rgb(100, 98, 98);
+	font-size: 15px;
+	border: 1px solid rgb(230, 227, 227);
+}
+
+.order_date td {
+	width: 50px;
+	text-align: center;
+}
+
+.order_date td button {
+	background-color: black;
+	color: white;
+	height: 43px;
+}
+
+.userInfo p {
+	margin-bottom: 0;
+}
+
 </style>
 
 <div class="content">
 	<div class="content_1">
-		<div>
-			<div>
-				<c:choose>
-					<c:when test="${principal.image!=null}">
-						<input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;">
-						<img class="m--profile" alt="" src=" <c:url value="/images/uploads/${principal.image}"/>" width="150px" height="150" style="border-radius: 150px;">
+		<h3>회원정보</h3>
+	</div>
+	<div class="userSelect">
 
-					</c:when>
-					<c:otherwise>
-						<input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;">
-						<img class="m--profile" alt="" src="/images/myinfo.png" width="150px" height="150" style="margin-top: -20px;">
-
-					</c:otherwise>
-				</c:choose>
+		<div class="Info" style="">
+			<div style="width: 30px;">
+				<p>이름</p>
 			</div>
-			<div id="profileediter" style="margin-top: 20px;">
-				<div>
-					<h3 style="margin-left: 10px;">${user.username}님 반갑습니다.</h3>
-				</div>
-				<div>
-					<form action="/admin/adminInfoEditor" method="get">
-						<button type="submit" class="btn btn-outline-dark" style="margin-left: 20px;">프로필 수정</button>
-					</form>
-				</div>
+			<div style="width: 100px;">
+				<p>이메일</p>
+			</div>
+			<div style="width: 50px;">
+				<p>전화번호</p>
+			</div>
+			<div style="width: 100px;">
+				<p>주소</p>
+			</div>
+			<div style="width: 30px;">
+				<p>관리자</p>
 			</div>
 		</div>
-		<hr>
-		<div>
-			<div class="userGrade">관리자</div>
+		<div class="userInfo" style="">
+			<div style="width: 30px;">
+				<p>${user.username}</p>
+			</div>
+			<div style="width: 100px;">
+				<p>${user.email}</p>
+			</div>
+			<div style="width: 50px;">
+				<p>${user.tel}</p>
+			</div>
+			<div style="width: 100px;">
+				<p>${user.address}</p>
+			</div>
+			<div style="width: 30px;">
+				<p>${user.role}</p>
+			</div>
 		</div>
 	</div>
 </div>

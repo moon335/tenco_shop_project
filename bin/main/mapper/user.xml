@@ -17,26 +17,40 @@
 		o.product_id
 		join size_tb as s
 		on p.size_id = s.id
-		where u.id=6;
+		where u.id=#{userId};
+	</select>
+
+	<select id="salesList"
+		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
+		select o.id,p.img_route,u.username, u.id AS user_id ,p.eng_name,o.delivery_status, s.name as
+		size_name, date_format(order_date,'%Y-%m-%d')as order_date
+		from user_tb
+		as u
+		join order_tb as o
+		on o.user_id = u.id
+		join product_tb as p
+		on p.id =
+		o.product_id
+		join size_tb as s
+		on p.size_id = s.id;
 	</select>
 
 	<select id="searchBuyList"
 		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
-		select
-		o.user_id,p.eng_name,order_date
+		select o.id, u.id AS user_id ,p.eng_name,o.delivery_status, s.name as
+		size_name,date_format(order_date,'%Y-%m-%d')as order_date
 		from user_tb
 		as u
 		join order_tb as o
-		on o.user_id =
-		u.id
-		join
-		product_tb
-		as p
+		on o.user_id = u.id
+		join product_tb as p
 		on p.id =
 		o.product_id
+		join size_tb as s
+		on p.size_id = s.id
 		where u.id=#{userId}
 		AND
-		buy_date
+		order_date
 		BETWEEN #{orderStartDate}
 		AND
 		#{orderEndDate};

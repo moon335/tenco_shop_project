@@ -10,6 +10,7 @@ public class ProductRequestDto {
 	private Integer userId;
 	private String engName;
 	private String korName;
+	private String username;
 	private Integer purchase;
 	private String modelNumber;
 	private Date releaseDate;

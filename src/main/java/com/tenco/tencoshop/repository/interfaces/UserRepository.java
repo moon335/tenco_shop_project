@@ -41,4 +41,7 @@ public interface UserRepository {
 	
 	// 유저 회원 탈퇴하기
 	public int userDelete(LoginResponseDto loginResponseDto);
+	
+	// 판매 내역 보기( 관리자)
+	public List<ProductRequestDto> salesList();
 }
