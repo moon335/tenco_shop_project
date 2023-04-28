@@ -50,6 +50,6 @@ public class AnswerController {
 		questionService.questionUpdate(questionResponseDto,answerRequsetDto, userId.getId());
 		answerService.answerWritinng(answerRequsetDto, userId.getId());
 		questionService.readQuestion();
-		return "redirect:/question/find";
+		return "redirect:/admin/find";
 	}
 }

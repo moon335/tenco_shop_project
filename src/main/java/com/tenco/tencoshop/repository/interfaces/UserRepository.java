@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
+import com.tenco.tencoshop.dto.OrderResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.repository.model.User;
 
@@ -46,4 +47,7 @@ public interface UserRepository {
 
 	// 판매 내역 보기( 관리자)
 	public List<ProductRequestDto> salesList();
+	
+	// 주문 내역 카운터하기 (myinfo) 
+	public OrderResponseDto orderCounter(Integer userId);
 }

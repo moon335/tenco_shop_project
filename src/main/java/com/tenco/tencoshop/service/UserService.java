@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
+import com.tenco.tencoshop.dto.OrderResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.handler.LoginException;
@@ -157,8 +158,18 @@ public class UserService {
 
 	}
 
+	@Transactional
 	public User readUserByUserName(String username) {
 		User user = userRepository.findByUsername(username);
 		return user;
+	}
+
+	// 주문 내역 카운트 하기 (myinfo)
+	@Transactional
+	public OrderResponseDto orderCounter(Integer userId) {
+		OrderResponseDto orderResponseDto = userRepository.orderCounter(userId);
+		System.out.println(userId);
+		System.out.println(orderResponseDto);
+		return orderResponseDto;
 	}
 }
