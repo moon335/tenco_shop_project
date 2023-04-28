@@ -74,7 +74,7 @@ public class UserService {
 		return result;
 	}
 
-	// myinfo에서 유저정보 update하기
+	// myinfo에서 유저이미지 update하기
 	@Transactional
 	public int userInfoUpdateImage(UserInfoRequestDto userInfoRequestDto, Integer principalId) {
 		LoginResponseDto user = new LoginResponseDto();

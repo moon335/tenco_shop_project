@@ -278,7 +278,7 @@ button:hover {
 			</div>
 			<div>
 				<p>
-					<a href="/user/myinfo">프로필 정보</a>
+					<a href="/user/myinfoEditor">프로필 정보</a>
 				</p>
 			</div>
 			<div>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.tenco.tencoshop.repository.interfaces.AnswerRepository">
+
+	<select id="answerDetail"
+		resultType="com.tenco.tencoshop.repository.model.Answer">
+		select * from answer_tb
+		where question_id=#{questionId};
+	</select>
+	<insert id="answerWriting">
+		insert into
+		answer_tb(content,question_id,admin_id)
+		value(#{content},#{questionId},#{adminId});
+	</insert>
+
+</mapper>

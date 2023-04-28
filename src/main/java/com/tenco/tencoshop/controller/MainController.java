@@ -34,7 +34,7 @@ public class MainController {
 		model.addAttribute("list", list);
 		return "layout/main";
 	}
-
+	// shop 페이지들어감 
 	@GetMapping("/shop")
 	public String shop(Model model) {
 		List<ProductResponseDto> list = productService.readProduct();
@@ -42,6 +42,7 @@ public class MainController {
 		return "layout/shop";
 	}
 
+	// shop 에서 카테고리별 select기능 구현 
 	@GetMapping("/shopCategorySelect")
 	public String shopCategorySelect(Model model,@RequestParam(name = "type", defaultValue = "all", required = false) String type) {
 		if (type.equals("all")) {

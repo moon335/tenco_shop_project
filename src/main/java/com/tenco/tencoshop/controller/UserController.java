@@ -47,7 +47,6 @@ public class UserController {
 		}
 		userId = principal.getId();
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
-		System.out.println(userId + "@#@##");
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
@@ -104,6 +103,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		user.getPassword();
 		return "/user/myInfoEditor";
+		
 	}
 
 	// 내 정보 수정하기
@@ -173,26 +173,9 @@ public class UserController {
 
 		return "user/login";
 	}
-	@GetMapping("/admin")
-	public String signInAdmin(Integer userId, Model model) {
-		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		if (principal == null) {
-			throw new LoginException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		userId = principal.getId();
-		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
-		System.out.println(userId + "@#@##");
-		User user = userService.userInfo(principal.getId());
-		model.addAttribute("user", user);
-		if (orderList.isEmpty()) {
-			model.addAttribute("orderList", null);
-		} else {
-			model.addAttribute("orderList", orderList);
-			model.addAttribute("principal", principal);
-		}
-		return "/user/admin";
-	}
 
+
+	// 로그인 
 	@PostMapping("/sign-in")
 	public String signInProc(LoginResponseDto loginResponseDto) {
 
@@ -206,7 +189,7 @@ public class UserController {
 		if(principal.getRole().equals("admin")) {
 			principal.setPassword(loginResponseDto.getPassword());
 			session.setAttribute(Define.PRINCIPAL, principal);
-			return "redirect:/user/admin";
+			return "redirect:/admin/admin";
 		}			
 		principal.setPassword(loginResponseDto.getPassword());
 		session.setAttribute(Define.PRINCIPAL, principal);

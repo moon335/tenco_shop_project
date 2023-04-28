@@ -6,4 +6,6 @@ import lombok.Data;
 public class QuestionFormDto {
 	private String title;
 	private String content;
+	private Integer reqStatus;
+	private Integer userId;
 }

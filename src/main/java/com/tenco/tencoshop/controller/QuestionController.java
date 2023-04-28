@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.QuestionFormDto;
+import com.tenco.tencoshop.repository.model.Answer;
 import com.tenco.tencoshop.repository.model.Question;
 import com.tenco.tencoshop.repository.model.User;
+import com.tenco.tencoshop.service.AnswerService;
 import com.tenco.tencoshop.service.QuestionService;
+import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
 
 @Controller
@@ -23,14 +27,24 @@ import com.tenco.tencoshop.util.Define;
 public class QuestionController {
 
 	@Autowired
+	private AnswerService answerService;
+	@Autowired
 	private HttpSession session;
 	@Autowired
 	private QuestionService questionService;
+	@Autowired
+	private UserService userService;
 
 	// QnA 모두 검색
 	@GetMapping("/find")
 	public String findQuestion(Model model) {
 		List<Question> questList = questionService.readQuestion();
+		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		if (user == null) {
+			model.addAttribute("user", null);
+		} else {
+			model.addAttribute("user", user);
+		}
 		if (questList.isEmpty()) {
 			model.addAttribute("questList", null);
 		} else {
@@ -50,22 +64,43 @@ public class QuestionController {
 		}
 		return "/user/question";
 	}
-	// QnA 상세 정보 들어가기 
+
+	// QnA 상세 정보 들어가기
 	@GetMapping("/detail")
 	public String questionDetail(@RequestParam Integer id, Model model) {
 		Question quest = questionService.questionDetailPage(id);
-		if (quest.getId()==null) {
+		Answer answer = answerService.answerDetailPage(id);
+		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		if (user == null) {
+			model.addAttribute("user", null);
+		} else {
+			model.addAttribute("user", user);
+		}
+		if (answer == null) {
+			model.addAttribute("answer", null);
+		} else {
+			model.addAttribute("answer", answer);
+		}
+
+		if (quest.getId() == null) {
 			model.addAttribute("quest", null);
 		} else {
 			model.addAttribute("quest", quest);
 		}
 		return "/user/questionDetail";
 	}
+
 	// QnA 작성하기
 	@PostMapping("/writing")
 	public String questionWriting(QuestionFormDto questionFormDto) {
-//		User principal=(User) session.getAttribute(Define.PRINCIPAL);
-		questionService.questionWrting(questionFormDto, 1);
+		LoginResponseDto userId = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		questionService.questionWriting(questionFormDto, userId.getId());
+		return "redirect:/question/find";
+	}
+
+	@GetMapping("/delete")
+	public String questionDelete(Integer id) {
+		questionService.questionDelete(id);
 		return "redirect:/question/find";
 	}
 }
