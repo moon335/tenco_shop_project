@@ -18,6 +18,11 @@
 body {
    width: 1200px;
    margin: 0 auto;
+   font-family: 'Noto Sans';
+}
+
+main{
+   font-family: 'Noto Sans';
 }
 
 .side {

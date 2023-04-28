@@ -75,7 +75,7 @@ html, body {
 	margin-top: 20px;
 	margin-bottom: 20px;
 	justify-content: space-between;
-	margin-top: 20px;
+	margin-top: 70px;
 	border-bottom: 1px solid #eee;
 	padding-bottom: 10px;
 }
@@ -176,75 +176,84 @@ main {
 	padding-top: 5px;
 }
 
-.detail--wrap{
+.detail--wrap {
 	font-size: 2.5rem;
 }
+
+.detail--userName--wrap a {
+	text-decoration: none;
+	color: black;
+}
+
+.detail--userName--wrap a:hover {
+	text-decoration: underline;
+}
+
 </style>
-<main>
-	<div class="detail--all--wrap">
-		<div class="detail--category--wrap">
-			<div class="category--wrap">
+<body>
+	<main>
+		<div class="detail--all--wrap">
+			<div class="detail--category--wrap">
+				<%-- <div class="category--wrap">
 				<a href="/review/style">전체</a>
 				<c:forEach var="reviewCategoryList" items="${reviewCategoryList}">
 					<a href="/review/prod-category/${reviewCategoryList.id}">${reviewCategoryList.name}</a>
 				</c:forEach>
-			</div>
+			</div> --%>
 
-			<c:choose>
-				<c:when test="${principal.image!=null}">
-					<div class="detail--user--wrap">
-						<div class="user--userName--wrap">
-							<div class="user--userImg--wrap">
-								<a href="/review/author-style/${review.userName}"><img src="/images/uploads/${principal.image}"></a>
-							</div>
-							<div class="user--info">
-								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span
-									class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
-							</div>
-						</div>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div class="detail--user--wrap">
-						<div class="user--userName--wrap">
-							<div class="user--userImg--wrap">
-								<a href="/review/author-style/${review.userName}"><img src="/images/myinfo.png"></a>
-							</div>
-							<div class="user--info">
-								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span
-									class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+				<c:choose>
+					<c:when test="${principal.image!=null}">
+						<div class="detail--user--wrap">
+							<div class="user--userName--wrap">
+								<div class="user--userImg--wrap">
+									<a href="/review/author-style/${review.userName}"><img src="/images/uploads/${principal.image}"></a>
+								</div>
+								<div class="user--info">
+									<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+								</div>
 							</div>
 						</div>
-					</div>
-				</c:otherwise>
-			</c:choose>
-			<div class="detail--title--wrap">${review.title}</div>
-			<div class="swiper-slide">
-				<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
-			</div>
-			<div class="productInfo--content--wrap">상품 정보</div>
-			<div class="detail--product--wrap">
-				<img src="/images/prodImages/${review.imgRoute}" width="110" height="110">
-				<div class="engName--korName--wrap">
-					<div class="">${review.engName}</div>
-					<div class="">${review.korName}</div>
+					</c:when>
+					<c:otherwise>
+						<div class="detail--user--wrap">
+							<div class="user--userName--wrap">
+								<div class="user--userImg--wrap">
+									<a href="/review/author-style/${review.userName}"><img src="/images/myinfo.png"></a>
+								</div>
+								<div class="user--info">
+									<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+								</div>
+							</div>
+						</div>
+					</c:otherwise>
+				</c:choose>
+				<div class="detail--title--wrap">${review.title}</div>
+				<div class="swiper-slide">
+					<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
 				</div>
+				<div class="productInfo--content--wrap">상품 정보</div>
+				<div class="detail--product--wrap">
+					<img src="/images/prodImages/${review.imgRoute}" width="110" height="110">
+					<div class="engName--korName--wrap">
+						<div class="">${review.engName}</div>
+						<div class="">${review.korName}</div>
+					</div>
+				</div>
+				<div class="detail--heart--wrap">
+					<button class="heartBtn" onclick="addLike(${status.index})">
+						<i class=" xi-heart-o xi-2x" style="color: black;"></i>
+					</button>
+					<div class="detail--heart">좋아요 ${review.heart}개</div>
+				</div>
+				<div class="detail--content--wrap">${review.content}</div>
 			</div>
-			<div class="detail--heart--wrap">
-				<button class="heartBtn" onclick="addLike(${status.index})">
-					<i class=" xi-heart-o xi-2x" style="color: black;"></i>
-				</button>
-				<div class="detail--heart">좋아요 ${review.heart}개</div>
-			</div>
-			<div class="detail--content--wrap">${review.content}</div>
 		</div>
-	</div>
 
-	<!-- Swiper JS -->
-	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+		<!-- Swiper JS -->
+		<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
-	<!-- Initialize Swiper -->
-	<script>
+		<!-- Initialize Swiper -->
+		<script>
     var swiper = new Swiper(".mySwiper", {
       slidesPerView: 1,
       spaceBetween: 30,
@@ -259,5 +268,6 @@ main {
       },
     });
   </script>
-</main>
+	</main>
+</body>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

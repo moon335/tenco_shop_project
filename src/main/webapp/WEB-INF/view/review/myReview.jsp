@@ -68,12 +68,12 @@ tbody tr td a:hover {
 	<div class="my--review--title">
 		<c:choose>
 			<c:when test="${principal.image != null}">
-				<span class="myReview--img--wrap"><a href="#"><img src=" <c:url value="/images/uploads/${principal.image}"/>"></a></span>
-				<span class="myReview--username--wrap"><a href="#">${principal.username}</a></span>
+				<span class="myReview--img--wrap"><img src=" <c:url value="/images/uploads/${principal.image}"/>"></span>
+				<span class="myReview--username--wrap">${principal.username}</span>
 			</c:when>
 			<c:otherwise>
-				<span class="myReview--img--wrap"><a href="#"><img src="/images/myinfo.png"></a></span>
-				<span class="myReview--username--wrap"><a href="#">${principal.username}</a></span>
+				<span class="myReview--img--wrap"><img src="/images/myinfo.png"></span>
+				<span class="myReview--username--wrap">${principal.username}</span>
 			</c:otherwise>
 		</c:choose>
 	</div>

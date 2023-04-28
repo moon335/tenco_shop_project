@@ -103,10 +103,9 @@ public class ReviewController {
 	// 후기 작성 페이지로 이동
 	@GetMapping("/reviewInsert/{orderId}")
 	public String reviewInsert(Model model, @PathVariable Integer orderId) {
-
 		ProductResponseDto product = reviewService.readByOrderId(orderId);
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
-
+		System.out.println(product);
 		model.addAttribute("product", product);
 		model.addAttribute("orderId", orderId);
 		model.addAttribute("reviewCategoryList", reviewCategoryList);

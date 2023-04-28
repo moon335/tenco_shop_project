@@ -3,10 +3,12 @@
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
 <style>
 	body {
 	   width: 1183px;
 	   margin: 0 auto;
+	   font-family: 'Noto Sans';
 	}
 .header {
 	display: flex;
@@ -198,38 +200,14 @@
 					<h6>
 						배송완료 <br>
 					</h6>
-					
 					<button type="submit"
-					onclick="location.href='/review/reviewInsert/${reviewList.userId}'"
+					onclick="location.href='/review/reviewInsert/${orderList.id}'"
 					style="border: none; background-color: white; color: #088ff7">
 					후기 <br>올리기
 				</button>
 				</div>
 			</div>
 		</c:forEach>
-
-		<div>
-			<div>
-				<img alt="" src="/images/1.png" width="120" height="120">
-			</div>
-			<div style="width: 400px;">
-				<p style="width: 250px;">Dior Saddle Flap Card Holder Blue Dior Oblique Jacquard</p>
-				<pre style="text-align: center; width: 100px;">ONE SIZE</pre>
-			</div>
-			<div class="buyDate">
-				<pre>2023/01/23</pre>
-			</div>
-			<div style="width: 150px;">
-				<h6>
-					배송완료 <br>
-				</h6>
-				<button type="submit"
-						onclick="location.href='/review/reviewInsert/1'"
-						style="border: none; background-color: white; color: #088ff7">
-						스타일 <br>올리기
-					</button>
-			</div>
-		</div>
 	</div>
 </div>
 </div>
