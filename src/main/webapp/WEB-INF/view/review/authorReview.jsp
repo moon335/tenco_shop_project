@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
+	width: 1183px;
 	margin: 0 auto;
-	width: 1200px;
 }
 
 #main--table {

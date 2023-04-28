@@ -21,8 +21,9 @@ public class ProductRequestDto {
 	private Integer brandId;
 	private Integer categoryId;
 	private Integer sizeId;
-	private String buyDate;
 	private String orderDate;
 	private String orderStartDate;
 	private String orderEndDate;
+	private Integer deliveryStatus;
+	private String sizeName;
 }

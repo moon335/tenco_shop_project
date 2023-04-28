@@ -189,47 +189,24 @@
 				</div>
 				<div style="width: 400px;">
 					<p style="width: 250px;">${orderList.engName}</p>
-					<pre style="text-align: center; width: 100px;">${orderList.sizeId}</pre>
+					<pre style="text-align: center; width: 100px;">${orderList.sizeName}</pre>
 				</div>
 				<div class="buyDate">
 					<pre>${orderList.orderDate}</pre>
 				</div>
 				<div style="align-items: center; width: 150px;">
 					<h6>
-						배송완료 <br>
+						배송완료<br>
 					</h6>
 					
 					<button type="submit"
-					onclick="location.href='/review/reviewInsert/${reviewList.userId}'"
+					onclick="location.href='/review/reviewInsert/${orderList.id}'"
 					style="border: none; background-color: white; color: #088ff7">
 					후기 <br>올리기
 				</button>
 				</div>
 			</div>
 		</c:forEach>
-
-		<div>
-			<div>
-				<img alt="" src="/images/1.png" width="120" height="120">
-			</div>
-			<div style="width: 400px;">
-				<p style="width: 250px;">Dior Saddle Flap Card Holder Blue Dior Oblique Jacquard</p>
-				<pre style="text-align: center; width: 100px;">ONE SIZE</pre>
-			</div>
-			<div class="buyDate">
-				<pre>2023/01/23</pre>
-			</div>
-			<div style="width: 150px;">
-				<h6>
-					배송완료 <br>
-				</h6>
-				<button type="submit"
-						onclick="location.href='/review/reviewInsert/1'"
-						style="border: none; background-color: white; color: #088ff7">
-						스타일 <br>올리기
-					</button>
-			</div>
-		</div>
 	</div>
 </div>
 </div>

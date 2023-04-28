@@ -15,7 +15,7 @@
 		<div id="loginBox">
 
 			<!-- 로그인 페이지 타이틀 -->
-			<div id="loginBoxTitle">Tenco Shop</div>
+			<div id="loginBoxTitle" style="margin-top: 300px;">Tenco Shop</div>
 			<!-- 아이디, 비번, 버튼 박스 -->
 			<div id="inputBox">
 				<form action="/user/sign-up" method="POST">

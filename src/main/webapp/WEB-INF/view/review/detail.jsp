@@ -13,6 +13,11 @@
 </script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <style>
+body {
+	width: 1183px;
+	margin: 0 auto;
+}
+
 .header-inner {
 	padding: 20px 20px;
 }
@@ -176,7 +181,7 @@ main {
 	padding-top: 5px;
 }
 
-.detail--wrap{
+.detail--wrap {
 	font-size: 2.5rem;
 }
 </style>
@@ -198,8 +203,7 @@ main {
 								<a href="/review/author-style/${review.userName}"><img src="/images/uploads/${principal.image}"></a>
 							</div>
 							<div class="user--info">
-								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span
-									class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
 							</div>
 						</div>
 					</div>
@@ -211,8 +215,7 @@ main {
 								<a href="/review/author-style/${review.userName}"><img src="/images/myinfo.png"></a>
 							</div>
 							<div class="user--info">
-								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span
-									class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
 							</div>
 						</div>
 					</div>
