@@ -139,13 +139,13 @@ main {
 	display: flex;
 }
 
-.user--userImg--wrap>img {
+.user--userImg--wrap>a>img{
 	width: 70px;
 	height: 70px;
 	border-radius: 50px;
 }
 
-.user--userImg--wrap{
+.user--userImg--wrap {
 	margin-right: 20px;
 }
 
@@ -160,6 +160,13 @@ main {
 	display: flex;
 }
 
+.detail--title--wrap{
+	display: flex;
+	justify-content: flex-start;
+	width:550px;
+	margin: 0 auto;
+	font-size: 20px;
+}
 </style>
 <main>
 	<div class="detail--all--wrap">
@@ -171,25 +178,35 @@ main {
 				</c:forEach>
 			</div>
 
-			<div class="detail--user--wrap">
-				<div class="user--userName--wrap">
-					<div class="user--userImg--wrap">
-						<img src=" <c:url value="/images/uploads/${principal.image}"/>">
-					</div>
-					<div class="user--info">
-						<span class="detail--userName--wrap">${review.userName}</span>
-						<span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
-					</div>
-				</div>
-			</div>
-			<%-- choose, when 사용해서  --%>
 			<c:choose>
-				<c:when test="${review != null}">
-					<div class="swiper-slide">
-						<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
+				<c:when test="${principal.image!=null}">
+					<div class="detail--user--wrap">
+						<div class="user--userName--wrap">
+							<div class="user--userImg--wrap">
+								<a href="/review/author-style/${review.userName}"><img src="/images/uploads/${principal.image}"></a>
+							</div>
+							<div class="user--info">
+								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>							</div>
+						</div>
 					</div>
 				</c:when>
+				<c:otherwise>
+					<div class="detail--user--wrap">
+						<div class="user--userName--wrap">
+							<div class="user--userImg--wrap">
+								<a href="/review/author-style/${review.userName}"><img src="/images/myinfo.png"></a>
+							</div>
+							<div class="user--info">
+								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+							</div>
+						</div>
+					</div>
+				</c:otherwise>
 			</c:choose>
+			<div class="detail--title--wrap">${review.title}</div>
+			<div class="swiper-slide">
+				<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
+			</div>
 			<div class="productInfo--content--wrap">상품 정보</div>
 			<div class="detail--product--wrap">
 				<img src="/images/prodImages/${review.imgRoute}" width="110" height="110">

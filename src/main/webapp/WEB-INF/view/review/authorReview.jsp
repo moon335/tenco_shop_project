@@ -67,13 +67,13 @@ tbody tr td a:hover {
 <main>
 	<div class="my--review--title">
 		<c:choose>
-			<c:when test="${principal.image != null}">
-				<span class="myReview--img--wrap"><a href="#"><img src=" <c:url value="/images/uploads/${principal.image}"/>"></a></span>
-				<span class="myReview--username--wrap"><a href="#">${principal.username}</a></span>
+			<c:when test="${user.image != null}">
+				<span class="myReview--img--wrap"><img src=" <c:url value="/images/uploads/${principal.image}"/>"></span>
+				<span class="myReview--username--wrap">${user.username}</span>
 			</c:when>
 			<c:otherwise>
-				<span class="myReview--img--wrap"><a href="#"><img src="/images/myinfo.png"></a></span>
-				<span class="myReview--username--wrap"><a href="#">${principal.username}</a></span>
+				<span class="myReview--img--wrap"><img src="/images/myinfo.png"></span>
+				<span class="myReview--username--wrap">${user.username}</span>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -103,7 +103,6 @@ tbody tr td a:hover {
 							<td><a href="/review/detail/${review.id}">${review.brandName}</a></td>
 							<td><a href="/review/detail/${review.id}">${review.formatCreatedAt()}</a></td>
 							<%--/${review.id} --%>
-							<td><a href="/review/reviewUpdate/${review.id}">수정</a> | <a href="/review/delete/${review.id}">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</c:when>

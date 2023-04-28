@@ -192,7 +192,7 @@ main {
 						</div>
 					</div>
 					<div class="review--contents">
-						<a href="/review/detail/${reviewList.userId}">${reviewList.content}</a>
+						<a href="/review/detail/${reviewList.userId}">${reviewList.title}</a>
 					</div>
 				</div>
 			</c:forEach>

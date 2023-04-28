@@ -44,15 +44,16 @@ main {
 }
 
 .wish--item {
-	width: 700px;
+	width: 1000px;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 }
 
 .wish--product {
-	width: 700px;
+	width: 900px;
 	display: flex;
 	margin-bottom: 20px;
+	justify-content: center;
 }
 
 .wish--box {
@@ -60,7 +61,7 @@ main {
 	justify-content: center;
 	width: 80px;
 	height: 80px;
-	margin-right: 30px;
+	margin-right: 40px;
 	width: 80px;
 }
 
@@ -72,6 +73,7 @@ main {
 .reviewInsert--detail {
 	text-align: left;
 	display: flex;
+	padding-top:30px;
 	justify-content: space-between;
 	width: 700px;
 	align-items: center;
@@ -146,7 +148,9 @@ body>div>main>form>div.container.mt-3 {
 #boardCategoryId {
 	height: 38px;
 	margin-left: 20px;
-	width: 170px;
+	width: 120px;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
 }
 
 .form-control {

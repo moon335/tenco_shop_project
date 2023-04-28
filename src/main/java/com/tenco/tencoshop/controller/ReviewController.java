@@ -21,9 +21,11 @@ import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.dto.ReviewRequestDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
 import com.tenco.tencoshop.repository.model.ReviewCategory;
+import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.ProductService;
 import com.tenco.tencoshop.service.ReviewCategoryService;
 import com.tenco.tencoshop.service.ReviewService;
+import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
 
 @Controller
@@ -36,6 +38,8 @@ public class ReviewController {
 	private ReviewCategoryService reviewCategoryService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private UserService userService;
 
 	// 구매 내역에 있는 것만 리뷰 쓸 때 사용하기
 	@Autowired
@@ -73,7 +77,6 @@ public class ReviewController {
 	public String style(Model model, @PathVariable Integer id) {
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
 		ReviewResponseDto review = reviewService.readDetailById(id);
-
 		model.addAttribute("reviewCategoryList", reviewCategoryList);
 		model.addAttribute("review", review);
 		// redirect 수정할 수도 있음.
@@ -96,7 +99,7 @@ public class ReviewController {
 
 		return "/review/myReview";
 	}
-
+	
 	// 후기 작성 페이지로 이동
 	@GetMapping("/reviewInsert/{orderId}")
 	public String reviewInsert(Model model, @PathVariable Integer orderId) {
@@ -206,6 +209,17 @@ public class ReviewController {
 		reviewService.deleteMyReviewById(id);
 
 		return "redirect:/review/myReview";
+	}
+	
+	// detail에서 게시물을 쓴 사람의 스타일로 이동
+	@GetMapping("/author-style/{username}")
+	public String authorStyle(Model model, @PathVariable String username) {
+		List<ReviewResponseDto> reviewList = reviewService.findReviewByUsername(username);
+		User user = userService.readUserByUserName(username);
+		
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("user", user);
+		return "/review/authorReview";
 	}
 
 }
