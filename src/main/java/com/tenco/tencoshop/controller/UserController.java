@@ -21,16 +21,12 @@ import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.handler.exception.LoginException;
 import com.tenco.tencoshop.repository.model.User;
-import com.tenco.tencoshop.service.LoginService;
 import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
-	@Autowired // DI 처리
-	private LoginService loginService;
 
 	@Autowired
 	private UserService userService;
@@ -184,7 +180,7 @@ public class UserController {
 		if (loginResponseDto.getPassword() == null || loginResponseDto.getPassword().isEmpty()) {
 			throw new LoginException("비밀번호를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		LoginResponseDto principal = loginService.signIn(loginResponseDto);
+		LoginResponseDto principal = userService.signIn(loginResponseDto);
 		if (principal.getRole().equals("admin")) {
 			principal.setPassword(loginResponseDto.getPassword());
 			session.setAttribute(Define.PRINCIPAL, principal);
@@ -227,7 +223,7 @@ public class UserController {
 			throw new LoginException("이름을 입력해주세요", HttpStatus.BAD_REQUEST);
 		}
 
-		loginService.createUser(joinResponseDto);
+		userService.createUser(joinResponseDto);
 
 		return "user/login";
 	}
