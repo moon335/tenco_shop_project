@@ -139,7 +139,6 @@ public class UserService {
 		LoginResponseDto user = new LoginResponseDto();
 		user.setImage(userInfoRequestDto.getUploadFileName());
 		user.setId(principalId);
-		System.out.println(user + "usre");
 		int result = userRepository.userInfoUpdateImage(user);
 		if (result != 1) {
 			System.out.println("정보 수정에 실패하였습니다.");

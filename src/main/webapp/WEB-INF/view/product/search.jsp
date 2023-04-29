@@ -4,9 +4,13 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+body{
+font-family: 'Noto Sans';
+}
 form {
    display: flex;
    align-items: center;

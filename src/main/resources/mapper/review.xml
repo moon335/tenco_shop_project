@@ -112,4 +112,17 @@
       where id=#{id}
    </update>
    
+   <update id="updateHeart">
+		<if test="type == 'plus'">
+		update review_tb 
+		set heart=heart+1
+		where id=#{id}
+		</if>
+		<if test="type == 'minus'">
+		update review_tb 
+		set heart=heart-1
+		where id=#{id}
+		</if>
+   </update>
+   
 </mapper>

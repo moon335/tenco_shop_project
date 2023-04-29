@@ -60,8 +60,15 @@ tbody tr td a:hover {
 	text-align: center;
 }
 
-.myReview--username--wrap {
-	
+.word{
+	width: 120px;
+    outline: 1px solid black;
+    outline-style: none;
+    display: block;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 </style>
 <main>
@@ -94,13 +101,13 @@ tbody tr td a:hover {
 				<c:when test="${reviewList.isEmpty() == false}">
 					<c:forEach var="review" items="${reviewList}">
 						<tr>
-							<td><a href="/review/detail/${review.id}">${review.id}</a></td>
-							<td><a href="/review/detail/${review.id}">${review.title}</a></td>
-							<td><a href="/review/detail/${review.id}"><img alt="" src="/static/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
-							<td><a href="/review/detail/${review.id}">${review.engName}<br> ${review.korName}
+							<td><a href="/review/detail/${review.id}" class="word">${review.id}</a></td>
+							<td><a href="/review/detail/${review.id}" class="word">${review.title}</a></td>
+							<td><a href="/review/detail/${review.id}" class="word"><img alt="" src="/static/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
+							<td><a href="/review/detail/${review.id}" class="word">${review.engName}<br> ${review.korName}
 							</a></td>
-							<td><a href="/review/detail/${review.id}">${review.sizeName}</a></td>
-							<td><a href="/review/detail/${review.id}">${review.brandName}</a></td>
+							<td><a href="/review/detail/${review.id}" class="word">${review.sizeName}</a></td>
+							<td><a href="/review/detail/${review.id}" class="word">${review.brandName}</a></td>
 							<td><a href="/review/detail/${review.id}">${review.formatCreatedAt()}</a></td>
 							<%--/${review.id} --%>
 						</tr>

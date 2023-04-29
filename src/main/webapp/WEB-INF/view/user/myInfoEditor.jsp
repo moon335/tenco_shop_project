@@ -2,10 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
 <style>
 body {
 	width: 1183px;
 	margin: 0 auto;
+}
+
+.content {
+	font-family: 'Noto Sans';
 }
 
 .header {
@@ -266,13 +271,15 @@ body {
 				<div class="myimage">
 					<c:choose>
 						<c:when test="${principal.image!=null}">
-							<label for="customFile"> <input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;"> <img class="m--profile" alt=""
-								src=" <c:url value="/static/images/uploads/${principal.image}"/>" width="150px" height="150" style="margin-top: -20px; border-radius: 150px;">
+							<label for="customFile"> <input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png"
+								style="display: none;"> <img class="m--profile" alt="" src=" <c:url value="/static/images/uploads/${principal.image}"/>" width="150px"
+								height="150" style="margin-top: -20px; border-radius: 150px;">
 							</label>
 						</c:when>
 						<c:otherwise>
-							<label for="customFile"><input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;"> <img class="m--profile" alt=""
-								src="/static/images/myinfo.png" width="150px" height="150" style="margin-top: -20px; border-radius: 150px;"></label>
+							<label for="customFile"><input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png"
+								style="display: none;"> <img class="m--profile" alt="" src="/static/images/myinfo.png" width="150px" height="150"
+								style="margin-top: -20px; border-radius: 150px;"></label>
 						</c:otherwise>
 					</c:choose>
 

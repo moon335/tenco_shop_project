@@ -16,6 +16,7 @@ body {
 
 main {
 	width: 950px;
+	margin: 20px;
 }
 
 .reviewInsert--all--wrap {
@@ -24,13 +25,14 @@ main {
 	justify-content: center;
 }
 
-.reviewInsert--wrap>h4 {
+.reviewInsert--wrap>h2 {
 	font-weight: bolder;
 }
 
-.reviewInsert--wrap--title>h4 {
+.reviewInsert--wrap--title>h2 {
 	border-bottom: 1px solid #ebebeb;
 	padding-bottom: 20px;
+	margin-top: 15px;
 }
 
 .reviewInsert--header {
@@ -50,16 +52,17 @@ main {
 }
 
 .wish--product {
-	width: 900px;
+	width: 1000px;
 	display: flex;
 	margin-bottom: 20px;
-	justify-content: center;
+	justify-content: flex-start;
 }
 
 .wish--box {
 	display: flex;
 	justify-content: center;
-	margin-right: 40px;
+	margin-right: 20px;
+	margin-left: 10px;
 	width: 80px;
 	align-items: center;
     height: 100%;
@@ -75,7 +78,7 @@ main {
 	display: flex;
 	padding-top:30px;
 	justify-content: space-between;
-	width: 700px;
+	width: 800px;
 	align-items: center;
 }
 
@@ -160,16 +163,19 @@ body>div>main>form>div.container.mt-3 {
 .btn-primary {
 	width: 94px;
 	height: 38px;
+	font-size: 15px;
 }
 
 .reviewInsert--detail span {
     padding-left: 30px;
 }
+
+
 </style>
 <main>
 	<form action="/review/reviewInsert-proc" method="post" class="mb-1" enctype="Multipart/form-data">
 		<div class="reviewInsert--wrap--title">
-			<h4>상품 정보</h4>
+			<h2>상품 정보</h2>
 		</div>
 		<div class="wish--item">
 			<div class="wish--product">

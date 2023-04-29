@@ -1,21 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style type="text/css">
 body {
 	width: 1183px;
 	margin: 0 auto;
+	font-family: 'Noto Sans';
 }
 
 .carousel-inner {
@@ -123,7 +119,7 @@ body {
 
 .word {
 	outline: 1px solid black;
-	outline-style:none;
+	outline-style: none;
 	display: block;
 	color: black;
 	width: 630px;
@@ -144,36 +140,28 @@ body {
 	</div>
 	<div class="list">
 		<div>
-			<button type="submit" style="border-style: none" name="name"
-				value="all" onclick="location.href='/shopCategorySelect'">전체</button>
+			<button type="submit" style="border-style: none" name="name" value="all" onclick="location.href='/shopCategorySelect'">전체</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name"
-				value="신발" onclick="location.href='/shopCategorySelect?type=신발'">신발</button>
+			<button type="submit" style="border-style: none" name="name" value="신발" onclick="location.href='/shopCategorySelect?type=신발'">신발</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name"
-				value="outer" onclick="location.href='/shopCategorySelect?type=아우터'">아우터</button>
+			<button type="submit" style="border-style: none" name="name" value="outer" onclick="location.href='/shopCategorySelect?type=아우터'">아우터</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name"
-				value="top" onclick="location.href='/shopCategorySelect?type=상의'">상의</button>
+			<button type="submit" style="border-style: none" name="name" value="top" onclick="location.href='/shopCategorySelect?type=상의'">상의</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name"
-				value="pants" onclick="location.href='/shopCategorySelect?type=하의'">하의</button>
+			<button type="submit" style="border-style: none" name="name" value="pants" onclick="location.href='/shopCategorySelect?type=하의'">하의</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name"
-				value="bag" onclick="location.href='/shopCategorySelect?type=가방'">가방</button>
+			<button type="submit" style="border-style: none" name="name" value="bag" onclick="location.href='/shopCategorySelect?type=가방'">가방</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name"
-				value="wallet" onclick="location.href='/shopCategorySelect?type=지갑'">지갑</button>
+			<button type="submit" style="border-style: none" name="name" value="wallet" onclick="location.href='/shopCategorySelect?type=지갑'">지갑</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name"
-				value="watch" onclick="location.href='/shopCategorySelect?type=시계'">시계</button>
+			<button type="submit" style="border-style: none" name="name" value="watch" onclick="location.href='/shopCategorySelect?type=시계'">시계</button>
 		</div>
 	</div>
 	<div class="header"></div>

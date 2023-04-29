@@ -6,6 +6,11 @@
 body {
 	margin: 0 auto;
 	width: 1200px;
+	font-family: 'Noto Sans';
+}
+
+main{
+	font-family: 'Noto Sans';
 }
 
 #main--table {

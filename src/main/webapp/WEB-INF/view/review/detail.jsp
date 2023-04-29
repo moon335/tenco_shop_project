@@ -4,13 +4,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <link rel="stylesheet" href="/css/reviewCategory.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-<script>
-    function addLike(index) {
-        const pushHeartBtn = document.querySelectorAll(".heartBtn");
-        pushHeartBtn[index].innerHTML = '<i class="xi-heart xi-2x"></i>';
-        pushHeartBtn[index].style.color = 'red';
-    }
-</script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <style>
 body {
@@ -65,6 +58,7 @@ html, body {
 .detail--category--wrap {
 	display: flex;
 	flex-direction: column;
+	margin-top: 20px;
 }
 
 .detail--user--wrap, .detail--picture--wrap, .detail--product--wrap,
@@ -115,11 +109,6 @@ html, body {
 	padding-top: 8px;
 }
 
-.heartBtn {
-	margin: 0;
-	padding: 0;
-}
-
 main {
 	margin-bottom: 50px;
 }
@@ -166,6 +155,14 @@ main {
 	display: flex;
 }
 
+.detail--userName--wrap a{
+	color: black;
+}
+
+.detail--userName--wrap a:hover{
+	text-decoration: underline;
+}
+
 .detail--title--wrap {
 	display: flex;
 	justify-content: flex-start;
@@ -184,6 +181,14 @@ main {
 .detail--wrap {
 	font-size: 2.5rem;
 }
+
+.heartBtn{
+	display: flex;
+}
+
+.detail--heart{
+	margin-top: 13px;
+}
 </style>
 <main>
 	<div class="detail--all--wrap">
@@ -197,7 +202,8 @@ main {
 								<a href="/review/author-style/${review.userName}"><img src="/static/images/uploads/${principal.image}"></a>
 							</div>
 							<div class="user--info">
-								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span
+									class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
 							</div>
 						</div>
 					</div>
@@ -209,7 +215,8 @@ main {
 								<a href="/review/author-style/${review.userName}"><img src="/static/images/myinfo.png"></a>
 							</div>
 							<div class="user--info">
-								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
+								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span
+									class="detail--createdAt--wrap">${review.formatCreatedAt()}</span>
 							</div>
 						</div>
 					</div>
@@ -228,10 +235,29 @@ main {
 				</div>
 			</div>
 			<div class="detail--heart--wrap">
-				<button class="heartBtn" onclick="addLike(${status.index})">
-					<i class=" xi-heart-o xi-2x" style="color: black;"></i>
-				</button>
-				<div class="detail--heart">좋아요 ${review.heart}개</div>
+				<c:choose>
+					<c:when test="${heart != null}">
+						<form action="/review/delete-heart/${heart.id}/${heart.reviewId}/minus" method="get">
+							<div class="heartBtn">
+								<button type="submit">
+									<img alt="" src="/static/images/review/red_heart2.png" width="45" height="50">
+								</button>
+								<div class="detail--heart">좋아요 ${review.heart}개</div>
+							</div>
+						</form>
+					</c:when>
+					<c:otherwise>
+						<form action="/review/insert-heart" method="post">
+							<div class="heartBtn">
+								<input type="hidden" name="reviewId" value="${review.id}">
+								<button type="submit">
+									<img alt="" src="/static/images/review/white_heart2.png" width="45" height="50">
+								</button>
+								<div class="detail--heart">좋아요 ${review.heart}개</div>
+							</div>
+						</form>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<div class="detail--content--wrap">${review.content}</div>
 		</div>
@@ -242,19 +268,19 @@ main {
 
 	<!-- Initialize Swiper -->
 	<script>
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-  </script>
+		var swiper = new Swiper(".mySwiper", {
+			slidesPerView : 1,
+			spaceBetween : 30,
+			loop : true,
+			pagination : {
+				el : ".swiper-pagination",
+				clickable : true,
+			},
+			navigation : {
+				nextEl : ".swiper-button-next",
+				prevEl : ".swiper-button-prev",
+			},
+		});
+	</script>
 </main>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

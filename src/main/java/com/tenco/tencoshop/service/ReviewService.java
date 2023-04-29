@@ -2,7 +2,6 @@ package com.tenco.tencoshop.service;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -96,7 +95,7 @@ public class ReviewService {
 	// userName 기반 내 리뷰 확인하기
 	@Transactional
 	public List<ReviewResponseDto> findMyReviewByUserName(String userName) {
-		
+
 		List<ReviewResponseDto> list = reviewRepository.findMyReviewByUserName(userName);
 		return list;
 	}

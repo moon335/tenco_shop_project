@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
 <style type="text/css">
 * {
 	margin: 0;
@@ -13,9 +14,14 @@
 	box-sizing: border-box;
 }
 
+header{
+	font-family: 'Noto Sans';
+}
+
 body {
 	width: 1200px;
 	margin: 0 auto;
+	font-family: 'Noto Sans';
 }
 
 .side {
@@ -245,7 +251,7 @@ button:hover {
 		<div class="side">
 			<div>
 				<h4 style="margin-bottom: 50px;">
-					<a href="/admin/admin" " style="color: black;">마이 페이지</a>
+					<a href="/admin/admin" style="color: black;">마이 페이지</a>
 				</h4>
 			</div>
 			<div>

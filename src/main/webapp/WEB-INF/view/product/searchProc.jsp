@@ -6,7 +6,8 @@
 <html>
 <head>
 <link rel="stylesheet href="
-   https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0 " />
+   https://fonts.	`googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0 " />
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>   
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -14,6 +15,10 @@ form {
    display: flex;
    align-items: center;
    flex-direction: column;
+}
+
+body{
+	font-family: 'Noto Sans';
 }
 
 }

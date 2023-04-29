@@ -4,10 +4,19 @@
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
 <style>
 body {
 	width: 1183px;
 	margin: 0 auto;
+}
+
+.side{
+	font-family: 'Noto Sans';
+}
+
+.content{
+	font-family: 'Noto Sans';
 }
 
 .header {
@@ -142,7 +151,7 @@ body {
 			</div>
 			<div id="profileediter" style="margin-top: 20px;">
 				<div>
-					<h3 style="margin-left: 10px;">${user.username} 님반갑습니다.</h3>
+					<h3 style="margin-left: 10px;">${user.username}님 반갑습니다.</h3>
 				</div>
 				<div>
 					<form action="/user/myinfoEditor" method="get">

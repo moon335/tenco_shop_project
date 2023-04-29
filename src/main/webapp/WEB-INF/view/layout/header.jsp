@@ -3,14 +3,24 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+header {
+	font-family: 'Noto Sans';
+}
+
+main{
+	font-family: 'Noto Sans';
+}
+
 .top-inner {
 	display: flex;
 	justify-content: flex-end;
@@ -28,6 +38,7 @@
 .main-inner {
 	padding: 20px;
 	height: 100px;
+	margin-bottom: 20px;
 }
 
 .header-inner {
@@ -212,8 +223,8 @@ button:hover {
 					<a href="/main" style="font-size: 28px;">TencoShop</a>
 				</h3>
 				<div class="header-inner-menu">
-					<label><a href="/main">HOME</a></label> <label><a href="/review/style">STYLE</a></label> <label><a href="/shop">SHOP</a></label> <label><a href="/user/myinfoProc">MY</a></label> <span
-						class="material-symbols-outlined"><a href="/product/search">search</a></span>
+					<label><a href="/main">HOME</a></label> <label><a href="/review/style">STYLE</a></label> <label><a href="/shop">SHOP</a></label> <label><a
+						href="/user/myinfoProc">MY</a></label> <span class="material-symbols-outlined"><a href="/product/search">search</a></span>
 				</div>
 			</div>
 		</div>
