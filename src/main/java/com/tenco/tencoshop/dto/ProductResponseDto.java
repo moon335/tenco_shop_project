@@ -2,7 +2,6 @@ package com.tenco.tencoshop.dto;
 
 import java.sql.Date;
 
-
 import lombok.Data;
 
 @Data

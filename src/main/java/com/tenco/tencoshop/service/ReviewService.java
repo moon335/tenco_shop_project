@@ -2,12 +2,9 @@ package com.tenco.tencoshop.service;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.dto.ReviewRequestDto;
@@ -15,8 +12,6 @@ import com.tenco.tencoshop.dto.ReviewResponseDto;
 import com.tenco.tencoshop.repository.interfaces.ProductRepository;
 import com.tenco.tencoshop.repository.interfaces.ReviewRepository;
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
-import com.tenco.tencoshop.repository.model.Review;
-import com.tenco.tencoshop.repository.model.ReviewCategory;
 import com.tenco.tencoshop.repository.model.User;
 
 @Service // 서비스는 서비스 ~ ㅎㅎ

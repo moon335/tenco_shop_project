@@ -116,6 +116,16 @@ button:hover{
 	font-weight: bold;
 }
 
+.search-faq input {
+	margin-top: 10px;
+	padding: 10px;
+	width: 880px;
+	height: 40px;
+	background-color: #f4f4f4;
+	border: none;
+	border-radius: 5px;
+}
+
 
 </style>
 </head>
@@ -130,6 +140,11 @@ button:hover{
 		<div class="content-area">
 			<div class="content-title-border">
 				<h3>자주 묻는 질문(FAQ)</h3>
+			</div>
+			<div class="search-faq">
+			<form action="/notice/findProc" method="get">
+			<input type="text" name="find" placeholder="검색">
+			</form>
 			</div>
 			<div class="category-list-table">
 				<table>

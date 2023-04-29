@@ -3,11 +3,10 @@ package com.tenco.tencoshop.repository.interfaces;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import com.tenco.tencoshop.dto.NoticeRequestDto;
 import com.tenco.tencoshop.dto.NoticeResponseDto;
-import com.tenco.tencoshop.repository.model.Notice;
+import com.tenco.tencoshop.repository.model.Faq;
 
 @Mapper
 public interface NoticeRepository {
@@ -26,5 +25,6 @@ public interface NoticeRepository {
 	 
 	public List<NoticeResponseDto.faqDto> selectFaqCategory(String category);
 	
+	public List<Faq> findFaq(String find);
 	
 }

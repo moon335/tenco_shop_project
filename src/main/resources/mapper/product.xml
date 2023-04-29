@@ -13,7 +13,8 @@
 		inner join
 		brand_tb as b
 		on p.brand_id = b.id
-		limit 8;
+        group by eng_name
+        limit 8;
 	</select>
 	<select id="findProductAll"
 		resultType="com.tenco.tencoshop.repository.model.Product">

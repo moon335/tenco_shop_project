@@ -16,7 +16,6 @@ import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.QuestionFormDto;
 import com.tenco.tencoshop.repository.model.Answer;
 import com.tenco.tencoshop.repository.model.Question;
-import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.AnswerService;
 import com.tenco.tencoshop.service.QuestionService;
 import com.tenco.tencoshop.service.UserService;
