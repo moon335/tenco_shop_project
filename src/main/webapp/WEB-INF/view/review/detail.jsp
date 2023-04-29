@@ -188,12 +188,6 @@ main {
 <main>
 	<div class="detail--all--wrap">
 		<div class="detail--category--wrap">
-			<div class="category--wrap">
-				<a href="/review/style">전체</a>
-				<c:forEach var="reviewCategoryList" items="${reviewCategoryList}">
-					<a href="/review/prod-category/${reviewCategoryList.id}">${reviewCategoryList.name}</a>
-				</c:forEach>
-			</div>
 
 			<c:choose>
 				<c:when test="${principal.image!=null}">

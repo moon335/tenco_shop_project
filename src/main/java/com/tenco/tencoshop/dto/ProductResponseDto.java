@@ -25,6 +25,6 @@ public class ProductResponseDto {
    private Integer sizeId;
    private String brandName;
    private String categoryName;
-   private String sizeName;
+   private String sizename;
    
 } // end of class

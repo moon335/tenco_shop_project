@@ -156,6 +156,11 @@ body>div>main>form>div.container.mt-3 {
 	border-bottom: 1px solid #eee;
 	padding-bottom: 20px;
 }
+
+.btn-primary {
+	width: 94px;
+	height: 38px;
+}
 </style>
 
 <main>

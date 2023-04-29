@@ -157,12 +157,21 @@ main {
 	padding-bottom: 60px;
 }
 
+.category--wrap{
+	width:1200px;
+	display: flex;
+	justify-content: space-around;
+	border-bottom: 1px solid #ccc;
+}
+
+
 .category--wrap>a{
 	padding:0;
 	margin: 0;
 	text-align: center;
 	padding-bottom: 10px;
 	color:gray;
+	text-align: center;
 }
 </style>
 <main>

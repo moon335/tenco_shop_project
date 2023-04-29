@@ -59,10 +59,10 @@ main {
 .wish--box {
 	display: flex;
 	justify-content: center;
-	width: 80px;
-	height: 80px;
 	margin-right: 40px;
 	width: 80px;
+	align-items: center;
+    height: 100%;
 }
 
 .review--product--wrap {
@@ -157,6 +157,14 @@ body>div>main>form>div.container.mt-3 {
 	width: 650px;
 }
 
+.btn-primary {
+	width: 94px;
+	height: 38px;
+}
+
+.reviewInsert--detail span {
+    padding-left: 30px;
+}
 </style>
 <main>
 	<form action="/review/reviewInsert-proc" method="post" class="mb-1" enctype="Multipart/form-data">

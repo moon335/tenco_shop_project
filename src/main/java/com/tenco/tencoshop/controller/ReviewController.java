@@ -90,7 +90,6 @@ public class ReviewController {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		
 		List<ReviewResponseDto> reviewList = reviewService.findMyReviewByUserName(principal.getUsername());
-		System.out.println(reviewList);
 		if (reviewList.isEmpty()) {
 			model.addAttribute("reviewList", null);
 		} else {
@@ -148,6 +147,7 @@ public class ReviewController {
 				System.out.println("파일 업로드 오류");
 			}
 		}
+		reviewRequestDto.setProdId(33);
 		reviewService.createReview(principal.getUsername(), reviewRequestDto);
 		return "redirect:/user/myinfoProc";
 	}
