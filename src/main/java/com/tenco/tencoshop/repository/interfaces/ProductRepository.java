@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.tenco.tencoshop.dto.ProductResponseDto;
+import com.tenco.tencoshop.dto.ProductResponseDtoForReview;
 import com.tenco.tencoshop.repository.model.Product;
 
 @Mapper
@@ -21,7 +22,9 @@ public interface ProductRepository {
 
 	public Product getProdInfo(Integer id);
 
-	public ProductResponseDto findProductById(Integer id);
+	public ProductResponseDtoForReview findProductById(Integer id);
+	
+	public ProductResponseDto findProductByProdId(Integer id);
 
 	// 제품 카테고리 선택 시 상품 나열
 	public List<ProductResponseDto> CategorySelect(String name);

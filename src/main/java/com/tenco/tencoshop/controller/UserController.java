@@ -265,7 +265,7 @@ public class UserController {
 
 		session.invalidate();
 
-		return "/layout/main";
+		return "redirect:/main";
 	}
 	
 

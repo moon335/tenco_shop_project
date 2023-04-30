@@ -9,5 +9,14 @@
 		values
 		(#{userId}, #{prodId}, #{cartId}, #{receiver}, #{address}, #{receiverPhoneNumber});
 	</insert>
+	
+	<update id="updateDeliveryStatus">
+		update order_tb set delivery_status = 1
+		where id =#{id};
+	</update>
+	
+	<select id="findById" resultType="com.tenco.tencoshop.repository.model.Order">
+		select * from order_tb where id = #{id}
+	</select>
 
 </mapper> 

@@ -20,13 +20,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductResponseDto;
+import com.tenco.tencoshop.dto.ProductResponseDtoForReview;
 import com.tenco.tencoshop.dto.ReviewRequestDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
 import com.tenco.tencoshop.handler.exception.CustomRestfullException;
 import com.tenco.tencoshop.repository.model.Liketo;
+import com.tenco.tencoshop.repository.model.Order;
 import com.tenco.tencoshop.repository.model.ReviewCategory;
 import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.LiketoService;
+import com.tenco.tencoshop.service.OrderService;
 import com.tenco.tencoshop.service.ReviewCategoryService;
 import com.tenco.tencoshop.service.ReviewService;
 import com.tenco.tencoshop.service.UserService;
@@ -44,6 +47,8 @@ public class ReviewController {
 	private UserService userService;
 	@Autowired
 	private LiketoService liketoService;
+	@Autowired
+	private OrderService orderService;
 
 	// 구매 내역에 있는 것만 리뷰 쓸 때 사용하기
 	@Autowired
@@ -120,7 +125,7 @@ public class ReviewController {
 	@GetMapping("/reviewInsert/{orderId}")
 	public String reviewInsert(Model model, @PathVariable Integer orderId) {
 
-		ProductResponseDto product = reviewService.readByOrderId(orderId);
+		ProductResponseDtoForReview product = reviewService.readByOrderId(orderId);
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
 
 		model.addAttribute("product", product);
@@ -164,7 +169,9 @@ public class ReviewController {
 				System.out.println("파일 업로드 오류");
 			}
 		}
-		reviewRequestDto.setProdId(33);
+		// orderId 기반으로 상품 id 검색
+		Order responseOrder = orderService.readById(reviewRequestDto.getOrderId());
+		reviewRequestDto.setProdId(responseOrder.getProductId());
 		reviewService.createReview(principal.getUsername(), reviewRequestDto);
 		return "redirect:/user/myinfoProc";
 	}

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tenco.tencoshop.dto.AnswerRequsetDto;
 import com.tenco.tencoshop.dto.QuestionFormDto;
 import com.tenco.tencoshop.dto.QuestionResponseDto;
-import com.tenco.tencoshop.handler.LoginException;
+import com.tenco.tencoshop.handler.exception.CustomRestfullException;
 import com.tenco.tencoshop.repository.interfaces.QuestionRepository;
 import com.tenco.tencoshop.repository.model.Question;
 
@@ -51,7 +51,7 @@ public class QuestionService {
 		quest.setUserId(principalId);
 		int result = questionRepository.questionWriting(quest);
 		if (result != 1) {
-			throw new LoginException("글쓰기에 실패하셨습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("글쓰기에 실패하셨습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

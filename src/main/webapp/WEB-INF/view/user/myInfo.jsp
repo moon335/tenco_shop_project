@@ -1,22 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
 	width: 1183px;
 	margin: 0 auto;
-}
-
-.side{
-	font-family: 'Noto Sans';
-}
-
-.content{
-	font-family: 'Noto Sans';
 }
 
 .header {
@@ -129,7 +118,6 @@ body {
 	display: flex;
 	align-items: center;
 }
-
 </style>
 
 <div class="content">
@@ -151,7 +139,7 @@ body {
 			</div>
 			<div id="profileediter" style="margin-top: 20px;">
 				<div>
-					<h3 style="margin-left: 10px;">${user.username}님 반갑습니다.</h3>
+					<h3 style="margin-left: 10px;">${user.username}님반갑습니다.</h3>
 				</div>
 				<div>
 					<form action="/user/myinfoEditor" method="get">
@@ -181,7 +169,7 @@ body {
 			${orderCount.deliveryCount}
 		</div>
 		<div>
-			<h5>배송전</h5>
+			<h5>배송중</h5>
 			${orderCount.deliveryNonComplete}
 		</div>
 		<div>
@@ -202,22 +190,27 @@ body {
 				<div class="buyDate">
 					<pre>${orderList.orderDate}</pre>
 				</div>
-				<div class="status"
-					style="align-items: center; width: 150px; text-align: center">
+				<div class="status" style="align-items: center; width: 150px; text-align: center">
 					<c:choose>
 						<c:when test="${orderList.deliveryStatus==1}">
 							<h6>배송완료</h6>
 						</c:when>
 						<c:otherwise>
-							<h6 style="margin-left: 5px;">배송전</h6>
+							<h6 style="margin-left: 5px;">배송중</h6>
 						</c:otherwise>
 					</c:choose>
 
-					<button type="submit"
-						onclick="location.href='/review/reviewInsert/${orderList.id}'"
-						style="border: none; background-color: white; color: #088ff7">
-						후기 <br>올리기
-					</button>
+					<c:choose>
+						<c:when test="${orderList.deliveryStatus==1}">
+							<button type="submit" onclick="location.href='/review/reviewInsert/${orderList.id}'" style="border: none; background-color: white; color: #088ff7; margin-right: 10px;">
+								후기 <br>올리기
+							</button>
+						</c:when>
+						<c:otherwise>
+							<button type="submit" onclick="location.href='/order/updateDeliveryStatus?id=${orderList.id}'" style="border: none; background-color: white; color: #088ff7; margin-top: -10px;">구매확정</button>
+						</c:otherwise>
+					</c:choose>
+
 				</div>
 			</div>
 		</c:forEach>

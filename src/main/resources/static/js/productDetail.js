@@ -20,5 +20,6 @@ function submitCart() {
 		method: 'post',
 		body : formData
 	});
+	window.location.href="/cart/list";
 }
  

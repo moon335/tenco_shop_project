@@ -13,8 +13,8 @@ import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.OrderResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
-import com.tenco.tencoshop.handler.LoginException;
 import com.tenco.tencoshop.handler.exception.CustomRestfullException;
+import com.tenco.tencoshop.handler.exception.LoginException;
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
 import com.tenco.tencoshop.repository.model.User;
 
@@ -36,7 +36,7 @@ public class UserService {
 		joinResponseDto.setPassword(hashPwd);
 		if (joinResponseDto.getRole() == null || !joinResponseDto.getRole().isEmpty()) {
 			if (!joinResponseDto.getRole().equals("green")) {
-				throw new LoginException("관리자 비밀번호가 일치하지 않습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+				throw new CustomRestfullException("관리자 비밀번호가 일치하지 않습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 			} else {
 				resultAdmin = userRepository.signUpAdmin(joinResponseDto);
 			}

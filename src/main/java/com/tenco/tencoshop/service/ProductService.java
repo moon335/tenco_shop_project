@@ -45,7 +45,7 @@ public class ProductService {
    
    // 제품 상세 페이지에서 사용
    public ProductResponseDto readProductById(Integer prodId) {
-	   ProductResponseDto responseProduct = productRepository.findProductById(prodId);
+	   ProductResponseDto responseProduct = productRepository.findProductByProdId(prodId);
 	   return responseProduct;
    }
    

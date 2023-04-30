@@ -2,7 +2,6 @@ package com.tenco.tencoshop.dto;
 
 import java.sql.Date;
 
-
 import lombok.Data;
 
 @Data
@@ -25,6 +24,6 @@ public class ProductResponseDto {
    private Integer sizeId;
    private String brandName;
    private String categoryName;
-   private String sizename;
+   private String sizeName;
    
 } // end of class

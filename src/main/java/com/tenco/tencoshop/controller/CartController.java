@@ -2,6 +2,7 @@ package com.tenco.tencoshop.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tenco.tencoshop.dto.CartResponseDto;
+import com.tenco.tencoshop.dto.LoginResponseDto;
+import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.CartService;
+import com.tenco.tencoshop.service.UserService;
+import com.tenco.tencoshop.util.Define;
+
+/**
+ * 장바구니 관련 컨트롤러
+ * @author 현우
+ */
 
 @Controller
 @RequestMapping("/cart")
@@ -23,18 +33,22 @@ public class CartController {
    private CartService cartService;
    
    @Autowired
+   private UserService userService;
+   
+   @Autowired
    private HttpSession session;
-   
-   
+
+   /**
+    * @param model
+    * @return 장바구니 페이지
+    */
    @GetMapping("/list")
    public String cart(Model model) {
       
-      // 인증 검사 필요
-      
+	   LoginResponseDto principal = (LoginResponseDto)session.getAttribute(Define.PRINCIPAL);
+	   User loginUser = userService.readUserByUsername(principal.getUsername());
       // 서비스 부르기
-      // todo
-      // session 값에서 아이디 가져오는 것으로 변경 예정
-      List<CartResponseDto> cartList = cartService.readCartByUserId(1);
+      List<CartResponseDto> cartList = cartService.readCartByUserId(loginUser.getId());
       // 주문 목록 페이지로 넘기기
       model.addAttribute("cartList", cartList);
       return "/product/cart";
@@ -43,9 +57,9 @@ public class CartController {
    @PostMapping("/addCart")
    public String addCart(String size, Integer prodId) {
 	   // 세션에서 로그인 유저 정보 받아와서 처리
-	   System.out.println(size);
+	   LoginResponseDto principal = (LoginResponseDto)session.getAttribute(Define.PRINCIPAL);
 	   // 서비스 불러서 insert 처리
-	   cartService.createCart(size, prodId, "aaaa");
+	   cartService.createCart(size, prodId, principal.getUsername());
 	   
 	   return "/cart/list";
    }

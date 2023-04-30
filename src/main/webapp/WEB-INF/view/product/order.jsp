@@ -171,7 +171,7 @@
 				<div class="prod--info--area">
 					<div class="prod--info">
 						<div class="product">
-							<img alt="" src="/static/images/prodImages/img1.png" width="80" height="80">
+							<img alt="" src="/static/images/prodImages/${product.imgRoute}" width="80" height="80">
 						</div>
 						<div class="prod--detail">
 							<input type="hidden" value="<%=prodId %>" name="prodId">
