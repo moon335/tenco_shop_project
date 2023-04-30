@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
+	width: 1183px;
 	margin: 0 auto;
-	width: 1200px;
+}
+main {
+	width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #main--table {
@@ -60,8 +67,15 @@ tbody tr td a:hover {
 	text-align: center;
 }
 
-.myReview--username--wrap {
-	
+.word{
+	width: 120px;
+    outline: 1px solid black;
+    outline-style: none;
+    display: block;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 </style>
 <main>
@@ -72,7 +86,7 @@ tbody tr td a:hover {
 				<span class="myReview--username--wrap">${user.username}</span>
 			</c:when>
 			<c:otherwise>
-				<span class="myReview--img--wrap"><img src="/images/myinfo.png"></span>
+				<span class="myReview--img--wrap"><img src="/static/images/myinfo.png"></span>
 				<span class="myReview--username--wrap">${user.username}</span>
 			</c:otherwise>
 		</c:choose>
@@ -94,13 +108,13 @@ tbody tr td a:hover {
 				<c:when test="${reviewList.isEmpty() == false}">
 					<c:forEach var="review" items="${reviewList}">
 						<tr>
-							<td><a href="/review/detail/${review.id}">${review.id}</a></td>
-							<td><a href="/review/detail/${review.id}">${review.title}</a></td>
-							<td><a href="/review/detail/${review.id}"><img alt="" src="/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
-							<td><a href="/review/detail/${review.id}">${review.engName}<br> ${review.korName}
+							<td><a href="/review/detail/${review.id}" class="word">${review.id}</a></td>
+							<td><a href="/review/detail/${review.id}" class="word">${review.title}</a></td>
+							<td><a href="/review/detail/${review.id}" class="word"><img alt="" src="/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
+							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.engName}<br> ${review.korName}
 							</a></td>
-							<td><a href="/review/detail/${review.id}">${review.sizeName}</a></td>
-							<td><a href="/review/detail/${review.id}">${review.brandName}</a></td>
+							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.sizeName}</a></td>
+							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.brandName}</a></td>
 							<td><a href="/review/detail/${review.id}">${review.formatCreatedAt()}</a></td>
 							<%--/${review.id} --%>
 						</tr>

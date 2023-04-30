@@ -51,14 +51,13 @@ h3 {
 	margin-top: 10px;
 }
 
-
 .button {
 	display: flex;
 	justify-content: center;
-	
 }
+
 .button a {
-	color:black;
+	color: black;
 	border: 1px solid #ccc;
 	border-radius: 7px;
 	padding: 5px;
@@ -67,10 +66,8 @@ h3 {
 
 .content {
 	border-top: 1px solid #ccc;
-	height: 600px; 
-	
+	height: 600px;
 }
-
 </style>
 </head>
 <body>
@@ -78,23 +75,32 @@ h3 {
 		<div class="side-menu">
 			<h2 class="side-menu-title">고객센터</h2>
 			<div class="side-menu-list">
-				<a href="notice">공지사항</a> <a href="#">자주 묻는 질문</a>
+				<a href="list">공지사항</a> <a href="#">자주 묻는 질문</a>
 			</div>
 		</div>
 		<div class="content-area">
+
 			<div class="content-title-border">
 				<h3>공지사항</h3>
 			</div>
 			<div class="notice-content">
 				<p class="title">제목 : ${noticeList.title}</p>
 				<div class="content">
-				<p>${noticeList.content}</p>
+					<p>${noticeList.content}</p>
 				</div>
 			</div>
-			<div class="button">
-			<a href="/notice">목록보기</a>
-			<a href="/notice/update/${id}">수정하기</a>
-			</div>
+			<c:choose>
+				<c:when test="${user.getRole().equals('admin')}">
+					<div class="button">
+						<a href="list">목록보기</a> <a href="/notice/update/${id}">수정하기</a>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="button">
+					<a href="list">목록보기</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </body>

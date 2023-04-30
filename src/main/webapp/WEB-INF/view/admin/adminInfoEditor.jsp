@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
 	width: 1183px;
@@ -123,6 +121,7 @@ body {
 	background-color: #f8f6f6;
 	border-style: none;
 	justify-content: space-between;
+	padding: 20px;
 }
 
 .buyProgress div {
@@ -186,9 +185,9 @@ body {
 
 .submit {
 	display: flex;
+	width: 500px;
 	justify-content: flex-end;
 	align-items: flex-end;
-	margin-left: 10px;
 }
 
 .submit input {
@@ -245,17 +244,6 @@ body {
 	display: block;
 	cursor: pointer;
 }
-
-.button {
-	display: flex;
-	width: 550px;
-	justify-content: flex-end;
-}
-
-.userinfo {
-	margin-left: 20px;
-	padding: 20px;
-}
 </style>
 
 <div class="content">
@@ -264,26 +252,17 @@ body {
 			<h2>프로필 정보</h2>
 		</div>
 		<div class="myinfo">
-			<form action="/admin/adminInfoupdateimage" method="post"
-				enctype="multipart/form-data" style="display: flex;">
+			<form action="/admin/adminInfoupdateimage" method="post" enctype="multipart/form-data" style="display: flex;">
 				<div class="myimage">
 					<c:choose>
 						<c:when test="${principal.image!=null}">
-							<label for="customFile"> <input type="file"
-								class="cutom-file-input" id="customFile" name="file"
-								accept=".jpg,.jpeg,.png" style="display: none;"> <img
-								class="m--profile" alt=""
-								src=" <c:url value="/images/uploads/${principal.image}"/>"
-								width="150px" height="150"
-								style="margin-top: -20px; border-radius: 150px;">
+							<label for="customFile"> <input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;"> <img class="m--profile" alt=""
+								src=" <c:url value="/static/images/uploads/${principal.image}"/>" width="150px" height="150" style="margin-top: -20px; border-radius: 150px;">
 							</label>
 						</c:when>
 						<c:otherwise>
-							<label for="customFile"><input type="file"
-								class="cutom-file-input" id="customFile" name="file"
-								accept=".jpg,.jpeg,.png" style="display: none;"> <img
-								class="m--profile" alt="" src="/images/myinfo.png" width="150px"
-								height="150" style="margin-top: -20px; border-radius: 150px;"></label>
+							<label for="customFile"><input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;"> <img class="m--profile" alt=""
+								src="/static/images/myinfo.png" width="150px" height="150" style="margin-top: -20px; border-radius: 150px;"></label>
 
 						</c:otherwise>
 					</c:choose>
@@ -298,8 +277,7 @@ body {
 					<div>
 						<button type="submit" class="btn btn-outline-dark">이미지 변경</button>
 			</form>
-			<form action="/admin/adminInfoDeleteimage" method="post"
-				enctype="multipart/form-data" style="display: flex;">
+			<form action="/admin/adminInfoDeleteimage" method="post" enctype="multipart/form-data" style="display: flex;">
 				<button type="submit" class="btn btn-outline-dark">삭제</button>
 			</form>
 		</div>
@@ -318,8 +296,7 @@ body {
 				</div>
 				<div>
 					<p>비밀번호</p>
-					<input type="password" value="${principal.password}"
-						name="password">
+					<input type="password" value="${principal.password}" name="password">
 				</div>
 		</div>
 	</div>
@@ -338,17 +315,11 @@ body {
 			</div>
 		</div>
 	</div>
-	<div class="button">
-		<div class="submit">
-			<input type="submit" value="수정">
-		</div>
+	<div class="submit">
+		<input type="submit" value="수정">
+	</div>
 </form>
-<div class="submit">
-	<form action="/user/withdraw" method="get">
-		<input type="submit" value="탈퇴">
-	</form>
-</div>
-</div>
+</form>
 </div>
 </div>
 </div>

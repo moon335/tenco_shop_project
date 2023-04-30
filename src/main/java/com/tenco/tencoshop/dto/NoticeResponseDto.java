@@ -19,6 +19,14 @@ public class NoticeResponseDto {
 		private Integer id;
 		private String content;
 	}
+	
+	@Data
+	public static class faqDto{
+		private Integer id;
+		private String title;
+		private String content;
+		private String category;
+	}
 
 	private String adminName;
 	private String title;

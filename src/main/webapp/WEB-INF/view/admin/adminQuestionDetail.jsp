@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
 	width: 1183px;
@@ -128,8 +126,7 @@ body {
 						</c:when>
 						<c:otherwise>
 							<button type="button">
-								<a style="color: white;"
-									href="/answer/answerWriting?id=${quest.id}">답변달기</a>
+								<a style="color: white;" href="/answer/answerWriting?id=${quest.id}">답변달기</a>
 							</button>
 						</c:otherwise>
 					</c:choose>
@@ -137,8 +134,7 @@ body {
 				<c:otherwise>
 					<form action="/question/findProc" method="post">
 						<input type="text" name="findWord">
-						<button type="submit"
-							style="background-color: white; color: black;">검색</button>
+						<button type="submit" style="background-color: white; color: black;">검색</button>
 					</form>
 					<button type="button">
 						<a style="color: white;" href="/user/questWriting">글쓰기</a>
@@ -166,8 +162,7 @@ body {
 		</c:choose>
 	</div>
 	<div class="goList">
-		<button
-			style="border: 1px solid #ccc; border-radius: 15px; padding: 10px;">
+		<button style="border: 1px solid #ccc; border-radius: 15px; padding: 10px;">
 			<a href="/question/find">목록보기</a>
 		</button>
 	</div>

@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
-<link rel="stylesheet"
-   href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
-   width: 1183px;
-   margin: 0 auto;
+	width: 1183px;
+	margin: 0 auto;
 }
+
 .header {
-   display: flex;
-   margin-bottom: 40px;
-   padding: 20px;
-   justify-content: space-between;
+	display: flex;
+	margin-bottom: 40px;
+	padding: 20px;
+	justify-content: space-between;
 }
 
 .content_1 {
@@ -21,59 +21,59 @@ body {
 }
 
 .content_1 div {
-   display: flex;
+	display: flex;
 }
 
 .content_1 button {
-   border-color: #ccc;
-   border-radius: 10px;
-   margin: 15px 2px 10px 4px;
-   border-radius: 10px;
+	border-color: #ccc;
+	border-radius: 10px;
+	margin: 15px 2px 10px 4px;
+	border-radius: 10px;
 }
 
 .content {
-   display: flex;
-   flex-direction: column;
-   width: 950px;
+	display: flex;
+	flex-direction: column;
+	width: 950px;
 }
 
 .userGrade {
-   border-right: 1px solid #ccc;
-   justify-content: center;
-   flex: 1;
+	border-right: 1px solid #ccc;
+	justify-content: center;
+	flex: 1;
 }
 
 .userPoint {
-   flex: 1;
-   justify-content: center;
+	flex: 1;
+	justify-content: center;
 }
 
 .buylist {
-   display: flex;
-   justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .buylist a {
-   color: #6A6A6A;
-   font-size: 13px;
+	color: #6A6A6A;
+	font-size: 13px;
 }
 
 .buylist a:hover {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 #profileediter {
-   display: flex;
-   flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 #profileediter button:hover {
-   background-color: white;
-   color: black;
+	background-color: white;
+	color: black;
 }
 
 #profileediter div button:focus {
-   background-color: #EBEBEB;
+	background-color: #EBEBEB;
 }
 
 .buyProgress {
@@ -112,8 +112,8 @@ body {
 }
 
 .buyDate {
-   display: flex;
-   align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .search__input {
@@ -145,8 +145,7 @@ body {
 			<form action="/user/buylistProc" method="get">
 				<table class="order_date">
 					<tr>
-						<td><input class="search__input" type="date"
-							name="orderStartDate" /></td>
+						<td><input class="search__input" type="date" name="orderStartDate" /></td>
 						<td>~</td>
 						<td><input class="search__input" type="date" name="orderEndDate" /></td>
 						<td>
@@ -170,53 +169,36 @@ body {
 		<c:forEach var="orderList" items="${orderList}">
 			<div>
 				<div class="buyProductImg">
-					<img alt="" src="/images/1.png" width="120" height="120">
+					<img alt="" src="/static/images/1.png" width="120" height="120">
 				</div>
 				<div style="width: 400px;">
 					<p style="width: 250px;">${orderList.engName}</p>
-					<pre style="text-align: center; width: 100px;">${orderList.sizeId}</pre>
+					<pre style="text-align: center; width: 100px;">${orderList.sizeName}</pre>
 				</div>
 				<div class="buyDate">
-					<pre>${orderList.buyDate}</pre>
+					<pre>${orderList.orderDate}</pre>
 				</div>
 				<div style="align-items: center; width: 150px;">
-					<h6>
-						배송완료 <br>
-					</h6>
+					<c:choose>
+						<c:when test="${orderList.deliveryStatus==1}">
+							<h6>
+								배송완료 <br>
+							</h6>
+						</c:when>
+						<c:otherwise>
+							<h6>
+								배송전 <br>
+							</h6>
+						</c:otherwise>
+					</c:choose>
 					<form action="">
-						<button type="submit"
-							style="border: none; background-color: white; color: #088ff7">
+						<button type="submit" style="border: none; background-color: white; color: #088ff7">
 							후기 <br>올리기
 						</button>
 					</form>
 				</div>
 			</div>
 		</c:forEach>
-
-		<div>
-			<div>
-				<img alt="" src="/images/1.png" width="120" height="120">
-			</div>
-			<div style="width: 400px;">
-				<p style="width: 250px;">Dior Saddle Flap Card Holder Blue Dior
-					Oblique Jacquard</p>
-				<pre style="text-align: center; width: 100px;">ONE SIZE</pre>
-			</div>
-			<div class="buyDate">
-				<pre>2023/01/23</pre>
-			</div>
-			<div style="width: 150px;">
-				<h6>
-					배송완료 <br>
-				</h6>
-				<form action="">
-					<button type="submit"
-						style="border: none; background-color: white; color: #088ff7">
-						후기 <br>올리기
-					</button>
-				</form>
-			</div>
-		</div>
 	</div>
 </div>
 </div>

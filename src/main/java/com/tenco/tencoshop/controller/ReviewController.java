@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,12 +20,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.dto.LoginResponseDto;
-import com.tenco.tencoshop.dto.ProductResponseDto;
+import com.tenco.tencoshop.dto.ProductResponseDtoForReview;
 import com.tenco.tencoshop.dto.ReviewRequestDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
+import com.tenco.tencoshop.handler.exception.CustomRestfullException;
+import com.tenco.tencoshop.repository.model.Liketo;
+import com.tenco.tencoshop.repository.model.Order;
 import com.tenco.tencoshop.repository.model.ReviewCategory;
 import com.tenco.tencoshop.repository.model.User;
-import com.tenco.tencoshop.service.ProductService;
+import com.tenco.tencoshop.service.LiketoService;
+import com.tenco.tencoshop.service.OrderService;
 import com.tenco.tencoshop.service.ReviewCategoryService;
 import com.tenco.tencoshop.service.ReviewService;
 import com.tenco.tencoshop.service.UserService;
@@ -30,6 +37,7 @@ import com.tenco.tencoshop.util.Define;
 
 @Controller
 @RequestMapping("/review")
+@Validated
 public class ReviewController {
 
 	@Autowired
@@ -37,9 +45,11 @@ public class ReviewController {
 	@Autowired
 	private ReviewCategoryService reviewCategoryService;
 	@Autowired
-	private ProductService productService;
-	@Autowired
 	private UserService userService;
+	@Autowired
+	private LiketoService liketoService;
+	@Autowired
+	private OrderService orderService;
 
 	// 구매 내역에 있는 것만 리뷰 쓸 때 사용하기
 	@Autowired
@@ -77,9 +87,22 @@ public class ReviewController {
 	public String style(Model model, @PathVariable Integer id) {
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
 		ReviewResponseDto review = reviewService.readDetailById(id);
-		model.addAttribute("reviewCategoryList", reviewCategoryList);
-		model.addAttribute("review", review);
-		// redirect 수정할 수도 있음.
+		
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		if (principal != null) {
+			User user = userService.readUserByUsername(principal.getUsername());
+			Liketo heart = liketoService.readByUserIdAndReviewId(user.getId(), id);
+			model.addAttribute("heart", heart);
+			model.addAttribute("reviewCategoryList", reviewCategoryList);
+			model.addAttribute("review", review);
+			System.out.println(heart);
+			
+		} else {
+			model.addAttribute("reviewCategoryList", reviewCategoryList);
+			model.addAttribute("review", review);
+			model.addAttribute("heart", null);
+		}
+		
 		return "/review/detail";
 	}
 
@@ -88,9 +111,8 @@ public class ReviewController {
 	public String myReview(Model model) {
 		// list 받아야 됨 id
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		
+
 		List<ReviewResponseDto> reviewList = reviewService.findMyReviewByUserName(principal.getUsername());
-		System.out.println(reviewList);
 		if (reviewList.isEmpty()) {
 			model.addAttribute("reviewList", null);
 		} else {
@@ -99,12 +121,12 @@ public class ReviewController {
 
 		return "/review/myReview";
 	}
-	
+
 	// 후기 작성 페이지로 이동
 	@GetMapping("/reviewInsert/{orderId}")
 	public String reviewInsert(Model model, @PathVariable Integer orderId) {
 
-		ProductResponseDto product = reviewService.readByOrderId(orderId);
+		ProductResponseDtoForReview product = reviewService.readByOrderId(orderId);
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
 
 		model.addAttribute("product", product);
@@ -116,8 +138,9 @@ public class ReviewController {
 
 	// 후기 올리는 기능
 	@PostMapping("/reviewInsert-proc")
-	public String reviewInsertProc(ReviewRequestDto reviewRequestDto, ReviewResponseDto reviewResponseDto) {
-		LoginResponseDto principal = (LoginResponseDto)session.getAttribute(Define.PRINCIPAL);
+	public String reviewInsertProc(@Valid ReviewRequestDto reviewRequestDto) {
+		
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 
 		MultipartFile file = reviewRequestDto.getFile();
 
@@ -148,6 +171,13 @@ public class ReviewController {
 				System.out.println("파일 업로드 오류");
 			}
 		}
+		
+		if(reviewRequestDto.getOriginFileName() == null || reviewRequestDto.getOriginFileName().isEmpty()) {
+			throw new CustomRestfullException("사진을 첨부해주세요", HttpStatus.BAD_REQUEST);
+		}
+		// orderId 기반으로 상품 id 검색
+		Order responseOrder = orderService.readById(reviewRequestDto.getOrderId());
+		reviewRequestDto.setProdId(responseOrder.getProductId());
 		reviewService.createReview(principal.getUsername(), reviewRequestDto);
 		return "redirect:/user/myinfoProc";
 	}
@@ -210,16 +240,35 @@ public class ReviewController {
 
 		return "redirect:/review/myReview";
 	}
-	
+
 	// detail에서 게시물을 쓴 사람의 스타일로 이동
 	@GetMapping("/author-style/{username}")
 	public String authorStyle(Model model, @PathVariable String username) {
 		List<ReviewResponseDto> reviewList = reviewService.findReviewByUsername(username);
 		User user = userService.readUserByUserName(username);
-		
+
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("user", user);
 		return "/review/authorReview";
 	}
+
+	@GetMapping("/delete-heart/{id}/{reviewId}/{type}")
+	public String deleteHeart(@PathVariable Integer id, @PathVariable Integer reviewId, @PathVariable String type) {
+		liketoService.deleteById(id, reviewId, type);
+		
+		return "redirect:/review/detail/" + reviewId;
+	}
+
+	@PostMapping("/insert-heart")
+	public String insertHeart(Liketo liketo, @RequestParam(name = "type", defaultValue = "plus", required = false) String type) {
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		
+		User user = userService.readUserByUsername(principal.getUsername());
+		liketo.setUserId(user.getId());
+		liketoService.createLiketoByUserId(liketo, type);
+		
+		return "redirect:/review/detail/" + liketo.getReviewId();
+	}
+	
 
 }

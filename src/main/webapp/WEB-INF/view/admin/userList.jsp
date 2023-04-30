@@ -143,6 +143,10 @@ body {
 	color: white;
 	height: 43px;
 }
+.userList a {
+	text-decoration: underline;
+	color: black;
+}
 </style>
 
 <div class="content">
@@ -154,12 +158,14 @@ body {
 
 		<c:forEach var="userList" items="${userList}">
 			<div>
-				<img alt="" src="/images/myinfo.png" width="40px" height="40px" style="margin-top: -20px;">
+				<img alt="" src="/static/images/myinfo.png" width="40px" height="40px" style="margin-top: -20px;">
 				<div style="width: 10px;">
 					<p>${userList.id}</p>
 				</div>
 				<div style="width: 30px;">
-					<p>${userList.username}</p>
+				<a href="/admin/userSelect?userId=${userList.id}">
+						<p>${userList.username}</p>
+					</a>
 				</div>
 				<div style="width: 70px;">
 					<p>${userList.tel}</p>

@@ -6,6 +6,11 @@
 body {
 	margin: 0 auto;
 	width: 1200px;
+	font-family: 'Noto Sans';
+}
+
+main{
+	font-family: 'Noto Sans';
 }
 
 #main--table {
@@ -60,20 +65,28 @@ tbody tr td a:hover {
 	text-align: center;
 }
 
-.myReview--username--wrap {
-	
+.word{
+	width: 120px;
+    outline: 1px solid black;
+    outline-style: none;
+    display: block;
+    color: black;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
 </style>
 <main>
 	<div class="my--review--title">
 		<c:choose>
 			<c:when test="${principal.image != null}">
-				<span class="myReview--img--wrap"><a href="#"><img src=" <c:url value="/images/uploads/${principal.image}"/>"></a></span>
-				<span class="myReview--username--wrap"><a href="#">${principal.username}</a></span>
+				<span class="myReview--img--wrap"><img src=" <c:url value="/images/uploads/${principal.image}"/>"></span>
+				<span class="myReview--username--wrap">${principal.username}</span>
 			</c:when>
 			<c:otherwise>
-				<span class="myReview--img--wrap"><a href="#"><img src="/images/myinfo.png"></a></span>
-				<span class="myReview--username--wrap"><a href="#">${principal.username}</a></span>
+				<span class="myReview--img--wrap"><img src="/static/images/myinfo.png"></span>
+				<span class="myReview--username--wrap">${principal.username}</span>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -94,13 +107,13 @@ tbody tr td a:hover {
 				<c:when test="${reviewList.isEmpty() == false}">
 					<c:forEach var="review" items="${reviewList}">
 						<tr>
-							<td><a href="/review/detail/${review.id}">${review.id}</a></td>
-							<td><a href="/review/detail/${review.id}">${review.title}</a></td>
-							<td><a href="/review/detail/${review.id}"><img alt="" src="/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
-							<td><a href="/review/detail/${review.id}">${review.engName}<br> ${review.korName}
+							<td><a href="/review/detail/${review.id}" class="word">${review.id}</a></td>
+							<td><a href="/review/detail/${review.id}" class="word">${review.title}</a></td>
+							<td><a href="/review/detail/${review.id}" class="word"><img alt="" src="/static/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
+							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.engName}<br> ${review.korName}
 							</a></td>
-							<td><a href="/review/detail/${review.id}">${review.sizeName}</a></td>
-							<td><a href="/review/detail/${review.id}">${review.brandName}</a></td>
+							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.sizeName}</a></td>
+							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.brandName}</a></td>
 							<td><a href="/review/detail/${review.id}">${review.formatCreatedAt()}</a></td>
 							<%--/${review.id} --%>
 							<td><a href="/review/reviewUpdate/${review.id}">수정</a> | <a href="/review/delete/${review.id}">삭제</a></td>

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
-	body {
-	   width: 1183px;
-	   margin: 0 auto;
-	}
+body {
+	width: 1183px;
+	margin: 0 auto;
+}
+
 .header {
 	display: flex;
 	margin-bottom: 40px;
@@ -127,19 +127,19 @@
 				<c:choose>
 					<c:when test="${principal.image!=null}">
 						<input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;">
-						<img class="m--profile" alt="" src=" <c:url value="/images/uploads/${principal.image}"/>" width="150px" height="150" style="border-radius: 150px;">
+						<img class="m--profile" alt="" src=" <c:url value="/static/images/uploads/${principal.image}"/>" width="150px" height="150" style="border-radius: 150px;">
 
 					</c:when>
 					<c:otherwise>
 						<input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;">
-						<img class="m--profile" alt="" src="/images/myinfo.png" width="150px" height="150" style="margin-top: -20px;">
+						<img class="m--profile" alt="" src="/static/images/myinfo.png" width="150px" height="150" style="margin-top: -20px;">
 
 					</c:otherwise>
 				</c:choose>
 			</div>
 			<div id="profileediter" style="margin-top: 20px;">
 				<div>
-					<h3 style="margin-left: 10px;">${user.username}님 반갑습니다.</h3>
+					<h3 style="margin-left: 10px;">${user.username}님반갑습니다.</h3>
 				</div>
 				<div>
 					<form action="/user/myinfoEditor" method="get">
@@ -160,76 +160,60 @@
 	<div class="buylist">
 		<div>구매내역</div>
 		<div>
-			<a href=""> 더보기 > </a>
+			<a href="/user/buylist"> 더보기 > </a>
 		</div>
 	</div>
 	<div class="buyProgress ">
 		<div style="border-right: 1px solid #E0E0E0;">
 			<h5>전체</h5>
-			0
+			${orderCount.deliveryCount}
 		</div>
 		<div>
-			<h5>입찰중</h5>
-			0
+			<h5>배송중</h5>
+			${orderCount.deliveryNonComplete}
 		</div>
 		<div>
-			<h5>진행중</h5>
-			0
-		</div>
-		<div>
-			<h5>종료</h5>
-			0
+			<h5>배송후</h5>
+			${orderCount.deliveryComplete}
 		</div>
 	</div>
 	<div class="buyProduct">
 		<c:forEach var="orderList" items="${orderList}">
 			<div>
 				<div class="buyProductImg">
-					<img alt="" src="/images/1.png" width="120" height="120">
+					<img alt="" src="/static/images/1.png" width="120" height="120">
 				</div>
 				<div style="width: 400px;">
 					<p style="width: 250px;">${orderList.engName}</p>
-					<pre style="text-align: center; width: 100px;">${orderList.sizeId}</pre>
+					<pre style="text-align: center; width: 100px;">${orderList.sizeName}</pre>
 				</div>
 				<div class="buyDate">
 					<pre>${orderList.orderDate}</pre>
 				</div>
-				<div style="align-items: center; width: 150px;">
-					<h6>
-						배송완료 <br>
-					</h6>
-					
-					<button type="submit"
-					onclick="location.href='/review/reviewInsert/${reviewList.userId}'"
-					style="border: none; background-color: white; color: #088ff7">
-					후기 <br>올리기
-				</button>
+				<div class="status" style="align-items: center; width: 150px; text-align: center">
+					<c:choose>
+						<c:when test="${orderList.deliveryStatus==1}">
+							<h6>배송완료</h6>
+						</c:when>
+						<c:otherwise>
+							<h6 style="margin-left: 5px;">배송중</h6>
+						</c:otherwise>
+					</c:choose>
+
+					<c:choose>
+						<c:when test="${orderList.deliveryStatus==1}">
+							<button type="submit" onclick="location.href='/review/reviewInsert/${orderList.id}'" style="border: none; background-color: white; color: #088ff7; margin-right: 10px;">
+								후기 <br>올리기
+							</button>
+						</c:when>
+						<c:otherwise>
+							<button type="submit" onclick="location.href='/order/updateDeliveryStatus?id=${orderList.id}'" style="border: none; background-color: white; color: #088ff7; margin-top: -10px;">구매확정</button>
+						</c:otherwise>
+					</c:choose>
+
 				</div>
 			</div>
 		</c:forEach>
-
-		<div>
-			<div>
-				<img alt="" src="/images/1.png" width="120" height="120">
-			</div>
-			<div style="width: 400px;">
-				<p style="width: 250px;">Dior Saddle Flap Card Holder Blue Dior Oblique Jacquard</p>
-				<pre style="text-align: center; width: 100px;">ONE SIZE</pre>
-			</div>
-			<div class="buyDate">
-				<pre>2023/01/23</pre>
-			</div>
-			<div style="width: 150px;">
-				<h6>
-					배송완료 <br>
-				</h6>
-				<button type="submit"
-						onclick="location.href='/review/reviewInsert/1'"
-						style="border: none; background-color: white; color: #088ff7">
-						스타일 <br>올리기
-					</button>
-			</div>
-		</div>
 	</div>
 </div>
 </div>

@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
 	width: 1183px;
@@ -149,14 +147,12 @@ body {
 				<c:choose>
 					<c:when test="${questList.reqStatus == 0}">
 						<div style="flex: 3;">
-							<a href="/question/detail?id=${questList.id}" value="답변미완료">
-								답변미완료</a>
+							<a href="/question/detail?id=${questList.id}" value="답변미완료"> 답변미완료</a>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div style="flex: 3;">
-							<a href="/question/detail?id=${questList.id}" value="답변완료">
-								답변완료</a>
+							<a href="/question/detail?id=${questList.id}" value="답변완료"> 답변완료</a>
 						</div>
 					</c:otherwise>
 				</c:choose>
@@ -166,16 +162,12 @@ body {
 				<div style="flex: 1;">
 					<c:choose>
 						<c:when test="${user.getRole().equals('admin')}">
-							<a href="/admin/delete?id=${questList.id}"
-								value="${questList.id}" class="deleteA"><button
-									type="button" class="deleteButton">X</button></a>
+							<a href="/admin/delete?id=${questList.id}" value="${questList.id}" class="deleteA"><button type="button" class="deleteButton">X</button></a>
 						</c:when>
 						<c:otherwise>
 							<c:choose>
 								<c:when test="${questList.userId==user.id}">
-									<a href="/admin/delete?id=${questList.id}"
-										value="${questList.id}" class="deleteA"><button
-											type="button" class="deleteButton">X</button></a>
+									<a href="/admin/delete?id=${questList.id}" value="${questList.id}" class="deleteA"><button type="button" class="deleteButton">X</button></a>
 								</c:when>
 								<c:otherwise>
 

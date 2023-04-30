@@ -10,6 +10,7 @@ public class ProductRequestDto {
 	private Integer userId;
 	private String engName;
 	private String korName;
+	private String username;
 	private Integer purchase;
 	private String modelNumber;
 	private Date releaseDate;
@@ -21,8 +22,9 @@ public class ProductRequestDto {
 	private Integer brandId;
 	private Integer categoryId;
 	private Integer sizeId;
-	private String buyDate;
 	private String orderDate;
 	private String orderStartDate;
 	private String orderEndDate;
+	private Integer deliveryStatus;
+	private String sizeName;
 }

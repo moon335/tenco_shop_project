@@ -6,34 +6,60 @@
 	namespace="com.tenco.tencoshop.repository.interfaces.UserRepository">
 	<select id="buyList"
 		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
-		select *, date_format(buy_date,'%Y-%m-%d')as order_date
-		from user_tb as u
+		select o.id, u.id AS user_id ,p.eng_name,o.delivery_status,
+		s.name as
+		size_name, date_format(order_date,'%Y-%m-%d')as order_date
+		from user_tb
+		as u
 		join order_tb as o
-		on o.user_id =
-		u.id
+		on o.user_id = u.id
 		join product_tb
 		as p
-		on p.id = o.product_id
-		where u.id=#{userId};
+		on p.id =
+		o.product_id
+		join size_tb as s
+		on p.size_id = s.id
+		where
+		u.id=#{userId};
+	</select>
+
+	<select id="salesList"
+		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
+		select o.id,p.img_route,u.username, u.id AS user_id
+		,p.eng_name,o.delivery_status, s.name as
+		size_name,
+		date_format(order_date,'%Y-%m-%d')as order_date
+		from user_tb
+		as u
+		join
+		order_tb as o
+		on o.user_id = u.id
+		join product_tb as p
+		on p.id =
+		o.product_id
+		join size_tb as s
+		on p.size_id = s.id;
 	</select>
 
 	<select id="searchBuyList"
 		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
-		select
-		o.user_id,p.eng_name,o.quantity,buy_date
+		select o.id, u.id AS user_id ,p.eng_name,o.delivery_status,
+		s.name as
+		size_name,date_format(order_date,'%Y-%m-%d')as order_date
 		from user_tb
 		as u
 		join order_tb as o
-		on o.user_id =
-		u.id
-		join
-		product_tb
+		on o.user_id = u.id
+		join product_tb
 		as p
 		on p.id =
 		o.product_id
-		where u.id=#{userId}
+		join size_tb as s
+		on p.size_id = s.id
+		where
+		u.id=#{userId}
 		AND
-		buy_date
+		order_date
 		BETWEEN #{orderStartDate}
 		AND
 		#{orderEndDate};
@@ -86,12 +112,6 @@
 		delete from user_tb where username=#{username}
 	</delete>
 
-	<select id="findByUserName"
-		resultType="com.tenco.tencoshop.repository.model.User">
-		select * from user_tb
-		where username=#{username}
-	</select>
-
 	<select id="findByPassword"
 		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
@@ -104,6 +124,25 @@
 		username=#{id}000
 		where id = #{id};
 	</update>
+
+	<select id="findByUsername" resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where username = #{username}
+	</select>
+	
+	<select id="findByUserId" resultType="com.tenco.tencoshop.repository.model.User">
+		select * from user_tb
+		where id = #{userId}
+	</select>
+	
+	<select id="orderCounter"
+		resultType="com.tenco.tencoshop.dto.OrderResponseDto">
+		select count(case when delivery_status=0 then 1 end) AS
+		delivery_non_complete,count(case when delivery_status=1 then 1 end) AS
+		delivery_complete,count(*) AS delivery_count
+		from order_tb
+		where user_id=#{userId};
+	</select>
 	
 	<select id="idCheck" resultType="int">
 		select count(*) from user_tb

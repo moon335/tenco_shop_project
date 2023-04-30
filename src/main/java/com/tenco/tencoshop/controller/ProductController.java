@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.repository.model.Product;
+import com.tenco.tencoshop.repository.model.Size;
 import com.tenco.tencoshop.service.ProductService;
+import com.tenco.tencoshop.service.SizeService;
 
 @Controller
 @RequestMapping("/product")
@@ -19,6 +22,9 @@ public class ProductController {
 
    @Autowired
    private ProductService productService;
+   
+   @Autowired
+   private SizeService sizeService;
 
    // 검색 페이지
    // 파싱 기술
@@ -41,9 +47,16 @@ public class ProductController {
    }
 
    @GetMapping("/prod-info/{id}")
-   public String productPage(@PathVariable Integer id) {
-
-      productService.getProductInfo(id);
+   public String productPage(@PathVariable Integer id, Model model) {
+	  // 사이즈 정보 받아오기
+	  List<Size> sizeList = sizeService.readAllSize();
+	  // 상품 페이지로 넘길 정보 받아오기
+      ProductResponseDto product = productService.readProductById(id);
+      
+      // 페이지로 데이터 넘기기
+      model.addAttribute("product", product);
+      model.addAttribute("sizeList", sizeList);
+      
       return "/product/productDetail";
    }
 

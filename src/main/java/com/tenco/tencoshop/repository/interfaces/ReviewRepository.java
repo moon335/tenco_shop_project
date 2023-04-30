@@ -45,4 +45,7 @@ public interface ReviewRepository {
 	// 내 리뷰 수정 기능
 	public int updateMyReviewById(ReviewRequestDto reviewRequestDto);
 	
+	// 좋아요 수 수정 기능
+	public int updateHeart(@Param("id")Integer id, @Param("type") String type);
+	
 }

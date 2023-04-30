@@ -148,29 +148,17 @@ body {
 	color: white;
 	height: 43px;
 }
+
+.salesListLine a {
+	text-decoration: underline;
+	color: black;
+}
+
 </style>
 
 <div class="content">
 	<div class="content_1">
-		<h3>구매내역</h3>
-	</div>
-	<div class="buyProgress ">
-		<div>
-			<form action="/user/buylistProc" method="get">
-				<table class="order_date">
-					<tr>
-						<td><input class="search__input" type="date"
-							name="orderStartDate" /></td>
-						<td>~</td>
-						<td><input class="search__input" type="date"
-							name="orderEndDate" /></td>
-						<td>
-							<button type="submit" style="width: 70px">조회</button>
-						</td>
-					</tr>
-				</table>
-			</form>
-		</div>
+		<h3>판매내역</h3>
 	</div>
 	<hr>
 	<div class="salesProductList">
@@ -185,23 +173,32 @@ body {
 		<c:forEach var="salesList" items="${salesList}">
 			<div class="salesListLine" style="">
 				<div style="width: 10px;">
-					<img alt="" src="/images/prodImages/${salesList.imgRoute}"
+					<img alt="" src="/static/images/prodImages/${salesList.imgRoute}"
 						width="100px" height="100px">
 				</div>
 				<div style="width: 10px;">
-					<p>${salesList.id}</p>
+					<a href="/admin/userSelect?userId=${salesList.userId}">
+						<p>${salesList.username}</p>
+					</a>
 				</div>
 				<div style="width: 100px;">
-					<p>${salesList.korName}</p>
-				</div>
-				<div style="width: 70px;">
-					<p>${salesList.color}</p>
+					<p>${salesList.engName}</p>
 				</div>
 				<div style="width: 50px;">
-					<p>${salesList.releasePrice}</p>
+					<p>${salesList.sizeName}</p>
 				</div>
 				<div style="width: 10px;">
-					<p>${salesList.sizeId}</p>
+					<p>${salesList.orderDate}</p>
+				</div>
+				<div style="width: 70px;">
+					<c:choose>
+						<c:when test="${salesList.deliveryStatus==1}">
+							<p>배송완료</p>
+						</c:when>
+						<c:otherwise>
+							<p>배송중</p>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</c:forEach>

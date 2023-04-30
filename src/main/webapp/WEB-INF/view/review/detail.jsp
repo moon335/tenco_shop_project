@@ -4,15 +4,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 <link rel="stylesheet" href="/css/reviewCategory.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-<script>
-    function addLike(index) {
-        const pushHeartBtn = document.querySelectorAll(".heartBtn");
-        pushHeartBtn[index].innerHTML = '<i class="xi-heart xi-2x"></i>';
-        pushHeartBtn[index].style.color = 'red';
-    }
-</script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <style>
+body {
+	width: 1183px;
+	margin: 0 auto;
+}
+
 .header-inner {
 	padding: 20px 20px;
 }
@@ -40,7 +38,7 @@ html, body {
 
 .swiper-slide img {
 	display: block;
-	width: 550px;
+	width: 600px;
 	height: 100%;
 	object-fit: cover;
 	border-radius: 20px;
@@ -60,6 +58,7 @@ html, body {
 .detail--category--wrap {
 	display: flex;
 	flex-direction: column;
+	margin-top: 20px;
 }
 
 .detail--user--wrap, .detail--picture--wrap, .detail--product--wrap,
@@ -67,7 +66,7 @@ html, body {
 	display: flex;
 	justify-content: center;
 	margin: 0 auto;
-	width: 550px;
+	width: 600px;
 }
 
 .detail--user--wrap {
@@ -96,6 +95,15 @@ html, body {
 	font-size: 20px;
 }
 
+.detail--content--wrap:hover a{
+	text-decoration: underline;
+}
+
+.detail--content--wrap a{
+	color:black;
+	margin-right: 10px;
+}
+
 .detail--heart--wrap {
 	display: flex;
 	justify-content: flex-start;
@@ -108,11 +116,6 @@ html, body {
 	align-items: center;
 	font-size: 14px;
 	padding-top: 8px;
-}
-
-.heartBtn {
-	margin: 0;
-	padding: 0;
 }
 
 main {
@@ -161,6 +164,14 @@ main {
 	display: flex;
 }
 
+.detail--userName--wrap a{
+	color: black;
+}
+
+.detail--userName--wrap a:hover{
+	text-decoration: underline;
+}
+
 .detail--title--wrap {
 	display: flex;
 	justify-content: flex-start;
@@ -176,19 +187,21 @@ main {
 	padding-top: 5px;
 }
 
-.detail--wrap{
+.detail--wrap {
 	font-size: 2.5rem;
+}
+
+.heartBtn{
+	display: flex;
+}
+
+.detail--heart{
+	margin-top: 13px;
 }
 </style>
 <main>
 	<div class="detail--all--wrap">
 		<div class="detail--category--wrap">
-			<div class="category--wrap">
-				<a href="/review/style">전체</a>
-				<c:forEach var="reviewCategoryList" items="${reviewCategoryList}">
-					<a href="/review/prod-category/${reviewCategoryList.id}">${reviewCategoryList.name}</a>
-				</c:forEach>
-			</div>
 
 			<c:choose>
 				<c:when test="${principal.image!=null}">
@@ -208,7 +221,7 @@ main {
 					<div class="detail--user--wrap">
 						<div class="user--userName--wrap">
 							<div class="user--userImg--wrap">
-								<a href="/review/author-style/${review.userName}"><img src="/images/myinfo.png"></a>
+								<a href="/review/author-style/${review.userName}"><img src="/static/images/myinfo.png"></a>
 							</div>
 							<div class="user--info">
 								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}"> ${review.userName} </a></span> <span
@@ -224,40 +237,40 @@ main {
 			</div>
 			<div class="productInfo--content--wrap">상품 정보</div>
 			<div class="detail--product--wrap">
-				<img src="/images/prodImages/${review.imgRoute}" width="110" height="110">
+				<img src="/static/images/prodImages/${review.imgRoute}" width="110" height="110">
 				<div class="engName--korName--wrap">
 					<div class="">${review.engName}</div>
 					<div class="">${review.korName}</div>
 				</div>
 			</div>
 			<div class="detail--heart--wrap">
-				<button class="heartBtn" onclick="addLike(${status.index})">
-					<i class=" xi-heart-o xi-2x" style="color: black;"></i>
-				</button>
-				<div class="detail--heart">좋아요 ${review.heart}개</div>
+				<c:choose>
+					<c:when test="${heart != null}">
+						<form action="/review/delete-heart/${heart.id}/${heart.reviewId}/minus" method="get">
+							<div class="heartBtn">
+								<button type="submit">
+									<img alt="" src="/static/images/review/red_heart2.png" width="45" height="50">
+								</button>
+								<div class="detail--heart">좋아요 ${review.heart}개</div>
+							</div>
+						</form>
+					</c:when>
+					<c:otherwise>
+						<form action="/review/insert-heart" method="post">
+							<div class="heartBtn">
+								<input type="hidden" name="reviewId" value="${review.id}">
+								<button type="submit">
+									<img alt="" src="/static/images/review/white_heart2.png" width="45" height="50">
+								</button>
+								<div class="detail--heart">좋아요 ${review.heart}개</div>
+							</div>
+						</form>
+					</c:otherwise>
+				</c:choose>
 			</div>
-			<div class="detail--content--wrap">${review.content}</div>
+			<div class="detail--content--wrap"><a href="/review/author-style/${review.userName}" style="font-weight: 900"> ${review.userName} </a>${review.content}</div>
 		</div>
 	</div>
 
-	<!-- Swiper JS -->
-	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
-	<!-- Initialize Swiper -->
-	<script>
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 1,
-      spaceBetween: 30,
-      loop: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-  </script>
 </main>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

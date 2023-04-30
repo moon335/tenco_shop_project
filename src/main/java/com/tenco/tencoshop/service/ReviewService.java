@@ -2,23 +2,20 @@ package com.tenco.tencoshop.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import com.tenco.tencoshop.dto.ProductResponseDto;
+import com.tenco.tencoshop.dto.ProductResponseDtoForReview;
 import com.tenco.tencoshop.dto.ReviewRequestDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
 import com.tenco.tencoshop.repository.interfaces.ProductRepository;
 import com.tenco.tencoshop.repository.interfaces.ReviewRepository;
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
-import com.tenco.tencoshop.repository.model.Review;
-import com.tenco.tencoshop.repository.model.ReviewCategory;
 import com.tenco.tencoshop.repository.model.User;
 
-@Service // 서비스는 서비스 ~
+@Service // 서비스는 서비스 ~ ㅎㅎ
 public class ReviewService {
 
 	@Autowired
@@ -55,9 +52,9 @@ public class ReviewService {
 	}
 
 	// 리뷰 작성 페이지에 넘길 상품 정보 조회 기능
-	public ProductResponseDto readByOrderId(Integer orderId) {
+	public ProductResponseDtoForReview readByOrderId(Integer orderId) {
 		Integer prodId = reviewRepository.findByOrderId(orderId);
-		ProductResponseDto product = productRepository.findProductById(prodId);
+		ProductResponseDtoForReview product = productRepository.findProductById(prodId);
 		return product;
 	}
 
@@ -75,7 +72,7 @@ public class ReviewService {
 	@Transactional
 	public void createReview(String username, ReviewRequestDto reviewRequestDto) {
 		// 1. username으로 userId 조회
-		User user = userRepository.findByUserName(username);
+		User user = userRepository.findByUsername(username);
 		reviewRequestDto.setUserId(user.getId());
 
 		// 4. insert 진행
@@ -95,7 +92,7 @@ public class ReviewService {
 	// userName 기반 내 리뷰 확인하기
 	@Transactional
 	public List<ReviewResponseDto> findMyReviewByUserName(String userName) {
-		
+
 		List<ReviewResponseDto> list = reviewRepository.findMyReviewByUserName(userName);
 		return list;
 	}

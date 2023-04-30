@@ -10,10 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
+import com.tenco.tencoshop.dto.OrderResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
-import com.tenco.tencoshop.handler.LoginException;
 import com.tenco.tencoshop.handler.exception.CustomRestfullException;
+import com.tenco.tencoshop.handler.exception.LoginException;
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
 import com.tenco.tencoshop.repository.model.User;
 
@@ -32,24 +33,22 @@ public class UserService {
 		String hashPwd = passwordEncoder.encode(rawPwd);
 		int resultAdmin = 0;
 		int result = 0;
-		
+
 		// 중복체크 (count함수로 0이면 가입가능 1이면 가입불가능)
-		if(userRepository.idCheck(joinResponseDto.getUsername()) == 1) {
+		if (userRepository.idCheck(joinResponseDto.getUsername()) == 1) {
 			throw new CustomRestfullException("사용중인 아이디입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
+
 		joinResponseDto.setPassword(hashPwd);
 		if (joinResponseDto.getRole() == null || !joinResponseDto.getRole().isEmpty()) {
 			if (!joinResponseDto.getRole().equals("green")) {
-				throw new LoginException("관리자 비밀번호가 일치하지 않습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+				throw new CustomRestfullException("관리자 비밀번호가 일치하지 않습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 			} else {
 				resultAdmin = userRepository.signUpAdmin(joinResponseDto);
 			}
 		} else {
 			result = userRepository.signUp(joinResponseDto);
 		}
-		
-
 		if (result != 1 && resultAdmin == 0) {
 			throw new LoginException("회원가입 실패", HttpStatus.INTERNAL_SERVER_ERROR);
 		} else if (result == 1 && resultAdmin == 0) {
@@ -61,14 +60,14 @@ public class UserService {
 	public LoginResponseDto signIn(LoginResponseDto loginResponseDto) {
 		User userEntity = userRepository.findByPassword(loginResponseDto);
 		if (userEntity == null) {
-			throw new LoginException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		if (userEntity.getWithdraw() == 0) {
-			throw new LoginException("탈퇴한 아이디입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("탈퇴한 아이디입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		boolean isMatched = passwordEncoder.matches(loginResponseDto.getPassword(), userEntity.getPassword());
 		if (isMatched == false) {
-			throw new LoginException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+			throw new CustomRestfullException("아이디 혹은 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		LoginResponseDto dtoResult = new LoginResponseDto();
 		dtoResult.setId(userEntity.getId());
@@ -104,6 +103,16 @@ public class UserService {
 		return user;
 	}
 
+	public User readUserByUsername(String username) {
+		User user = userRepository.findByUsername(username);
+		return user;
+	}
+
+	public User readUserByUserId(Integer userId) {
+		User user = userRepository.findByUserId(userId);
+		return user;
+	}
+
 	// myinfo에서 유저 정보 전부 select하기
 	@Transactional
 	public List<User> userInfoAll() {
@@ -136,7 +145,6 @@ public class UserService {
 		LoginResponseDto user = new LoginResponseDto();
 		user.setImage(userInfoRequestDto.getUploadFileName());
 		user.setId(principalId);
-		System.out.println(user + "usre");
 		int result = userRepository.userInfoUpdateImage(user);
 		if (result != 1) {
 			System.out.println("정보 수정에 실패하였습니다.");
@@ -155,9 +163,18 @@ public class UserService {
 
 	}
 
+	@Transactional
 	public User readUserByUserName(String username) {
-		User user = userRepository.findByUserName(username);
-
+		User user = userRepository.findByUsername(username);
 		return user;
+	}
+
+	// 주문 내역 카운트 하기 (myinfo)
+	@Transactional
+	public OrderResponseDto orderCounter(Integer userId) {
+		OrderResponseDto orderResponseDto = userRepository.orderCounter(userId);
+		System.out.println(userId);
+		System.out.println(orderResponseDto);
+		return orderResponseDto;
 	}
 }

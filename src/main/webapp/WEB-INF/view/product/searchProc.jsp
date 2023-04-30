@@ -6,7 +6,8 @@
 <html>
 <head>
 <link rel="stylesheet href="
-   https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0 " />
+   https://fonts.	`googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0 " />
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>   
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
@@ -14,6 +15,10 @@ form {
    display: flex;
    align-items: center;
    flex-direction: column;
+}
+
+body{
+	font-family: 'Noto Sans';
 }
 
 }
@@ -78,7 +83,7 @@ p {
    <div class="product">
          <c:forEach var="list" items="${list}">
             <div class="product-search">
-               <a href="/info-prod/${list.id}"><img class="img" src="${list.imgRoute}" /></a>
+               <a href="/info-prod/${list.id}"><img class="img" src="/static/images/prodImages/${list.imgRoute}" /></a>
                <p>${list.engName}</p>
                <p>${list.korName}</p>
                <p>${list.releasePrice}원</p>

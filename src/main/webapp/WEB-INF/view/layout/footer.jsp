@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
 <style>
 footer {
 	max-width: 100%;
@@ -8,9 +8,11 @@ footer {
 	border-top: 1px solid #ccc;
 	position: relative;
 	transform: translateY(350%);
+	font-family: 'Noto Sans';
 }
 
 pre {
+	font-family: 'Noto Sans';
 	margin: 10px;
 }
 </style>

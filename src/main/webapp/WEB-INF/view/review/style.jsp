@@ -1,15 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="/css/reviewCategory.css">
-<script>
-    function addLike(index) {
-        const pushHeartBtn = document.querySelectorAll(".heartBtn");
-        pushHeartBtn[index].innerHTML = '<i class="xi-heart xi-2x"></i>';
-        pushHeartBtn[index].style.color = 'red';
-    }
-</script>
 <style type="text/css">
 .header-inner {
 	padding: 20px 20px;
@@ -153,16 +148,24 @@ main {
 	margin-bottom: 30px;
 }
 
-.detail--wrap{
+.detail--wrap {
 	padding-bottom: 60px;
 }
 
-.category--wrap>a{
-	padding:0;
+.category--wrap {
+	width: 1200px;
+	display: flex;
+	justify-content: space-around;
+	border-bottom: 1px solid #ddd;
+}
+
+.category--wrap>a {
+	padding: 0;
 	margin: 0;
 	text-align: center;
 	padding-bottom: 10px;
-	color:gray;
+	color: gray;
+	text-align: center;
 }
 </style>
 <main>
@@ -179,7 +182,8 @@ main {
 		</div>
 		<div class="order--wrap">
 			<%-- 인기순 : 하트 많은 순 order by 하트수 / 최신순 : id order주기 --%>
-			<a href="/review/style?type=orderByHeart">인기순</a> <a href="/review/style?type=orderByRecent">최신순</a>
+			<a href="/review/style?type=orderByHeart">인기순</a> <a
+				href="/review/style?type=orderByRecent">최신순</a>
 		</div>
 		<div class="img--wrap">
 			<c:forEach var="reviewList" items="${reviewList}">
@@ -187,14 +191,15 @@ main {
 					<div class="review--wrap">
 						<%-- 상세보기로 이동 --%>
 						<%-- list 형식이 아닌데 forEach를 사용해서 발생하는 에러 --%>
-						<a href="/review/detail/${reviewList.id}"> <img src="/images/uploads/${reviewList.setUpReviewImage()}" class="img--element" width=250
-							height=400></a>
+						<a href="/review/detail/${reviewList.id}"> <img
+							src="/images/uploads/${reviewList.setUpReviewImage()}"
+							class="img--element" width=250 height=400></a>
 						<%-- 유저의 이미지와 아이디 select --%>
 					</div>
 					<div class="review--contents" id="review--id">
-						<a href="#">${reviewList.userName}</a>
+						<a href="/review/author-style/${reviewList.userName}">${reviewList.userName}</a>
 						<div class="review--heart">
-							<button class="heartBtn" onclick="addLike(${status.index})">
+							<button class="heartBtn" onclick="location.href='/review/detail/${reviewList.id}'">
 								<i class=" xi-heart-o xi-2x" style="color: black;"></i>
 							</button>
 							<span>${reviewList.heart}</span>
@@ -208,4 +213,5 @@ main {
 		</div>
 	</div>
 </main>
+
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

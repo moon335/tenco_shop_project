@@ -21,7 +21,10 @@ public interface NoticeRepository {
 	public int delete(Integer id);
 	// 공지사항 수정
 	public int noticeUpdate(NoticeRequestDto.updateDto updateDto);
+	// 자주묻는질문페이지
+	public List<NoticeResponseDto.faqDto> selectFaq();
 	 
+	public List<NoticeResponseDto.faqDto> selectFaqCategory(String category);
 	
 	
 }

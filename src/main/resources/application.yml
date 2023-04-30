@@ -4,9 +4,12 @@ server:
     encoding:
       charset: utf-8
       force: true
+  error:
+    path: /error
       
 spring:
   mvc:
+    static-path-pattern: /static/**
     view:
       prefix: /WEB-INF/view/
       suffix: .jsp
@@ -19,13 +22,13 @@ spring:
     url: jdbc:mysql://localhost:3306/tenco_shop?serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: asd1234
+    password: 1234
   
 mybatis:
   mapper-locations:
   - classpath:mapper/**.xml
   configuration:
     map-underscore-to-camel-case: true        
-     
+
       
      
