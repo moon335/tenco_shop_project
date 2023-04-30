@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tenco.tencoshop.dto.LoginResponseDto;
+import com.tenco.tencoshop.dto.OrderCompleteDto;
 import com.tenco.tencoshop.dto.OrderRequestDto;
 import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.repository.model.Cart;
@@ -102,10 +103,14 @@ public class OrderController {
 	}
 	
 	@PostMapping("/input-order")
-	public String inputOrder(OrderRequestDto orderRequestDto) {
+	public String inputOrder(OrderRequestDto orderRequestDto, Model model) {
 		LoginResponseDto principal = (LoginResponseDto)session.getAttribute(Define.PRINCIPAL);
 		orderService.createOrder(orderRequestDto, principal.getUsername());
-		return "redirect:/main";
+		User user = userService.readUserByUsername(principal.getUsername());
+		OrderCompleteDto order = orderService.readByUserIdLimitOne(user.getId());
+		model.addAttribute("order", order);
+		
+		return "/product/orderComplete";
 	}
 	
 	// 구매 확정 기능 

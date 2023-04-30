@@ -214,7 +214,7 @@
 					</div>
 				</div>
 				<div class="button--box">
-					<button type="submit" class="buy--button">구매하기</button>
+					<button type="submit" class="buy--button" >구매하기</button>
 				</div>
 			</div>
 		</form>

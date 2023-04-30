@@ -3,6 +3,7 @@ package com.tenco.tencoshop.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tenco.tencoshop.dto.OrderCompleteDto;
 import com.tenco.tencoshop.dto.OrderRequestDto;
 import com.tenco.tencoshop.repository.interfaces.CartRepository;
 import com.tenco.tencoshop.repository.interfaces.OrderRepository;
@@ -63,4 +64,10 @@ public class OrderService {
 		return orderEntity;
 	}
 
+	// 구매 확인 페이지
+	public OrderCompleteDto readByUserIdLimitOne(Integer userId) {
+		OrderCompleteDto orderEntity = orderRepository.findByUserIdLimitOne(userId);
+		return orderEntity;
+	}
+	
 } // end of class

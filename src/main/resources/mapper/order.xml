@@ -19,4 +19,18 @@
 		select * from order_tb where id = #{id}
 	</select>
 
+	<select id="findByUserIdLimitOne" resultType="com.tenco.tencoshop.dto.OrderCompleteDto">
+	select s.name as size_name, o.*, p.*, s.*, b.name as brand_name
+	from order_tb as o
+	inner join product_tb as p
+	on o.product_id=p.id
+	inner join size_tb as s
+	on s.id=p.size_id
+	inner join brand_tb as b
+	on b.id=p.brand_id
+	where o.user_id=#{userId}
+	order by o.id desc
+	limit 1
+	</select>
+
 </mapper> 
