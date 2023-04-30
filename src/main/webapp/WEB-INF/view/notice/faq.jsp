@@ -15,7 +15,6 @@
 .container {
 	display: flex;
 	padding-top: 30px;
-	height: 100vh;
 }
 
 .side-menu {

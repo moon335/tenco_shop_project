@@ -37,7 +37,8 @@
 	</update>
 	
 	<select id="selectFaq" resultType="com.tenco.tencoshop.dto.NoticeResponseDto$faqDto">
-		 select * from faq_tb;
+		select * from faq_tb
+      	order by category desc;
 	</select>
 	
 	<select id="selectFaqCategory" resultType="com.tenco.tencoshop.dto.NoticeResponseDto$faqDto">
