@@ -13,24 +13,25 @@ import com.tenco.tencoshop.handler.LoginInterceptor;
 
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
-   
+
 	@Autowired
 	private LoginInterceptor loginInterceptor;
-	
-   @Bean
-   public PasswordEncoder passwordEncoder() {
-      return new BCryptPasswordEncoder();
-   }
-   
-   @Override
-   public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/images/uploads/**")
 				.addResourceLocations("file:///C:\\review_upload\\tenco_shop\\upload/");
-   }
-   
-   @Override
-   public void addInterceptors(InterceptorRegistry registry) {
-	   registry.addInterceptor(loginInterceptor).addPathPatterns("/cart/**").addPathPatterns("/order/**");
-   }
-   
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(loginInterceptor).addPathPatterns("/cart/**").addPathPatterns("/order/**")
+				.addPathPatterns("/review/insert-heart").addPathPatterns("/user/myinfoProc");
+	}
+
 } // end of class

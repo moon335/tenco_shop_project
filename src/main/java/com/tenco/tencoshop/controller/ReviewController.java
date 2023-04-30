@@ -5,12 +5,13 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.server.PathParam;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.dto.LoginResponseDto;
-import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.dto.ProductResponseDtoForReview;
 import com.tenco.tencoshop.dto.ReviewRequestDto;
 import com.tenco.tencoshop.dto.ReviewResponseDto;
@@ -37,6 +37,7 @@ import com.tenco.tencoshop.util.Define;
 
 @Controller
 @RequestMapping("/review")
+@Validated
 public class ReviewController {
 
 	@Autowired
@@ -86,7 +87,7 @@ public class ReviewController {
 	public String style(Model model, @PathVariable Integer id) {
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
 		ReviewResponseDto review = reviewService.readDetailById(id);
-
+		
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal != null) {
 			User user = userService.readUserByUsername(principal.getUsername());
@@ -137,7 +138,8 @@ public class ReviewController {
 
 	// 후기 올리는 기능
 	@PostMapping("/reviewInsert-proc")
-	public String reviewInsertProc(ReviewRequestDto reviewRequestDto, ReviewResponseDto reviewResponseDto) {
+	public String reviewInsertProc(@Valid ReviewRequestDto reviewRequestDto) {
+		
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 
 		MultipartFile file = reviewRequestDto.getFile();
@@ -168,6 +170,10 @@ public class ReviewController {
 			} catch (Exception e) {
 				System.out.println("파일 업로드 오류");
 			}
+		}
+		
+		if(reviewRequestDto.getOriginFileName() == null || reviewRequestDto.getOriginFileName().isEmpty()) {
+			throw new CustomRestfullException("사진을 첨부해주세요", HttpStatus.BAD_REQUEST);
 		}
 		// orderId 기반으로 상품 id 검색
 		Order responseOrder = orderService.readById(reviewRequestDto.getOrderId());
@@ -256,10 +262,6 @@ public class ReviewController {
 	@PostMapping("/insert-heart")
 	public String insertHeart(Liketo liketo, @RequestParam(name = "type", defaultValue = "plus", required = false) String type) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		
-		if(principal==null) {
-			throw new CustomRestfullException("로그인 후 이용 가능한 서비스입니다.", HttpStatus.BAD_REQUEST);
-		}
 		
 		User user = userService.readUserByUsername(principal.getUsername());
 		liketo.setUserId(user.getId());

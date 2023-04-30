@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
 	width: 1183px;
@@ -151,6 +153,7 @@ body {
 	text-decoration: underline;
 	color: black;
 }
+
 </style>
 
 <div class="content">
@@ -170,7 +173,8 @@ body {
 		<c:forEach var="salesList" items="${salesList}">
 			<div class="salesListLine" style="">
 				<div style="width: 10px;">
-					<img alt="" src="/static/images/prodImages/${salesList.imgRoute}" width="100px" height="100px">
+					<img alt="" src="/static/images/prodImages/${salesList.imgRoute}"
+						width="100px" height="100px">
 				</div>
 				<div style="width: 10px;">
 					<a href="/admin/userSelect?userId=${salesList.userId}">
@@ -187,7 +191,14 @@ body {
 					<p>${salesList.orderDate}</p>
 				</div>
 				<div style="width: 70px;">
-					<p>${salesList.deliveryStatus}</p>
+					<c:choose>
+						<c:when test="${salesList.deliveryStatus==1}">
+							<p>배송완료</p>
+						</c:when>
+						<c:otherwise>
+							<p>배송중</p>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</c:forEach>

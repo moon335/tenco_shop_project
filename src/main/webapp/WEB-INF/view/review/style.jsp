@@ -156,7 +156,7 @@ main {
 	width: 1200px;
 	display: flex;
 	justify-content: space-around;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #ddd;
 }
 
 .category--wrap>a {
@@ -192,14 +192,14 @@ main {
 						<%-- 상세보기로 이동 --%>
 						<%-- list 형식이 아닌데 forEach를 사용해서 발생하는 에러 --%>
 						<a href="/review/detail/${reviewList.id}"> <img
-							src="/static/images/uploads/${reviewList.setUpReviewImage()}"
+							src="/images/uploads/${reviewList.setUpReviewImage()}"
 							class="img--element" width=250 height=400></a>
 						<%-- 유저의 이미지와 아이디 select --%>
 					</div>
 					<div class="review--contents" id="review--id">
 						<a href="/review/author-style/${reviewList.userName}">${reviewList.userName}</a>
 						<div class="review--heart">
-							<button class="heartBtn" onclick="addLike(${status.index})">
+							<button class="heartBtn" onclick="location.href='/review/detail/${reviewList.id}'">
 								<i class=" xi-heart-o xi-2x" style="color: black;"></i>
 							</button>
 							<span>${reviewList.heart}</span>

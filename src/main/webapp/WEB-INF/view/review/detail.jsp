@@ -38,7 +38,7 @@ html, body {
 
 .swiper-slide img {
 	display: block;
-	width: 550px;
+	width: 600px;
 	height: 100%;
 	object-fit: cover;
 	border-radius: 20px;
@@ -66,7 +66,7 @@ html, body {
 	display: flex;
 	justify-content: center;
 	margin: 0 auto;
-	width: 550px;
+	width: 600px;
 }
 
 .detail--user--wrap {
@@ -93,6 +93,15 @@ html, body {
 	justify-content: flex-start;
 	margin-top: 15px;
 	font-size: 20px;
+}
+
+.detail--content--wrap:hover a{
+	text-decoration: underline;
+}
+
+.detail--content--wrap a{
+	color:black;
+	margin-right: 10px;
 }
 
 .detail--heart--wrap {
@@ -199,7 +208,7 @@ main {
 					<div class="detail--user--wrap">
 						<div class="user--userName--wrap">
 							<div class="user--userImg--wrap">
-								<a href="/review/author-style/${review.userName}"><img src="/static/images/uploads/${principal.image}"></a>
+								<a href="/review/author-style/${review.userName}"><img src="/images/uploads/${principal.image}"></a>
 							</div>
 							<div class="user--info">
 								<span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span
@@ -224,7 +233,7 @@ main {
 			</c:choose>
 			<div class="detail--title--wrap">${review.title}</div>
 			<div class="swiper-slide">
-				<img src="/static/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
+				<img src="/images/uploads/${review.setUpReviewImage()}" width=550 height=auto>
 			</div>
 			<div class="productInfo--content--wrap">상품 정보</div>
 			<div class="detail--product--wrap">
@@ -259,28 +268,9 @@ main {
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<div class="detail--content--wrap">${review.content}</div>
+			<div class="detail--content--wrap"><a href="/review/author-style/${review.userName}" style="font-weight: 900"> ${review.userName} </a>${review.content}</div>
 		</div>
 	</div>
 
-	<!-- Swiper JS -->
-	<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
-	<!-- Initialize Swiper -->
-	<script>
-		var swiper = new Swiper(".mySwiper", {
-			slidesPerView : 1,
-			spaceBetween : 30,
-			loop : true,
-			pagination : {
-				el : ".swiper-pagination",
-				clickable : true,
-			},
-			navigation : {
-				nextEl : ".swiper-button-next",
-				prevEl : ".swiper-button-prev",
-			},
-		});
-	</script>
 </main>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

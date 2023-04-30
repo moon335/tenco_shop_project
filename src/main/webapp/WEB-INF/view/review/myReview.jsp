@@ -81,7 +81,7 @@ tbody tr td a:hover {
 	<div class="my--review--title">
 		<c:choose>
 			<c:when test="${principal.image != null}">
-				<span class="myReview--img--wrap"><img src=" <c:url value="/static/images/uploads/${principal.image}"/>"></span>
+				<span class="myReview--img--wrap"><img src=" <c:url value="/images/uploads/${principal.image}"/>"></span>
 				<span class="myReview--username--wrap">${principal.username}</span>
 			</c:when>
 			<c:otherwise>
@@ -110,10 +110,10 @@ tbody tr td a:hover {
 							<td><a href="/review/detail/${review.id}" class="word">${review.id}</a></td>
 							<td><a href="/review/detail/${review.id}" class="word">${review.title}</a></td>
 							<td><a href="/review/detail/${review.id}" class="word"><img alt="" src="/static/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
-							<td><a href="/review/detail/${review.id}" class="word">${review.engName}<br> ${review.korName}
+							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.engName}<br> ${review.korName}
 							</a></td>
-							<td><a href="/review/detail/${review.id}" class="word">${review.sizeName}</a></td>
-							<td><a href="/review/detail/${review.id}" class="word">${review.brandName}</a></td>
+							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.sizeName}</a></td>
+							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.brandName}</a></td>
 							<td><a href="/review/detail/${review.id}">${review.formatCreatedAt()}</a></td>
 							<%--/${review.id} --%>
 							<td><a href="/review/reviewUpdate/${review.id}">수정</a> | <a href="/review/delete/${review.id}">삭제</a></td>

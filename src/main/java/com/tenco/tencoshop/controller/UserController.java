@@ -43,9 +43,7 @@ public class UserController {
 	@GetMapping("/myinfoProc")
 	public String myInfoProc(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		if (principal == null) {
-			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+
 		userId = principal.getId();
 		OrderResponseDto orderCount = userService.orderCounter(principal.getId());
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
