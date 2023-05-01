@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.tenco.tencoshop.handler.AdminInterceptor;
 import com.tenco.tencoshop.handler.LoginInterceptor;
 
 @Configuration
@@ -17,9 +16,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Autowired
 	private LoginInterceptor loginInterceptor;
-	
-	@Autowired
-	private AdminInterceptor adminInterceptor;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -35,14 +31,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(loginInterceptor).addPathPatterns("/cart/**").addPathPatterns("/order/**")
-				.addPathPatterns("/review/insert-heart").addPathPatterns("/user/myinfoProc").addPathPatterns("/review/myReview")
-				.addPathPatterns("/review/reviewInsert/**").addPathPatterns("/review/reviewUpdate/**").addPathPatterns("/review/delete/**")
-				.addPathPatterns("/user/buylist").addPathPatterns("/user/questWriting").addPathPatterns("/user/myinfoEditor")
-				.addPathPatterns("/user/withdraw").addPathPatterns("/user/realwithdrawal");
-		
-		registry.addInterceptor(adminInterceptor).addPathPatterns("/admin/**").addPathPatterns("/answer/**")
-				.addPathPatterns("/notice/noticeForm").addPathPatterns("/notice/deleteForm").addPathPatterns("/notice/update/**")
-				.addPathPatterns("/notice/delete");	
+				.addPathPatterns("/review/insert-heart").addPathPatterns("/user/myinfoProc");
 	}
 
 } // end of class

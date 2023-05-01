@@ -256,12 +256,12 @@ button:hover {
 			</div>
 			<div>
 				<p>
-					<a href="/admin/userList">회원정보</a>
+					<a href="/admin/userList?begin=0&range=8">회원정보</a>
 				</p>
 			</div>
 			<div>
 				<p>
-					<a href="/admin/salesList">판매내역</a>
+					<a href="/admin/salesList?begin=0&range=5">판매내역</a>
 				</p>
 			</div>
 			<div>
