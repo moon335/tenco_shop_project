@@ -12,8 +12,10 @@ import com.tenco.tencoshop.repository.model.Product;
 @Mapper
 public interface ProductRepository {
 
-	public List<ProductResponseDto> findAll();
+	public List<ProductResponseDto> findAll(@Param("begin") Integer begin,
+			@Param("range") Integer range);
 
+	public Double findAllCount();
 	// 관리작 판매 상품 전체 보기
 	public List<Product> findProductAll();
 

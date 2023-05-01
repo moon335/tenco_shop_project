@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +22,6 @@ import com.tenco.tencoshop.util.Define;
 
 @Controller
 @RequestMapping("/notice")
-@Validated
 public class NoticeController {
 
 	@Autowired
@@ -115,8 +113,6 @@ public class NoticeController {
 		return "/notice/faq";
 	}
 	
-	
-	// validation 처리
 	@GetMapping("/findProc")
 	public String findFaq(@RequestParam String find, Model model) {
 		List<Faq> faqList = noticeService.findFaq(find);
