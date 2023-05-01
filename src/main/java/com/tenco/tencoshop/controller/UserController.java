@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +30,7 @@ import com.tenco.tencoshop.util.Define;
 
 @Controller
 @RequestMapping("/user")
+@Validated
 public class UserController {
 
 	@Autowired
@@ -56,9 +60,9 @@ public class UserController {
 	}
 
 	// 구매목록화면 들어가기
-	@GetMapping("buylist")
+	@GetMapping("/buylist")
 	public String buyList(Integer userId, Model model) {
-		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(	Define.PRINCIPAL);
 		User user = userService.userInfo(principal.getId());
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
 		model.addAttribute("user", user);
@@ -106,8 +110,9 @@ public class UserController {
 	}
 
 	// 내 정보 수정하기
+	// validation
 	@PostMapping("/myinfoupdate")
-	public String myinfoUpdate(UserInfoRequestDto userInfoRequestDto) {
+	public String myInfoUpdate(@Valid UserInfoRequestDto userInfoRequestDto, BindingResult bindingResult) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
 		if (principal.getPassword().equals(userInfoRequestDto.getPassword()) == false) {
@@ -126,7 +131,7 @@ public class UserController {
 		if (file.isEmpty() == false) {
 
 			if (file.getSize() > Define.MAX_FILE_SIZE) {
-				throw new CustomRestfullException("이거 익셉션 하나 더 만들어야함", HttpStatus.BAD_REQUEST);
+				throw new CustomRestfullException("파일 크기가 너무 큽니다.", HttpStatus.BAD_REQUEST);
 			}
 			try {
 				String saveDirectory = Define.UPLOAD_DIRECTORY;
@@ -175,14 +180,8 @@ public class UserController {
 
 	// 로그인
 	@PostMapping("/sign-in")
-	public String signInProc(LoginResponseDto loginResponseDto) {
+	public String signInProc(@Valid LoginResponseDto loginResponseDto, BindingResult bindingResult) {
 
-		if (loginResponseDto.getUsername() == null || loginResponseDto.getUsername().isEmpty()) {
-			throw new CustomRestfullException("아이디를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		if (loginResponseDto.getPassword() == null || loginResponseDto.getPassword().isEmpty()) {
-			throw new CustomRestfullException("비밀번호를 입력해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
 		LoginResponseDto principal = userService.signIn(loginResponseDto);
 		if (principal.getRole().equals("admin")) {
 			principal.setPassword(loginResponseDto.getPassword());
@@ -202,29 +201,7 @@ public class UserController {
 	}
 
 	@PostMapping("/sign-up")
-	public String signUpProc(JoinResponseDto joinResponseDto) {
-
-		if (joinResponseDto.getUsername() == null || joinResponseDto.getUsername().isEmpty()) {
-			throw new CustomRestfullException("이메일 주소를 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getPassword() == null || joinResponseDto.getPassword().isEmpty()) {
-			throw new CustomRestfullException("비밀번호를 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getTel() == null || joinResponseDto.getTel().isEmpty()) {
-			throw new CustomRestfullException("전화번호를 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getAddress() == null || joinResponseDto.getAddress().isEmpty()) {
-			throw new CustomRestfullException("주소를 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getEmail() == null || joinResponseDto.getEmail().isEmpty()) {
-			throw new CustomRestfullException("이메일을 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getFirstName() == null || joinResponseDto.getFirstName().isEmpty()) {
-			throw new CustomRestfullException("성을 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
-		if (joinResponseDto.getLastName() == null || joinResponseDto.getLastName().isEmpty()) {
-			throw new CustomRestfullException("이름을 입력해주세요", HttpStatus.BAD_REQUEST);
-		}
+	public String signUpProc(@Valid JoinResponseDto joinResponseDto, BindingResult bindingResult) {
 
 		userService.createUser(joinResponseDto);
 

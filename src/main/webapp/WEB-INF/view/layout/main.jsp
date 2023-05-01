@@ -198,7 +198,7 @@ body{
 						<a href="/product/prod-info/${list.id}"><img alt="" class="article-img" src="/static/images/prodImages/${list.imgRoute}"></a>
 						<h5>${list.brandName}</h5>
 						<p class="word">${list.engName}</p>
-						<h5>${list.releasePrice}원</h5>
+						<h5>${list.purchase}원</h5>
 					</div>
 				</c:forEach>
 			</div>
