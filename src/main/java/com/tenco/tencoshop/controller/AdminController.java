@@ -61,7 +61,8 @@ public class AdminController {
 
 	// 관리자가 유저 정보 들어가기
 	@GetMapping("/userList")
-	public String buyList(Model model) {
+	public String buyList(@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range,
+			Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -70,8 +71,12 @@ public class AdminController {
 			throw new CustomRestfullException("관리자 계정으로 로그인 해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		User user = userService.userInfo(principal.getId());
+		Double productCount = userService.userAllCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		model.addAttribute("page", page);
 		model.addAttribute("user", user);
-		List<User> userList = userService.userInfoAll();
+		List<User> userList = userService.userInfoAll(begin, range);
 		model.addAttribute("userList", userList);
 		if (userList.isEmpty()) {
 			model.addAttribute("userList", null);
@@ -173,9 +178,14 @@ public class AdminController {
 
 	// 판매 목록 들어가기
 	@GetMapping("salesList")
-	public String salesList(Model model) {
+	public String salesList(@RequestParam(required = false) Integer id, @RequestParam(required = false) Integer begin,
+			@RequestParam(required = false) Integer range, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		List<ProductRequestDto> salesList = userRepository.salesList();
+		List<ProductRequestDto> salesList = userRepository.salesList(begin, range);
+		Double productCount = userRepository.salesListCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		model.addAttribute("page", page);
 		model.addAttribute("principal", principal);
 		if (salesList.isEmpty()) {
 			model.addAttribute("salesList", null);

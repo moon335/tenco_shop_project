@@ -6,21 +6,30 @@
 	namespace="com.tenco.tencoshop.repository.interfaces.ProductRepository">
 	<select id="findAll"
 		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
-		select p.id, p.eng_name, p.kor_name, p.purchase,
+		select p.id, p.eng_name, p.kor_name, p.release_price,
 		p.img_route, b.name as
 		brand_name
 		from product_tb as p
 		inner join
 		brand_tb as b
-		on p.brand_id = b.id
+		on p.brand_id =
+		b.id
 		group by eng_name
-		limit 8;
+		limit #{begin},
+		#{range};
 	</select>
+	
+	<select id="findAllCount" resultType="Double">
+		select count(*) as count
+		from (select * from product_tb
+		group by eng_name)a;
+	</select>
+	
 	<select id="findProductAll"
 		resultType="com.tenco.tencoshop.repository.model.Product">
 		select * from product_tb;
-
 	</select>
+	
 	<select id="findProduct"
 		resultType="com.tenco.tencoshop.repository.model.Product">
 		select * from product_tb where kor_name LIKE #{title} OR
@@ -122,9 +131,9 @@
 		#{range};
 	</select>
 
-	<select id="selectBrandInfoCount"
-		resultType="Double">
-		select count(*) as count from product_tb
+	<select id="selectBrandInfoCount" resultType="Double">
+		select count(*) as
+		count from product_tb
 		where
 		brand_id=#{id};
 	</select>

@@ -62,7 +62,7 @@ public class UserController {
 	// 구매목록화면 들어가기
 	@GetMapping("/buylist")
 	public String buyList(Integer userId, Model model) {
-		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(	Define.PRINCIPAL);
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		User user = userService.userInfo(principal.getId());
 		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
 		model.addAttribute("user", user);
@@ -190,7 +190,7 @@ public class UserController {
 		}
 		principal.setPassword(loginResponseDto.getPassword());
 		session.setAttribute(Define.PRINCIPAL, principal);
-		return "redirect:/main";
+		return "redirect:/main?begin=0&range=8";
 	}
 
 	// 회원가입
@@ -214,10 +214,11 @@ public class UserController {
 
 		return "/user/delete";
 	}
+
 	// 진짜 회원탈퇴
 	@GetMapping("/realwithdrawal")
 	public String realwithDrawal() {
-		
+
 		return "/user/realWithdrawal";
 	}
 
@@ -236,9 +237,7 @@ public class UserController {
 
 		session.invalidate();
 
-		return "redirect:/main";
+		return "redirect:/main?begin=0&range=8";
 	}
-	
-
 
 }

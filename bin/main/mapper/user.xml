@@ -38,6 +38,24 @@
 		on p.id =
 		o.product_id
 		join size_tb as s
+		on p.size_id = s.id
+		limit #{begin},
+		#{range};
+	</select>
+
+	<select id="salesListCount" resultType="Double">
+		select count(*)
+		from
+		user_tb
+		as u
+		join
+		order_tb as o
+		on o.user_id = u.id
+		join product_tb as p
+		on
+		p.id =
+		o.product_id
+		join size_tb as s
 		on p.size_id = s.id;
 	</select>
 
@@ -68,6 +86,12 @@
 	<select id="userInfoAll"
 		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
+		limit #{begin}, #{range};
+	</select>
+	
+	<select id="userAllCount"
+		resultType="Double">
+		select count(*) as count from user_tb;
 	</select>
 
 	<select id="userInfoSelect"

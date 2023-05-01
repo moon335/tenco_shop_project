@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
 	width: 1183px;
@@ -153,7 +151,19 @@ body {
 	text-decoration: underline;
 	color: black;
 }
+.page {
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding-bottom: 200px;
+}
 
+.page p {
+	font-size: 15px;
+	color: black;
+	width: 50px;
+}
 </style>
 
 <div class="content">
@@ -173,8 +183,7 @@ body {
 		<c:forEach var="salesList" items="${salesList}">
 			<div class="salesListLine" style="">
 				<div style="width: 10px;">
-					<img alt="" src="/static/images/prodImages/${salesList.imgRoute}"
-						width="100px" height="100px">
+					<img alt="" src="/static/images/prodImages/${salesList.imgRoute}" width="100px" height="100px">
 				</div>
 				<div style="width: 10px;">
 					<a href="/admin/userSelect?userId=${salesList.userId}">
@@ -202,6 +211,11 @@ body {
 				</div>
 			</div>
 		</c:forEach>
+		<div class="page">
+			<c:forEach var="i" begin="1" end="${page}">
+				<a href="/admin/salesList?begin=${5*(i-1)}&range=5"><p>${i}</p></a>
+			</c:forEach>
+		</div>
 	</div>
 </div>
 </div>

@@ -143,9 +143,23 @@ body {
 	color: white;
 	height: 43px;
 }
+
 .userList a {
 	text-decoration: underline;
 	color: black;
+}
+.page {
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding-bottom: 200px;
+}
+
+.page p {
+	font-size: 15px;
+	color: black;
+	width: 50px;
 }
 </style>
 
@@ -163,7 +177,7 @@ body {
 					<p>${userList.id}</p>
 				</div>
 				<div style="width: 30px;">
-				<a href="/admin/userSelect?userId=${userList.id}">
+					<a href="/admin/userSelect?userId=${userList.id}">
 						<p>${userList.username}</p>
 					</a>
 				</div>
@@ -185,6 +199,11 @@ body {
 			</div>
 			<hr>
 		</c:forEach>
+		<div class="page">
+			<c:forEach var="i" begin="1" end="${page}">
+				<a href="/admin/userList?begin=${8*(i-1)}&range=8"><p>${i}</p></a>
+			</c:forEach>
+		</div>
 
 	</div>
 </div>

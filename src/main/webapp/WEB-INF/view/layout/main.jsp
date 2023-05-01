@@ -115,7 +115,19 @@ body {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+.page {
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding-bottom: 200px;
+}
 
+.page p {
+	font-size: 15px;
+	color: black;
+	width: 50px;
+}
 </style>
 <main>
 	<div class="header">
@@ -124,7 +136,7 @@ body {
 				<ul class="home-menu">
 					<li><a href="#">추천</a>
 						<ul class="home-menu2">
-							<li><a href="/shopCategorySelect">추천상품</a></li>
+							<li><a href="/shopCategorySelect?type=&begin=0&range=8">추천상품</a></li>
 						</ul></li>
 					<ul class="home-menu">
 						<li><a href="#">옷</a>
@@ -199,8 +211,13 @@ body {
 						<a href="/product/prod-info/${list.id}"><img alt="" class="article-img" src="/static/images/prodImages/${list.imgRoute}"></a>
 						<h5>${list.brandName}</h5>
 						<p class="word">${list.engName}</p>
-						<h5>${list.purchase}원</h5>
+						<h5>${list.releasePrice}원</h5>
 					</div>
+				</c:forEach>
+			</div>
+			<div class="page">
+				<c:forEach var="i" begin="1" end="${page}">
+					<a href="main?begin=${8*(i-1)}&range=8"><p>${i}</p></a>
 				</c:forEach>
 			</div>
 		</div>

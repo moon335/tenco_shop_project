@@ -104,7 +104,7 @@ p {
 	</div>
 	<div class="page">
 		<c:forEach var="i" begin="1" end="${page}">
-			<a href="/shopCategorySelect?type=${type}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
+			<a href="/product/search-proc?title=${title}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
 		</c:forEach>
 	</div>
 </body>

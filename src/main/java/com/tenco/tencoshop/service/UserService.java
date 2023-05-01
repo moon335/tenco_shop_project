@@ -115,10 +115,17 @@ public class UserService {
 
 	// myinfo에서 유저 정보 전부 select하기
 	@Transactional
-	public List<User> userInfoAll() {
+	public List<User> userInfoAll(Integer begin, Integer range) {
 
-		List<User> userList = userRepository.userInfoAll();
+		List<User> userList = userRepository.userInfoAll(begin,range);
 		return userList;
+	}
+	
+	// 유저 몇명인지 카운터
+	@Transactional
+	public Double userAllCount() {
+		Double userCount = userRepository.userAllCount();
+		return userCount;
 	}
 
 	// myinfo에서 유저정보 update하기
