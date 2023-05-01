@@ -1,20 +1,15 @@
 package com.tenco.tencoshop.controller;
 
 import java.io.File;
-
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +29,6 @@ import com.tenco.tencoshop.service.AnswerService;
 import com.tenco.tencoshop.service.QuestionService;
 import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
-
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 
 @Controller
 @RequestMapping("/admin")
@@ -61,7 +54,7 @@ public class AdminController {
 
 	// 관리자가 유저 정보 들어가기
 	@GetMapping("/userList")
-	public String buyList(Model model) {
+	public String buyList(@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -70,8 +63,12 @@ public class AdminController {
 			throw new CustomRestfullException("관리자 계정으로 로그인 해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		User user = userService.userInfo(principal.getId());
+		Double productCount = userService.userAllCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		model.addAttribute("page", page);
 		model.addAttribute("user", user);
-		List<User> userList = userService.userInfoAll();
+		List<User> userList = userService.userInfoAll(begin, range);
 		model.addAttribute("userList", userList);
 		if (userList.isEmpty()) {
 			model.addAttribute("userList", null);
@@ -83,7 +80,7 @@ public class AdminController {
 
 	// 내 정보 수정 화면 들어가기
 	@GetMapping("/adminInfoEditor")
-	public String myinfoEditor(Model model) {
+	public String myinfoEditor(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
@@ -93,13 +90,14 @@ public class AdminController {
 
 	// 내 정보 수정하기
 	@PostMapping("/myinfoupdate")
-	public String myInfoUpdate(@Valid UserInfoRequestDto userInfoRequestDto, BindingResult bindingResult) {
+	public String myinfoUpdate(UserInfoRequestDto userInfoRequestDto) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
 		if (principal.getPassword().equals(userInfoRequestDto.getPassword()) == false) {
 			session.invalidate();
 			return "redirect:/user/sign-in";
 		}
-		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
+
 		return "redirect:/admin/adminInfoEditor";
 	}
 
@@ -173,9 +171,14 @@ public class AdminController {
 
 	// 판매 목록 들어가기
 	@GetMapping("salesList")
-	public String salesList(Model model) {
+	public String salesList(@RequestParam(required = false) Integer id,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		List<ProductRequestDto> salesList = userRepository.salesList();
+		List<ProductRequestDto> salesList = userRepository.salesList(begin,range);
+		Double productCount = userRepository.salesListCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		model.addAttribute("page", page);
 		model.addAttribute("principal", principal);
 		if (salesList.isEmpty()) {
 			model.addAttribute("salesList", null);

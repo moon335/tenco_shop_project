@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +37,7 @@ import com.tenco.tencoshop.util.Define;
 
 @Controller
 @RequestMapping("/review")
+@Validated
 public class ReviewController {
 
 	@Autowired
@@ -138,15 +138,16 @@ public class ReviewController {
 
 	// 후기 올리는 기능
 	@PostMapping("/reviewInsert-proc")
-	public String reviewInsertProc(ReviewRequestDto reviewRequestDto, BindingResult bindingResult) {
+	public String reviewInsertProc(@Valid ReviewRequestDto reviewRequestDto) {
 		
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		
+
 		MultipartFile file = reviewRequestDto.getFile();
+
 		if (file.isEmpty() == false) {
-			
+
 			if (file.getSize() > Define.MAX_FILE_SIZE) {
-				throw new CustomRestfullException("파일 크기가 50MB 이상일 수 없습니다.", HttpStatus.BAD_REQUEST);
+				// 예외처리 : "파일 크기가 50MB 이상일 수 없습니다.", HttpStatus.BAD_REQUEST
 			}
 
 			try {
@@ -193,14 +194,15 @@ public class ReviewController {
 	}
 
 	@PostMapping("/reviewUpdate-proc")
-	public String reviewUpdateProc(Model model, Integer id, ReviewRequestDto reviewRequestDto, BindingResult bindingResult) {
+	public String reviewUpdateProc(Model model, Integer id, ReviewRequestDto reviewRequestDto) {
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
+
 		MultipartFile file = reviewRequestDto.getFile();
 
 		if (file.isEmpty() == false) {
 
 			if (file.getSize() > Define.MAX_FILE_SIZE) {
-				throw new CustomRestfullException("파일 크기가 50MB 이상일 수 없습니다.", HttpStatus.BAD_REQUEST);
+				// 예외처리 : "파일 크기가 50MB 이상일 수 없습니다.", HttpStatus.BAD_REQUEST
 			}
 
 			try {
@@ -224,10 +226,7 @@ public class ReviewController {
 				System.out.println("파일 업로드 오류");
 			}
 		}
-		
-		if(reviewRequestDto.getOriginFileName() == null || reviewRequestDto.getOriginFileName().isEmpty()) {
-			throw new CustomRestfullException("사진을 첨부해주세요", HttpStatus.BAD_REQUEST);
-		}
+
 		reviewService.updateMyReviewById(id, reviewRequestDto);
 		model.addAttribute("reviewCategoryList", reviewCategoryList);
 
@@ -252,8 +251,7 @@ public class ReviewController {
 		model.addAttribute("user", user);
 		return "/review/authorReview";
 	}
-	
-	// validation 처리
+
 	@GetMapping("/delete-heart/{id}/{reviewId}/{type}")
 	public String deleteHeart(@PathVariable Integer id, @PathVariable Integer reviewId, @PathVariable String type) {
 		liketoService.deleteById(id, reviewId, type);

@@ -106,7 +106,7 @@ button:hover {
 			</div>
 
 			<div class="orderComplete--button-wrap">
-				<button type="submit" onclick="location.href='/main'">메인 홈으로</button>
+				<button type="submit" onclick="location.href='/main?begin=0&range=8'">메인 홈으로</button>
 				<button type="submit" onclick="location.href='/user/myinfoProc'">확인</button>
 			</div>
 		</div>
