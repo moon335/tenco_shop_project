@@ -123,7 +123,7 @@ tbody tr td a:hover {
 				<c:otherwise>
 					<td class="no--review--wrap"><h5>작성된 후기가 없습니다.</h5></td>
 				</c:otherwise>
-			</c:choose>
+			</c:choose> 
 		</tbody>
 
 	</table>

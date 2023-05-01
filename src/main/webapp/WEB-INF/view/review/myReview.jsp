@@ -109,7 +109,7 @@ tbody tr td a:hover {
 						<tr>
 							<td><a href="/review/detail/${review.id}" class="word">${review.id}</a></td>
 							<td><a href="/review/detail/${review.id}" class="word">${review.title}</a></td>
-							<td><a href="/review/detail/${review.id}" class="word"><img alt="" src="/static/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
+							<td><a href="/review/detail/${review.id}" class="word"><img alt="" src="/images/uploads/${review.setUpReviewImage()}" width=80 height=80></a></td>
 							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.engName}<br> ${review.korName}
 							</a></td>
 							<td><a href="/product/prod-info/${review.prodId}" class="word">${review.sizeName}</a></td>

@@ -187,7 +187,7 @@ body {
 						</c:when>
 						<c:otherwise>
 							<h6>
-								배송전 <br>
+								배송중 <br>
 							</h6>
 						</c:otherwise>
 					</c:choose>
