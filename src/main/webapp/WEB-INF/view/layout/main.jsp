@@ -123,21 +123,21 @@ body{
 				<ul class="home-menu">
 					<li><a href="#">추천</a>
 						<ul class="home-menu2">
-							<li><a href="#">추천상품</a></li>
+							<li><a href="/shopCategorySelect">추천상품</a></li>
 						</ul></li>
 					<ul class="home-menu">
 						<li><a href="#">옷</a>
 							<ul class="home-menu2">
-								<li><a href="#">아우터</a></li>
-								<li><a href="#">상의</a></li>
-								<li><a href="#">하의</a></li>
+								<li><a href="/shopCategorySelect?type=아우터">아우터</a></li>
+								<li><a href="/shopCategorySelect?type=상의">상의</a></li>
+								<li><a href="/shopCategorySelect?type=하의">하의</a></li>
 							</ul></li>
 						<ul class="home-menu">
 							<li><a href="#">악세사리</a>
 								<ul class="home-menu2">
-									<li><a href="#">지갑</a></li>
-									<li><a href="#">시계</a></li>
-									<li><a href="#">가방</a></li>
+									<li><a href="/shopCategorySelect?type=가방">가방</a></li>
+									<li><a href="/shopCategorySelect?type=지갑">지갑</a></li>
+									<li><a href="/shopCategorySelect?type=시계">시계</a></li>
 								</ul></li>
 							<ul class="home-menu">
 								<li><a href="#">브랜드</a>
