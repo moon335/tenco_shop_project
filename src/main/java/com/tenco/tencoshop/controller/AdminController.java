@@ -1,15 +1,20 @@
 package com.tenco.tencoshop.controller;
 
 import java.io.File;
+
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +34,8 @@ import com.tenco.tencoshop.service.AnswerService;
 import com.tenco.tencoshop.service.QuestionService;
 import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
+
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 
 @Controller
 @RequestMapping("/admin")
@@ -76,7 +83,7 @@ public class AdminController {
 
 	// 내 정보 수정 화면 들어가기
 	@GetMapping("/adminInfoEditor")
-	public String myinfoEditor(Integer userId, Model model) {
+	public String myinfoEditor(Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
@@ -86,14 +93,13 @@ public class AdminController {
 
 	// 내 정보 수정하기
 	@PostMapping("/myinfoupdate")
-	public String myinfoUpdate(UserInfoRequestDto userInfoRequestDto) {
+	public String myInfoUpdate(@Valid UserInfoRequestDto userInfoRequestDto, BindingResult bindingResult) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
 		if (principal.getPassword().equals(userInfoRequestDto.getPassword()) == false) {
 			session.invalidate();
 			return "redirect:/user/sign-in";
 		}
-
+		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
 		return "redirect:/admin/adminInfoEditor";
 	}
 

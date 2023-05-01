@@ -6,7 +6,7 @@
 	namespace="com.tenco.tencoshop.repository.interfaces.ProductRepository">
 	<select id="findAll"
 		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
-		select p.id, p.eng_name, p.kor_name, p.release_price,
+		select p.id, p.eng_name, p.kor_name, p.purchase,
 		p.img_route, b.name as
 		brand_name
 		from product_tb as p
