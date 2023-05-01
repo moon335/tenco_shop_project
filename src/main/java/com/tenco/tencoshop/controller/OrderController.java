@@ -67,9 +67,6 @@ public class OrderController {
 				}
 			}
 		}
-		System.out.println(sizeName);
-		System.out.println(prodId);
-		System.out.println(modelNumber);
 		User loginUser = userService.readUserByUsername(principal.getUsername());
 		ProductResponseDto responseProduct = productService.readProductByModelNumberAndSize(modelNumber, sizeName);
 		System.out.println(responseProduct);

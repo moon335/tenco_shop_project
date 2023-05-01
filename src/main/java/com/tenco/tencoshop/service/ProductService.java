@@ -60,8 +60,8 @@ public class ProductService {
 	}
 
 	// 제품 상세 페이지에서 사용
-	public ProductResponseDto readProductById(Integer prodId) {
-		ProductResponseDto responseProduct = productRepository.findProductByProdId(prodId);
+	public ProductResponseDto readProductByModelNumber(String modelNumber) {
+		ProductResponseDto responseProduct = productRepository.findProductByModelNumber(modelNumber);
 		return responseProduct;
 	}
 
@@ -99,6 +99,11 @@ public class ProductService {
 		title = "%" + title + "%";
 		Double responseProductCount = productRepository.productCount(title);
 		return responseProductCount;
+	}
+	
+	public ProductResponseDto readProductById(Integer prodId) {
+		ProductResponseDto responseProduct = productRepository.findProductByprodId(prodId);
+		return responseProduct;
 	}
 
 } // end of class

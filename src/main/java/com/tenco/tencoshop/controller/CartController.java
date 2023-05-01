@@ -28,7 +28,6 @@ import com.tenco.tencoshop.util.Define;
 
 @Controller
 @RequestMapping("/cart")
-@Validated
 public class CartController {
    
    @Autowired

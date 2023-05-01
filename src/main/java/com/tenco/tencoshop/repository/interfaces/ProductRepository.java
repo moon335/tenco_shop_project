@@ -29,8 +29,10 @@ public interface ProductRepository {
 
 	public ProductResponseDtoForReview findProductById(Integer id);
 
-	public ProductResponseDto findProductByProdId(Integer id);
+	public ProductResponseDto findProductByModelNumber(String modelNumber);
 
+	public ProductResponseDto findProductByprodId(Integer ProdId);
+	
 	// 제품 카테고리 선택 시 상품 나열
 	public List<ProductResponseDto> CategorySelect(@Param("name") String name, @Param("begin") Integer begin,
 			@Param("range") Integer range);
