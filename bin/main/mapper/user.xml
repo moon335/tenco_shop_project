@@ -38,6 +38,21 @@
 		on p.id =
 		o.product_id
 		join size_tb as s
+		on p.size_id = s.id
+		limit #{begin}, #{range};
+	</select>
+	<select id="salesListCount"
+		resultType="Double">
+		select count(*)
+		from user_tb
+		as u
+		join
+		order_tb as o
+		on o.user_id = u.id
+		join product_tb as p
+		on p.id =
+		o.product_id
+		join size_tb as s
 		on p.size_id = s.id;
 	</select>
 
@@ -68,12 +83,18 @@
 	<select id="userInfoAll"
 		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
+		limit #{begin}, #{range};
+	</select>
+	
+	<select id="userAllCount"
+		resultType="Double">
+		select count(*) as count from user_tb;
 	</select>
 
 	<select id="userInfoSelect"
 		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
-		where id=#{id}
+		where id=#{id};
 	</select>
 
 	<update id="userInfoUpdate">
@@ -125,31 +146,23 @@
 		where id = #{id};
 	</update>
 
-	<select id="findByUsername"
-		resultType="com.tenco.tencoshop.repository.model.User">
+	<select id="findByUsername" resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
 		where username = #{username}
 	</select>
-
-	<select id="findByUserId"
-		resultType="com.tenco.tencoshop.repository.model.User">
+	
+	<select id="findByUserId" resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
 		where id = #{userId}
 	</select>
-
+	
 	<select id="orderCounter"
 		resultType="com.tenco.tencoshop.dto.OrderResponseDto">
 		select count(case when delivery_status=0 then 1 end) AS
 		delivery_non_complete,count(case when delivery_status=1 then 1 end) AS
 		delivery_complete,count(*) AS delivery_count
 		from order_tb
-		where
-		user_id=#{userId};
-	</select>
-
-	<select id="idCheck" resultType="int">
-		select count(*) from user_tb
-		where username = #{username}
+		where user_id=#{userId};
 	</select>
 
 </mapper>

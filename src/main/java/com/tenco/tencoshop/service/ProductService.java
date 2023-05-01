@@ -21,6 +21,12 @@ public class ProductService {
 		List<ProductResponseDto> list = productRepository.CategorySelect(name, begin, range);
 		return list;
 	}
+	
+	public Double findAllCount() {
+		Double findAllCount = productRepository.findAllCount();
+		return findAllCount;
+				
+	}
 
 	// 제품 카테고리 선택 시 상품 나열
 	public Double shopCategoryCount(String name) {
@@ -29,9 +35,8 @@ public class ProductService {
 		return selectCount;
 	}
 
-	public List<ProductResponseDto> readProduct() {
-		List<ProductResponseDto> list = productRepository.findAll();
-
+	public List<ProductResponseDto> readProduct(Integer begin, Integer range) {
+		List<ProductResponseDto> list = productRepository.findAll(begin,range);
 		return list;
 	}
 

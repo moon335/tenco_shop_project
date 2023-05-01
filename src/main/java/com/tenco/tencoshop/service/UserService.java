@@ -33,12 +33,6 @@ public class UserService {
 		String hashPwd = passwordEncoder.encode(rawPwd);
 		int resultAdmin = 0;
 		int result = 0;
-
-		// 중복체크 (count함수로 0이면 가입가능 1이면 가입불가능)
-		if (userRepository.idCheck(joinResponseDto.getUsername()) == 1) {
-			throw new CustomRestfullException("사용중인 아이디입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-
 		joinResponseDto.setPassword(hashPwd);
 		if (joinResponseDto.getRole() == null || !joinResponseDto.getRole().isEmpty()) {
 			if (!joinResponseDto.getRole().equals("green")) {
@@ -115,10 +109,17 @@ public class UserService {
 
 	// myinfo에서 유저 정보 전부 select하기
 	@Transactional
-	public List<User> userInfoAll() {
+	public List<User> userInfoAll(Integer begin, Integer range) {
 
-		List<User> userList = userRepository.userInfoAll();
+		List<User> userList = userRepository.userInfoAll(begin,range);
 		return userList;
+	}
+	
+	// 유저 몇명인지 카운터
+	@Transactional
+	public Double userAllCount() {
+		Double userCount = userRepository.userAllCount();
+		return userCount;
 	}
 
 	// myinfo에서 유저정보 update하기

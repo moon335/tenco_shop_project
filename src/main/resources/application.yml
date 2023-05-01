@@ -4,11 +4,7 @@ server:
     encoding:
       charset: utf-8
       force: true
-  error:
-    include-exception: true
-    include-stacktrace: always
-    whitelabel:
-      enabled: false
+      
 spring:
   mvc:
     static-path-pattern: /static/**
