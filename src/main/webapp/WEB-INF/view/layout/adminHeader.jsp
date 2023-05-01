@@ -276,7 +276,12 @@ button:hover {
 			</div>
 			<div>
 				<p>
-					<a href="/admin/find">공지사항</a>
+					<a href="/notice/list">공지사항</a>
+				</p>
+			</div>
+			<div>
+				<p>
+					<a href="/notice/faq">자주묻는질문</a>
 				</p>
 			</div>
 		</div>

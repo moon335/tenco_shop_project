@@ -123,37 +123,32 @@ body{
 				<ul class="home-menu">
 					<li><a href="#">추천</a>
 						<ul class="home-menu2">
-							<li><a href="#">남성추천</a></li>
-							<li><a href="#">여성추천</a></li>
-							<li><a href="#">인기브랜드</a></li>
+							<li><a href="#">추천상품</a></li>
 						</ul></li>
 					<ul class="home-menu">
-						<li><a href="#">남성</a>
+						<li><a href="#">옷</a>
 							<ul class="home-menu2">
+								<li><a href="#">아우터</a></li>
 								<li><a href="#">상의</a></li>
 								<li><a href="#">하의</a></li>
-								<li><a href="#">인기브랜드</a></li>
 							</ul></li>
 						<ul class="home-menu">
-							<li><a href="#">여성</a>
+							<li><a href="#">악세사리</a>
 								<ul class="home-menu2">
-									<li><a href="#">상의</a></li>
-									<li><a href="#">하의</a></li>
-									<li><a href="#">인기브랜드</a></li>
+									<li><a href="#">지갑</a></li>
+									<li><a href="#">시계</a></li>
+									<li><a href="#">가방</a></li>
 								</ul></li>
 							<ul class="home-menu">
 								<li><a href="#">브랜드</a>
 									<ul class="home-menu2">
-										<li><a href="#">모든브랜드</a></li>
-										<li><a href="#">여성추천</a></li>
-										<li><a href="#">남성추천</a></li>
+										<li><a href="/product/brandPage">모든브랜드</a></li>
 									</ul></li>
 								<ul class="home-menu">
 									<li><a href="/notice/list">공지사항</a>
 										<ul class="home-menu2">
 											<li><a href="/notice/list">공지사항</a></li>
 											<li><a href="/notice/faq">자주묻는질문</a></li>
-											<li><a href="#">검수기준</a></li>
 										</ul></li>
 								</ul>
 			</nav>

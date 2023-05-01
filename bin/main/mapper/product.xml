@@ -13,8 +13,8 @@
 		inner join
 		brand_tb as b
 		on p.brand_id = b.id
-        group by eng_name
-        limit 8;
+		group by eng_name
+		limit 8;
 	</select>
 	<select id="findProductAll"
 		resultType="com.tenco.tencoshop.repository.model.Product">
@@ -42,37 +42,68 @@
 		where c.name like #{name};
 	</select>
 
-   
-   <select id="findProductById" resultType="com.tenco.tencoshop.dto.ProductResponseDtoForReview">
-      select p.*, b.name as brand_name, c.name as category_name, s.name as size_name
-      from product_tb as p
-      inner join brand_tb as b
-      on p.brand_id = b.id
-      inner join category_tb as c
-      on p.category_id = c.id
-      inner join size_tb as s
-      on p.size_id = s.id
-      where p.id = #{id}
-   </select>
-   
-   <select id="findProductByProdId" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
-   		select p.*, b.name as brand_name, c.name as category_name, s.name as size_name
-	    from product_tb as p
-	    inner join brand_tb as b
-	    on p.brand_id = b.id
-	    inner join category_tb as c
-	    on p.category_id = c.id
-	    inner join size_tb as s
-	    on p.size_id = s.id
-	    where p.id = #{id}
-   </select>
-   
-   <select id="findProductByModelNumberAndSize" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
-      select p.*, s.name as size_name
-      from product_tb as p
-      inner join size_tb as s
-      on p.size_id = s.id
-      where p.model_number = #{modelNumber} and s.name = #{sizeName}
-   </select>
-   
+
+	<select id="findProductById"
+		resultType="com.tenco.tencoshop.dto.ProductResponseDtoForReview">
+		select p.*, b.name as brand_name, c.name as category_name,
+		s.name as
+		size_name
+		from product_tb as p
+		inner join brand_tb as b
+		on
+		p.brand_id = b.id
+		inner join category_tb as c
+		on p.category_id = c.id
+		inner join size_tb as s
+		on p.size_id = s.id
+		where p.id = #{id}
+	</select>
+
+	<select id="findProductByProdId"
+		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select p.*, b.name as brand_name, c.name as category_name,
+		s.name as
+		size_name
+		from product_tb as p
+		inner join brand_tb as b
+		on
+		p.brand_id = b.id
+		inner join category_tb as c
+		on p.category_id = c.id
+		inner join size_tb as s
+		on p.size_id = s.id
+		where p.id = #{id}
+	</select>
+
+	<select id="findProductByModelNumberAndSize"
+		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select p.*, s.name as size_name
+		from product_tb as p
+		inner
+		join size_tb as s
+		on p.size_id = s.id
+		where p.model_number =
+		#{modelNumber} and s.name = #{sizeName}
+	</select>
+
+
+	<select id="selectBrandAll"
+		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select name as brand_name ,id
+		from brand_tb;
+	</select>
+
+	<select id="selectBrand"
+		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select name as brand_name ,id
+		from brand_tb
+		where id=#{id};
+	</select>
+
+	<select id="selectBrandInfo"
+		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select * from product_tb
+		where brand_id=#{id};
+	</select>
+
 </mapper>

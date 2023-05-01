@@ -2,6 +2,8 @@ package com.tenco.tencoshop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,23 +13,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.NoticeRequestDto;
 import com.tenco.tencoshop.dto.NoticeResponseDto;
 import com.tenco.tencoshop.repository.model.Faq;
 import com.tenco.tencoshop.service.NoticeService;
+import com.tenco.tencoshop.util.Define;
 
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
 
 	@Autowired
-	NoticeService noticeService;
+	private NoticeService noticeService;
+	
+	@Autowired
+	private HttpSession session;
 
 	@GetMapping("/list")
 	public String notice(Model model) {
-
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		List<NoticeResponseDto.BoardTitleDto> list = noticeService.noticeMain();
 		model.addAttribute("list", list);
+		model.addAttribute("user", principal);
 		return "/notice/notice";
 	}
 

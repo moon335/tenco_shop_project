@@ -31,4 +31,12 @@ public interface ProductRepository {
    
    public ProductResponseDto findProductByModelNumberAndSize(@Param("modelNumber") String modelNumber, @Param("sizeName") String sizeName);
   
+   
+   	// 브랜드 전체 조회 
+	public List<ProductResponseDto> selectBrandAll();
+	
+	// 브랜드 조회
+	public ProductResponseDto selectBrand(Integer id);
+	
+	public List<ProductResponseDto> selectBrandInfo(Integer id);
 }

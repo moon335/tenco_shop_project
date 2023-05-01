@@ -20,44 +20,64 @@ import com.tenco.tencoshop.service.SizeService;
 @RequestMapping("/product")
 public class ProductController {
 
-   @Autowired
-   private ProductService productService;
-   
-   @Autowired
-   private SizeService sizeService;
+	@Autowired
+	private ProductService productService;
 
-   // 검색 페이지
-   // 파싱 기술
+	@Autowired
+	private SizeService sizeService;
 
-   @GetMapping("/search")
-   public String search() {
+	// 검색 페이지
+	// 파싱 기술
 
-      return "/product/search";
-   }
+	@GetMapping("/search")
+	public String search() {
 
-   @GetMapping("/search-proc")
-   public String searchProduct(@RequestParam String title, Model model) {
-      List<Product> list = productService.searchProduct(title);
-      if (list.isEmpty()) {
-         model.addAttribute("list", null);
-      } else {
-         model.addAttribute("list", list);
-      }
-      return "/product/searchProc";
-   }
+		return "/product/search";
+	}
 
-   @GetMapping("/prod-info/{id}")
-   public String productPage(@PathVariable Integer id, Model model) {
-	  // 사이즈 정보 받아오기
-	  List<Size> sizeList = sizeService.readAllSize();
-	  // 상품 페이지로 넘길 정보 받아오기
-      ProductResponseDto product = productService.readProductById(id);
-      
-      // 페이지로 데이터 넘기기
-      model.addAttribute("product", product);
-      model.addAttribute("sizeList", sizeList);
-      
-      return "/product/productDetail";
-   }
+	@GetMapping("/search-proc")
+	public String searchProduct(@RequestParam String title, Model model) {
+		List<Product> list = productService.searchProduct(title);
+		if (list.isEmpty()) {
+			model.addAttribute("list", null);
+		} else {
+			model.addAttribute("list", list);
+		}
+		return "/product/searchProc";
+	}
+
+	@GetMapping("/prod-info/{id}")
+	public String productPage(@PathVariable Integer id, Model model) {
+		// 사이즈 정보 받아오기
+		List<Size> sizeList = sizeService.readAllSize();
+		// 상품 페이지로 넘길 정보 받아오기
+		ProductResponseDto product = productService.readProductById(id);
+
+		// 페이지로 데이터 넘기기
+		model.addAttribute("product", product);
+		model.addAttribute("sizeList", sizeList);
+
+		return "/product/productDetail";
+	}
+	
+	// 브랜드 전체 보기 페이지 들어가기
+	@GetMapping("/brandPage")
+	public String brandPage(Model model) {
+		List<ProductResponseDto> brandList = productService.selectBrandAll();
+		model.addAttribute("brandList", brandList);
+		return "/user/brandPage";
+	}
+	
+	// 브랜드 별 페이지 들어가기
+	@GetMapping("/brandInfo/{id}")
+	public String brandInfoPage(@PathVariable Integer id, Model model) {
+		ProductResponseDto brand = productService.selectBrand(id);
+		List<ProductResponseDto> brandProductInfoList = productService.selectBrandInfo(id);
+		System.out.println(brand +"111111111111111111" );
+		model.addAttribute("brand", brand);
+		model.addAttribute("brandProductInfoList", brandProductInfoList);
+
+		return "/user/brandInfoPage";
+	}
 
 }

@@ -22,36 +22,53 @@ public class ProductService {
 		return list;
 	}
 
-   public List<ProductResponseDto> readProduct() {
-      List<ProductResponseDto> list =  productRepository.findAll();
-      
-      return list;
-   }
-   
-   // 제품 검색 기능
-   public List<Product> searchProduct(String title){
-      title = "%"+title+"%";
-      List<Product> list = productRepository.findProduct(title);
-      return list;
-   }
-   
-   
-   // 메인, 검색 페이지에서 사용
-   public Product getProductInfo(Integer id) {
-      Product prodInfo = productRepository.getProdInfo(id);
-      return prodInfo;
-   }
-   
-   // 제품 상세 페이지에서 사용
-   public ProductResponseDto readProductById(Integer prodId) {
-	   ProductResponseDto responseProduct = productRepository.findProductByProdId(prodId);
-	   return responseProduct;
-   }
-   
-   // 주문 페이지에서 사용 (상품 아이디와 사이즈 아이디로 상품 검색)
-   public ProductResponseDto readProductByModelNumberAndSize(String modelNumber, String sizeName) {
-	   ProductResponseDto responseProduct = productRepository.findProductByModelNumberAndSize(modelNumber, sizeName);
-	   return responseProduct;
-   }
-   
+	public List<ProductResponseDto> readProduct() {
+		List<ProductResponseDto> list = productRepository.findAll();
+
+		return list;
+	}
+
+	// 제품 검색 기능
+	public List<Product> searchProduct(String title) {
+		title = "%" + title + "%";
+		List<Product> list = productRepository.findProduct(title);
+		return list;
+	}
+
+	// 메인, 검색 페이지에서 사용
+	public Product getProductInfo(Integer id) {
+		Product prodInfo = productRepository.getProdInfo(id);
+		return prodInfo;
+	}
+
+	// 제품 상세 페이지에서 사용
+	public ProductResponseDto readProductById(Integer prodId) {
+		ProductResponseDto responseProduct = productRepository.findProductByProdId(prodId);
+		return responseProduct;
+	}
+
+	// 주문 페이지에서 사용 (상품 아이디와 사이즈 아이디로 상품 검색)
+	public ProductResponseDto readProductByModelNumberAndSize(String modelNumber, String sizeName) {
+		ProductResponseDto responseProduct = productRepository.findProductByModelNumberAndSize(modelNumber, sizeName);
+		return responseProduct;
+	}
+
+	// 브랜드 모두 보기
+	public List<ProductResponseDto> selectBrandAll() {
+		List<ProductResponseDto> responseProductList = productRepository.selectBrandAll();
+		return responseProductList;
+	}
+
+	// 브랜드 조회
+	public ProductResponseDto selectBrand(Integer id) {
+		ProductResponseDto responseProduct = productRepository.selectBrand(id);
+		return responseProduct;
+	}
+
+	// 브랜드 조회
+	public List<ProductResponseDto> selectBrandInfo(Integer id) {
+		List<ProductResponseDto> brandProductInfo = productRepository.selectBrandInfo(id);
+		return brandProductInfo;
+	}
+
 } // end of class
