@@ -29,9 +29,14 @@ public class ProductService {
 		return selectCount;
 	}
 
-	public List<ProductResponseDto> readProduct() {
-		List<ProductResponseDto> list = productRepository.findAll();
-
+	public Double findAllCount() {
+		Double findAllCount = productRepository.findAllCount();
+		return findAllCount;
+				
+	}
+	
+	public List<ProductResponseDto> readProduct(Integer begin, Integer range) {
+		List<ProductResponseDto> list = productRepository.findAll(begin,range);
 		return list;
 	}
 
