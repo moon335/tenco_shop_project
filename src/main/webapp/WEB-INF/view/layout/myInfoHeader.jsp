@@ -246,10 +246,10 @@ button:hover {
 			</div>
 			<div class="header-inner">
 				<h3>
-					<a href="/main?begin=0&range=8" style="font-size: 28px;">TencoShop</a>
+					<a href="/main" style="font-size: 28px;">TencoShop</a>
 				</h3>
 				<div class="header-inner-menu">
-					<label><a href="/main?begin=0&range=8">HOME</a></label> <label><a href="/review/style">STYLE</a></label> <label><a href="/shopCategorySelect?type=&begin=0&range=8">SHOP</a></label> <label><a
+					<label><a href="/main">HOME</a></label> <label><a href="/review/style">STYLE</a></label> <label><a href="/shopCategorySelect?type=&begin=0&range=8">SHOP</a></label> <label><a
 						href="/user/myinfoProc">MY</a></label> <span class="material-symbols-outlined"><a href="/product/search">search</a></span>
 				</div>
 			</div>

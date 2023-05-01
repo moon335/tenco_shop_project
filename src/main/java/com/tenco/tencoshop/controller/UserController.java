@@ -190,7 +190,7 @@ public class UserController {
 		}
 		principal.setPassword(loginResponseDto.getPassword());
 		session.setAttribute(Define.PRINCIPAL, principal);
-		return "redirect:/main?begin=0&range=8";
+		return "redirect:/main";
 	}
 
 	// 회원가입
@@ -237,7 +237,7 @@ public class UserController {
 
 		session.invalidate();
 
-		return "redirect:/main?begin=0&range=8";
+		return "redirect:/main";
 	}
 
 }

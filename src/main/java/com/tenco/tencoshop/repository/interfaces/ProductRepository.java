@@ -12,6 +12,8 @@ import com.tenco.tencoshop.repository.model.Product;
 @Mapper
 public interface ProductRepository {
 
+	public List<ProductResponseDto> findAllByMain();
+	
 	public List<ProductResponseDto> findAll(@Param("begin") Integer begin,
 			@Param("range") Integer range);
 

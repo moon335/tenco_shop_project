@@ -13,7 +13,13 @@ import com.tenco.tencoshop.repository.model.Product;
 public class ProductService {
 
 	@Autowired // DI 의존 주입
-	ProductRepository productRepository;
+	private ProductRepository productRepository;
+	
+	// 메인페이지용
+	public List<ProductResponseDto> readAll() {
+		List<ProductResponseDto> list = productRepository.findAllByMain();
+		return list;
+	}
 
 	// 제품 카테고리 선택 시 상품 나열
 	public List<ProductResponseDto> shopCategory(String name, Integer begin, Integer range) {

@@ -4,6 +4,20 @@
 
 <mapper
 	namespace="com.tenco.tencoshop.repository.interfaces.ProductRepository">
+	<select id="findAllByMain"
+		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select p.id, p.eng_name, p.kor_name, p.purchase,
+		p.img_route, b.name as
+		brand_name
+		from product_tb as p
+		inner join
+		brand_tb as b
+		on p.brand_id =
+		b.id
+		group by eng_name
+		limit 8;
+	</select>
+	
 	<select id="findAll"
 		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
 		select p.id, p.eng_name, p.kor_name, p.purchase,
