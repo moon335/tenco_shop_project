@@ -36,8 +36,14 @@ public class ProductController {
 	}
 
 	@GetMapping("/search-proc")
-	public String searchProduct(@RequestParam String title, Model model) {
-		List<Product> list = productService.searchProduct(title);
+	public String searchProduct(@RequestParam(required = false) String title,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
+		List<Product> list = productService.searchProduct(title, begin, range);
+		Double productCount = productService.productCount(title);
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		model.addAttribute("title", title);
+		model.addAttribute("page", page);
 		if (list.isEmpty()) {
 			model.addAttribute("list", null);
 		} else {
@@ -59,7 +65,7 @@ public class ProductController {
 
 		return "/product/productDetail";
 	}
-	
+
 	// 브랜드 전체 보기 페이지 들어가기
 	@GetMapping("/brandPage")
 	public String brandPage(Model model) {
@@ -67,13 +73,18 @@ public class ProductController {
 		model.addAttribute("brandList", brandList);
 		return "/user/brandPage";
 	}
-	
+
 	// 브랜드 별 페이지 들어가기
-	@GetMapping("/brandInfo/{id}")
-	public String brandInfoPage(@PathVariable Integer id, Model model) {
+	@GetMapping("/brandInfo")
+	public String brandInfoPage(@RequestParam(required = false) Integer id,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
 		ProductResponseDto brand = productService.selectBrand(id);
-		List<ProductResponseDto> brandProductInfoList = productService.selectBrandInfo(id);
-		System.out.println(brand +"111111111111111111" );
+		Double productCount = productService.selectBrandInfoCount(id);
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		model.addAttribute("id", id);
+		model.addAttribute("page", page);
+		List<ProductResponseDto> brandProductInfoList = productService.selectBrandInfo(id, begin, range);
 		model.addAttribute("brand", brand);
 		model.addAttribute("brandProductInfoList", brandProductInfoList);
 

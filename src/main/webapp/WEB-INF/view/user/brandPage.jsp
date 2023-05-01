@@ -149,7 +149,7 @@ body {
 		<div class="article">
 			<c:forEach var="brandList" items="${brandList}">
 				<div class="article-prod">
-					<a href="/product/brandInfo/${brandList.id}"><img alt="" class="article-img" src="/static/images/prodImages/${brandList.imgRoute}">
+					<a href="/product/brandInfo?id=${brandList.id}&begin=0&range=8"><img alt="" class="article-img" src="/static/images/prodImages/${brandList.imgRoute}">
 						<h5>${brandList.brandName}</h5> </a>
 				</div>
 			</c:forEach>

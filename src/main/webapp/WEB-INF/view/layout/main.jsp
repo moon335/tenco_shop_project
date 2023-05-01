@@ -12,7 +12,7 @@ main {
 	font-family: 'Noto Sans';
 }
 
-body{
+body {
 	font-family: 'Noto Sans';
 }
 
@@ -115,6 +115,7 @@ body{
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
 </style>
 <main>
 	<div class="header">
@@ -128,16 +129,16 @@ body{
 					<ul class="home-menu">
 						<li><a href="#">옷</a>
 							<ul class="home-menu2">
-								<li><a href="/shopCategorySelect?type=아우터">아우터</a></li>
-								<li><a href="/shopCategorySelect?type=상의">상의</a></li>
-								<li><a href="/shopCategorySelect?type=하의">하의</a></li>
+								<li><a href="/shopCategorySelect?type=아우터&begin=0&range=8">아우터</a></li>
+								<li><a href="/shopCategorySelect?type=상의&begin=0&range=8">상의</a></li>
+								<li><a href="/shopCategorySelect?type=하의&begin=0&range=8">하의</a></li>
 							</ul></li>
 						<ul class="home-menu">
 							<li><a href="#">악세사리</a>
 								<ul class="home-menu2">
-									<li><a href="/shopCategorySelect?type=가방">가방</a></li>
-									<li><a href="/shopCategorySelect?type=지갑">지갑</a></li>
-									<li><a href="/shopCategorySelect?type=시계">시계</a></li>
+									<li><a href="/shopCategorySelect?type=가방&begin=0&range=8">가방</a></li>
+									<li><a href="/shopCategorySelect?type=지갑&begin=0&range=8">지갑</a></li>
+									<li><a href="/shopCategorySelect?type=시계&begin=0&range=8">시계</a></li>
 								</ul></li>
 							<ul class="home-menu">
 								<li><a href="#">브랜드</a>

@@ -127,6 +127,19 @@ body {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+.page {
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding-bottom: 200px;
+}
+
+.page p {
+	font-size: 15px;
+	color: black;
+	width: 50px;
+}
 </style>
 <div class="title">
 	<div id="demo" class="carousel slide" data-ride="carousel">
@@ -151,6 +164,11 @@ body {
 						<p class="word">${brandProductInfoList.engName}</p>
 						<h5>${brandProductInfoList.releasePrice}원</h5>
 					</div>
+				</c:forEach>
+			</div>
+			<div class="page">
+				<c:forEach var="i" begin="1" end="${page}">
+					<a href="/product/brandInfo?id=${id}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
 				</c:forEach>
 			</div>
 		</div>

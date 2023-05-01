@@ -127,6 +127,19 @@ body {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+.page {
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding-bottom: 200px;
+}
+
+.page p {
+	font-size: 15px;
+	color: black;
+	width: 50px;
+}
 </style>
 <div class="title">
 	<div id="demo" class="carousel slide" data-ride="carousel">
@@ -140,28 +153,28 @@ body {
 	</div>
 	<div class="list">
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="all" onclick="location.href='/shopCategorySelect'">전체</button>
+			<button type="submit" style="border-style: none" name="name" value="all" onclick="location.href='/shopCategorySelect?type=&begin=0&range=8'">전체</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="신발" onclick="location.href='/shopCategorySelect?type=신발'">신발</button>
+			<button type="submit" style="border-style: none" name="name" value="신발" onclick="location.href='/shopCategorySelect?type=신발&begin=0&range=8'">신발</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="outer" onclick="location.href='/shopCategorySelect?type=아우터'">아우터</button>
+			<button type="submit" style="border-style: none" name="name" value="outer" onclick="location.href='/shopCategorySelect?type=아우터&begin=0&range=8'">아우터</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="top" onclick="location.href='/shopCategorySelect?type=상의'">상의</button>
+			<button type="submit" style="border-style: none" name="name" value="top" onclick="location.href='/shopCategorySelect?type=상의&begin=0&range=8'">상의</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="pants" onclick="location.href='/shopCategorySelect?type=하의'">하의</button>
+			<button type="submit" style="border-style: none" name="name" value="pants" onclick="location.href='/shopCategorySelect?type=하의&begin=0&range=8'">하의</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="bag" onclick="location.href='/shopCategorySelect?type=가방'">가방</button>
+			<button type="submit" style="border-style: none" name="name" value="bag" onclick="location.href='/shopCategorySelect?type=가방&begin=0&range=8'">가방</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="wallet" onclick="location.href='/shopCategorySelect?type=지갑'">지갑</button>
+			<button type="submit" style="border-style: none" name="name" value="wallet" onclick="location.href='/shopCategorySelect?type=지갑&begin=0&range=8'">지갑</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="watch" onclick="location.href='/shopCategorySelect?type=시계'">시계</button>
+			<button type="submit" style="border-style: none" name="name" value="watch" onclick="location.href='/shopCategorySelect?type=시계&begin=0&range=8'">시계</button>
 		</div>
 	</div>
 	<div class="header"></div>
@@ -180,6 +193,11 @@ body {
 					<p class="word">${list.engName}</p>
 					<h5>${list.releasePrice}원</h5>
 				</div>
+			</c:forEach>
+		</div>
+		<div class="page">
+			<c:forEach var="i" begin="1" end="${page}">
+				<a href="/shopCategorySelect?type=${type}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
 			</c:forEach>
 		</div>
 	</div>

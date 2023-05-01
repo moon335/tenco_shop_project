@@ -16,10 +16,17 @@ public class ProductService {
 	ProductRepository productRepository;
 
 	// 제품 카테고리 선택 시 상품 나열
-	public List<ProductResponseDto> shopCategory(String name) {
+	public List<ProductResponseDto> shopCategory(String name, Integer begin, Integer range) {
 		name = "%" + name + "%";
-		List<ProductResponseDto> list = productRepository.CategorySelect(name);
+		List<ProductResponseDto> list = productRepository.CategorySelect(name, begin, range);
 		return list;
+	}
+
+	// 제품 카테고리 선택 시 상품 나열
+	public Double shopCategoryCount(String name) {
+		name = "%" + name + "%";
+		Double selectCount = productRepository.CategorySelectCount(name);
+		return selectCount;
 	}
 
 	public List<ProductResponseDto> readProduct() {
@@ -29,9 +36,9 @@ public class ProductService {
 	}
 
 	// 제품 검색 기능
-	public List<Product> searchProduct(String title) {
+	public List<Product> searchProduct(String title, Integer begin, Integer range) {
 		title = "%" + title + "%";
-		List<Product> list = productRepository.findProduct(title);
+		List<Product> list = productRepository.findProduct(title, begin, range);
 		return list;
 	}
 
@@ -65,10 +72,22 @@ public class ProductService {
 		return responseProduct;
 	}
 
-	// 브랜드 조회
-	public List<ProductResponseDto> selectBrandInfo(Integer id) {
-		List<ProductResponseDto> brandProductInfo = productRepository.selectBrandInfo(id);
+	// 브랜드 별 상품 조회
+	public List<ProductResponseDto> selectBrandInfo(Integer id, Integer begin, Integer range) {
+		List<ProductResponseDto> brandProductInfo = productRepository.selectBrandInfo(id, begin, range);
 		return brandProductInfo;
+	}
+
+	public Double selectBrandInfoCount(Integer id) {
+		Double selectBrandInfoCount = productRepository.selectBrandInfoCount(id);
+		return selectBrandInfoCount;
+	}
+
+	// 상품 갯수 구하기
+	public Double productCount(String title) {
+		title = "%" + title + "%";
+		Double responseProductCount = productRepository.productCount(title);
+		return responseProductCount;
 	}
 
 } // end of class

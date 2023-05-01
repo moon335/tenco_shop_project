@@ -18,13 +18,15 @@
 	</select>
 	<select id="findProductAll"
 		resultType="com.tenco.tencoshop.repository.model.Product">
-		select * from product_tb
+		select * from product_tb;
+
 	</select>
 	<select id="findProduct"
 		resultType="com.tenco.tencoshop.repository.model.Product">
 		select * from product_tb where kor_name LIKE #{title} OR
 		eng_name LIKE
 		#{title}
+		limit #{begin}, #{range};
 	</select>
 
 	<select id="getProdInfo"
@@ -39,7 +41,19 @@
 		join category_tb as c
 		on
 		p.category_id = c.id
-		where c.name like #{name};
+		where c.name like #{name}
+		limit #{begin}, #{range};
+	</select>
+
+	<select id="CategorySelectCount" resultType="Double">
+		select count(*)
+		from
+		product_tb as p
+		join category_tb as c
+		on
+		p.category_id = c.id
+		where c.name
+		like #{name};
 	</select>
 
 
@@ -103,7 +117,24 @@
 	<select id="selectBrandInfo"
 		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
 		select * from product_tb
-		where brand_id=#{id};
+		where brand_id=#{id}
+		limit #{begin},
+		#{range};
+	</select>
+
+	<select id="selectBrandInfoCount"
+		resultType="Double">
+		select count(*) as count from product_tb
+		where
+		brand_id=#{id};
+	</select>
+
+	<select id="productCount" resultType="Double">
+		select count(*) AS count
+		from product_tb
+		where kor_name LIKE #{title} OR
+		eng_name LIKE
+		#{title} ;
 	</select>
 
 </mapper>

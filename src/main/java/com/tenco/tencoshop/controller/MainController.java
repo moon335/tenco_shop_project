@@ -40,12 +40,18 @@ public class MainController {
 
 	// shop 에서 카테고리별 select기능 구현 
 	@GetMapping("/shopCategorySelect")
-	public String shopCategorySelect(Model model,@RequestParam(name = "type", defaultValue = "all", required = false) String type) {
+	public String shopCategorySelect(@RequestParam(name = "type", defaultValue = "", required = false) String type,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
+		Double productCount = productService.shopCategoryCount(type);
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		model.addAttribute("type", type);
+		model.addAttribute("page", page);
 		if (type.equals("all")) {
 			List<ProductResponseDto> list = productService.readProduct();
 			model.addAttribute("list", list);
 		} else {
-			List<ProductResponseDto> list = productService.shopCategory(type);
+			List<ProductResponseDto> list = productService.shopCategory(type,begin,range);
 			model.addAttribute("list", list);
 			System.out.println(list);
 		}

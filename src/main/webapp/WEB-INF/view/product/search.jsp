@@ -63,8 +63,10 @@ form {
    <div class="search-container">
       <form action="/product/search-proc" method = "get">
       <div class="search">
-         <input type="text" id ="search"  name ="title" placeholder="브랜드명,모델명 등">
-         <input type="submit" value="검색">
+        <input type="text" id="search" name="title" placeholder="브랜드명,모델명 등"> 
+				<input type="hidden" id="search" name="begin" value="0"> 
+				<input type="hidden" id="search" name="range" value="8" >
+				<input type="submit" value="검색">
       </div>
       <div class="producct">
          </div>

@@ -25,5 +25,6 @@ public class ProductResponseDto {
 	private String brandName;
 	private String categoryName;
 	private String sizeName;
+	private Double count;
 
 } // end of class
