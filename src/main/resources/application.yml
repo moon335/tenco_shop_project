@@ -5,8 +5,10 @@ server:
       charset: utf-8
       force: true
   error:
-    path: /error
-      
+    include-exception: true
+    include-stacktrace: always
+    whitelabel:
+      enabled: false
 spring:
   mvc:
     static-path-pattern: /static/**
@@ -22,7 +24,7 @@ spring:
     url: jdbc:mysql://localhost:3306/tenco_shop?serverTimezone=Asia/Seoul
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: 1234
+    password: asd1234
   
 mybatis:
   mapper-locations:

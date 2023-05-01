@@ -1,8 +1,6 @@
 package com.tenco.tencoshop.controller;
 
 import java.io.File;
-
-
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
@@ -24,7 +21,6 @@ import com.tenco.tencoshop.dto.OrderResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.handler.exception.CustomRestfullException;
-import com.tenco.tencoshop.handler.exception.LoginException;
 import com.tenco.tencoshop.repository.model.User;
 import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
