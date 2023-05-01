@@ -47,7 +47,10 @@ public interface UserRepository {
 
 	// 판매 내역 보기( 관리자)
 	public List<ProductRequestDto> salesList();
-	
-	// 주문 내역 카운터하기 (myinfo) 
+
+	// 주문 내역 카운터하기 (myinfo)
 	public OrderResponseDto orderCounter(Integer userId);
+
+	// 아이디 중복체크
+	public int idCheck(String username);
 }

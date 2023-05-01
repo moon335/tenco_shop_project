@@ -125,23 +125,31 @@
 		where id = #{id};
 	</update>
 
-	<select id="findByUsername" resultType="com.tenco.tencoshop.repository.model.User">
+	<select id="findByUsername"
+		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
 		where username = #{username}
 	</select>
-	
-	<select id="findByUserId" resultType="com.tenco.tencoshop.repository.model.User">
+
+	<select id="findByUserId"
+		resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
 		where id = #{userId}
 	</select>
-	
+
 	<select id="orderCounter"
 		resultType="com.tenco.tencoshop.dto.OrderResponseDto">
 		select count(case when delivery_status=0 then 1 end) AS
 		delivery_non_complete,count(case when delivery_status=1 then 1 end) AS
 		delivery_complete,count(*) AS delivery_count
 		from order_tb
-		where user_id=#{userId};
+		where
+		user_id=#{userId};
+	</select>
+
+	<select id="idCheck" resultType="int">
+		select count(*) from user_tb
+		where username = #{username}
 	</select>
 
 </mapper>

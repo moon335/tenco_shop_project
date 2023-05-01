@@ -33,6 +33,12 @@ public class UserService {
 		String hashPwd = passwordEncoder.encode(rawPwd);
 		int resultAdmin = 0;
 		int result = 0;
+
+		// 중복체크 (count함수로 0이면 가입가능 1이면 가입불가능)
+		if (userRepository.idCheck(joinResponseDto.getUsername()) == 1) {
+			throw new CustomRestfullException("사용중인 아이디입니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
 		joinResponseDto.setPassword(hashPwd);
 		if (joinResponseDto.getRole() == null || !joinResponseDto.getRole().isEmpty()) {
 			if (!joinResponseDto.getRole().equals("green")) {
