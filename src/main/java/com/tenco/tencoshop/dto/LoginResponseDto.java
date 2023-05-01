@@ -16,6 +16,7 @@ public class LoginResponseDto {
 	private MultipartFile file;
 	private String originFileName;
 	private String uploadFileName;
+	private String name;
 
 	public String setUpUserImage() {
 		return uploadFileName == null ? "/images/myinfo.png" : "/images/uploads/" + uploadFileName;

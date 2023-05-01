@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tenco.tencoshop.dto.NoticeRequestDto;
 import com.tenco.tencoshop.dto.NoticeResponseDto;
 import com.tenco.tencoshop.repository.interfaces.NoticeRepository;
-import com.tenco.tencoshop.repository.model.Notice;
+import com.tenco.tencoshop.repository.model.Faq;
 
 @Service
 public class NoticeService {
@@ -54,15 +54,25 @@ public class NoticeService {
 	}
 
 	// 자주 묻는 질문
+	@Transactional
 	public List<NoticeResponseDto.faqDto> selectFaq() {
 		List<NoticeResponseDto.faqDto> list = noticeRepository.selectFaq();
 		return list;
 	}
 
 	// 자주 묻는 질문
+	@Transactional
 	public List<NoticeResponseDto.faqDto> selectFaqCategory(String category) {
 		category = "%" + category + "%";
 		List<NoticeResponseDto.faqDto> list = noticeRepository.selectFaqCategory(category);
+		return list;
+	}
+	
+	// 자주 묻는 질문 검색
+	@Transactional
+	public List<Faq> findFaq(String find) {
+		find = "%" + find + "%";
+		List<Faq> list = noticeRepository.findFaq(find);
 		return list;
 	}
 

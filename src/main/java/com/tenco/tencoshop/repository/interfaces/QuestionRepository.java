@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.tenco.tencoshop.dto.QuestionFormDto;
 import com.tenco.tencoshop.repository.model.Question;
 
 @Mapper

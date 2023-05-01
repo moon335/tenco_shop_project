@@ -208,6 +208,6 @@ body{
 				</c:forEach>
 			</div>
 		</div>
+	</div>
 </main>
-</div>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

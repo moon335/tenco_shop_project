@@ -3,20 +3,17 @@ package com.tenco.tencoshop.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tenco.tencoshop.dto.NoticeRequestDto;
 import com.tenco.tencoshop.dto.NoticeResponseDto;
-import com.tenco.tencoshop.repository.model.Notice;
+import com.tenco.tencoshop.repository.model.Faq;
 import com.tenco.tencoshop.service.NoticeService;
 
 @Controller
@@ -67,7 +64,7 @@ public class NoticeController {
 	@GetMapping("/delete")
 	public String noticeDelete(@RequestParam Integer id) {
 		noticeService.deleteNotice(id);
-		return "redirect:/notice";
+		return "redirect:/notice/list";
 	}
 
 	// 공지사항 수정 페이지
@@ -104,6 +101,17 @@ public class NoticeController {
 		} else {
 			List<NoticeResponseDto.faqDto> faqList = noticeService.selectFaqCategory(type);
 			model.addAttribute("faqList", faqList);
+		}
+		return "/notice/faq";
+	}
+	
+	@GetMapping("/findProc")
+	public String findFaq(@RequestParam String find, Model model) {
+		List<Faq> faqList = noticeService.findFaq(find);
+		if(faqList.isEmpty()) {
+			model.addAttribute("faqList", null);
+		} else {
+			model.addAttribute("faqList",faqList);
 		}
 		return "/notice/faq";
 	}
