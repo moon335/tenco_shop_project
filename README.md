@@ -64,7 +64,8 @@
 <br>
 
 ## 3️⃣ ERD
-![db_erc](https://user-images.githubusercontent.com/124985978/235562756-6ab904f7-2623-4be9-a843-7f8330c3b58d.png)
+
+![db_erc](https://user-images.githubusercontent.com/124985978/235618173-1603b9b3-33a4-430c-a872-132f665edb0d.png)
 
 
 
