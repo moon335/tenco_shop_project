@@ -220,7 +220,7 @@ public class UserController {
 		if (principal.getRole().equals("admin")) {
 			principal.setPassword(loginResponseDto.getPassword());
 			session.setAttribute(Define.PRINCIPAL, principal);
-			return "redirect:/admin/admin";
+			return "redirect:/admin/admin?currentPage=1&begin=0&range=5";
 		}
 		principal.setPassword(loginResponseDto.getPassword());
 		session.setAttribute(Define.PRINCIPAL, principal);

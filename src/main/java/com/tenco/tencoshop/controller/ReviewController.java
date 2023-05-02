@@ -178,7 +178,7 @@ public class ReviewController {
 		Order responseOrder = orderService.readById(reviewRequestDto.getOrderId());
 		reviewRequestDto.setProdId(responseOrder.getProductId());
 		reviewService.createReview(principal.getUsername(), reviewRequestDto);
-		return "redirect:/user/myinfoProc";
+		return "redirect:/user/myinfoProc?currentPage=1&begin=0&range=5";
 	}
 
 	// 내 리뷰 수정페이지로 이동

@@ -116,7 +116,7 @@ public class OrderController {
 	@GetMapping("/updateDeliveryStatus")
 	public String updateDeliveryStatus(@RequestParam Integer id) {
 		orderService.updateDeliveryStatus(id);
-		return "redirect:/user/myinfoProc";
+		return "redirect:/user/myinfoProc?currentPage=1&begin=0&range=5";
 	}
 
 	
