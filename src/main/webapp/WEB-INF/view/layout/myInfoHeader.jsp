@@ -273,7 +273,7 @@ button:hover {
          </div>
          <div>
             <p>
-               <a href="">장바구니</a>
+               <a href="/cart/list">장바구니</a>
             </p>
             <br>
          </div>
