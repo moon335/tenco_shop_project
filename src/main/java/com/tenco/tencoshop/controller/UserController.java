@@ -133,7 +133,7 @@ public class UserController {
 
 	// 내 정보 수정 화면 들어가기
 	@GetMapping("/myinfoEditor")
-	public String myinfoEditor(Integer userId, Model model) {
+	public String myInfoEditor(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		User user = userService.readUserInfo(principal.getId());
 		model.addAttribute("user", user);
@@ -158,7 +158,7 @@ public class UserController {
 
 	// 내정보 이미지 넣기
 	@PostMapping("/myinfoupdateimage")
-	public String myinfoUpdateImage(UserInfoRequestDto userInfoRequestDto) {
+	public String myInfoImageUpdate(UserInfoRequestDto userInfoRequestDto) {
 		// 이미지넣기
 		MultipartFile file = userInfoRequestDto.getFile();
 		if (file.isEmpty() == false) {

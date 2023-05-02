@@ -95,7 +95,7 @@ public class AdminController {
 	}
 
 	// 내 정보 수정하기
-	@PostMapping("/myinfoupdate")
+	@PostMapping("/myInfoUpdate")
 	public String myInfoUpdate(@Valid UserInfoRequestDto userInfoRequestDto, BindingResult bindingResult) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal.getPassword().equals(userInfoRequestDto.getPassword()) == false) {
@@ -108,7 +108,7 @@ public class AdminController {
 
 	// 내정보 이미지 넣기
 	@PostMapping("/adminInfoupdateimage")
-	public String myinfoUpdateImage(UserInfoRequestDto userInfoRequestDto) {
+	public String myInfoUpdateImage(UserInfoRequestDto userInfoRequestDto) {
 		// 이미지넣기
 		MultipartFile file = userInfoRequestDto.getFile();
 		if (file.isEmpty() == false) {
@@ -147,7 +147,7 @@ public class AdminController {
 
 	// 내정보 이미지 삭제하기
 	@PostMapping("/adminInfoDeleteimage")
-	public String adminDeleteimage(UserInfoRequestDto userInfoRequestDto) {
+	public String adminDeleteImage(UserInfoRequestDto userInfoRequestDto) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		userService.updateUserInfoImage(userInfoRequestDto, principal.getId());
 		User user = userService.readUserInfo(principal.getId());
