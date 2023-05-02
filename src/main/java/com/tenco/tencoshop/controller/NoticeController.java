@@ -28,7 +28,7 @@ public class NoticeController {
 
 	@Autowired
 	private NoticeService noticeService;
-	
+
 	@Autowired
 	private HttpSession session;
 
@@ -97,6 +97,8 @@ public class NoticeController {
 	@GetMapping("/faq")
 	public String FrequentlyAskedQuestions(Model model) {
 		List<NoticeResponseDto.faqDto> faqList = noticeService.selectFaq();
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		model.addAttribute("user", principal);
 		model.addAttribute("faqList", faqList);
 		return "/notice/faq";
 	}
@@ -114,16 +116,15 @@ public class NoticeController {
 		}
 		return "/notice/faq";
 	}
-	
-	
+
 	// validation 처리
 	@GetMapping("/findProc")
 	public String findFaq(@RequestParam String find, Model model) {
 		List<Faq> faqList = noticeService.findFaq(find);
-		if(faqList.isEmpty()) {
+		if (faqList.isEmpty()) {
 			model.addAttribute("faqList", null);
 		} else {
-			model.addAttribute("faqList",faqList);
+			model.addAttribute("faqList", faqList);
 		}
 		return "/notice/faq";
 	}

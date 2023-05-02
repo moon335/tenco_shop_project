@@ -198,6 +198,8 @@ public class AdminController {
 		if (endPage >= page) {
 			endPage = page;
 		}
+		User user = userService.userInfo(principal.getId());
+		model.addAttribute("user", user);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("page", page);
 		model.addAttribute("startPage", startPage);

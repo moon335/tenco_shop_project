@@ -1,13 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="com.tenco.tencoshop.dto.LoginResponseDto"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<%
+LoginResponseDto user = (LoginResponseDto) session.getAttribute("principal");
+if (user != null) {
+	String role = user.getRole();
+	if (role.equals("admin")) {
+%>
+<%@ include file="/WEB-INF/view/layout/adminHeader.jsp"%>
+<%
+} else {
+%>
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<%
+}
+} else {
+%>
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<%
+}
+%>
 <style type="text/css">
-
 .material-symbols-outlined {
 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48
 }
@@ -15,6 +30,11 @@
 .container {
 	display: flex;
 	padding-top: 30px;
+	height: 100vh;
+}
+
+.side div {
+	width: 180px;
 }
 
 .side-menu {
@@ -110,7 +130,7 @@ h2, h3 {
 	text-align: center;
 }
 
-button:hover{
+button:hover {
 	color: black;
 	font-weight: bold;
 }
@@ -125,25 +145,60 @@ button:hover{
 	border-radius: 5px;
 }
 
+.top-inner>label {
+	padding: 0 10px;
+}
 
+.top-inner a {
+	text-decoration: none;
+}
+
+.side div h4 a {
+	font-size: 1.5rem;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.content-title-border h3 {
+	font-size: 1.75rem;
+	line-height: 1.2;
+	margin-bottom: 0.5rem;
+}
 </style>
+<%
+if (user.getRole().equals("user")) {
+%>
+<style>
+.top-inner>label {
+	padding: 10px 10px;
+}
+</style>
+<%
+}
+%>
 </head>
 <body>
 	<div class="container">
-		<div class="side-menu">
-			<h2 class="side-menu-title">고객센터</h2>
-			<div class="side-menu-list">
-				<a href="list">공지사항</a> <a href="faq">자주 묻는 질문</a>
-			</div>
-		</div>
+		<c:choose>
+			<c:when test="${principal.role eq 'admin'}">
+			</c:when>
+			<c:otherwise>
+				<div class="side-menu">
+					<h2 class="side-menu-title">고객센터</h2>
+					<div class="side-menu-list">
+						<a href="list">공지사항</a> <a href="faq">자주 묻는 질문</a>
+					</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
 		<div class="content-area">
 			<div class="content-title-border">
 				<h3>자주 묻는 질문(FAQ)</h3>
 			</div>
 			<div class="search-faq">
-			<form action="/notice/findProc" method="get">
-			<input type="text" name="find" placeholder="검색">
-			</form>
+				<form action="/notice/findProc" method="get">
+					<input type="text" name="find" placeholder="검색">
+				</form>
 			</div>
 			<div class="category-list-table">
 				<table>
@@ -160,7 +215,7 @@ button:hover{
 						<td class="category-list">
 							<button type="submit" name="category" value="구매" onclick="location.href='/notice/categorySelect?type=구매'">구매</button>
 						</td>
-						
+
 					</tr>
 				</table>
 			</div>
@@ -190,4 +245,4 @@ button:hover{
 			});
 		});
 	</script>
-<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>

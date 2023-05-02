@@ -51,8 +51,9 @@ body {
 }
 
 .top-inner label {
-   padding: 10px;
+   padding:  -10px 10px;
    color: gray;
+   margin-right: 10px;
 }
 
 .main-inner {
@@ -241,7 +242,7 @@ button:hover {
          </div>
          <div class="header-inner">
             <h3>
-               <a href="/admin/admin" style="font-size: 28px;">TencoShop</a>
+               <a href="/admin/admin?currentPage=1&begin=0&range=5" style="font-size: 28px;">TencoShop</a>
             </h3>
          </div>
       </div>
