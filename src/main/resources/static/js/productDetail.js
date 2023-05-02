@@ -10,6 +10,7 @@ function submitBuy() {
 		method: 'post',
 		body : formData
 	});
+	window.location.href="/order/purchase";
 }
 
 function submitCart() {
