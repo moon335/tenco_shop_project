@@ -26,10 +26,10 @@ public class OrderService {
 
 	public void createOrder(OrderRequestDto orderRequestDto, String username) {
 		if (orderRequestDto.getCartId() != null) {
-			Cart ipnutCart = cartRepository.findById(orderRequestDto.getCartId());
+			Cart inputCart = cartRepository.findById(orderRequestDto.getCartId());
 			User user = userRepository.findByUsername(username);
 			int userId = user.getId();
-			orderRequestDto.setCartId(ipnutCart.getId());
+			orderRequestDto.setCartId(inputCart.getId());
 			orderRequestDto.setUserId(userId);
 		} else {
 			User user = userRepository.findByUsername(username);
@@ -37,10 +37,9 @@ public class OrderService {
 			orderRequestDto.setUserId(userId);
 		}
 		int resultRow = orderRepository.insertOrder(orderRequestDto);
-
-		if (orderRequestDto.getCartId() != null) {
-			cartRepository.delete(orderRequestDto.getCartId());
-		}
+//		if (orderRequestDto.getCartId() != null) {
+//			cartRepository.delete(orderRequestDto.getCartId());
+//		}
 		if (resultRow != 1) {
 			System.out.println("구매 실패");
 		}

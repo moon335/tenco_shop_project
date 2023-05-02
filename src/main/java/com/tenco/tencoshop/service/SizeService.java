@@ -14,8 +14,8 @@ public class SizeService {
 	@Autowired
 	private SizeRepository sizeRepository;
 	
-	public List<Size> readAllSize() {
-		List<Size> sizeList = sizeRepository.findAll();
+	public List<Size> readAllSize(Integer sizeCategoryId) {
+		List<Size> sizeList = sizeRepository.findAll(sizeCategoryId);
 		return sizeList;
 	}
 	

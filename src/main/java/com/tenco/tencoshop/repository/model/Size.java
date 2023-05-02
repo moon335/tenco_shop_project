@@ -7,5 +7,6 @@ public class Size {
 	
 	private Integer id;
 	private String name;
+	private Integer sizeCategoryId;
 	
 } // end of class

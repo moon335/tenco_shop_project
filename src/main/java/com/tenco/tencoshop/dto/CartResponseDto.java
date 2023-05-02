@@ -8,7 +8,6 @@ import lombok.Data;
 public class CartResponseDto {
    
    private Integer id;
-   private Integer amount;
    private Integer prodId;
    private Integer userId;
    private String engName;
@@ -19,8 +18,6 @@ public class CartResponseDto {
    private String color;
    private Integer releasePrice;
    private String imgRoute;
-   private String imgRoute2;
-   private String imgRoute3;
    private String brandName;
    private String categoryName;
    private String sizeName;

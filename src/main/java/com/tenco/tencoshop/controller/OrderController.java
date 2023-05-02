@@ -67,12 +67,8 @@ public class OrderController {
 				}
 			}
 		}
-		System.out.println(sizeName);
-		System.out.println(prodId);
-		System.out.println(modelNumber);
 		User loginUser = userService.readUserByUsername(principal.getUsername());
 		ProductResponseDto responseProduct = productService.readProductByModelNumberAndSize(modelNumber, sizeName);
-		System.out.println(responseProduct);
 		model.addAttribute("product", responseProduct);
 		model.addAttribute("loginUser", loginUser);
 			
@@ -92,8 +88,8 @@ public class OrderController {
 	}
 	
 	@PostMapping("/purchase")
-	public void purchase(Integer size, Integer prodId, String modelNumber, HttpServletResponse response) {
-		Cookie sizeCookie = new Cookie("size", size + "");
+	public void purchase(String size, Integer prodId, String modelNumber, HttpServletResponse response) {
+		Cookie sizeCookie = new Cookie("size", size);
 		sizeCookie.setMaxAge(60 * 60); // 1시간 쿠키 유지
 		Cookie prodCookie = new Cookie("product", prodId + "");
 		prodCookie.setMaxAge(60 * 60); // 1시간 쿠키 유지
@@ -106,6 +102,7 @@ public class OrderController {
 	
 	@PostMapping("/input-order")
 	public String inputOrder(OrderRequestDto orderRequestDto, Model model) {
+		System.out.println(orderRequestDto);
 		LoginResponseDto principal = (LoginResponseDto)session.getAttribute(Define.PRINCIPAL);
 		orderService.createOrder(orderRequestDto, principal.getUsername());
 		User user = userService.readUserByUsername(principal.getUsername());

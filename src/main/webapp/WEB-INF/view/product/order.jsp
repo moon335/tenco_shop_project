@@ -5,20 +5,6 @@
 <%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<%
-	String sizeId = "";
-	String prodId = "";
-	Cookie[] cookies = request.getCookies();
-	if(cookies != null) {
-		for(Cookie c : cookies) {
-			if(c.getName().equals("size")) {
-				sizeId = c.getValue();
-			} else if (c.getName().equals("product")) {
-				prodId = c.getValue();
-			}
-		}
-	}
-%>
 <style>
 	
 	main {
@@ -174,8 +160,8 @@
 							<img alt="" src="/static/images/prodImages/${product.imgRoute}" width="80" height="80">
 						</div>
 						<div class="prod--detail">
-							<input type="hidden" value="<%=prodId %>" name="prodId">
-							<input type="hidden" value="<%=sizeId %>" name="sizeId">
+							<input type="hidden" value="${product.id}" name="prodId">
+							<input type="hidden" value="${product.sizeId}" name="sizeId">
 							<span class="model--number">${product.modelNumber}</span>
 							<p class="eng--name">${product.engName}</p>
 							<p class="kor--name">${product.korName}</p>

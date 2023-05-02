@@ -2,6 +2,7 @@ package com.tenco.tencoshop.controller;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class MainController {
 		model.addAttribute("list", list);
 		return "layout/main";
 	}
-	// shop 페이지들어감 
+	// shop 페이지들어감
 	@GetMapping("/shop")
 	public String shop(Model model) {
 		List<ProductResponseDto> list = productService.readProduct();

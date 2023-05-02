@@ -21,10 +21,14 @@ public interface ProductRepository {
 			@Param("range") Integer range);
 
 	public Product getProdInfo(Integer id);
+	
+	public Product findProductByModelNumberAndSizeId(@Param("modelNumber") String modelNumber, @Param("sizeId") Integer sizeId);
 
 	public ProductResponseDtoForReview findProductById(Integer id);
 
 	public ProductResponseDto findProductByProdId(Integer id);
+	
+	public ProductResponseDto findProductByModelNumber(String modelNumber);
 
 	// 제품 카테고리 선택 시 상품 나열
 	public List<ProductResponseDto> CategorySelect(@Param("name") String name, @Param("begin") Integer begin,

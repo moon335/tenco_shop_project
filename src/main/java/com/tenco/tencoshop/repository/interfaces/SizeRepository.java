@@ -10,7 +10,7 @@ import com.tenco.tencoshop.repository.model.Size;
 public interface SizeRepository {
 	
 	// 모든 사이즈 조회
-	public List<Size> findAll();
+	public List<Size> findAll(Integer sizeCategoryId);
 	// id 기반 사이즈 조회
 	public Size findByName(String size);
 	

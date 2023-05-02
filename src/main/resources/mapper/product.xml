@@ -6,7 +6,7 @@
 	namespace="com.tenco.tencoshop.repository.interfaces.ProductRepository">
 	<select id="findAll"
 		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
-		select p.id, p.eng_name, p.kor_name, p.purchase,
+		select p.id, p.model_number, p.eng_name, p.kor_name, p.purchase,
 		p.img_route, b.name as
 		brand_name
 		from product_tb as p
@@ -19,7 +19,6 @@
 	<select id="findProductAll"
 		resultType="com.tenco.tencoshop.repository.model.Product">
 		select * from product_tb;
-
 	</select>
 	<select id="findProduct"
 		resultType="com.tenco.tencoshop.repository.model.Product">
@@ -32,6 +31,11 @@
 	<select id="getProdInfo"
 		resultType="com.tenco.tencoshop.repository.model.Product">
 		select * from product_tb where id = #{id}
+	</select>
+	
+	<select id="findProductByModelNumberAndSizeId"
+		resultType="com.tenco.tencoshop.repository.model.Product">
+		select * from product_tb where model_number = #{modelNumber} and size_id = #{sizeId}
 	</select>
 
 	<select id="CategorySelect"
@@ -64,8 +68,7 @@
 		size_name
 		from product_tb as p
 		inner join brand_tb as b
-		on
-		p.brand_id = b.id
+		on p.brand_id = b.id
 		inner join category_tb as c
 		on p.category_id = c.id
 		inner join size_tb as s
@@ -80,24 +83,37 @@
 		size_name
 		from product_tb as p
 		inner join brand_tb as b
-		on
-		p.brand_id = b.id
+		on p.brand_id = b.id
 		inner join category_tb as c
 		on p.category_id = c.id
 		inner join size_tb as s
 		on p.size_id = s.id
 		where p.id = #{id}
 	</select>
+	
+	<select id="findProductByModelNumber"
+		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select p.*, b.name as brand_name, c.name as category_name,
+		s.name as
+		size_name
+		from product_tb as p
+		inner join brand_tb as b
+		on p.brand_id = b.id
+		inner join category_tb as c
+		on p.category_id = c.id
+		inner join size_tb as s
+		on p.size_id = s.id
+		where p.model_number = #{modelNumber}
+		limit 1
+	</select>
 
 	<select id="findProductByModelNumberAndSize"
 		resultType="com.tenco.tencoshop.dto.ProductResponseDto">
 		select p.*, s.name as size_name
 		from product_tb as p
-		inner
-		join size_tb as s
+		inner join size_tb as s
 		on p.size_id = s.id
-		where p.model_number =
-		#{modelNumber} and s.name = #{sizeName}
+		where p.model_number = #{modelNumber} and s.name = #{sizeName}
 	</select>
 
 

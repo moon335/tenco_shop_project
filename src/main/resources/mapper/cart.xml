@@ -4,7 +4,7 @@
 
 <mapper namespace="com.tenco.tencoshop.repository.interfaces.CartRepository">
    <select id="findByUserId" resultType="com.tenco.tencoshop.dto.CartResponseDto">
-      select c.*, p.eng_name, p.kor_name, p.purchase, p.gender, p.release_date, p.color, p.release_price, p.img_route, p.img_route2, p.img_route3, b.name as brand_name, ct.name as category_name, s.name as size_name
+      select c.*, p.eng_name, p.kor_name, p.purchase, p.gender, p.release_date, p.color, p.release_price, p.img_route, b.name as brand_name, ct.name as category_name, s.name as size_name
       from cart_tb as c
       inner join product_tb as p
       on c.prod_id = p.id
@@ -18,8 +18,8 @@
       order by c.id desc;
    </select>
    <insert id="insert">
-   		insert into cart_tb (amount, prod_id, user_id)
-   		values (1, #{prodId}, #{userId})
+   		insert into cart_tb (prod_id, user_id)
+   		values (#{prodId}, #{userId})
    </insert>
    <delete id="delete">
    		delete from cart_tb where id = #{orderId}

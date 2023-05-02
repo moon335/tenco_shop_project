@@ -54,12 +54,13 @@ public class ProductController {
 		return "/product/searchProc";
 	}
 
-	@GetMapping("/prod-info/{id}")
-	public String productPage(@PathVariable Integer id, Model model) {
-		// 사이즈 정보 받아오기
-		List<Size> sizeList = sizeService.readAllSize();
+	@GetMapping("/prod-info/{modelNumber}")
+	public String productPage(@PathVariable String modelNumber, Model model) {
 		// 상품 페이지로 넘길 정보 받아오기
-		ProductResponseDto product = productService.readProductById(id);
+		ProductResponseDto product = productService.readProductByModelNumber(modelNumber);
+		
+		// 사이즈 정보 받아오기
+		List<Size> sizeList = sizeService.readAllSize(product.getSizeCategoryId());
 
 		// 페이지로 데이터 넘기기
 		model.addAttribute("product", product);

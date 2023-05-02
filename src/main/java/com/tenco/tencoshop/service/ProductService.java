@@ -48,9 +48,14 @@ public class ProductService {
 		return prodInfo;
 	}
 
-	// 제품 상세 페이지에서 사용
 	public ProductResponseDto readProductById(Integer prodId) {
 		ProductResponseDto responseProduct = productRepository.findProductByProdId(prodId);
+		return responseProduct;
+	}
+	
+	// 제품 상세 페이지에서 사용
+	public ProductResponseDto readProductByModelNumber(String modelNumber) {
+		ProductResponseDto responseProduct = productRepository.findProductByModelNumber(modelNumber);
 		return responseProduct;
 	}
 

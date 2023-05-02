@@ -16,11 +16,10 @@ public class Product {
    private String color;
    private Integer releasePrice;
    private String imgRoute;
-   private String imgRoute2;
-   private String imgRoute3;
    private Integer brandId;
    private Integer categoryId;
    private Integer sizeId;
+   private Integer sizeCategoryId;
 
    
 } // end of class

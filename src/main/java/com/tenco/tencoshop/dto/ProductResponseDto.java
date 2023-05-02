@@ -17,8 +17,6 @@ public class ProductResponseDto {
 	private String color;
 	private Integer releasePrice;
 	private String imgRoute;
-	private String imgRoute2;
-	private String imgRoute3;
 	private Integer brandId;
 	private Integer categoryId;
 	private Integer sizeId;
@@ -26,5 +24,7 @@ public class ProductResponseDto {
 	private String categoryName;
 	private String sizeName;
 	private Double count;
+	private Integer sizeCategoryId;
+	private String sizeCategoryName;
 
 } // end of class

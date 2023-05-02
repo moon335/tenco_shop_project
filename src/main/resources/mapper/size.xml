@@ -4,10 +4,13 @@
 
 <mapper namespace="com.tenco.tencoshop.repository.interfaces.SizeRepository">
    <select id="findAll" resultType="com.tenco.tencoshop.repository.model.Size">
-   		select * from size_tb
+   		select * from size_tb as s
+   		inner join size_category_tb as sc
+   		on s.size_category_id = sc.id
+   		where sc.id = #{sizeCategoryId}
    </select>
    
    <select id="findByName" resultType="com.tenco.tencoshop.repository.model.Size">
-   		select * from size_tb where name = #{name}
+   		select * from size_tb where name = #{name} 
    </select>
 </mapper>

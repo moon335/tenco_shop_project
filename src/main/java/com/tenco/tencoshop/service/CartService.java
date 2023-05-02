@@ -48,13 +48,13 @@ public class CartService {
    
    // 상세 페이지에서 장바구니 담기를 눌렀을 때 테이블에 추가하기
    @Transactional
-   public void createCart(String size, Integer prodId, String username) {
+   public void createCart(String size, String modelNumber, String username) {
 	   
 	 User targetUser = userRepository.findByUsername(username);
 	 
 	 Size targetSize = sizeRepository.findByName(size);
 	 
-	 Product targetProduct = productRepository.getProdInfo(prodId);
+	 Product targetProduct = productRepository.findProductByModelNumberAndSizeId(modelNumber, targetSize.getId());
 	 
 	 int resultRow = cartRepository.insert(targetUser.getId(), targetProduct.getId(), targetSize.getId());
 	 if(resultRow != 1) {

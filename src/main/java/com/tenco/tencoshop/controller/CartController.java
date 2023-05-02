@@ -57,11 +57,11 @@ public class CartController {
    }
    
    @PostMapping("/addCart")
-   public String addCart(String size, Integer prodId) {
+   public String addCart(String size, String modelNumber) {
 	   // 세션에서 로그인 유저 정보 받아와서 처리
 	   LoginResponseDto principal = (LoginResponseDto)session.getAttribute(Define.PRINCIPAL);
 	   // 서비스 불러서 insert 처리
-	   cartService.createCart(size, prodId, principal.getUsername());
+	   cartService.createCart(size, modelNumber, principal.getUsername());
 	   
 	   return "/cart/list";
    }
