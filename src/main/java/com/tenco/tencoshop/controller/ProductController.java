@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tenco.tencoshop.dto.BrandResponseDto;
 import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.repository.model.Product;
 import com.tenco.tencoshop.repository.model.Size;
@@ -86,7 +87,7 @@ public class ProductController {
 	@GetMapping("/brandPage")
 	public String brandPage(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
-		List<ProductResponseDto> brandList = productService.selectBrandAll(begin, range);
+		List<BrandResponseDto> brandList = productService.selectBrandAll(begin, range);
 		Double productCount = productService.selectBrandAllCount();
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);

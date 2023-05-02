@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tenco.tencoshop.dto.BrandResponseDto;
 import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.repository.interfaces.ProductRepository;
 import com.tenco.tencoshop.repository.model.Product;
@@ -77,8 +78,8 @@ public class ProductService {
 	}
 
 	// 브랜드 모두 보기
-	public List<ProductResponseDto> selectBrandAll(Integer begin, Integer range) {
-		List<ProductResponseDto> responseProductList = productRepository.selectBrandAll(begin, range);
+	public List<BrandResponseDto> selectBrandAll(Integer begin, Integer range) {
+		List<BrandResponseDto> responseProductList = productRepository.selectBrandAll(begin, range);
 		return responseProductList;
 	}
 

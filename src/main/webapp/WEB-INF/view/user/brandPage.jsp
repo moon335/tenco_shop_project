@@ -141,6 +141,15 @@ body {
    color: black;
    width: 50px;
 }
+
+.article-prod > a > h5 {
+	color: #000;
+	text-align: center;
+}
+
+.article-prod > a {
+	text-decoration: none;
+}
 </style>
 <div class="title">
    <div id="demo" class="carousel slide" data-ride="carousel">
@@ -164,7 +173,7 @@ body {
          <c:forEach var="brandList" items="${brandList}">
             <div class="article-prod">
                <a href="/product/brandInfo?id=${brandList.id}&begin=0&range=8"><img alt="" class="article-img" src="/static/images/prodImages/${brandList.imgRoute}" width="210" height="210">
-                  <h5>${brandList.brandName}</h5> </a>
+                  <h5>${brandList.name}</h5> </a>
             </div>
          </c:forEach>
 
