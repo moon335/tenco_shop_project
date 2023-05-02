@@ -8,60 +8,36 @@
 ```bash
     src   
     ├───main  
-    │
     └───java
-             │   
-             └───com
-             │   
+         └───com
              └───tenco
-             │   
-             └───tencoshop
-             │   
-             ├───aop
-             │       
-             ├───config
-             │       
-             ├───controller
-             │       
-             ├───dto
-             │       
-             ├───handler
-             │   │   
-             │   └───exception
-             │               │           
-             │               ├───repository
-             │               │         │   
-             │               │         ├───interfaces
-             │               │         │       
-             │               │         └───model
-             │               │           
-             │               ├───service
-             │               │       
-             │               └───util
-             │                       
-             ├───resources
-             │   │   
-             │   ├───mapper
-             │   │       
-             │   └───static
-             │       ├───css
-             │       │       
-             │       └───js
-             │               
-             └───webapp
-                 └───WEB-INF
-                     └───view
-                        ├───admin
-                        │       
-                        ├───layout
-                        │       
-                        ├───notice
-                        │       
-                        ├───product
-                        │       
-                        ├───review
-                        │       
-                        └───user  
+                  │   
+                  └───tencoshop
+                  ├───aop
+                  ├───config
+                  ├───controller
+                  ├───dto
+                  ├───handler
+                  │   └───exception     
+                  │         ├───repository
+                  │         │      ├───interfaces
+                  │         │      └───model
+                  │         ├───service
+                  │         └───util 
+                  ├───resources
+                  │   ├───mapper
+                  │   └───static
+                  │        ├───css
+                  │        └───js
+                  └───webapp
+                        └───WEB-INF
+                             └───view
+                                  ├───admin
+                                  ├───layout
+                                  ├───notice
+                                  ├───product
+                                  ├───review
+                                  └───user  
 ```
 
 <br>
