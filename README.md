@@ -84,7 +84,16 @@
 
 ![withdrawal](https://user-images.githubusercontent.com/124985978/235608231-03d6c6d8-90b2-42f5-9b29-d6c1816ac7f9.png)
 
+<details>
+<summary> 👉🏻 Source  </summary>
+  
+<pre>
+<code>
 
+</code>
+</pre>
+  
+</details>
 <br>
 
 ### 2️⃣ 관리자 전용 페이지와 공지사항 및 FAQ
@@ -100,6 +109,17 @@
 - 회원가입 시 관리자 코드를 입력하면 관리자로 로그인이 가능합니다.
   - 관리자는 공지사항과 FAQ를 수정할 수 있습니다.
   - 구매자가 작성한 후기에 답글을 달 수 있습니다.
+
+<details>
+<summary> 👉🏻 Source  </summary>
+  
+<pre>
+<code>
+
+</code>
+</pre>
+  
+</details>
 
 <br>
 
@@ -119,6 +139,17 @@
   - 장바구니에 담은 상품은 바로 구매가 가능합니다.
 - 관리자는 작성된 후기에 답글을 남길 수 있습니다.
 
+<details>
+<summary> 👉🏻 Source  </summary>
+  
+<pre>
+<code>
+
+</code>
+</pre>
+  
+</details>
+
 <br>
 
 ### 4️⃣ Paging 처리
@@ -127,6 +158,17 @@
 ![paging](https://user-images.githubusercontent.com/124985978/235613141-0452b3fb-684a-44ea-8f4e-4ecf013c6361.png)
 
 - 페이지를 숫자를 눌러 편하게 이동할 수 있습니다.
+
+<details>
+<summary> 👉🏻 Source  </summary>
+  
+<pre>
+<code>
+
+</code>
+</pre>
+  
+</details>
 
 <br>
 
@@ -137,6 +179,17 @@
 
 
 - 페이지가 너무 많아서 상품을 찾기 힘들 때 검색 기능을 이용할 수 있습니다.
+
+<details>
+<summary> 👉🏻 Source  </summary>
+  
+<pre>
+<code>
+
+</code>
+</pre>
+  
+</details>
 
 ## 🚀 합성 이미지
 
