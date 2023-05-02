@@ -147,12 +147,12 @@ body {
 				<c:choose>
 					<c:when test="${questList.reqStatus == 0}">
 						<div style="flex: 3;">
-							<a href="/question/detail?id=${questList.id}" value="답변미완료"> 답변미완료</a>
+							<a href="/admin/detail?id=${questList.id}" value="답변미완료"> 답변미완료</a>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div style="flex: 3;">
-							<a href="/question/detail?id=${questList.id}" value="답변완료"> 답변완료</a>
+							<a href="/admin/detail?id=${questList.id}" value="답변완료"> 답변완료</a>
 						</div>
 					</c:otherwise>
 				</c:choose>

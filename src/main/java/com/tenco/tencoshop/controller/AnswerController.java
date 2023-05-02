@@ -34,7 +34,7 @@ public class AnswerController {
 	// 질문 답글 달기
 	@GetMapping("/answerWriting")
 	public String helpWriting(@RequestParam Integer id, Model model) {
-		Question quest = questionService.questionDetailPage(id);
+		Question quest = questionService.readQuestionDetail(id);
 		model.addAttribute("id", id);
 		if (quest.getId() == null) {
 			model.addAttribute("quest", null);
@@ -50,7 +50,7 @@ public class AnswerController {
 			@RequestParam(required = false) Integer range, AnswerRequsetDto answerRequsetDto,
 			QuestionResponseDto questionResponseDto) {
 		LoginResponseDto userId = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		questionService.questionUpdate(questionResponseDto, answerRequsetDto, userId.getId());
+		questionService.updateQuestion(questionResponseDto, answerRequsetDto, userId.getId());
 		answerService.createAnswer(answerRequsetDto, userId.getId());
 		questionService.readQuestion(begin, range);
 		return "redirect:/admin/find?currentPage=1&begin=0&range=5";

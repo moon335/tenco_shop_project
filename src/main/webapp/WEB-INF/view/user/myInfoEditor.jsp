@@ -71,12 +71,12 @@ body {
 	width: 950px;
 }
 
-.myinfo {
+.myInfo {
 	border-bottom: 1px solid #ccc;
 	margin-bottom: 50px;
 }
 
-.myimage {
+.myImage {
 	margin-right: 20px;
 }
 
@@ -161,29 +161,29 @@ body {
 	color: black;
 }
 
-.myinfoDetail {
+.myInfoDetail {
 	display: flex;
 	flex-direction: column;
 }
 
-.myinfoLogin {
+.myInfoLogin {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 30px;
 }
 
-.myinfoLogin div {
+.myInfoLogin div {
 	flex-direction: column;
 	margin: 10px;
 }
 
-.myinfoLogin input {
+.myInfoLogin input {
 	border: none;
 	width: 500px;
 	border-bottom: 1px solid #ccc;
 }
 
-.myinfoLogin input:focus {
+.myInfoLogin input:focus {
 	outline: none;
 }
 
@@ -203,7 +203,7 @@ body {
 	padding: 10px 14px;
 }
 
-.myinfoLogin select {
+.myInfoLogin select {
 	appearance: none;
 	border: none;
 	width: 500px;
@@ -211,7 +211,7 @@ body {
 	border-bottom: 1px solid #ccc;
 }
 
-.myinfoLogin select:focus {
+.myInfoLogin select:focus {
 	outline: none;
 }
 
@@ -265,9 +265,9 @@ body {
 		<div class="title" style="padding-bottom: 10px;">
 			<h2>프로필 정보</h2>
 		</div>
-		<div class="myinfo">
+		<div class="myInfo">
 			<form action="/user/myinfoupdateimage" method="post" enctype="multipart/form-data" style="display: flex;">
-				<div class="myimage">
+				<div class="myImage">
 					<c:choose>
 						<c:when test="${principal.image!=null}">
 							<label for="customFile"> <input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png"
@@ -300,8 +300,8 @@ body {
 </div>
 </div>
 <form action="/user/myinfoupdate" method="post" class="userinfo">
-	<div class="myinfoDetail">
-		<div class="myinfoLogin">
+	<div class="myInfoDetail">
+		<div class="myInfoLogin">
 			<h4>
 				<b>로그인 정보</b>
 			</h4>
@@ -315,8 +315,8 @@ body {
 			</div>
 		</div>
 	</div>
-	<div class="myinfoDetail">
-		<div class="myinfoLogin">
+	<div class="myInfoDetail">
+		<div class="myInfoLogin">
 			<h4>
 				<b>개인 정보</b>
 			</h4>

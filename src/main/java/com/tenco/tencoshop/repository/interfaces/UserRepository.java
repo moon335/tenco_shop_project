@@ -13,37 +13,34 @@ import com.tenco.tencoshop.repository.model.User;
 
 @Mapper
 public interface UserRepository {
+	
 	// 구매목록 보기
-	public List<ProductRequestDto> buyList(@Param("begin") Integer begin, @Param("range") Integer range,
-			@Param("userId") Integer userId);
+	public List<ProductRequestDto> findBuyList(@Param("begin") Integer begin, @Param("range") Integer range, @Param("userId") Integer userId);
 
 	// 구매목록 카운터
-	public Double buyListCount(Integer userId);
+	public Double findBuyListCount(Integer userId);
 
 	// 구매목록 조회하기
-	public List<ProductRequestDto> searchBuyList(ProductRequestDto productRequestDto);
+	public List<ProductRequestDto> findBuyListByProductRequestDto(ProductRequestDto productRequestDto);
 
 	// 유저 정보 보기
-	public User userInfoSelect(Integer userId);
-
-	// 유저 정보 전부 보기
-	public List<User> userInfoAll();
+	public User finduserInfo(Integer userId);
 
 	// 유저 정보 수정하기
-	public int userInfoUpdate(User user);
+	public int updateUserInfo(User user);
 
 	// 유저 정보 수정하기 이미지
-	public int userInfoUpdateImage(LoginResponseDto loginResponseDto);
+	public int updateUserInfoImage(LoginResponseDto loginResponseDto);
 
-	public User findByPassword(LoginResponseDto loginResponseDto);
+	public User findByLoginDto(LoginResponseDto loginResponseDto);
 
-	public int signUp(JoinResponseDto joinResponseDto);
+	public int insertUser(JoinResponseDto joinResponseDto);
 
 	// 관리자 계정 회원가입
-	public int signUpAdmin(JoinResponseDto joinResponseDto);
+	public int insertAdmin(JoinResponseDto joinResponseDto);
 
 	// 유저 회원 탈퇴하기
-	public int userDelete(LoginResponseDto loginResponseDto);
+	public int deleteUser(LoginResponseDto loginResponseDto);
 
 	// username 기반 검색
 	public User findByUsername(String username);
@@ -51,20 +48,20 @@ public interface UserRepository {
 	public User findByUserId(Integer userId);
 
 	// 판매 내역 보기( 관리자)
-	public List<ProductRequestDto> salesList(@Param("begin") Integer begin, @Param("range") Integer range);
+	public List<ProductRequestDto> findSalesList(@Param("begin") Integer begin, @Param("range") Integer range);
 
 	// 판매 내역 카운터하기(관리자)
-	public Double salesListCount();
+	public Double findSalesListCount();
 
-	// 주문 내역 카운터하기 (myinfo)
-	public OrderResponseDto orderCounter(Integer userId);
+	// 주문 내역 카운트하기 (myinfo)
+	public OrderResponseDto findOrderCount(Integer userId);
 
 	// 아이디 중복체크
-	public int idCheck(String username);
+	public int findDuplicatedId(String username);
 
 	// 유저 정보 전부 보기
-	public List<User> userInfoAll(@Param("begin") Integer begin, @Param("range") Integer range);
+	public List<User> findAllUserInfo(@Param("begin") Integer begin, @Param("range") Integer range);
 
 	// 유저 몇명인지 카운터
-	public Double userAllCount();
+	public Double findAllUserCount();
 }

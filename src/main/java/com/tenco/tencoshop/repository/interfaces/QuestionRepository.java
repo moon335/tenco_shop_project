@@ -11,23 +11,23 @@ import com.tenco.tencoshop.repository.model.Question;
 public interface QuestionRepository {
 
 	// 질문 전부 나열하기
-	public List<Question> readQuestion(@Param("begin") Integer begin, @Param("range") Integer range);
+	public List<Question> findQuestion(@Param("begin") Integer begin, @Param("range") Integer range);
 
 	// 질문 카운터 하기
-	public Double questionCount();
+	public Double findQuestionCount();
 
 	// 질문 검색
-	public List<Question> searchQuestion(String findWord);
+	public List<Question> findQuestionByWord(String findWord);
 
 	// 질문 하나 상세보기
-	public Question questionDetail(Integer id);
+	public Question findQuestionDetail(Integer id);
 
 	// 질문 적기
-	public int questionWriting(Question quest);
+	public int insertQuestion(Question quest);
 
-	// 질문 수정하기(관리자가 답글달아도 수정)
-	public int questionUpdate(Question quest);
+	// 질문 수정하기
+	public int updateQuestion(Question quest);
 
 	// 질문 삭제하기
-	public int questionDelete(Integer id);
+	public int deleteQuestion(Integer id);
 }

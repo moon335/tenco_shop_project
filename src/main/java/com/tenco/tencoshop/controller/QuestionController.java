@@ -89,7 +89,7 @@ public class QuestionController {
 	// QnA 상세 정보 들어가기
 	@GetMapping("/detail")
 	public String questionDetail(@RequestParam Integer id, Model model) {
-		Question quest = questionService.questionDetailPage(id);
+		Question quest = questionService.readQuestionDetail(id);
 		Answer answer = answerService.readAnswerDetailPage(id);
 		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (user == null) {
@@ -115,7 +115,7 @@ public class QuestionController {
 	@PostMapping("/writing")
 	public String questionWriting(QuestionFormDto questionFormDto) {
 		LoginResponseDto userId = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		questionService.questionWriting(questionFormDto, userId.getId());
+		questionService.createQuestion(questionFormDto, userId.getId());
 		return "redirect:/question/find?currentPage=1&begin=0&range=8";
 	}
 

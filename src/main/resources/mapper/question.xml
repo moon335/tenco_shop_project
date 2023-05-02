@@ -3,18 +3,18 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tenco.tencoshop.repository.interfaces.QuestionRepository">
-	<select id="readQuestion" resultType="com.tenco.tencoshop.repository.model.Question">
+	<select id="findQuestion" resultType="com.tenco.tencoshop.repository.model.Question">
 		select * from question_tb
 		order by id desc
 		limit #{begin},
 		#{range}
 	</select>
 
-	<select id="questionCount" resultType="Double">
+	<select id="findQuestionCount" resultType="Double">
 		select count(*) from question_tb
 	</select>
 
-	<select id="searchQuestion" resultType="com.tenco.tencoshop.repository.model.Question">
+	<select id="findQuestionByWord" resultType="com.tenco.tencoshop.repository.model.Question">
 		select * from question_tb
 		where content like #{findWord}
 		or
@@ -23,18 +23,18 @@
 
 	</select>
 
-	<select id="questionDetail" resultType="com.tenco.tencoshop.repository.model.Question">
+	<select id="findQuestionDetail" resultType="com.tenco.tencoshop.repository.model.Question">
 		select * from question_tb
 		where id=#{id}
 	</select>
 
-	<insert id="questionWriting">
+	<insert id="insertQuestion">
 		insert into
 		question_tb(title,content,user_id,req_status)
 		value(#{title},#{content},#{userId},#{reqStatus})
 	</insert>
 
-	<update id="questionUpdate">
+	<update id="updateQuestion">
 		update question_tb set
 		req_status = #{reqStatus} ,
 		title = #{title},
@@ -44,7 +44,7 @@
 		#{id}
 	</update>
 	
-	<delete id="questionDelete">
+	<delete id="deleteQuestion">
 		delete from question_tb
 		where id=#{id}
 	</delete>

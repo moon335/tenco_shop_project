@@ -48,9 +48,9 @@ public class UserController {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		userId = principal.getId();
 		OrderResponseDto orderCount = userService.orderCounter(principal.getId());
-		List<ProductRequestDto> orderList = userService.buyProductList(begin, range, principal.getId());
-		User user = userService.userInfo(principal.getId());
-		Double productCount = userService.buyListCount(userId);
+		List<ProductRequestDto> orderList = userService.readBuyProductList(begin, range, principal.getId());
+		User user = userService.readUserInfo(principal.getId());
+		Double productCount = userService.readBuyListCount(userId);
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
 		Integer startPage = currentPage - 5;
@@ -83,9 +83,9 @@ public class UserController {
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range,
 			Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		User user = userService.userInfo(principal.getId());
-		List<ProductRequestDto> orderList = userService.buyProductList(begin, range, principal.getId());
-		Double productCount = userService.buyListCount(user.getId());
+		User user = userService.readUserInfo(principal.getId());
+		List<ProductRequestDto> orderList = userService.readBuyProductList(begin, range, principal.getId());
+		Double productCount = userService.readBuyListCount(user.getId());
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
 		Integer startPage = currentPage - 5;
@@ -114,8 +114,8 @@ public class UserController {
 	public String buyListProc(ProductRequestDto productRequestDto, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		productRequestDto.setUserId(principal.getId());
-		User user = userService.userInfo(principal.getId());
-		List<ProductRequestDto> orderList = userService.searchProductList(productRequestDto);
+		User user = userService.readUserInfo(principal.getId());
+		List<ProductRequestDto> orderList = userService.readProductListByProductRequestDto(productRequestDto);
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
 			model.addAttribute("orderList", null);
@@ -135,7 +135,7 @@ public class UserController {
 	@GetMapping("/myinfoEditor")
 	public String myinfoEditor(Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		User user = userService.userInfo(principal.getId());
+		User user = userService.readUserInfo(principal.getId());
 		model.addAttribute("user", user);
 		user.getPassword();
 		return "/user/myInfoEditor";
@@ -147,7 +147,7 @@ public class UserController {
 	@PostMapping("/myinfoupdate")
 	public String myInfoUpdate(@Valid UserInfoRequestDto userInfoRequestDto, BindingResult bindingResult) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
+		userService.updateUserInfo(userInfoRequestDto, principal.getId());
 		if (principal.getPassword().equals(userInfoRequestDto.getPassword()) == false) {
 			session.invalidate();
 			return "redirect:/user/sign-in";
@@ -185,8 +185,8 @@ public class UserController {
 				e.printStackTrace();
 			}
 			LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-			userService.userInfoUpdateImage(userInfoRequestDto, principal.getId());
-			User user = userService.userInfo(principal.getId());
+			userService.updateUserInfoImage(userInfoRequestDto, principal.getId());
+			User user = userService.readUserInfo(principal.getId());
 			principal.setImage(user.getImage());
 			return "redirect:/user/myinfoEditor";
 
@@ -199,8 +199,8 @@ public class UserController {
 	@PostMapping("/userInfoDeleteimage")
 	public String userInfoDeleteimage(UserInfoRequestDto userInfoRequestDto) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		userService.userInfoUpdateImage(userInfoRequestDto, principal.getId());
-		User user = userService.userInfo(principal.getId());
+		userService.updateUserInfoImage(userInfoRequestDto, principal.getId());
+		User user = userService.readUserInfo(principal.getId());
 		principal.setImage(null);
 		return "redirect:/user/myinfoEditor";
 	}
@@ -215,7 +215,7 @@ public class UserController {
 	@PostMapping("/sign-in")
 	public String signInProc(@Valid LoginResponseDto loginResponseDto, BindingResult bindingResult) {
 
-		LoginResponseDto principal = userService.signIn(loginResponseDto);
+		LoginResponseDto principal = userService.readUser(loginResponseDto);
 		if (principal.getRole().equals("admin")) {
 			principal.setPassword(loginResponseDto.getPassword());
 			session.setAttribute(Define.PRINCIPAL, principal);

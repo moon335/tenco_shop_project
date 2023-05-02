@@ -22,11 +22,9 @@ import com.tenco.tencoshop.dto.LoginResponseDto;
 import com.tenco.tencoshop.dto.ProductRequestDto;
 import com.tenco.tencoshop.dto.UserInfoRequestDto;
 import com.tenco.tencoshop.handler.exception.CustomRestfullException;
-import com.tenco.tencoshop.repository.interfaces.UserRepository;
 import com.tenco.tencoshop.repository.model.Answer;
 import com.tenco.tencoshop.repository.model.Question;
 import com.tenco.tencoshop.repository.model.User;
-import com.tenco.tencoshop.service.AdminService;
 import com.tenco.tencoshop.service.AnswerService;
 import com.tenco.tencoshop.service.QuestionService;
 import com.tenco.tencoshop.service.UserService;
@@ -35,9 +33,6 @@ import com.tenco.tencoshop.util.Define;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
-	@Autowired
-	private UserRepository userRepository;
 
 	@Autowired
 	private UserService userService;
@@ -62,8 +57,8 @@ public class AdminController {
 		if (!principal.getRole().equals("admin")) {
 			throw new CustomRestfullException("관리자 계정으로 로그인 해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		User user = userService.userInfo(principal.getId());
-		Double productCount = userService.userAllCount();
+		User user = userService.readUserInfo(principal.getId());
+		Double productCount = userService.readAllUserCount();
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
 		Integer startPage = currentPage - 5;
@@ -79,7 +74,7 @@ public class AdminController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("page", page);
 		model.addAttribute("user", user);
-		List<User> userList = userService.userInfoAll(begin, range);
+		List<User> userList = userService.readAllUserInfo(begin, range);
 		model.addAttribute("userList", userList);
 		if (userList.isEmpty()) {
 			model.addAttribute("userList", null);
@@ -91,9 +86,9 @@ public class AdminController {
 
 	// 내 정보 수정 화면 들어가기
 	@GetMapping("/adminInfoEditor")
-	public String myinfoEditor(Model model) {
+	public String myInfoEditor(Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		User user = userService.userInfo(principal.getId());
+		User user = userService.readUserInfo(principal.getId());
 		model.addAttribute("user", user);
 		user.getPassword();
 		return "/admin/adminInfoEditor";
@@ -107,7 +102,7 @@ public class AdminController {
 			session.invalidate();
 			return "redirect:/user/sign-in";
 		}
-		userService.userInfoUpdate(userInfoRequestDto, principal.getId());
+		userService.updateUserInfo(userInfoRequestDto, principal.getId());
 		return "redirect:/admin/adminInfoEditor";
 	}
 
@@ -140,8 +135,8 @@ public class AdminController {
 				e.printStackTrace();
 			}
 			LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-			userService.userInfoUpdateImage(userInfoRequestDto, principal.getId());
-			User user = userService.userInfo(principal.getId());
+			userService.updateUserInfoImage(userInfoRequestDto, principal.getId());
+			User user = userService.readUserInfo(principal.getId());
 			principal.setImage(user.getImage());
 			return "redirect:/admin/adminInfoEditor";
 
@@ -154,8 +149,8 @@ public class AdminController {
 	@PostMapping("/adminInfoDeleteimage")
 	public String adminDeleteimage(UserInfoRequestDto userInfoRequestDto) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		userService.userInfoUpdateImage(userInfoRequestDto, principal.getId());
-		User user = userService.userInfo(principal.getId());
+		userService.updateUserInfoImage(userInfoRequestDto, principal.getId());
+		User user = userService.readUserInfo(principal.getId());
 		principal.setImage(null);
 		return "redirect:/admin/adminInfoEditor";
 	}
@@ -168,8 +163,8 @@ public class AdminController {
 		if (principal == null) {
 			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		List<ProductRequestDto> orderList = userService.buyProductList(begin, range, principal.getId());
-		User user = userService.userInfo(principal.getId());
+		List<ProductRequestDto> orderList = userService.readBuyProductList(begin, range, principal.getId());
+		User user = userService.readUserInfo(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
 			model.addAttribute("orderList", null);
@@ -186,8 +181,8 @@ public class AdminController {
 			@RequestParam(required = false) Integer id, @RequestParam(required = false) Integer begin,
 			@RequestParam(required = false) Integer range, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		List<ProductRequestDto> salesList = userRepository.salesList(begin, range);
-		Double productCount = userRepository.salesListCount();
+		List<ProductRequestDto> salesList = userService.readSalesList(begin, range);
+		Double productCount = userService.readSalesListCount();
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
 		Integer startPage = currentPage - 5;
@@ -198,7 +193,7 @@ public class AdminController {
 		if (endPage >= page) {
 			endPage = page;
 		}
-		User user = userService.userInfo(principal.getId());
+		User user = userService.readUserInfo(principal.getId());
 		model.addAttribute("user", user);
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("page", page);
@@ -218,7 +213,7 @@ public class AdminController {
 	// 해당 유저 정보 보기(판매 리스트에서)
 	@GetMapping("userSelect")
 	public String userSelect(@RequestParam Integer userId, Model model) {
-		User user = userRepository.userInfoSelect(userId);
+		User user = userService.readUserInfo(userId);
 		model.addAttribute("user", user);
 		return "/admin/userSelect";
 	}
@@ -260,7 +255,7 @@ public class AdminController {
 	// QnA 상세 정보 들어가기
 	@GetMapping("/detail")
 	public String questionDetail(@RequestParam Integer id, Model model) {
-		Question quest = questionService.questionDetailPage(id);
+		Question quest = questionService.readQuestionDetail(id);
 		Answer answer = answerService.readAnswerDetailPage(id);
 		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (user == null) {
