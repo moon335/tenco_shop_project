@@ -166,6 +166,7 @@ button:hover {
 }
 </style>
 <%
+if(user != null){
 if (user.getRole().equals("user")) {
 %>
 <style>
@@ -174,6 +175,7 @@ if (user.getRole().equals("user")) {
 }
 </style>
 <%
+	}
 }
 %>
 </head>

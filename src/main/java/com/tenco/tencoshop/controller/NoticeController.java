@@ -34,10 +34,10 @@ public class NoticeController {
 
 	@GetMapping("/list")
 	public String notice(Model model) {
-		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+//		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		List<NoticeResponseDto.BoardTitleDto> list = noticeService.noticeMain();
 		model.addAttribute("list", list);
-		model.addAttribute("user", principal);
+//		model.addAttribute("user", principal);
 		return "/notice/notice";
 	}
 

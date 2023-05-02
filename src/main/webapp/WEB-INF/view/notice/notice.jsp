@@ -221,7 +221,8 @@ body {
 }
 </style>
 <%
-if (user.getRole().equals("user")) {
+if(user != null){
+	if (user.getRole().equals("user")) {
 %>
 <style>
 .top-inner>label {
@@ -229,10 +230,11 @@ if (user.getRole().equals("user")) {
 }
 </style>
 <%
+	}
 }
 %>
 <div class="container">
-	<%
+	 <%
 	if (user == null || user.getRole().equals("user")) {
 	%>
 	<div class="side-menu">
