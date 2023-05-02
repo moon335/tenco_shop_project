@@ -75,6 +75,7 @@ public class ProductController {
 
 		// 사이즈 정보 받아오기
 		List<Size> sizeList = sizeService.readAllSize(product.getSizeCategoryId());
+		System.out.println(sizeList);
 
 		// 페이지로 데이터 넘기기
 		model.addAttribute("product", product);
