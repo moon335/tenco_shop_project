@@ -264,6 +264,13 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/main";
 	}
+	
+	@PostMapping("/withdrawUser")
+	public String withDrawUserProc(LoginResponseDto principal) {
+		userService.userDelete(principal);
+		session.invalidate();
+		return "redirect:/admin/userList?currentPage=1&begin=0&range=8";
+	}
 
 	// 로그아웃
 	@GetMapping("/logout")

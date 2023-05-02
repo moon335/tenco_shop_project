@@ -184,9 +184,6 @@ body {
 				<div style="width: 30px;">
 					<p>${userList.role}</p>
 				</div>
-				<div style="width: 30px; margin-top: -12px;">
-					<a href=""><button>X</button></a>
-				</div>
 			</div>
 			<hr>
 		</c:forEach>
