@@ -71,13 +71,19 @@ public class QuestionController {
 	// QnA 검색하여찾기
 	@PostMapping("/findProc")
 	public String findQuestionProc(String findWord, Model model) {
+		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		List<Question> questList = questionService.searchQuestion(findWord);
 		if (questList.isEmpty()) {
 			model.addAttribute("questList", null);
 		} else {
 			model.addAttribute("questList", questList);
 		}
-		return "/user/question";
+		
+		if(!user.getRole().equals("admin")) {
+			return "/user/question";
+		}
+		
+		return "redirect:/admin/find?currentPage=1&begin=0&range=5";
 	}
 
 	// QnA 상세 정보 들어가기

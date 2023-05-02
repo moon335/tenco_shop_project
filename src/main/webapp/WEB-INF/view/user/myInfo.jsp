@@ -174,7 +174,7 @@ body {
    <div class="buylist">
       <div>구매내역</div>
       <div>
-         <a href="/user/buylist"> 더보기 > </a>
+         <a href="/user/buylistProc?orderStartDate=2020-01-01&orderEndDate=2024-01-01&currentPage=1&begin=0&range=8"> 더보기 > </a>
       </div>
    </div>
    <div class="buyProgress ">
