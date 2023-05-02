@@ -150,7 +150,6 @@ body {
             <h1>shop</h1>
          </div>
       </div>
-
    </div>
    <div class="list">
       <div>

@@ -10,5 +10,4 @@ public class MoneyFormatUtil {
 		return formatNumber;
 	}
 	
-	
 } // end of class

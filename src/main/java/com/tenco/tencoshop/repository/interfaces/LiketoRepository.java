@@ -17,9 +17,9 @@ public interface LiketoRepository {
 	public int deleteById(Integer id);
 	
 	// 전체 리뷰 중 좋아요 누른 리뷰만
-	public List<Liketo> selectByUserId(Integer userId);
+	public List<Liketo> findByUserId(Integer userId);
 	
 	// 리뷰 상세 페이지에 들어갔을 때 해당 상세페이지 좋아요 누른 게시물만
-	public Liketo selectByUserIdAndReviewId(@Param("userId") Integer userId, @Param("reviewId") Integer reviewId);
+	public Liketo findByUserIdAndReviewId(@Param("userId") Integer userId, @Param("reviewId") Integer reviewId);
 	
 }

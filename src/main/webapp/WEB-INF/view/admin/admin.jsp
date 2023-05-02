@@ -119,7 +119,6 @@ body {
 	align-items: center;
 }
 </style>
-
 <div class="content">
 	<div class="content_1">
 		<div>

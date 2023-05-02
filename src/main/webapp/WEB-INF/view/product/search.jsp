@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ include file ="/WEB-INF/view/layout/header.jsp" %>
-<html>
-<head>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
 body{
 font-family: 'Noto Sans';
@@ -57,9 +50,6 @@ form {
    margin: 5px;
 }
 </style>
-</head>
-<body>
-   <body>
    <div class="search-container">
       <form action="/product/search-proc" method = "get">
       <div class="search">

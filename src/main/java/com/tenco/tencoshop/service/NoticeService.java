@@ -18,7 +18,7 @@ public class NoticeService {
 	NoticeRepository noticeRepository;
 
 	@Transactional
-	public List<NoticeResponseDto.BoardTitleDto> noticeMain() {
+	public List<NoticeResponseDto.BoardTitleDto> readNoticeMain() {
 
 		List<NoticeResponseDto.BoardTitleDto> list = noticeRepository.findBoardTitle();
 		return list;
@@ -27,8 +27,8 @@ public class NoticeService {
 
 	// 공지사항 상세페이지
 	@Transactional
-	public NoticeResponseDto.NoticeContent noticeContent(Integer id) {
-		NoticeResponseDto.NoticeContent noticeList = noticeRepository.noticeContent(id);
+	public NoticeResponseDto.NoticeContent readNoticeContent(Integer id) {
+		NoticeResponseDto.NoticeContent noticeList = noticeRepository.findNoticeContent(id);
 		return noticeList;
 	}
 
@@ -49,28 +49,28 @@ public class NoticeService {
 
 	// 공지사항 수정
 	@Transactional
-	public void noticeUpdate(NoticeRequestDto.updateDto updateDto) {
-		int result = noticeRepository.noticeUpdate(updateDto);
+	public void updateNotice(NoticeRequestDto.updateDto updateDto) {
+		int result = noticeRepository.updateNotice(updateDto);
 	}
 
 	// 자주 묻는 질문
 	@Transactional
-	public List<NoticeResponseDto.faqDto> selectFaq() {
-		List<NoticeResponseDto.faqDto> list = noticeRepository.selectFaq();
+	public List<NoticeResponseDto.faqDto> readAllFaq() {
+		List<NoticeResponseDto.faqDto> list = noticeRepository.findAllFaq();
 		return list;
 	}
 
 	// 자주 묻는 질문
 	@Transactional
-	public List<NoticeResponseDto.faqDto> selectFaqCategory(String category) {
+	public List<NoticeResponseDto.faqDto> readFaqCategory(String category) {
 		category = "%" + category + "%";
-		List<NoticeResponseDto.faqDto> list = noticeRepository.selectFaqCategory(category);
+		List<NoticeResponseDto.faqDto> list = noticeRepository.findFaqCategory(category);
 		return list;
 	}
 	
 	// 자주 묻는 질문 검색
 	@Transactional
-	public List<Faq> findFaq(String find) {
+	public List<Faq> readFaq(String find) {
 		find = "%" + find + "%";
 		List<Faq> list = noticeRepository.findFaq(find);
 		return list;

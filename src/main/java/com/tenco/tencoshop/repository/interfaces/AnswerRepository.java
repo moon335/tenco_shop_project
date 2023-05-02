@@ -6,7 +6,7 @@ import com.tenco.tencoshop.repository.model.Answer;
 @Mapper
 public interface AnswerRepository {
 
-	public Answer answerDetail(Integer questionId);
+	public Answer findAnswer(Integer questionId);
 	
-	public int answerWriting(Answer answer);
+	public int insertAnswer(Answer answer);
 }

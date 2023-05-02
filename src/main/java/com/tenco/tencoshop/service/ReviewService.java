@@ -14,7 +14,7 @@ import com.tenco.tencoshop.repository.interfaces.ReviewRepository;
 import com.tenco.tencoshop.repository.interfaces.UserRepository;
 import com.tenco.tencoshop.repository.model.User;
 
-@Service // 서비스는 서비스 ~ ㅎㅎ
+@Service
 public class ReviewService {
 
 	@Autowired
@@ -25,14 +25,12 @@ public class ReviewService {
 	private UserRepository userRepository;
 
 	// 최신순, 인기순 기능
-	@Transactional
 	public List<ReviewResponseDto> readReviewByType(String type) {
 		List<ReviewResponseDto> list = reviewRepository.findByType(type);
 		return list;
 	}
 
 	// 리뷰 카테고리 아이디 기반 게시물 출력
-	@Transactional
 	public List<ReviewResponseDto> readReviewByProdId(Integer reviewCategoryId) {
 		List<ReviewResponseDto> list = reviewRepository.findByProdCategoryId(reviewCategoryId);
 		return list;
@@ -51,32 +49,18 @@ public class ReviewService {
 	}
 
 	// 리뷰 작성 페이지에 넘길 상품 정보 조회 기능
+	@Transactional
 	public ProductResponseDtoForReview readByOrderId(Integer orderId) {
 		Integer prodId = reviewRepository.findByOrderId(orderId);
 		ProductResponseDtoForReview product = productRepository.findProductById(prodId);
 		return product;
 	}
 
-	// 리뷰 작성 로직 구현
-	// 1. username으로 userId 조회
-
-	// 2. orderId 사용해서 prodId 가져오기
-
-	// 3. select box에서 카테고리 선택 후 조건을 name으로 id 조회
-
-	// 4. review_tb insert 작업 -> coment, review_img, 1번에서 가져온 userId, 2번에서
-	// 가져온 prodId(order_tb -> join으로 cartId 하면 -> prodId가 있음)
-	// reviewService.createReview(String coment, String review_img, int userId, int
-	// prodId, int review_category_id)
 	@Transactional
 	public void createReview(String username, ReviewRequestDto reviewRequestDto) {
-		// 1. username으로 userId 조회
 		User user = userRepository.findByUsername(username);
 		reviewRequestDto.setUserId(user.getId());
-
-		// 4. insert 진행
 		int resultCnt = reviewRepository.insertReview(reviewRequestDto);
-
 		if (resultCnt != 1) {
 			System.out.println("insert 실패");
 		}
@@ -106,12 +90,8 @@ public class ReviewService {
 
 	}
 
-	// 리뷰 수정 기능
-	// id로 select 하고
-//	 update처리 해야 됨?
 	@Transactional
 	public void updateMyReviewById(Integer id, ReviewRequestDto reviewRequestDto) {
-
 		int resultCnt = reviewRepository.updateMyReviewById(reviewRequestDto);
 
 		if (resultCnt != 1) {

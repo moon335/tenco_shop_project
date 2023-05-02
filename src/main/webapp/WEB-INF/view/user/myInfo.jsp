@@ -133,7 +133,6 @@ body {
    width: 50px;
 }
 </style>
-
 <div class="content">
    <div class="content_1">
       <div>
@@ -142,12 +141,10 @@ body {
                <c:when test="${principal.image!=null}">
                   <input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;">
                   <img class="m--profile" alt="" src=" <c:url value="/images/uploads/${principal.image}"/>" width="150px" height="150" style="border-radius: 150px;">
-
                </c:when>
                <c:otherwise>
                   <input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;">
                   <img class="m--profile" alt="" src="/static/images/myinfo.png" width="150px" height="150" style="margin-top: -20px;">
-
                </c:otherwise>
             </c:choose>
          </div>
@@ -187,7 +184,7 @@ body {
          ${orderCount.deliveryNonComplete}
       </div>
       <div>
-         <h5>배송후</h5>
+         <h5>배송완료 </h5>
          ${orderCount.deliveryComplete}
       </div>
    </div>
@@ -213,7 +210,6 @@ body {
                      <h6 style="margin-left: 5px;">배송중</h6>
                   </c:otherwise>
                </c:choose>
-
                <c:choose>
                   <c:when test="${orderList.deliveryStatus==1}">
                      <button type="submit" onclick="location.href='/review/reviewInsert/${orderList.id}'" style="border: none; background-color: white; color: #088ff7; margin-right: 10px;">
@@ -224,11 +220,9 @@ body {
                      <button type="submit" onclick="location.href='/order/updateDeliveryStatus?id=${orderList.id}'" style="border: none; background-color: white; color: #088ff7; margin-top: -10px;">구매확정</button>
                   </c:otherwise>
                </c:choose>
-
             </div>
          </div>
       </c:forEach>
-
    </div>
    <div class="page">
       <c:choose>

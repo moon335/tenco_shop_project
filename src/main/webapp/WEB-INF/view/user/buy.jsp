@@ -135,7 +135,6 @@ body {
 	height: 43px;
 }
 </style>
-
 <div class="content">
 	<div class="content_1">
 		<h3>구매내역</h3>

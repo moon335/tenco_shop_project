@@ -20,14 +20,12 @@ public class QuestionService {
 	private QuestionRepository questionRepository;
 
 	// QnA 보기
-	@Transactional
 	public List<Question> readQuestion(Integer begin, Integer range) {
 		List<Question> questList = questionRepository.readQuestion(begin, range);
 		return questList;
 	}
 
 	// QnA 카운터 하기
-	@Transactional
 	public Double questionCount() {
 		Double count = questionRepository.questionCount();
 		return count;
@@ -42,7 +40,6 @@ public class QuestionService {
 	}
 
 	// QnA 상세 정보 들어가기
-	@Transactional
 	public Question questionDetailPage(Integer id) {
 		Question quest = questionRepository.questionDetail(id);
 		return quest;

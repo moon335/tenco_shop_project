@@ -159,7 +159,6 @@ body {
             <h1>brand</h1>
          </div>
       </div>
-
    </div>
    <div class="header"></div>
 </div>
@@ -179,7 +178,6 @@ body {
 
       </div>
    </div>
-
 </div>
 <div class="page">
    <c:choose>

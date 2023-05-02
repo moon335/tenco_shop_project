@@ -260,7 +260,6 @@ body {
 	padding: 20px;
 }
 </style>
-
 <div class="content">
 	<div class="content_1">
 		<div class="title" style="padding-bottom: 10px;">
@@ -282,8 +281,6 @@ body {
 								style="margin-top: -20px; border-radius: 150px;"></label>
 						</c:otherwise>
 					</c:choose>
-
-
 					<div id="uploadResult"></div>
 				</div>
 				<div id="profileediter">

@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<%@ include file="/WEB-INF/view/layout/header.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head>
-<link rel="stylesheet href=" https://fonts.   `googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0 " />
+<%@ include file="/WEB-INF/view/layout/header.jsp"%>
+<link rel="stylesheet" href=" https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0 " />
 <link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <style>
 form {
 	display: flex;
@@ -84,8 +79,6 @@ p {
 	width: 50px;
 }
 </style>
-</head>
-<body>
 	<div class="search-container">
 		<form action="/product/search-proc" method="get">
 			<div class="search">
@@ -123,6 +116,5 @@ p {
 			</c:otherwise>
 		</c:choose>
 	</div>
-
 </body>
 </html>

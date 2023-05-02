@@ -34,18 +34,18 @@ public class NoticeController {
 
 	@GetMapping("/list")
 	public String notice(Model model) {
-//		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		List<NoticeResponseDto.BoardTitleDto> list = noticeService.noticeMain();
+		List<NoticeResponseDto.BoardTitleDto> list = noticeService.readNoticeMain();
 		model.addAttribute("list", list);
-//		model.addAttribute("user", principal);
 		return "/notice/notice";
 	}
 
 	// 공지사항 상세페이지
 	@GetMapping("/{id}")
 	public String noticeContent(@PathVariable Integer id, Model model) {
-		NoticeResponseDto.NoticeContent noticeList = noticeService.noticeContent(id);
+		LoginResponseDto principal = (LoginResponseDto)session.getAttribute(Define.PRINCIPAL);
+		NoticeResponseDto.NoticeContent noticeList = noticeService.readNoticeContent(id);
 		model.addAttribute("noticeList", noticeList);
+		model.addAttribute(Define.PRINCIPAL, principal);
 		return "/notice/noticeDetail";
 	}
 
@@ -65,7 +65,7 @@ public class NoticeController {
 	// 공지사항 게시물 삭제페이지
 	@GetMapping("/deleteForm")
 	public String DeleteForm(Model model) {
-		List<NoticeResponseDto.BoardTitleDto> list = noticeService.noticeMain();
+		List<NoticeResponseDto.BoardTitleDto> list = noticeService.readNoticeMain();
 		model.addAttribute("list", list);
 		return "/notice/noticeDelete";
 	}
@@ -80,7 +80,7 @@ public class NoticeController {
 	// 공지사항 수정 페이지
 	@GetMapping("/update/{id}")
 	public String noticeUpdate(@PathVariable Integer id, Model model) {
-		NoticeResponseDto.NoticeContent update = noticeService.noticeContent(id);
+		NoticeResponseDto.NoticeContent update = noticeService.readNoticeContent(id);
 		model.addAttribute("update", update);
 		return "/notice/noticeUpdate";
 	}
@@ -88,15 +88,14 @@ public class NoticeController {
 	// 공지사항 수정하기
 	@PostMapping("/update/{id}")
 	public String noticeUpdate(NoticeRequestDto.updateDto updateDto) {
-		noticeService.noticeUpdate(updateDto);
+		noticeService.updateNotice(updateDto);
 		return "redirect:/notice/list";
 	}
 
 	// 자주묻는질문 페이지
-
 	@GetMapping("/faq")
 	public String FrequentlyAskedQuestions(Model model) {
-		List<NoticeResponseDto.faqDto> faqList = noticeService.selectFaq();
+		List<NoticeResponseDto.faqDto> faqList = noticeService.readAllFaq();
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		model.addAttribute("user", principal);
 		model.addAttribute("faqList", faqList);
@@ -105,22 +104,21 @@ public class NoticeController {
 
 	// faq페이지 카테고리
 	@GetMapping("/categorySelect")
-	public String faqCategorySelect(Model model,
+	public String selectFaqCategory(Model model,
 			@RequestParam(name = "type", defaultValue = "all", required = false) String type) {
 		if (type.equals("all")) {
-			List<NoticeResponseDto.faqDto> faqList = noticeService.selectFaq();
+			List<NoticeResponseDto.faqDto> faqList = noticeService.readAllFaq();
 			model.addAttribute("faqList", faqList);
 		} else {
-			List<NoticeResponseDto.faqDto> faqList = noticeService.selectFaqCategory(type);
+			List<NoticeResponseDto.faqDto> faqList = noticeService.readFaqCategory(type);
 			model.addAttribute("faqList", faqList);
 		}
 		return "/notice/faq";
 	}
 
-	// validation 처리
 	@GetMapping("/findProc")
 	public String findFaq(@RequestParam String find, Model model) {
-		List<Faq> faqList = noticeService.findFaq(find);
+		List<Faq> faqList = noticeService.readFaq(find);
 		if (faqList.isEmpty()) {
 			model.addAttribute("faqList", null);
 		} else {

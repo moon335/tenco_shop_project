@@ -95,7 +95,6 @@ public class ReviewController {
 			model.addAttribute("heart", heart);
 			model.addAttribute("reviewCategoryList", reviewCategoryList);
 			model.addAttribute("review", review);
-			System.out.println(heart);
 			
 		} else {
 			model.addAttribute("reviewCategoryList", reviewCategoryList);
@@ -185,7 +184,6 @@ public class ReviewController {
 	@GetMapping("/reviewUpdate/{id}")
 	public String reviewUpdate(Model model, @PathVariable Integer id) {
 		List<ReviewCategory> reviewCategoryList = reviewCategoryService.readCategorys();
-//		ReviewResponseDto review = reviewService.readReviewByUserId(userId); // 세션에서 로그인한 유저 받아와서 처리
 		model.addAttribute("reviewCategoryList", reviewCategoryList);
 		model.addAttribute("reviewId", id);
 

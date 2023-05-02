@@ -65,10 +65,7 @@ h2,h3 {
 .list:hover {
 	color: #ccc;
 }
-
 </style>
-</head>
-<body>
 	<div class="container">
 		<div class="side-menu">
 			<h2 class="side-menu-title">고객센터</h2>

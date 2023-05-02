@@ -20,7 +20,6 @@ import com.tenco.tencoshop.service.SizeService;
 
 @Controller
 @RequestMapping("/product")
-@Validated
 public class ProductController {
 
 	@Autowired
@@ -43,7 +42,7 @@ public class ProductController {
 			@RequestParam(required = false) Integer currentPage, @RequestParam(required = false) Integer begin,
 			@RequestParam(required = false) Integer range, Model model) {
 		List<ProductResponseDto> list = productService.searchProduct(title, begin, range);
-		Double productCount = productService.productCount(title);
+		Double productCount = productService.readProductCount(title);
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
 		Integer startPage = currentPage - 5;
@@ -75,7 +74,6 @@ public class ProductController {
 
 		// 사이즈 정보 받아오기
 		List<Size> sizeList = sizeService.readAllSize(product.getSizeCategoryId());
-		System.out.println(sizeList);
 
 		// 페이지로 데이터 넘기기
 		model.addAttribute("product", product);
@@ -88,8 +86,8 @@ public class ProductController {
 	@GetMapping("/brandPage")
 	public String brandPage(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
-		List<BrandResponseDto> brandList = productService.selectBrandAll(begin, range);
-		Double productCount = productService.selectBrandAllCount();
+		List<BrandResponseDto> brandList = productService.readBrandAll(begin, range);
+		Double productCount = productService.readBrandAllCount();
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
 		Integer startPage = currentPage - 5;
@@ -113,13 +111,13 @@ public class ProductController {
 	@GetMapping("/brandInfo")
 	public String brandInfoPage(@RequestParam(required = false) Integer id,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
-		ProductResponseDto brand = productService.selectBrand(id);
-		Double productCount = productService.selectBrandInfoCount(id);
+		ProductResponseDto brand = productService.readBrand(id);
+		Double productCount = productService.readBrandInfoCount(id);
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
 		model.addAttribute("id", id);
 		model.addAttribute("page", page);
-		List<ProductResponseDto> brandProductInfoList = productService.selectBrandInfo(id, begin, range);
+		List<ProductResponseDto> brandProductInfoList = productService.readBrandInfo(id, begin, range);
 		model.addAttribute("brand", brand);
 		model.addAttribute("brandProductInfoList", brandProductInfoList);
 

@@ -2,6 +2,7 @@ package com.tenco.tencoshop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.tencoshop.dto.OrderCompleteDto;
 import com.tenco.tencoshop.dto.OrderRequestDto;
@@ -24,6 +25,7 @@ public class OrderService {
 	@Autowired
 	private CartRepository cartRepository;
 
+	@Transactional
 	public void createOrder(OrderRequestDto orderRequestDto, String username) {
 		if (orderRequestDto.getCartId() != null) {
 			Cart inputCart = cartRepository.findById(orderRequestDto.getCartId());
@@ -37,9 +39,6 @@ public class OrderService {
 			orderRequestDto.setUserId(userId);
 		}
 		int resultRow = orderRepository.insertOrder(orderRequestDto);
-//		if (orderRequestDto.getCartId() != null) {
-//			cartRepository.delete(orderRequestDto.getCartId());
-//		}
 		if (resultRow != 1) {
 			System.out.println("구매 실패");
 		}
@@ -50,6 +49,7 @@ public class OrderService {
 	 * @param id
 	 * @return
 	 */
+	@Transactional
 	public int updateDeliveryStatus(Integer id) {
 		int result = orderRepository.updateDeliveryStatus(id);
 		if (result == 0) {
@@ -58,12 +58,14 @@ public class OrderService {
 		return result;
 	}
 	
+	@Transactional
 	public Order readById(Integer id) {
 		Order orderEntity = orderRepository.findById(id);
 		return orderEntity;
 	}
 
 	// 구매 확인 페이지
+	@Transactional
 	public OrderCompleteDto readByUserIdLimitOne(Integer userId) {
 		OrderCompleteDto orderEntity = orderRepository.findByUserIdLimitOne(userId);
 		return orderEntity;

@@ -15,7 +15,6 @@ public class AdminService {
 	@Autowired
 	private ProductRepository productRepository ;
 
-
 	// 판매목록 조회하기
 	@Transactional
 	public List<Product> findProductAll() {

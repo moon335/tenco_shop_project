@@ -7,7 +7,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-
 <style>
 body {
 	margin: 0 auto;
@@ -169,7 +168,6 @@ body>div>main>form>div.container.mt-3 {
 .reviewInsert--detail span {
     padding-left: 30px;
 }
-
 
 </style>
 <main>

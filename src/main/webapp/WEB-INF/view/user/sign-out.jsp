@@ -137,7 +137,5 @@ ul {
 			<a href="#" class="btn outlinegrey medium"> 탈퇴하기 </a> <a href="#" class="btn outlinegrey medium"> 취소하기 </a>
 		</div>
 	</form>
-
-
 	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
 </div>

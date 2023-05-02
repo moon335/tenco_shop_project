@@ -167,7 +167,6 @@ body {
    width: 50px;
 }
 </style>
-
 <div class="content">
 	<div class="content_1">
 		<h3>판매내역</h3>

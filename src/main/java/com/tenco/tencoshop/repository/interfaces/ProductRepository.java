@@ -25,8 +25,6 @@ public interface ProductRepository {
 	public List<ProductResponseDto> findProduct(@Param("title") String title, @Param("begin") Integer begin,
 			@Param("range") Integer range);
 
-	public Product getProdInfo(Integer id);
-
 	public Product findProductByModelNumberAndSizeId(@Param("modelNumber") String modelNumber,
 			@Param("sizeId") Integer sizeId);
 
@@ -37,30 +35,30 @@ public interface ProductRepository {
 	public ProductResponseDto findProductByModelNumber(String modelNumber);
 
 	// 제품 카테고리 선택 시 상품 나열
-	public List<ProductResponseDto> CategorySelect(@Param("name") String name, @Param("begin") Integer begin,
+	public List<ProductResponseDto> findCategory(@Param("name") String name, @Param("begin") Integer begin,
 			@Param("range") Integer range);
 
-	public Double CategorySelectCount(String name);
+	public Double findCategoryCount(String name);
 
 	public ProductResponseDto findProductByModelNumberAndSize(@Param("modelNumber") String modelNumber,
 			@Param("sizeName") String sizeName);
 
 	// 브랜드 전체 조회
-	public List<BrandResponseDto> selectBrandAll(@Param("begin") Integer begin, @Param("range") Integer range);
+	public List<BrandResponseDto> findBrandAll(@Param("begin") Integer begin, @Param("range") Integer range);
 
 	// 브랜드 조회
-	public ProductResponseDto selectBrand(Integer id);
+	public ProductResponseDto findBrand(Integer id);
 
 	// 브랜드 별 상품 조회
-	public List<ProductResponseDto> selectBrandInfo(@Param("id") Integer id, @Param("begin") Integer begin,
+	public List<ProductResponseDto> findBrandInfo(@Param("id") Integer id, @Param("begin") Integer begin,
 			@Param("range") Integer range);
 
 	// 브랜드 별 상품 조회 카운터
-	public Double selectBrandInfoCount(Integer id);
+	public Double findBrandInfoCount(Integer id);
 
 	// 상품 갯수 구하기
-	public Double productCount(String title);
+	public Double findProductCount(String title);
 
 	// 브랜드 전체 조회 카운터
-	public Double selectBrandAllCount();
+	public Double findBrandAllCount();
 }

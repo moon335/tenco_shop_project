@@ -24,7 +24,4 @@ public class ReviewRequestDto {
 	private String uploadFileName;
 	private String originFileName;
 
-//	public String setUpReviewImage() {
-//		return "/images/uploads/" + uploadFileName;
-//	}
 }

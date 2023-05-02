@@ -102,7 +102,6 @@ public class OrderController {
 	
 	@PostMapping("/input-order")
 	public String inputOrder(OrderRequestDto orderRequestDto, Model model) {
-		System.out.println(orderRequestDto);
 		LoginResponseDto principal = (LoginResponseDto)session.getAttribute(Define.PRINCIPAL);
 		orderService.createOrder(orderRequestDto, principal.getUsername());
 		User user = userService.readUserByUsername(principal.getUsername());

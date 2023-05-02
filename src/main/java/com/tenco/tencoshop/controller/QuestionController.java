@@ -90,7 +90,7 @@ public class QuestionController {
 	@GetMapping("/detail")
 	public String questionDetail(@RequestParam Integer id, Model model) {
 		Question quest = questionService.questionDetailPage(id);
-		Answer answer = answerService.answerDetailPage(id);
+		Answer answer = answerService.readAnswerDetailPage(id);
 		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (user == null) {
 			model.addAttribute("user", null);

@@ -247,4 +247,5 @@ if (user.getRole().equals("user")) {
 			});
 		});
 	</script>
-	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+	

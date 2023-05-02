@@ -153,7 +153,6 @@ body {
    text-decoration: none;
 }
 </style>
-
 <div class="content">
 	<div class="content_1">
 		<h3>회원정보</h3>

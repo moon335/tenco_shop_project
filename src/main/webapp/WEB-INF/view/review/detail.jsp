@@ -272,6 +272,5 @@ main {
          <div class="detail--content--wrap"><a href="/review/author-style/${review.userName}" style="font-weight: 900"> ${review.userName} </a>${review.content}</div>
       </div>
    </div>
-
 </main>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

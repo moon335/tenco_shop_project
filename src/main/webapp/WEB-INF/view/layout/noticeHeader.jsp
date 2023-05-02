@@ -212,7 +212,6 @@ button:hover {
 						<button type="button" onclick="location.href='/user/sign-up'">회원가입</button>
 					</c:otherwise>
 				</c:choose>
-
 			</div>
 			<div class="header-inner">
 				<h3>
@@ -224,5 +223,5 @@ button:hover {
 				</div>
 			</div>
 		</div>
-
 	</header>
+	

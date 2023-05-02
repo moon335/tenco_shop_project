@@ -42,7 +42,7 @@ public class MainController {
 	public String shopCategorySelect(@RequestParam(required = false) Integer currentPage,
 			@RequestParam(name = "type", defaultValue = "", required = false) String type,
 			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
-		Double productCount = productService.shopCategoryCount(type);
+		Double productCount = productService.readShopCategoryCount(type);
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
 		Integer startPage = currentPage - 5;
@@ -62,9 +62,8 @@ public class MainController {
 			List<ProductResponseDto> list = productService.readProduct(begin, range);
 			model.addAttribute("list", list);
 		} else {
-			List<ProductResponseDto> list = productService.shopCategory(type, begin, range);
+			List<ProductResponseDto> list = productService.readShopCategory(type, begin, range);
 			model.addAttribute("list", list);
-			System.out.println(list);
 		}
 		return "layout/shop";
 	}

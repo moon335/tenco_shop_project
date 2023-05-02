@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tenco.tencoshop.dto.BrandResponseDto;
 import com.tenco.tencoshop.dto.ProductResponseDto;
@@ -29,16 +30,18 @@ public class ProductService {
 	}
 
 	// 제품 카테고리 선택 시 상품 나열
-	public List<ProductResponseDto> shopCategory(String name, Integer begin, Integer range) {
+	@Transactional
+	public List<ProductResponseDto> readShopCategory(String name, Integer begin, Integer range) {
 		name = "%" + name + "%";
-		List<ProductResponseDto> list = productRepository.CategorySelect(name, begin, range);
+		List<ProductResponseDto> list = productRepository.findCategory(name, begin, range);
 		return list;
 	}
 
 	// 제품 카테고리 선택 시 상품 나열
-	public Double shopCategoryCount(String name) {
+	@Transactional
+	public Double readShopCategoryCount(String name) {
 		name = "%" + name + "%";
-		Double selectCount = productRepository.CategorySelectCount(name);
+		Double selectCount = productRepository.findCategoryCount(name);
 		return selectCount;
 	}
 
@@ -48,16 +51,11 @@ public class ProductService {
 	}
 
 	// 제품 검색 기능
+	@Transactional
 	public List<ProductResponseDto> searchProduct(String title, Integer begin, Integer range) {
 		title = "%" + title + "%";
 		List<ProductResponseDto> list = productRepository.findProduct(title, begin, range);
 		return list;
-	}
-
-	// 메인, 검색 페이지에서 사용
-	public Product getProductInfo(Integer id) {
-		Product prodInfo = productRepository.getProdInfo(id);
-		return prodInfo;
 	}
 
 	public ProductResponseDto readProductById(Integer prodId) {
@@ -78,38 +76,39 @@ public class ProductService {
 	}
 
 	// 브랜드 모두 보기
-	public List<BrandResponseDto> selectBrandAll(Integer begin, Integer range) {
-		List<BrandResponseDto> responseProductList = productRepository.selectBrandAll(begin, range);
+	public List<BrandResponseDto> readBrandAll(Integer begin, Integer range) {
+		List<BrandResponseDto> responseProductList = productRepository.findBrandAll(begin, range);
 		return responseProductList;
 	}
 
 	// 브랜드 조회
-	public ProductResponseDto selectBrand(Integer id) {
-		ProductResponseDto responseProduct = productRepository.selectBrand(id);
+	public ProductResponseDto readBrand(Integer id) {
+		ProductResponseDto responseProduct = productRepository.findBrand(id);
 		return responseProduct;
 	}
 
 	// 브랜드 별 상품 조회
-	public List<ProductResponseDto> selectBrandInfo(Integer id, Integer begin, Integer range) {
-		List<ProductResponseDto> brandProductInfo = productRepository.selectBrandInfo(id, begin, range);
+	public List<ProductResponseDto> readBrandInfo(Integer id, Integer begin, Integer range) {
+		List<ProductResponseDto> brandProductInfo = productRepository.findBrandInfo(id, begin, range);
 		return brandProductInfo;
 	}
 
-	public Double selectBrandInfoCount(Integer id) {
-		Double selectBrandInfoCount = productRepository.selectBrandInfoCount(id);
+	public Double readBrandInfoCount(Integer id) {
+		Double selectBrandInfoCount = productRepository.findBrandInfoCount(id);
 		return selectBrandInfoCount;
 	}
 
 	// 상품 갯수 구하기
-	public Double productCount(String title) {
+	@Transactional
+	public Double readProductCount(String title) {
 		title = "%" + title + "%";
-		Double responseProductCount = productRepository.productCount(title);
+		Double responseProductCount = productRepository.findProductCount(title);
 		return responseProductCount;
 	}
 
 	// 브랜드 모두 보기 카운터
-	public Double selectBrandAllCount() {
-		Double responseProductListCount = productRepository.selectBrandAllCount();
+	public Double readBrandAllCount() {
+		Double responseProductListCount = productRepository.findBrandAllCount();
 		return responseProductListCount;
 	}
 

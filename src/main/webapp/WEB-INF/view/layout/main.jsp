@@ -136,21 +136,21 @@ body {
             <ul class="home-menu">
                <li><a href="#">추천</a>
                   <ul class="home-menu2">
-                     <li><a href="/shopCategorySelect?type=&begin=0&range=8">추천상품</a></li>
+                     <li><a href="/shopCategorySelect?currentPage=1&type=&begin=0&range=8">추천상품</a></li>
                   </ul></li>
                <ul class="home-menu">
                   <li><a href="#">옷</a>
                      <ul class="home-menu2">
-                        <li><a href="/shopCategorySelect?type=아우터&begin=0&range=8">아우터</a></li>
-                        <li><a href="/shopCategorySelect?type=상의&begin=0&range=8">상의</a></li>
-                        <li><a href="/shopCategorySelect?type=하의&begin=0&range=8">하의</a></li>
+                        <li><a href="/shopCategorySelect?currentPage=1&type=아우터&begin=0&range=8">아우터</a></li>
+                        <li><a href="/shopCategorySelect?currentPage=1&type=상의&begin=0&range=8">상의</a></li>
+                        <li><a href="/shopCategorySelect?currentPage=1&type=하의&begin=0&range=8">하의</a></li>
                      </ul></li>
                   <ul class="home-menu">
                      <li><a href="#">악세사리</a>
                         <ul class="home-menu2">
-                           <li><a href="/shopCategorySelect?type=가방&begin=0&range=8">가방</a></li>
-                           <li><a href="/shopCategorySelect?type=지갑&begin=0&range=8">지갑</a></li>
-                           <li><a href="/shopCategorySelect?type=시계&begin=0&range=8">시계</a></li>
+                           <li><a href="/shopCategorySelect?currentPage=1&type=가방&begin=0&range=8">가방</a></li>
+                           <li><a href="/shopCategorySelect?currentPage=1&type=지갑&begin=0&range=8">지갑</a></li>
+                           <li><a href="/shopCategorySelect?currentPage=1&type=시계&begin=0&range=8">시계</a></li>
                         </ul></li>
                      <ul class="home-menu">
                         <li><a href="#">브랜드</a>
@@ -169,15 +169,11 @@ body {
    </div>
    <div>
       <div id="demo" class="carousel slide" data-ride="carousel">
-
-         <!-- Indicators -->
          <ul class="carousel-indicators">
             <li data-target="#demo" data-slide-to="0" class="active"></li>
             <li data-target="#demo" data-slide-to="1"></li>
             <li data-target="#demo" data-slide-to="2"></li>
          </ul>
-
-         <!-- The slideshow -->
          <div class="carousel-inner">
             <div class="carousel-item active">
                <img src="/static/images/banner1.jpg" alt="Los Angeles" width="1100" height="500">
@@ -192,8 +188,6 @@ body {
                <img src="/static/images/banner4.jpg" alt="New York" width="1100" height="500">
             </div>
          </div>
-
-         <!-- Left and right controls -->
          <a class="carousel-control-prev prev" href="#demo" data-slide="prev"> <span class="carousel-control-prev-icon"></span>
          </a> <a class="carousel-control-next next" href="#demo" data-slide="next"> <span class="carousel-control-next-icon"></span>
          </a>

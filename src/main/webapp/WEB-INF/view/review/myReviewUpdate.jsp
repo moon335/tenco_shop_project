@@ -162,7 +162,6 @@ body>div>main>form>div.container.mt-3 {
 	height: 38px;
 }
 </style>
-
 <main>
 	<form action="/review/reviewUpdate-proc" method="post" class="mb-1" enctype="Multipart/form-data">
 		<div class="myReview--content--wrap">
@@ -212,5 +211,4 @@ body>div>main>form>div.container.mt-3 {
 						.html(fileName);
 			});
 </script>
-
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

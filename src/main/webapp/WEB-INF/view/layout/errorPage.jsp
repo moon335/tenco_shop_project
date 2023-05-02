@@ -54,7 +54,6 @@ body {
 	color: #B2B2B2;
 }
 </style>
-
 <div class="wrap_exception">
 	<div class="wrap_content">
 		<img src="/static/images/errorImage.png" alt="TENCO" class="illust">
@@ -73,6 +72,5 @@ body {
 		</div>
 	</div>
 </div>
-
 </body>
 </html>

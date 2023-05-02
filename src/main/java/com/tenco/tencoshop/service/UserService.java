@@ -180,8 +180,6 @@ public class UserService {
 	@Transactional
 	public OrderResponseDto orderCounter(Integer userId) {
 		OrderResponseDto orderResponseDto = userRepository.orderCounter(userId);
-		System.out.println(userId);
-		System.out.println(orderResponseDto);
 		return orderResponseDto;
 	}
 	

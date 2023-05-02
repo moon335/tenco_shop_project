@@ -263,19 +263,16 @@ body {
 						<c:otherwise>
 							<label for="customFile"><input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png" style="display: none;"> <img class="m--profile" alt=""
 								src="/static/images/myinfo.png" width="150px" height="150" style="margin-top: -20px; border-radius: 150px;"></label>
-
 						</c:otherwise>
 					</c:choose>
-
-
 					<div id="uploadResult"></div>
 				</div>
 				<div id="profileediter">
 					<div>
 						<h3>${user.username}</h3>
 					</div>
-					<div>
-						<button type="submit" class="btn btn-outline-dark">이미지 변경</button>
+				<div>
+					<button type="submit" class="btn btn-outline-dark">이미지 변경</button>
 			</form>
 			<form action="/admin/adminInfoDeleteimage" method="post" enctype="multipart/form-data" style="display: flex;">
 				<button type="submit" class="btn btn-outline-dark">삭제</button>

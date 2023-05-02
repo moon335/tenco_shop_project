@@ -32,6 +32,7 @@ public class LiketoService {
 		}
 	}
 	
+	@Transactional
 	public void deleteById(Integer id, Integer reviewId, String type) {
 		Integer rowCount = liketoRepository.deleteById(id);
 		Integer rowCount2 = reviewRepository.updateHeart(reviewId, type);
@@ -45,13 +46,15 @@ public class LiketoService {
 		}
 	}
 	
+	@Transactional
 	public List<Liketo> readByUserId(Integer userId){
-		List<Liketo> liketoList = liketoRepository.selectByUserId(userId);
+		List<Liketo> liketoList = liketoRepository.findByUserId(userId);
 		return liketoList;
 	}
 	
+	@Transactional
 	public Liketo readByUserIdAndReviewId(Integer userId, Integer reviewId) {
-		Liketo like2 = liketoRepository.selectByUserIdAndReviewId(userId, reviewId);
+		Liketo like2 = liketoRepository.findByUserIdAndReviewId(userId, reviewId);
 		return like2;
 	}
 }

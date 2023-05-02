@@ -2,15 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper
-	namespace="com.tenco.tencoshop.repository.interfaces.UserRepository">
-	<select id="buyList"
-		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
+<mapper namespace="com.tenco.tencoshop.repository.interfaces.UserRepository">
+	<select id="buyList" resultType="com.tenco.tencoshop.dto.ProductRequestDto">
 		select o.id, u.id AS user_id ,p.*, o.delivery_status,
 		s.name as size_name, date_format(order_date,'%Y-%m-%d')as order_date
 		from user_tb as u
 		join order_tb as o
-		on o.user_id = u.id
+		on
+		o.user_id = u.id
 		join product_tb as p
 		on p.id = o.product_id
 		join size_tb as s
@@ -18,7 +17,7 @@
 		where u.id=#{userId}
 		order by o.id desc
 		limit #{begin},
-		#{range};
+		#{range}
 	</select>
 
 	<select id="buyListCount" resultType="Double">
@@ -34,16 +33,16 @@
 		join size_tb as s
 		on p.size_id = s.id
 		where
-		u.id=#{userId};
+		u.id=#{userId}
 	</select>
 
-	<select id="salesList"
-		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
+	<select id="salesList" resultType="com.tenco.tencoshop.dto.ProductRequestDto">
 		select o.id,p.img_route,u.username, u.id AS user_id
 		,p.eng_name,o.delivery_status, s.name as
 		size_name,
 		date_format(order_date,'%Y-%m-%d')as order_date
-		from user_tb
+		from
+		user_tb
 		as u
 		join
 		order_tb as o
@@ -54,7 +53,7 @@
 		join size_tb as s
 		on p.size_id = s.id
 		limit #{begin},
-		#{range};
+		#{range}
 	</select>
 
 	<select id="salesListCount" resultType="Double">
@@ -70,25 +69,16 @@
 		p.id =
 		o.product_id
 		join size_tb as s
-		on p.size_id = s.id;
+		on p.size_id = s.id
 	</select>
 
-	<select id="searchBuyList"
-		resultType="com.tenco.tencoshop.dto.ProductRequestDto">
-		select o.id, u.id AS user_id ,p.*,o.delivery_status,
-		s.name
-		as
-		size_name,date_format(order_date,'%Y-%m-%d')as order_date
-		from
-		user_tb
-		as u
+	<select id="searchBuyList" resultType="com.tenco.tencoshop.dto.ProductRequestDto">
+		select o.id, u.id AS user_id , p.*, o.delivery_status, s.name as size_name, date_format(order_date,'%Y-%m-%d')as order_date
+		from user_tb as u
 		join order_tb as o
 		on o.user_id = u.id
-		join product_tb
-		as p
-		on
-		p.id =
-		o.product_id
+		join product_tb as p
+		on p.id = o.product_id
 		join size_tb as s
 		on p.size_id = s.id
 		where
@@ -97,11 +87,10 @@
 		order_date
 		BETWEEN #{orderStartDate}
 		AND
-		#{orderEndDate};
+		#{orderEndDate}
 	</select>
 
-	<select id="userInfoSelect"
-		resultType="com.tenco.tencoshop.repository.model.User">
+	<select id="userInfoSelect" resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
 		where id=#{id}
 	</select>
@@ -112,13 +101,13 @@
 		password=#{password},
 		last_name=#{lastName},
 		tel=#{tel}
-		where id=#{id};
+		where id=#{id}
 	</update>
 
 	<update id="userInfoUpdateImage">
 		update user_tb set
 		image=#{image}
-		where id=#{id};
+		where id=#{id}
 	</update>
 
 
@@ -127,7 +116,7 @@
 		address, email, first_name, last_name)
 		values( #{username},
 		#{password}, #{tel},
-		#{address},#{email},#{firstName},#{lastName});
+		#{address},#{email},#{firstName},#{lastName})
 	</insert>
 
 	<insert id="signUpAdmin">
@@ -135,15 +124,14 @@
 		address, email, first_name, last_name,role)
 		values( #{username},
 		#{password}, #{tel},
-		#{address},#{email},#{firstName},#{lastName},'admin');
+		#{address},#{email},#{firstName},#{lastName},'admin')
 	</insert>
 
 	<delete id="delete">
 		delete from user_tb where username=#{username}
 	</delete>
 
-	<select id="findByPassword"
-		resultType="com.tenco.tencoshop.repository.model.User">
+	<select id="findByPassword" resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
 		where username=#{username}
 	</select>
@@ -152,29 +140,27 @@
 		update user_tb set
 		withdraw = 0,
 		username=#{id}000
-		where id = #{id};
+		where id = #{id}
 	</update>
 
-	<select id="findByUsername"
-		resultType="com.tenco.tencoshop.repository.model.User">
+	<select id="findByUsername" resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
 		where username = #{username}
 	</select>
 
-	<select id="findByUserId"
-		resultType="com.tenco.tencoshop.repository.model.User">
+	<select id="findByUserId" resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
 		where id = #{userId}
 	</select>
 
-	<select id="orderCounter"
-		resultType="com.tenco.tencoshop.dto.OrderResponseDto">
+	<select id="orderCounter" resultType="com.tenco.tencoshop.dto.OrderResponseDto">
 		select count(case when delivery_status=0 then 1 end) AS
 		delivery_non_complete,count(case when delivery_status=1 then 1 end) AS
-		delivery_complete,count(*) AS delivery_count
+		delivery_complete,count(*) AS
+		delivery_count
 		from order_tb
 		where
-		user_id=#{userId};
+		user_id=#{userId}
 	</select>
 
 	<select id="idCheck" resultType="int">
@@ -182,14 +168,13 @@
 		where username = #{username}
 	</select>
 
-	<select id="userInfoAll"
-		resultType="com.tenco.tencoshop.repository.model.User">
+	<select id="userInfoAll" resultType="com.tenco.tencoshop.repository.model.User">
 		select * from user_tb
-		limit #{begin}, #{range};
+		limit #{begin}, #{range}
 	</select>
 
 	<select id="userAllCount" resultType="Double">
-		select count(*) as count from user_tb;
+		select count(*) as count from user_tb
 	</select>
 
 </mapper>

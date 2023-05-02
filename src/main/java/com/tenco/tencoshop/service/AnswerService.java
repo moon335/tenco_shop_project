@@ -18,15 +18,14 @@ public class AnswerService {
 	@Autowired
 	private AnswerRepository answerRepository;
 	
-	
 	/**
 	 * QnA 답글 페이지로 이동 
 	 * @param questionId
 	 * @return
 	 */
 	@Transactional
-	public Answer answerDetailPage(Integer questionId) {
-		Answer answer = answerRepository.answerDetail(questionId);
+	public Answer readAnswerDetailPage(Integer questionId) {
+		Answer answer = answerRepository.findAnswer(questionId);
 		return answer;
 	}
 	/**
@@ -35,12 +34,12 @@ public class AnswerService {
 	 * @param userId
 	 */
 	@Transactional
-	public void answerWritinng(AnswerRequsetDto answerRequsetDto,Integer userId) {
+	public void createAnswer(AnswerRequsetDto answerRequsetDto,Integer userId) {
 		Answer answer = new Answer();
 		answer.setContent(answerRequsetDto.getContent());
 		answer.setQuestionId(answerRequsetDto.getQuestionId());
 		answer.setAdminId(userId);
-		int result = answerRepository.answerWriting(answer);
+		int result = answerRepository.insertAnswer(answer);
 		if(result !=1) {
 			throw new CustomRestfullException("글쓰기에 실패하셨습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}

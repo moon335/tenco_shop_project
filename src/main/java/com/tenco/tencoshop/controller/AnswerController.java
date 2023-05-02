@@ -51,7 +51,7 @@ public class AnswerController {
 			QuestionResponseDto questionResponseDto) {
 		LoginResponseDto userId = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		questionService.questionUpdate(questionResponseDto, answerRequsetDto, userId.getId());
-		answerService.answerWritinng(answerRequsetDto, userId.getId());
+		answerService.createAnswer(answerRequsetDto, userId.getId());
 		questionService.readQuestion(begin, range);
 		return "redirect:/admin/find?currentPage=1&begin=0&range=5";
 	}

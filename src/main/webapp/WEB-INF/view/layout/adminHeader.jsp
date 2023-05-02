@@ -231,14 +231,13 @@ button:hover {
             <c:choose>
                <c:when test="${principal != null}">
                   <a href="/user/logout"> <label>로그아웃</label></a>
-                  <label>${user.username}님</label>
+                  <label>${principal.username}님</label>
                </c:when>
                <c:otherwise>
                   <button type="button" onclick="location.href='/user/sign-in'">로그인</button>
                   <button type="button" onclick="location.href='/user/sign-up'">회원가입</button>
                </c:otherwise>
             </c:choose>
-
          </div>
          <div class="header-inner">
             <h3>
@@ -246,13 +245,12 @@ button:hover {
             </h3>
          </div>
       </div>
-
    </header>
    <div class="body">
       <div class="side">
          <div>
             <h4 style="margin-bottom: 50px;">
-               <a href="/admin/admin" style="color: black;">마이 페이지</a>
+               <a href="/admin/admin?currentPage=1&begin=0&range=5" style="color: black;">마이 페이지</a>
             </h4>
          </div>
          <div>

@@ -216,4 +216,5 @@ body {
 		</c:choose>
 	</div>
 
-	<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
+	

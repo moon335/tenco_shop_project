@@ -143,13 +143,11 @@ body {
 </style>
 <div class="title">
 	<div id="demo" class="carousel slide" data-ride="carousel">
-
 		<div class="carousel-inner">
 			<div class="carousel-item active">
 				<h1>${brand.brandName}</h1>
 			</div>
 		</div>
-
 	</div>
 	<div class="header"></div>
 </div>

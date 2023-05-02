@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/noticeHeader.jsp"%>
-</head>
 <style>
 .category-box select {
 	width: 150px;
@@ -11,14 +10,10 @@
 	padding: 3px;
 	color: gray;
 }
-
 .category-box option {
 	color: gray;
 }
-
-
 </style>
-<body>
 	<div class="container my-3">
 		<form action="/notice/update/${id}" method="post" class="mb-1">
 			<div class="form-group">
