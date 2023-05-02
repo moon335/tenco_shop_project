@@ -30,10 +30,10 @@ public class AnswerController {
 	private HttpSession session;
 	@Autowired
 	private QuestionService questionService;
-	
-	// 질문 답글 달기 
+
+	// 질문 답글 달기
 	@GetMapping("/answerWriting")
-	public String helpWriting(@RequestParam Integer id,Model model) {
+	public String helpWriting(@RequestParam Integer id, Model model) {
 		Question quest = questionService.questionDetailPage(id);
 		model.addAttribute("id", id);
 		if (quest.getId() == null) {
@@ -43,15 +43,16 @@ public class AnswerController {
 		}
 		return "/admin/answerWriting";
 	}
-	
 
 	// QnA 답글달기
 	@PostMapping("/writing")
-	public String answerWriting(AnswerRequsetDto answerRequsetDto,QuestionResponseDto questionResponseDto)  {
+	public String answerWriting(@RequestParam(required = false) Integer begin,
+			@RequestParam(required = false) Integer range, AnswerRequsetDto answerRequsetDto,
+			QuestionResponseDto questionResponseDto) {
 		LoginResponseDto userId = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		questionService.questionUpdate(questionResponseDto,answerRequsetDto, userId.getId());
+		questionService.questionUpdate(questionResponseDto, answerRequsetDto, userId.getId());
 		answerService.answerWritinng(answerRequsetDto, userId.getId());
-		questionService.readQuestion();
-		return "redirect:/admin/find";
+		questionService.readQuestion(begin, range);
+		return "redirect:/admin/find?begin=0&range=8";
 	}
 }

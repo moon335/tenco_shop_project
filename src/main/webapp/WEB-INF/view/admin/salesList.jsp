@@ -153,7 +153,19 @@ body {
 	text-decoration: underline;
 	color: black;
 }
+.page {
+   margin-top: 100px;
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   padding-bottom: 200px;
+}
 
+.page p {
+   font-size: 15px;
+   color: black;
+   width: 50px;
+}
 </style>
 
 <div class="content">
@@ -162,14 +174,6 @@ body {
 	</div>
 	<hr>
 	<div class="salesProductList">
-
-		<c:choose>
-			<c:when test="">
-			</c:when>
-			<c:otherwise>
-			</c:otherwise>
-		</c:choose>
-
 		<c:forEach var="salesList" items="${salesList}">
 			<div class="salesListLine" style="">
 				<div style="width: 10px;">
@@ -202,6 +206,25 @@ body {
 				</div>
 			</div>
 		</c:forEach>
+		<div class="page">
+         <c:choose>
+            <c:when test="${currentPage==1}">
+            </c:when>
+            <c:otherwise>
+               <a href="/admin/salesList?currentPage=1&begin=${5*(1-1)}&range=5"><p><</p></a>
+            </c:otherwise>
+         </c:choose>
+         <c:forEach var="i" begin="${startPage}" end="${endPage}">
+            <a href="/admin/salesList?currentPage=${i}&begin=${5*(i-1)}&range=5"><p>${i}</p></a>
+         </c:forEach>
+         <c:choose>
+            <c:when test="${currentPage==page}">
+            </c:when>
+            <c:otherwise>
+               <a href="/admin/salesList?currentPage=${page}&type=${type}&begin=${5*(page-1)}&range=5"><p>></p></a>
+            </c:otherwise>
+         </c:choose>
+      </div>
 	</div>
 </div>
 </div>

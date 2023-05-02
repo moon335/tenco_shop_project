@@ -25,4 +25,5 @@ public class ProductRequestDto {
 	private String orderEndDate;
 	private Integer deliveryStatus;
 	private String sizeName;
+	private Integer sizeCategoryId;
 }

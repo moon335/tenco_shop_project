@@ -21,9 +21,16 @@ public class QuestionService {
 
 	// QnA 보기
 	@Transactional
-	public List<Question> readQuestion() {
-		List<Question> questList = questionRepository.readQuestion();
+	public List<Question> readQuestion(Integer begin, Integer range) {
+		List<Question> questList = questionRepository.readQuestion(begin, range);
 		return questList;
+	}
+
+	// QnA 카운터 하기
+	@Transactional
+	public Double questionCount() {
+		Double count = questionRepository.questionCount();
+		return count;
 	}
 
 	// QnA 검색하여 찾기
@@ -55,9 +62,10 @@ public class QuestionService {
 		}
 	}
 
-	// 질문에 답글달리면 상태 변경하기 
+	// 질문에 답글달리면 상태 변경하기
 	@Transactional
-	public void questionUpdate(QuestionResponseDto questionResponseDto,AnswerRequsetDto answerRequsetDto, Integer principalId) {
+	public void questionUpdate(QuestionResponseDto questionResponseDto, AnswerRequsetDto answerRequsetDto,
+			Integer principalId) {
 		Question quest = new Question();
 		quest.setTitle(questionResponseDto.getQuestionTitle());
 		quest.setContent(questionResponseDto.getQuestionContent());
@@ -69,12 +77,12 @@ public class QuestionService {
 			System.out.println("수정실패");
 		}
 	}
-	
-	// 질문 삭제하기 
+
+	// 질문 삭제하기
 	@Transactional
 	public void questionDelete(Integer id) {
 		int result = questionRepository.questionDelete(id);
-		if(result != 1) {
+		if (result != 1) {
 			System.out.println("수정 실패 ");
 		}
 	}

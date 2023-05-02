@@ -3,6 +3,7 @@ package com.tenco.tencoshop.repository.interfaces;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
 import com.tenco.tencoshop.dto.LoginResponseDto;
@@ -13,7 +14,11 @@ import com.tenco.tencoshop.repository.model.User;
 @Mapper
 public interface UserRepository {
 	// 구매목록 보기
-	public List<ProductRequestDto> buyList(Integer userId);
+	public List<ProductRequestDto> buyList(@Param("begin") Integer begin, @Param("range") Integer range,
+			@Param("userId") Integer userId);
+
+	// 구매목록 카운터
+	public Double buyListCount(Integer userId);
 
 	// 구매목록 조회하기
 	public List<ProductRequestDto> searchBuyList(ProductRequestDto productRequestDto);
@@ -46,11 +51,20 @@ public interface UserRepository {
 	public User findByUserId(Integer userId);
 
 	// 판매 내역 보기( 관리자)
-	public List<ProductRequestDto> salesList();
+	public List<ProductRequestDto> salesList(@Param("begin") Integer begin, @Param("range") Integer range);
+
+	// 판매 내역 카운터하기(관리자)
+	public Double salesListCount();
 
 	// 주문 내역 카운터하기 (myinfo)
 	public OrderResponseDto orderCounter(Integer userId);
 
 	// 아이디 중복체크
 	public int idCheck(String username);
+
+	// 유저 정보 전부 보기
+	public List<User> userInfoAll(@Param("begin") Integer begin, @Param("range") Integer range);
+
+	// 유저 몇명인지 카운터
+	public Double userAllCount();
 }

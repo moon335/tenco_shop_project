@@ -24,4 +24,5 @@ public class ProductResponseDtoForReview {
 	private String brandName;
 	private String categoryName;
 	private String sizename;
+	private Integer sizeCategoryId;
 }

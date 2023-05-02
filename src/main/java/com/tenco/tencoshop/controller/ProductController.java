@@ -39,11 +39,24 @@ public class ProductController {
 
 	@GetMapping("/search-proc")
 	public String searchProduct(@RequestParam(required = false) String title,
-			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
-		List<Product> list = productService.searchProduct(title, begin, range);
+			@RequestParam(required = false) Integer currentPage, @RequestParam(required = false) Integer begin,
+			@RequestParam(required = false) Integer range, Model model) {
+		List<ProductResponseDto> list = productService.searchProduct(title, begin, range);
 		Double productCount = productService.productCount(title);
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		model.addAttribute("title", title);
 		model.addAttribute("page", page);
 		if (list.isEmpty()) {
@@ -58,7 +71,7 @@ public class ProductController {
 	public String productPage(@PathVariable String modelNumber, Model model) {
 		// 상품 페이지로 넘길 정보 받아오기
 		ProductResponseDto product = productService.readProductByModelNumber(modelNumber);
-		
+
 		// 사이즈 정보 받아오기
 		List<Size> sizeList = sizeService.readAllSize(product.getSizeCategoryId());
 
@@ -71,8 +84,25 @@ public class ProductController {
 
 	// 브랜드 전체 보기 페이지 들어가기
 	@GetMapping("/brandPage")
-	public String brandPage(Model model) {
-		List<ProductResponseDto> brandList = productService.selectBrandAll();
+	public String brandPage(@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
+		List<ProductResponseDto> brandList = productService.selectBrandAll(begin, range);
+		Double productCount = productService.selectBrandAllCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
 		model.addAttribute("brandList", brandList);
 		return "/user/brandPage";
 	}

@@ -33,14 +33,28 @@ public class QuestionController {
 	private HttpSession session;
 	@Autowired
 	private QuestionService questionService;
-	@Autowired
-	private UserService userService;
 
 	// QnA 모두 검색
 	@GetMapping("/find")
-	public String findQuestion(Model model) {
-		List<Question> questList = questionService.readQuestion();
+	public String findQuestion(@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
+		List<Question> questList = questionService.readQuestion(begin, range);
 		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
+		Double productCount = questionService.questionCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		if (user == null) {
 			model.addAttribute("user", null);
 		} else {
@@ -96,12 +110,12 @@ public class QuestionController {
 	public String questionWriting(QuestionFormDto questionFormDto) {
 		LoginResponseDto userId = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		questionService.questionWriting(questionFormDto, userId.getId());
-		return "redirect:/question/find";
+		return "redirect:/question/find?currentPage=1&begin=0&range=8";
 	}
 
 	@GetMapping("/delete")
 	public String questionDelete(Integer id) {
 		questionService.questionDelete(id);
-		return "redirect:/question/find";
+		return "redirect:/question/find?currentPage=1&begin=0&range=8";
 	}
 }

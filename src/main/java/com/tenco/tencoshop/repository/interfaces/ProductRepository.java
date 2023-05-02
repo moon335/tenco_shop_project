@@ -12,22 +12,27 @@ import com.tenco.tencoshop.repository.model.Product;
 @Mapper
 public interface ProductRepository {
 
-	public List<ProductResponseDto> findAll();
+	public List<ProductResponseDto> findAllByMain();
 
-	// 관리작 판매 상품 전체 보기
+	public List<ProductResponseDto> findAll(@Param("begin") Integer begin, @Param("range") Integer range);
+
+	public Double findAllCount();
+
+	// 관리자 판매 상품 전체 보기
 	public List<Product> findProductAll();
 
-	public List<Product> findProduct(@Param("title") String title, @Param("begin") Integer begin,
+	public List<ProductResponseDto> findProduct(@Param("title") String title, @Param("begin") Integer begin,
 			@Param("range") Integer range);
 
 	public Product getProdInfo(Integer id);
-	
-	public Product findProductByModelNumberAndSizeId(@Param("modelNumber") String modelNumber, @Param("sizeId") Integer sizeId);
+
+	public Product findProductByModelNumberAndSizeId(@Param("modelNumber") String modelNumber,
+			@Param("sizeId") Integer sizeId);
 
 	public ProductResponseDtoForReview findProductById(Integer id);
 
 	public ProductResponseDto findProductByProdId(Integer id);
-	
+
 	public ProductResponseDto findProductByModelNumber(String modelNumber);
 
 	// 제품 카테고리 선택 시 상품 나열
@@ -40,7 +45,7 @@ public interface ProductRepository {
 			@Param("sizeName") String sizeName);
 
 	// 브랜드 전체 조회
-	public List<ProductResponseDto> selectBrandAll();
+	public List<ProductResponseDto> selectBrandAll(@Param("begin") Integer begin, @Param("range") Integer range);
 
 	// 브랜드 조회
 	public ProductResponseDto selectBrand(Integer id);
@@ -54,4 +59,7 @@ public interface ProductRepository {
 
 	// 상품 갯수 구하기
 	public Double productCount(String title);
+
+	// 브랜드 전체 조회 카운터
+	public Double selectBrandAllCount();
 }

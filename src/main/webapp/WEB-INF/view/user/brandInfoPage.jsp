@@ -159,7 +159,7 @@ body {
 			<div class="article">
 				<c:forEach var="brandProductInfoList" items="${brandProductInfoList}">
 					<div class="article-prod">
-						<a href="/product/prod-info/${brandProductInfoList.id}"><img alt="" class="article-img" src="/static/images/prodImages/${brandProductInfoList.imgRoute}"></a>
+						<a href="/product/prod-info/${brandProductInfoList.modelNumber}"><img alt="" class="article-img" src="/static/images/prodImages/${brandProductInfoList.imgRoute}" width="210" height="210"></a>
 						<h5>${brandProductInfoList.brandName}</h5>
 						<p class="word">${brandProductInfoList.engName}</p>
 						<h5>${brandProductInfoList.releasePrice}원</h5>

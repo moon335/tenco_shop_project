@@ -9,151 +9,186 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style type="text/css">
 body {
-	width: 1183px;
-	margin: 0 auto;
-	font-family: 'Noto Sans';
+   width: 1183px;
+   margin: 0 auto;
+   font-family: 'Noto Sans';
 }
 
 .carousel-inner {
-	text-align: center;
+   text-align: center;
 }
 
 .prev {
-	justify-content: flex-start;
+   justify-content: flex-start;
 }
 
 .next {
-	justify-content: flex-end;
+   justify-content: flex-end;
 }
 
 .article {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .article-prod {
-	font-size: small;
-	margin: 10px;
+   font-size: small;
+   margin: 10px;
 }
 
 .article-img {
-	background-color: #eee;
-	size: 50px;
-	border-radius: 10px;
-	margin: 5px;
+   background-color: #eee;
+   size: 50px;
+   border-radius: 10px;
+   margin: 5px;
 }
 
 .content-text {
-	margin-top: 50px;
-	margin-left: 315px;
-	width: 1430px;
+   margin-top: 50px;
+   margin-left: 315px;
+   width: 1430px;
 }
 
 .content-box {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 }
 
 .carousel-control-prev {
-	width: 50px;
+   width: 50px;
 }
 
 .carousel-inner img {
-	height: 450px;
+   height: 450px;
 }
 
 .header-menu {
-	width: 1200px;
-	margin: 0 auto;
+   width: 1200px;
+   margin: 0 auto;
 }
 
 .header-menu nav ul li {
-	margin-right: -40px;
+   margin-right: -40px;
 }
 
 .home-menu2 li {
-	margin-left: -40px;
+   margin-left: -40px;
 }
 
 .article {
-	width: 1400px;
-	flex-wrap: wrap;
+   width: 1400px;
+   flex-wrap: wrap;
 }
 
 .article-prod {
-	display: flex;
-	flex-direction: column;
+   display: flex;
+   flex-direction: column;
 }
 
 .article-prod p {
-	width: 260px;
-	height: 20px;
-	margin-left: 10px;
+   width: 260px;
+   height: 20px;
+   margin-left: 10px;
 }
 
 .article-prod h5 {
-	margin-left: 10px;
+   margin-left: 10px;
 }
 
 .article-img {
-	width: 260px;
+   width: 260px;
 }
 
 .list {
-	display: flex;
-	margin-top: 60px;
-	padding: 0 30px;
+   display: flex;
+   margin-top: 60px;
+   padding: 0 30px;
 }
 
 .list div {
-	text-align: center;
-	flex: 1;
+   text-align: center;
+   flex: 1;
 }
 
 .title {
-	text-align: center;
+   text-align: center;
 }
 
 .word {
-	outline: 1px solid black;
-	outline-style: none;
-	display: block;
-	color: black;
-	width: 630px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+   outline: 1px solid black;
+   outline-style: none;
+   display: block;
+   color: black;
+   width: 630px;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+}
+
+.page {
+   margin-top: 100px;
+   display: flex;
+   justify-content: center;
+   text-align: center;
+   padding-bottom: 200px;
+}
+
+.page p {
+   font-size: 15px;
+   color: black;
+   width: 50px;
 }
 </style>
 <div class="title">
-	<div id="demo" class="carousel slide" data-ride="carousel">
+   <div id="demo" class="carousel slide" data-ride="carousel">
 
-		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<h1>brand</h1>
-			</div>
-		</div>
+      <div class="carousel-inner">
+         <div class="carousel-item active">
+            <h1>brand</h1>
+         </div>
+      </div>
 
-	</div>
-	<div class="header"></div>
+   </div>
+   <div class="header"></div>
 </div>
 <div class="content">
-	<div class="content-box">
-		<div class="content-text">
-			<h5>Most Popular</h5>
-			<p>인기 brand</p>
-		</div>
-		<div class="article">
-			<c:forEach var="brandList" items="${brandList}">
-				<div class="article-prod">
-					<a href="/product/brandInfo?id=${brandList.id}&begin=0&range=8"><img alt="" class="article-img" src="/static/images/prodImages/${brandList.imgRoute}">
-						<h5>${brandList.brandName}</h5> </a>
-				</div>
-			</c:forEach>
-		</div>
-	</div>
+   <div class="content-box">
+      <div class="content-text">
+         <h5>Most Popular</h5>
+         <p>인기 brand</p>
+      </div>
+      <div class="article">
+         <c:forEach var="brandList" items="${brandList}">
+            <div class="article-prod">
+               <a href="/product/brandInfo?id=${brandList.id}&begin=0&range=8"><img alt="" class="article-img" src="/static/images/prodImages/${brandList.imgRoute}" width="210" height="210">
+                  <h5>${brandList.brandName}</h5> </a>
+            </div>
+         </c:forEach>
+
+      </div>
+   </div>
+
+</div>
+<div class="page">
+   <c:choose>
+      <c:when test="${currentPage==1}">
+      </c:when>
+      <c:otherwise>
+         <a href="/product/brandPage?currentPage=1&begin=${8*(1-1)}&range=8"><p><</p></a>
+      </c:otherwise>
+   </c:choose>
+   <c:forEach var="i" begin="${startPage}" end="${endPage}">
+      <a href="/product/brandPage?currentPage=${i}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
+   </c:forEach>
+   <c:choose>
+      <c:when test="${currentPage==page}">
+      </c:when>
+      <c:otherwise>
+         <a href="/product/brandPage?currentPage=${page}&begin=${8*(page-1)}&range=8"><p>></p></a>
+      </c:otherwise>
+   </c:choose>
 </div>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

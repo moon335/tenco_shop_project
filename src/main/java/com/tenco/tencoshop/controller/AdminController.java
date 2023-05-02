@@ -1,20 +1,17 @@
 package com.tenco.tencoshop.controller;
 
 import java.io.File;
-
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +32,6 @@ import com.tenco.tencoshop.service.QuestionService;
 import com.tenco.tencoshop.service.UserService;
 import com.tenco.tencoshop.util.Define;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
-
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
@@ -51,9 +46,6 @@ public class AdminController {
 	private HttpSession session;
 
 	@Autowired
-	private AdminService adminService;
-
-	@Autowired
 	private QuestionService questionService;
 
 	@Autowired
@@ -61,7 +53,8 @@ public class AdminController {
 
 	// 관리자가 유저 정보 들어가기
 	@GetMapping("/userList")
-	public String buyList(Model model) {
+	public String buyList(@RequestParam Integer currentPage, @RequestParam(required = false) Integer begin,
+			@RequestParam(required = false) Integer range, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -70,8 +63,23 @@ public class AdminController {
 			throw new CustomRestfullException("관리자 계정으로 로그인 해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		User user = userService.userInfo(principal.getId());
+		Double productCount = userService.userAllCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
 		model.addAttribute("user", user);
-		List<User> userList = userService.userInfoAll();
+		List<User> userList = userService.userInfoAll(begin, range);
 		model.addAttribute("userList", userList);
 		if (userList.isEmpty()) {
 			model.addAttribute("userList", null);
@@ -154,12 +162,13 @@ public class AdminController {
 
 	// 관리자 계정 로그인
 	@GetMapping("/admin")
-	public String signInAdmin(Integer userId, Model model) {
+	public String signInAdmin(@RequestParam(required = false) Integer begin,
+			@RequestParam(required = false) Integer range, Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
+		List<ProductRequestDto> orderList = userService.buyProductList(begin, range, principal.getId());
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
@@ -173,9 +182,27 @@ public class AdminController {
 
 	// 판매 목록 들어가기
 	@GetMapping("salesList")
-	public String salesList(Model model) {
+	public String salesList(@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer id, @RequestParam(required = false) Integer begin,
+			@RequestParam(required = false) Integer range, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-		List<ProductRequestDto> salesList = userRepository.salesList();
+		List<ProductRequestDto> salesList = userRepository.salesList(begin, range);
+		Double productCount = userRepository.salesListCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
 		model.addAttribute("principal", principal);
 		if (salesList.isEmpty()) {
 			model.addAttribute("salesList", null);
@@ -196,8 +223,24 @@ public class AdminController {
 
 	// QnA 모두 검색
 	@GetMapping("/find")
-	public String findQuestion(Model model) {
-		List<Question> questList = questionService.readQuestion();
+	public String findQuestion(@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
+		List<Question> questList = questionService.readQuestion(begin, range);
+		Double productCount = questionService.questionCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (user == null) {
 			model.addAttribute("user", null);

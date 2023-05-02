@@ -15,6 +15,18 @@ public class ProductService {
 	@Autowired // DI 의존 주입
 	ProductRepository productRepository;
 
+	// 메인페이지용
+	public List<ProductResponseDto> readAll() {
+		List<ProductResponseDto> list = productRepository.findAllByMain();
+		return list;
+	}
+
+	public Double findAllCount() {
+		Double findAllCount = productRepository.findAllCount();
+		return findAllCount;
+
+	}
+
 	// 제품 카테고리 선택 시 상품 나열
 	public List<ProductResponseDto> shopCategory(String name, Integer begin, Integer range) {
 		name = "%" + name + "%";
@@ -29,16 +41,15 @@ public class ProductService {
 		return selectCount;
 	}
 
-	public List<ProductResponseDto> readProduct() {
-		List<ProductResponseDto> list = productRepository.findAll();
-
+	public List<ProductResponseDto> readProduct(Integer begin, Integer range) {
+		List<ProductResponseDto> list = productRepository.findAll(begin, range);
 		return list;
 	}
 
 	// 제품 검색 기능
-	public List<Product> searchProduct(String title, Integer begin, Integer range) {
+	public List<ProductResponseDto> searchProduct(String title, Integer begin, Integer range) {
 		title = "%" + title + "%";
-		List<Product> list = productRepository.findProduct(title, begin, range);
+		List<ProductResponseDto> list = productRepository.findProduct(title, begin, range);
 		return list;
 	}
 
@@ -52,7 +63,7 @@ public class ProductService {
 		ProductResponseDto responseProduct = productRepository.findProductByProdId(prodId);
 		return responseProduct;
 	}
-	
+
 	// 제품 상세 페이지에서 사용
 	public ProductResponseDto readProductByModelNumber(String modelNumber) {
 		ProductResponseDto responseProduct = productRepository.findProductByModelNumber(modelNumber);
@@ -66,8 +77,8 @@ public class ProductService {
 	}
 
 	// 브랜드 모두 보기
-	public List<ProductResponseDto> selectBrandAll() {
-		List<ProductResponseDto> responseProductList = productRepository.selectBrandAll();
+	public List<ProductResponseDto> selectBrandAll(Integer begin, Integer range) {
+		List<ProductResponseDto> responseProductList = productRepository.selectBrandAll(begin, range);
 		return responseProductList;
 	}
 
@@ -93,6 +104,12 @@ public class ProductService {
 		title = "%" + title + "%";
 		Double responseProductCount = productRepository.productCount(title);
 		return responseProductCount;
+	}
+
+	// 브랜드 모두 보기 카운터
+	public Double selectBrandAllCount() {
+		Double responseProductListCount = productRepository.selectBrandAllCount();
+		return responseProductListCount;
 	}
 
 } // end of class

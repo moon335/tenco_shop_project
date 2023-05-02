@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tenco.tencoshop.dto.JoinResponseDto;
@@ -41,13 +42,30 @@ public class UserController {
 
 	// myinfo에서 주문한 제품 보기
 	@GetMapping("/myinfoProc")
-	public String myInfoProc(Integer userId, Model model) {
+	public String myInfoProc(@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range,
+			Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
-
 		userId = principal.getId();
 		OrderResponseDto orderCount = userService.orderCounter(principal.getId());
-		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
+		List<ProductRequestDto> orderList = userService.buyProductList(begin, range, principal.getId());
 		User user = userService.userInfo(principal.getId());
+		Double productCount = userService.buyListCount(userId);
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
 		model.addAttribute("user", user);
 		model.addAttribute("orderCount", orderCount);
 		if (orderList.isEmpty()) {
@@ -61,10 +79,27 @@ public class UserController {
 
 	// 구매목록화면 들어가기
 	@GetMapping("/buylist")
-	public String buyList(Integer userId, Model model) {
-		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(	Define.PRINCIPAL);
+	public String buyList(@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range,
+			Integer userId, Model model) {
+		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		User user = userService.userInfo(principal.getId());
-		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
+		List<ProductRequestDto> orderList = userService.buyProductList(begin, range, principal.getId());
+		Double productCount = userService.buyListCount(user.getId());
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
 			model.addAttribute("orderList", null);
@@ -72,7 +107,6 @@ public class UserController {
 			model.addAttribute("orderList", orderList);
 		}
 		return "/user/buy";
-
 	}
 
 	// 주문한 제품 search하기
@@ -214,10 +248,11 @@ public class UserController {
 
 		return "/user/delete";
 	}
+
 	// 진짜 회원탈퇴
 	@GetMapping("/realwithdrawal")
 	public String realwithDrawal() {
-		
+
 		return "/user/realWithdrawal";
 	}
 
@@ -238,7 +273,5 @@ public class UserController {
 
 		return "redirect:/main";
 	}
-	
-
 
 }

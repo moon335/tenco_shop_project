@@ -158,18 +158,10 @@ body {
 	</div>
 	<hr>
 	<div class="buyProduct">
-
-		<c:choose>
-			<c:when test="">
-			</c:when>
-			<c:otherwise>
-			</c:otherwise>
-		</c:choose>
-
 		<c:forEach var="orderList" items="${orderList}">
 			<div>
 				<div class="buyProductImg">
-					<img alt="" src="/static/images/1.png" width="120" height="120">
+					<img alt="" src="/static/images/prodImages/${orderList.imgRoute}" width="120" height="120">
 				</div>
 				<div style="width: 400px;">
 					<p style="width: 250px;">${orderList.engName}</p>
