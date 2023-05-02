@@ -36,6 +36,7 @@ public class ReviewResponseDto {
 	private String sizeName;
 	private String brandName;
 	private String imgRoute;
+	private Integer brandId;
 
 	// 파일 업로드 기능 ReviewFormDto 클래스를 하나 만들어야 할지 고민중
 	private MultipartFile file;

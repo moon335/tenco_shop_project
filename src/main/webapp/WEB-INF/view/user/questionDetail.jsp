@@ -140,7 +140,7 @@ body {
 						<button type="submit"
 							style="background-color: white; color: black;">검색</button>
 					</form>
-					<button type="button">
+					<button type="button" style="margin-bottom: 10px;">
 						<a style="color: white;" href="/user/questWriting">글쓰기</a>
 					</button>
 				</c:otherwise>
@@ -168,7 +168,7 @@ body {
 	<div class="goList">
 		<button
 			style="border: 1px solid #ccc; border-radius: 15px; padding: 10px;">
-			<a href="/question/find">목록보기</a>
+			<a href="/question/find?currentPage=1&begin=0&range=8">목록보기</a>
 		</button>
 	</div>
 </div>

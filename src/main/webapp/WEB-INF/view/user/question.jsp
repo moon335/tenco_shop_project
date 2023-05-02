@@ -140,7 +140,7 @@ body {
 				<input type="text" name="findWord">
 				<button type="submit" style="background-color: white; color: black;">검색</button>
 			</form>
-			<button type="button">
+			<button type="button" style="margin-bottom: 10px;">
 				<a style="color: white;" href="/user/questWriting">글쓰기</a>
 			</button>
 		</div>

@@ -205,11 +205,11 @@ main {
       <div class="detail--category--wrap">
 
          <c:choose>
-            <c:when test="${principal.image!=null}">
+            <c:when test="${review.image!=null}">
                <div class="detail--user--wrap">
                   <div class="user--userName--wrap">
                      <div class="user--userImg--wrap">
-                        <a href="/review/author-style/${review.userName}"><img src="/images/uploads/${principal.image}"></a>
+                        <a href="/review/author-style/${review.userName}"><img src="/images/uploads/${review.image}"></a>
                      </div>
                      <div class="user--info">
                         <span class="detail--userName--wrap"><a href="/review/author-style/${review.userName}">${review.userName}</a></span> <span

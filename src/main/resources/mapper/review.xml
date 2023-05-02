@@ -60,7 +60,7 @@
    </select>
    
    <select id="findReviewListByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-      select r.*, p.*, s.name as size_name, b.name as brand_name, p.id as prod_id
+      select r.*, p.*, s.name as size_name, b.name as brand_name, p.id as prod_id, b.id as brand_id
       from review_tb as r
       inner join user_tb as u
       on r.user_id=u.id
@@ -87,7 +87,7 @@
    </insert>
    
    <select id="findMyReviewByUserName" resultType="com.tenco.tencoshop.dto.ReviewResponseDto">
-      select r.id, r.user_id, r.title, r.content, r.created_at, r.origin_file_name, r.upload_file_name, p.model_number, p.color, p.eng_name, p.kor_name, p.id as prod_id, s.name as size_name, b.name as brand_name
+      select r.id, r.user_id, r.title, r.content, r.created_at, r.origin_file_name, r.upload_file_name, p.model_number, p.color, p.eng_name, p.kor_name, p.id as prod_id, s.name as size_name, b.name as brand_name, b.id as brand_id
       from review_tb as r
       inner join product_tb as p
       on r.prod_id=p.id
