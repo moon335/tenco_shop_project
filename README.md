@@ -1,5 +1,5 @@
 ![index_og_tenco](https://user-images.githubusercontent.com/124985978/235557646-7d522796-0516-4f3b-b931-d435d2c805fa.png)
-## [👋 프로젝트 소개 README](https://github.com/moon335/tenco_shop_project/blob/develop/README.md)
+## [👋 프로젝트 소개 README](https://github.com/moon335/tenco_shop_project/tree/feature/login2/README.md)
 <br>
 
 ## 1️⃣ 프로젝트 구조
