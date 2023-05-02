@@ -21,9 +21,15 @@ public class QuestionService {
 
 	// QnA 보기
 	@Transactional
-	public List<Question> readQuestion() {
-		List<Question> questList = questionRepository.readQuestion();
+	public List<Question> readQuestion(Integer begin, Integer range) {
+		List<Question> questList = questionRepository.readQuestion(begin, range);
 		return questList;
+	}
+	// QnA 카운터 하기
+	@Transactional
+	public Double questionCount() {
+		Double count = questionRepository.questionCount();
+		return count;
 	}
 
 	// QnA 검색하여 찾기

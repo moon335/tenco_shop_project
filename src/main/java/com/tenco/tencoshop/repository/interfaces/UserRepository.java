@@ -14,7 +14,10 @@ import com.tenco.tencoshop.repository.model.User;
 @Mapper
 public interface UserRepository {
 	// 구매목록 보기
-	public List<ProductRequestDto> buyList(Integer userId);
+	public List<ProductRequestDto> buyList(@Param("begin") Integer begin,@Param("range") Integer range,@Param("userId") Integer userId);
+	
+	// 구매목록 카운터
+	public Double buyListCount(Integer userId);
 
 	// 구매목록 조회하기
 	public List<ProductRequestDto> searchBuyList(ProductRequestDto productRequestDto);

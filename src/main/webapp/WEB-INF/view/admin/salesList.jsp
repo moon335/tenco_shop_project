@@ -151,6 +151,7 @@ body {
 	text-decoration: underline;
 	color: black;
 }
+
 .page {
 	margin-top: 100px;
 	display: flex;
@@ -212,9 +213,23 @@ body {
 			</div>
 		</c:forEach>
 		<div class="page">
-			<c:forEach var="i" begin="1" end="${page}">
-				<a href="/admin/salesList?begin=${5*(i-1)}&range=5"><p>${i}</p></a>
+			<c:choose>
+				<c:when test="${currentPage==1}">
+				</c:when>
+				<c:otherwise>
+					<a href="/admin/salesList?currentPage=1&begin=${5*(1-1)}&range=5"><p><</p></a>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<a href="/admin/salesList?currentPage=${i}&begin=${5*(i-1)}&range=5"><p>${i}</p></a>
 			</c:forEach>
+			<c:choose>
+				<c:when test="${currentPage==page}">
+				</c:when>
+				<c:otherwise>
+					<a href="/admin/salesList?currentPage=${page}&type=${type}&begin=${5*(page-1)}&range=5"><p>></p></a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </div>

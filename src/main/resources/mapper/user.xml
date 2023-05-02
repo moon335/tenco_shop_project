@@ -20,6 +20,26 @@
 		join size_tb as s
 		on p.size_id = s.id
 		where
+		u.id=#{userId}
+		order by order_date desc
+		limit #{begin},
+		#{range};
+	</select>
+	
+	<select id="buyListCount"
+		resultType="Double">
+		select count(*)
+		from user_tb
+		as u
+		join order_tb as o
+		on o.user_id = u.id
+		join product_tb
+		as p
+		on p.id =
+		o.product_id
+		join size_tb as s
+		on p.size_id = s.id
+		where
 		u.id=#{userId};
 	</select>
 

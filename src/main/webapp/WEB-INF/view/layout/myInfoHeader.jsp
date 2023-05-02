@@ -15,11 +15,11 @@
 	box-sizing: border-box;
 }
 
-header{
+header {
 	font-family: 'Noto Sans';
 }
 
-main{
+main {
 	font-family: 'Noto Sans';
 }
 
@@ -249,8 +249,8 @@ button:hover {
 					<a href="/main" style="font-size: 28px;">TencoShop</a>
 				</h3>
 				<div class="header-inner-menu">
-					<label><a href="/main">HOME</a></label> <label><a href="/review/style">STYLE</a></label> <label><a href="/shopCategorySelect?type=&begin=0&range=8">SHOP</a></label> <label><a
-						href="/user/myinfoProc">MY</a></label> <span class="material-symbols-outlined"><a href="/product/search">search</a></span>
+					<label><a href="/main">HOME</a></label> <label><a href="/review/style">STYLE</a></label> <label><a href="/shopCategorySelect?currentPage=1&begin=0&range=8">SHOP</a></label> <label><a
+						href="/user/myinfoProc?currentPage=1&begin=0&range=8">MY</a></label> <span class="material-symbols-outlined"><a href="/product/search">search</a></span>
 				</div>
 			</div>
 		</div>
@@ -268,12 +268,12 @@ button:hover {
 			</div>
 			<div>
 				<p>
-					<a href="/user/buylist">구매내역</a>
+					<a href="/user/buylistProc?orderStartDate=2020-01-01&orderEndDate=2024-01-01&currentPage=1&begin=0&range=8">구매내역</a>
 				</p>
 			</div>
 			<div>
 				<p>
-					<a href="">관심상품</a>
+					<a href="">장바구니</a>
 				</p>
 				<br>
 			</div>
@@ -287,17 +287,7 @@ button:hover {
 			</div>
 			<div>
 				<p>
-					<a href="">주소록</a>
-				</p>
-			</div>
-			<div>
-				<p>
-					<a href="">결제 정보</a>
-				</p>
-			</div>
-			<div>
-				<p>
-					<a href="/question/find">QnA</a>
+					<a href="/question/find?currentPage=1&begin=0&range=8">QnA</a>
 				</p>
 			</div>
 		</div>

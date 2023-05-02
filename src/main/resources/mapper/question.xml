@@ -7,7 +7,14 @@
 	<select id="readQuestion"
 		resultType="com.tenco.tencoshop.repository.model.Question">
 		select * from question_tb
-		order by id desc;
+		order by id desc
+		limit #{begin},
+		#{range};
+	</select>
+	
+	<select id="questionCount"
+		resultType="Double">
+		select count(*) from question_tb;
 	</select>
 
 	<select id="searchQuestion"

@@ -147,7 +147,7 @@ body {
 					<tr>
 						<td><input class="search__input" type="date" name="orderStartDate" /></td>
 						<td>~</td>
-						<td><input class="search__input" type="date" name="orderEndDate" /></td>
+						<td><input class="search__input" type="date" name="orderEndDate"  /></td>
 						<td>
 							<button type="submit" style="width: 70px">조회</button>
 						</td>

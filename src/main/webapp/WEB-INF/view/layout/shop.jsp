@@ -127,6 +127,7 @@ body {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
 .page {
 	margin-top: 100px;
 	display: flex;
@@ -153,28 +154,28 @@ body {
 	</div>
 	<div class="list">
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="all" onclick="location.href='/shopCategorySelect?type=&begin=0&range=8'">전체</button>
+			<button type="submit" style="border-style: none" name="name" value="all" onclick="location.href='/shopCategorySelect?currentPage=1&type=&begin=0&range=8'">전체</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="신발" onclick="location.href='/shopCategorySelect?type=신발&begin=0&range=8'">신발</button>
+			<button type="submit" style="border-style: none" name="name" value="신발" onclick="location.href='/shopCategorySelect?currentPage=1&type=신발&begin=0&range=8'">신발</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="outer" onclick="location.href='/shopCategorySelect?type=아우터&begin=0&range=8'">아우터</button>
+			<button type="submit" style="border-style: none" name="name" value="outer" onclick="location.href='/shopCategorySelect?currentPage=1&type=아우터&begin=0&range=8'">아우터</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="top" onclick="location.href='/shopCategorySelect?type=상의&begin=0&range=8'">상의</button>
+			<button type="submit" style="border-style: none" name="name" value="top" onclick="location.href='/shopCategorySelect?currentPage=1&type=상의&begin=0&range=8'">상의</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="pants" onclick="location.href='/shopCategorySelect?type=하의&begin=0&range=8'">하의</button>
+			<button type="submit" style="border-style: none" name="name" value="pants" onclick="location.href='/shopCategorySelect?currentPage=1&type=하의&begin=0&range=8'">하의</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="bag" onclick="location.href='/shopCategorySelect?type=가방&begin=0&range=8'">가방</button>
+			<button type="submit" style="border-style: none" name="name" value="bag" onclick="location.href='/shopCategorySelect?currentPage=1&type=가방&begin=0&range=8'">가방</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="wallet" onclick="location.href='/shopCategorySelect?type=지갑&begin=0&range=8'">지갑</button>
+			<button type="submit" style="border-style: none" name="name" value="wallet" onclick="location.href='/shopCategorySelect?currentPage=1&type=지갑&begin=0&range=8'">지갑</button>
 		</div>
 		<div>
-			<button type="submit" style="border-style: none" name="name" value="watch" onclick="location.href='/shopCategorySelect?type=시계&begin=0&range=8'">시계</button>
+			<button type="submit" style="border-style: none" name="name" value="watch" onclick="location.href='/shopCategorySelect?currentPage=1&type=시계&begin=0&range=8'">시계</button>
 		</div>
 	</div>
 	<div class="header"></div>
@@ -196,9 +197,23 @@ body {
 			</c:forEach>
 		</div>
 		<div class="page">
-			<c:forEach var="i" begin="1" end="${page}">
-				<a href="/shopCategorySelect?type=${type}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
+			<c:choose>
+				<c:when test="${currentPage==1}">
+				</c:when>
+				<c:otherwise>
+					<a href="/shopCategorySelect?currentPage=1&type=${type}&begin=${8*(1-1)}&range=8"><p><</p></a>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<a href="/shopCategorySelect?currentPage=${i}&type=${type}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
 			</c:forEach>
+			<c:choose>
+				<c:when test="${currentPage==page}">
+				</c:when>
+				<c:otherwise>
+					<a href="/shopCategorySelect?currentPage=${page}&type=${type}&begin=${8*(page-1)}&range=8"><p>></p></a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </div>

@@ -82,10 +82,17 @@ public class UserService {
 
 	// myinfo에서 주문한 제품 보기
 	@Transactional
-	public List<ProductRequestDto> buyProductList(Integer userId) {
-
-		List<ProductRequestDto> list = userRepository.buyList(userId);
+	public List<ProductRequestDto> buyProductList(Integer begin, Integer range, Integer userId) {
+		List<ProductRequestDto> list = userRepository.buyList(begin, range, userId);
 		return list;
+	}
+
+	// myinfo에서 주문한 제품 카운트하기
+	@Transactional
+	public Double buyListCount(Integer userId) {
+
+		Double count = userRepository.buyListCount(userId);
+		return count;
 	}
 
 	// 구매목록 조회하기
@@ -117,10 +124,10 @@ public class UserService {
 	@Transactional
 	public List<User> userInfoAll(Integer begin, Integer range) {
 
-		List<User> userList = userRepository.userInfoAll(begin,range);
+		List<User> userList = userRepository.userInfoAll(begin, range);
 		return userList;
 	}
-	
+
 	// 유저 몇명인지 카운터
 	@Transactional
 	public Double userAllCount() {

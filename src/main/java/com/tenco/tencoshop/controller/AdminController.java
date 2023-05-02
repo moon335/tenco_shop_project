@@ -61,8 +61,8 @@ public class AdminController {
 
 	// 관리자가 유저 정보 들어가기
 	@GetMapping("/userList")
-	public String buyList(@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range,
-			Model model) {
+	public String buyList(@RequestParam Integer currentPage, @RequestParam(required = false) Integer begin,
+			@RequestParam(required = false) Integer range, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -74,6 +74,17 @@ public class AdminController {
 		Double productCount = userService.userAllCount();
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		model.addAttribute("page", page);
 		model.addAttribute("user", user);
 		List<User> userList = userService.userInfoAll(begin, range);
@@ -159,12 +170,12 @@ public class AdminController {
 
 	// 관리자 계정 로그인
 	@GetMapping("/admin")
-	public String signInAdmin(Integer userId, Model model) {
+	public String signInAdmin(@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range,Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (principal == null) {
 			throw new CustomRestfullException("로그인 먼저해주세요", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		List<ProductRequestDto> orderList = userService.buyProductList(principal.getId());
+		List<ProductRequestDto> orderList = userService.buyProductList(begin,range,principal.getId());
 		User user = userService.userInfo(principal.getId());
 		model.addAttribute("user", user);
 		if (orderList.isEmpty()) {
@@ -178,13 +189,26 @@ public class AdminController {
 
 	// 판매 목록 들어가기
 	@GetMapping("salesList")
-	public String salesList(@RequestParam(required = false) Integer id, @RequestParam(required = false) Integer begin,
+	public String salesList(@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer id, @RequestParam(required = false) Integer begin,
 			@RequestParam(required = false) Integer range, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		List<ProductRequestDto> salesList = userRepository.salesList(begin, range);
 		Double productCount = userRepository.salesListCount();
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		model.addAttribute("page", page);
 		model.addAttribute("principal", principal);
 		if (salesList.isEmpty()) {
@@ -200,14 +224,31 @@ public class AdminController {
 	@GetMapping("userSelect")
 	public String userSelect(@RequestParam Integer userId, Model model) {
 		User user = userRepository.userInfoSelect(userId);
+
 		model.addAttribute("user", user);
 		return "/admin/userSelect";
 	}
 
 	// QnA 모두 검색
 	@GetMapping("/find")
-	public String findQuestion(Model model) {
-		List<Question> questList = questionService.readQuestion();
+	public String findQuestion(@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
+		List<Question> questList = questionService.readQuestion(begin, range);
+		Double productCount = questionService.questionCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
 		LoginResponseDto user = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		if (user == null) {
 			model.addAttribute("user", null);

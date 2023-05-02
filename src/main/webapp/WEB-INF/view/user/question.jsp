@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 body {
 	width: 1183px;
@@ -117,6 +115,20 @@ body {
 	background-color: #8C9EFF;
 	color: white;
 }
+
+.page {
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding-bottom: 200px;
+}
+
+.page p {
+	font-size: 15px;
+	color: black;
+	width: 50px;
+}
 </style>
 <div class="content">
 	<div class="contentTitle">
@@ -143,45 +155,56 @@ body {
 				<c:choose>
 					<c:when test="${questList.reqStatus == 0}">
 						<div style="flex: 3;">
-							<a href="/question/detail?id=${questList.id}" value="답변미완료">
-								답변미완료</a>
+							<a href="/question/detail?id=${questList.id}" value="답변미완료"> 답변미완료</a>
 						</div>
 					</c:when>
 					<c:otherwise>
 						<div style="flex: 3;">
-							<a href="/question/detail?id=${questList.id}" value="답변완료">
-								답변완료</a>
+							<a href="/question/detail?id=${questList.id}" value="답변완료"> 답변완료</a>
 						</div>
 					</c:otherwise>
 				</c:choose>
 				<div style="flex: 8;">
-					<a href="/question/detail?id=${questList.id}"
-						value="${questList.id}">${questList.title}</a>
+					<a href="/question/detail?id=${questList.id}" value="${questList.id}">${questList.title}</a>
 				</div>
 				<div style="flex: 1;">
 					<c:choose>
 						<c:when test="${user.getRole().equals('admin')}">
-							<a href="/question/delete?id=${questList.id}"
-								value="${questList.id}"><button type="button"
-									class="deleteButton">delete</button></a>
+							<a href="/question/delete?id=${questList.id}" value="${questList.id}"><button type="button" class="deleteButton">delete</button></a>
 						</c:when>
 						<c:otherwise>
 							<c:choose>
 								<c:when test="${questList.userId==user.id}">
-									<a href="/question/delete?id=${questList.id}"
-										value="${questList.id}"><button type="button"
-											class="deleteButton">delete</button></a>
+									<a href="/question/delete?id=${questList.id}" value="${questList.id}"><button type="button" class="deleteButton">delete</button></a>
 								</c:when>
 								<c:otherwise>
-
 								</c:otherwise>
 							</c:choose>
 						</c:otherwise>
 					</c:choose>
 				</div>
 			</div>
-		</div>
 	</c:forEach>
+</div>
+<div class="page">
+	<c:choose>
+		<c:when test="${currentPage==1}">
+		</c:when>
+		<c:otherwise>
+			<a href="/question/find?currentPage=1&begin=${8*(1-1)}&range=8"><p><</p></a>
+		</c:otherwise>
+	</c:choose>
+	<c:forEach var="i" begin="${startPage}" end="${endPage}">
+		<a href="/question/find?currentPage=${i}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
+	</c:forEach>
+	<c:choose>
+		<c:when test="${currentPage==page||page==0}">
+		</c:when>
+		<c:otherwise>
+			<a href="/question/find?currentPage=${page}&begin=${8*(page-1)}&range=8"><p>></p></a>
+		</c:otherwise>
+	</c:choose>
+</div>
 </div>
 </div>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>

@@ -148,6 +148,7 @@ body {
 	text-decoration: underline;
 	color: black;
 }
+
 .page {
 	margin-top: 100px;
 	display: flex;
@@ -160,6 +161,10 @@ body {
 	font-size: 15px;
 	color: black;
 	width: 50px;
+}
+
+.page a {
+	text-decoration: none;
 }
 </style>
 
@@ -200,9 +205,23 @@ body {
 			<hr>
 		</c:forEach>
 		<div class="page">
-			<c:forEach var="i" begin="1" end="${page}">
-				<a href="/admin/userList?begin=${8*(i-1)}&range=8"><p>${i}</p></a>
+			<c:choose>
+				<c:when test="${currentPage==1}">
+				</c:when>
+				<c:otherwise>
+					<a href="/admin/userList?currentPage=1&begin=${8*(1-1)}&range=8"><p><</p></a>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<a href="/admin/userList?currentPage=${i}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
 			</c:forEach>
+			<c:choose>
+				<c:when test="${currentPage==page}">
+				</c:when>
+				<c:otherwise>
+					<a href="/admin/userList?currentPage=${page}&begin=${8*(page-1)}&range=8"><p>></p></a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 	</div>

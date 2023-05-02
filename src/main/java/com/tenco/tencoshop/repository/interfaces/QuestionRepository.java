@@ -3,6 +3,7 @@ package com.tenco.tencoshop.repository.interfaces;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.tenco.tencoshop.repository.model.Question;
 
@@ -10,7 +11,10 @@ import com.tenco.tencoshop.repository.model.Question;
 public interface QuestionRepository {
 
 	// 질문 전부 나열하기 
-	public List<Question> readQuestion();
+	public List<Question> readQuestion(@Param("begin") Integer begin,@Param("range") Integer range);
+	
+	// 질문 카운터 하기
+	public Double questionCount();
 
 	// 질문 검색 
 	public List<Question> searchQuestion(String findWord);

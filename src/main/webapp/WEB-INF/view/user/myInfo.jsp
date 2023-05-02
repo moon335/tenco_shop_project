@@ -118,6 +118,20 @@ body {
 	display: flex;
 	align-items: center;
 }
+
+.page {
+	margin-top: 50px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding-bottom: 200px;
+}
+
+.page p {
+	font-size: 15px;
+	color: black;
+	width: 50px;
+}
 </style>
 
 <div class="content">
@@ -139,7 +153,7 @@ body {
 			</div>
 			<div id="profileediter" style="margin-top: 20px;">
 				<div>
-					<h3 style="margin-left: 10px;">${user.username}님 반갑습니다.</h3>
+					<h3 style="margin-left: 10px;">${user.username}님반갑습니다.</h3>
 				</div>
 				<div>
 					<form action="/user/myinfoEditor" method="get">
@@ -214,6 +228,26 @@ body {
 				</div>
 			</div>
 		</c:forEach>
+
+	</div>
+	<div class="page">
+		<c:choose>
+			<c:when test="${currentPage==1}">
+			</c:when>
+			<c:otherwise>
+				<a href="/user/myinfoProc?currentPage=1&begin=${8*(1-1)}&range=8"><p><</p></a>
+			</c:otherwise>
+		</c:choose>
+		<c:forEach var="i" begin="${startPage}" end="${endPage}">
+			<a href="/user/myinfoProc?currentPage=${i}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
+		</c:forEach>
+		<c:choose>
+			<c:when test="${currentPage==page}">
+			</c:when>
+			<c:otherwise>
+				<a href="/user/myinfoProc?currentPage=${page}&begin=${8*(page-1)}&range=8"><p>></p></a>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </div>
 </div>

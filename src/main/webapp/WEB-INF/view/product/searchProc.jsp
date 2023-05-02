@@ -87,8 +87,8 @@ p {
 	<div class="search-container">
 		<form action="/product/search-proc" method="get">
 			<div class="search">
-				<input type="text" id="search" name="title" placeholder="브랜드명,모델명 등"> <input type="hidden" id="search" name="begin" value="0"> <input type="hidden" id="search" name="range"
-					value="8"> <input type="submit" value="검색">
+				<input type="text" id="search" name="title" placeholder="브랜드명,모델명 등"> <input type="hidden" id="search" name="currentPage" value="1"> <input type="hidden" id="search" name="begin"
+					value="0"> <input type="hidden" id="search" name="range" value="8"> <input type="submit" value="검색">
 			</div>
 		</form>
 	</div>
@@ -103,9 +103,24 @@ p {
 		</c:forEach>
 	</div>
 	<div class="page">
-		<c:forEach var="i" begin="1" end="${page}">
-			<a href="/product/search-proc?title=${title}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
+		<c:choose>
+			<c:when test="${currentPage==1}">
+			</c:when>
+			<c:otherwise>
+				<a href="/product/search-proc?title=${title}&currentPage=1&begin=${8*(1-1)}&range=8"><p><</p></a>
+			</c:otherwise>
+		</c:choose>
+		<c:forEach var="i" begin="${startPage}" end="${endPage}">
+			<a href="/product/search-proc?title=${title}&currentPage=${i}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
 		</c:forEach>
+		<c:choose>
+			<c:when test="${currentPage==page||page==0}">
+			</c:when>
+			<c:otherwise>
+				<a href="/product/search-proc?title=${title}&currentPage=${page}&begin=${8*(page-1)}&range=8"><p>></p></a>
+			</c:otherwise>
+		</c:choose>
 	</div>
+
 </body>
 </html>
