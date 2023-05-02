@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.tenco.tencoshop.dto.BrandResponseDto;
 import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.dto.ProductResponseDtoForReview;
 import com.tenco.tencoshop.repository.model.Product;
@@ -43,7 +44,10 @@ public interface ProductRepository {
 			@Param("sizeName") String sizeName);
 
 	// 브랜드 전체 조회
-	public List<ProductResponseDto> selectBrandAll();
+	public List<BrandResponseDto> selectBrandAll();
+	
+	// 브랜드 전체 조회 카운터
+	public Double selectBrandAllCount();
 
 	// 브랜드 조회
 	public ProductResponseDto selectBrand(Integer id);

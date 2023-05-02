@@ -21,9 +21,6 @@ import com.tenco.tencoshop.service.ProductService;
 public class MainController {
 
 	@Autowired
-	private HttpSession session;
-
-	@Autowired
 	private ProductService productService;
 
 	@GetMapping("/main")

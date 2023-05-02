@@ -155,7 +155,7 @@ body {
 							<ul class="home-menu">
 								<li><a href="#">브랜드</a>
 									<ul class="home-menu2">
-										<li><a href="/product/brandPage">모든브랜드</a></li>
+										<li><a href="/product/brandPage?currentPage=1&begin=0&range=8">모든브랜드</a></li>
 									</ul></li>
 								<ul class="home-menu">
 									<li><a href="/notice/list">공지사항</a>
@@ -211,7 +211,7 @@ body {
 						<a href="/product/prod-info/${list.modelNumber}"><img alt="" class="article-img" src="/static/images/prodImages/${list.imgRoute}"></a>
 						<h5>${list.brandName}</h5>
 						<p class="word">${list.engName}</p>
-						<h5>${list.releasePrice}원</h5>
+						<h5>${list.purchase}원</h5>
 					</div>
 				</c:forEach>
 			</div>

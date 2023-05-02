@@ -174,13 +174,6 @@ body {
 	<hr>
 	<div class="salesProductList">
 
-		<c:choose>
-			<c:when test="">
-			</c:when>
-			<c:otherwise>
-			</c:otherwise>
-		</c:choose>
-
 		<c:forEach var="salesList" items="${salesList}">
 			<div class="salesListLine" style="">
 				<div style="width: 10px;">

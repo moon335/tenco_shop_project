@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tenco.tencoshop.dto.BrandResponseDto;
 import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.repository.model.Product;
 import com.tenco.tencoshop.repository.model.Size;
@@ -83,8 +84,25 @@ public class ProductController {
 
 	// 브랜드 전체 보기 페이지 들어가기
 	@GetMapping("/brandPage")
-	public String brandPage(Model model) {
-		List<ProductResponseDto> brandList = productService.selectBrandAll();
+	public String brandPage(@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range, Model model) {
+		List<BrandResponseDto> brandList = productService.selectBrandAll();
+		Double productCount = productService.selectBrandAllCount();
+		Double count = Math.ceil(productCount);
+		Integer page = (int) Math.ceil(count / 8);
+		Integer startPage = currentPage - 5;
+		if (startPage <= 0) {
+			startPage = 1;
+		}
+		Integer endPage = startPage + 9;
+		if (endPage >= page) {
+			endPage = page;
+		}
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("page", page);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("page", page);
 		model.addAttribute("brandList", brandList);
 		return "/user/brandPage";
 	}

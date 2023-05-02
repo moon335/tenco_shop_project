@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tenco.tencoshop.dto.BrandResponseDto;
 import com.tenco.tencoshop.dto.ProductResponseDto;
 import com.tenco.tencoshop.repository.interfaces.ProductRepository;
 import com.tenco.tencoshop.repository.model.Product;
@@ -72,11 +73,19 @@ public class ProductService {
 	}
 
 	// 브랜드 모두 보기
-	public List<ProductResponseDto> selectBrandAll() {
-		List<ProductResponseDto> responseProductList = productRepository.selectBrandAll();
+	public List<BrandResponseDto> selectBrandAll() {
+		List<BrandResponseDto> responseProductList = productRepository.selectBrandAll();
 		return responseProductList;
 	}
 
+	
+	// 브랜드 모두 보기 카운터
+	public Double selectBrandAllCount() {
+		Double responseProductListCount = productRepository.selectBrandAllCount();
+		return responseProductListCount;
+	}
+
+	
 	// 브랜드 조회
 	public ProductResponseDto selectBrand(Integer id) {
 		ProductResponseDto responseProduct = productRepository.selectBrand(id);

@@ -193,7 +193,7 @@ body {
 	text-align: center;
 }
 .top-inner > label {
-	padding: 0 10px;
+	padding: 10px 10px;
 }
 .top-inner a {
 	text-decoration: none;

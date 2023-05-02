@@ -33,8 +33,6 @@ public class QuestionController {
 	private HttpSession session;
 	@Autowired
 	private QuestionService questionService;
-	@Autowired
-	private UserService userService;
 
 	// QnA 모두 검색
 	@GetMapping("/find")

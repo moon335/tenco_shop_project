@@ -145,6 +145,12 @@
 		select name as brand_name ,id
 		from brand_tb;
 	</select>
+	
+	<select id="selectBrandAllCount"
+		resultType="Double">
+		select count(*)
+		from brand_tb;
+	</select>
 
 	<select id="selectBrand"
 		resultType="com.tenco.tencoshop.dto.ProductResponseDto">

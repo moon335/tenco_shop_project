@@ -231,7 +231,7 @@ button:hover {
 	<header>
 		<div class="main-inner">
 			<div class="top-inner">
-				<button type="button" onclick="#">관심상품</button>
+				<button type="button" onclick="location.href='/cart/list'">장바구니</button>
 				<c:choose>
 					<c:when test="${principal != null}">
 						<a href="/user/logout"> <label>로그아웃</label></a>

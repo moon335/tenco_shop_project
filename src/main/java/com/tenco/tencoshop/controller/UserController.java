@@ -42,11 +42,13 @@ public class UserController {
 
 	// myinfo에서 주문한 제품 보기
 	@GetMapping("/myinfoProc")
-	public String myInfoProc(@RequestParam(required = false) Integer currentPage,@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range,Integer userId, Model model) {
+	public String myInfoProc(@RequestParam(required = false) Integer currentPage,
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range,
+			Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		userId = principal.getId();
 		OrderResponseDto orderCount = userService.orderCounter(principal.getId());
-		List<ProductRequestDto> orderList = userService.buyProductList(begin, range,principal.getId());
+		List<ProductRequestDto> orderList = userService.buyProductList(begin, range, principal.getId());
 		User user = userService.userInfo(principal.getId());
 		Double productCount = userService.buyListCount(userId);
 		Double count = Math.ceil(productCount);
@@ -78,10 +80,11 @@ public class UserController {
 	// 구매목록화면 들어가기
 	@GetMapping("/buylist")
 	public String buyList(@RequestParam(required = false) Integer currentPage,
-			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range,Integer userId, Model model) {
+			@RequestParam(required = false) Integer begin, @RequestParam(required = false) Integer range,
+			Integer userId, Model model) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
 		User user = userService.userInfo(principal.getId());
-		List<ProductRequestDto> orderList = userService.buyProductList(begin, range,principal.getId());
+		List<ProductRequestDto> orderList = userService.buyProductList(begin, range, principal.getId());
 		Double productCount = userService.buyListCount(user.getId());
 		Double count = Math.ceil(productCount);
 		Integer page = (int) Math.ceil(count / 8);

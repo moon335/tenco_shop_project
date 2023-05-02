@@ -127,6 +127,23 @@ body {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
+.page {
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	padding-bottom: 200px;
+}
+
+.page p {
+	font-size: 15px;
+	color: black;
+	width: 50px;
+}
+h5{
+	color:black;
+}
 </style>
 <div class="title">
 	<div id="demo" class="carousel slide" data-ride="carousel">
@@ -153,7 +170,28 @@ body {
 						<h5>${brandList.brandName}</h5> </a>
 				</div>
 			</c:forEach>
+
 		</div>
 	</div>
+
+</div>
+<div class="page">
+	<c:choose>
+		<c:when test="${currentPage==1}">
+		</c:when>
+		<c:otherwise>
+			<a href="/product/brandPage?currentPage=1&begin=${8*(1-1)}&range=8"><p><</p></a>
+		</c:otherwise>
+	</c:choose>
+	<c:forEach var="i" begin="${startPage}" end="${endPage}">
+		<a href="/product/brandPage?currentPage=${i}&begin=${8*(i-1)}&range=8"><p>${i}</p></a>
+	</c:forEach>
+	<c:choose>
+		<c:when test="${currentPage==page}">
+		</c:when>
+		<c:otherwise>
+			<a href="/product/brandPage?currentPage=${page}&begin=${8*(page-1)}&range=8"><p>></p></a>
+		</c:otherwise>
+	</c:choose>
 </div>
 <%@ include file="/WEB-INF/view/layout/footer.jsp"%>
