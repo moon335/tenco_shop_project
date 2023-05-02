@@ -53,6 +53,6 @@ public class AnswerController {
 		questionService.questionUpdate(questionResponseDto, answerRequsetDto, userId.getId());
 		answerService.answerWritinng(answerRequsetDto, userId.getId());
 		questionService.readQuestion(begin, range);
-		return "redirect:/admin/find?begin=0&range=8";
+		return "redirect:/admin/find?currentPage=1&begin=0&range=5";
 	}
 }

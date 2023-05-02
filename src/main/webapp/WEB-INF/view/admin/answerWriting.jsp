@@ -140,7 +140,7 @@ body {
 		</div>
 	</div>
 	<div class="textbox">
-		<form action="/answer/writing" method="post">
+		<form action="/answer/writing?currentPage=1&begin=0&range=5" method="post">
 			<input type="hidden" name="questionId" value="${id}">
 			<input type="hidden" name="questionId" value="${quest.id}">
 			<input type="hidden" name="questionTitle" value="${quest.title}">

@@ -286,7 +286,7 @@ public class AdminController {
 	@GetMapping("/delete")
 	public String questionDelete(Integer id) {
 		questionService.questionDelete(id);
-		return "redirect:/admin/find";
+		return "redirect:/admin/find?currentPage=1&begin=0&range=5";
 	}
 
 }
