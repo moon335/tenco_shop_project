@@ -53,6 +53,7 @@ public class CartController {
       List<CartResponseDto> cartList = cartService.readCartByUserId(loginUser.getId());
       // 주문 목록 페이지로 넘기기
       model.addAttribute("cartList", cartList);
+      model.addAttribute("user", loginUser);
       return "/product/cart";
    }
    

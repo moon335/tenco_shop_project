@@ -192,7 +192,7 @@ body {
                <a href="/product/prod-info/${list.modelNumber}"><img alt="" class="article-img" src="/static/images/prodImages/${list.imgRoute}" width="210" height="210"></a>
                <h5>${list.brandName}</h5>
                <p class="word">${list.engName}</p>
-               <h5>${list.releasePrice}원</h5>
+               <h5>${list.purchaseFormat()}원</h5>
             </div>
          </c:forEach>
       </div>

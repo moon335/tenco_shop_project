@@ -98,7 +98,7 @@ button:hover {
 					<div>${order.sizeName}</div>
 				</div>
 				<div class="product--purchase--wrap">
-					<span class="purchase--title">결제 금액</span><span class="purchase--value">${order.purchase} 원</span>
+					<span class="purchase--title">결제 금액</span><span class="purchase--value">${order.purchaseFormat()} 원</span>
 				</div>
 				<div class="product--orderDate--wrap">
 					<span class="purchase--title">주문 날짜</span><span class="purchase--value">${order.orderDate}</span>

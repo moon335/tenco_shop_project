@@ -196,7 +196,7 @@
 						<span>총 결제금액</span>
 					</div>
 					<div class="price--total--order--info">
-						<span class="amount">${product.purchase}원</span>
+						<span class="amount">${product.purchaseFormat()}원</span>
 					</div>
 				</div>
 				<div class="button--box">

@@ -187,7 +187,7 @@
 					<button onclick="submitBuy()" id="buy--button">
 						<span class="purchase">구매</span>
 						<div class="button--line"> </div>
-						<span class="price">${product.purchase}원</span>
+						<span class="price">${product.purchaseFormat()}원</span>
 					</button>
 					<button onclick="submitCart()" id="cart--button">
 						장바구니 담기
@@ -219,7 +219,7 @@
 					<dl class="detail--product--dl">
 						<div class="detail--box">
 							<dt class="product--title">발매가</dt>
-							<dd class="product--info">${product.releasePrice}원</dd>
+							<dd class="product--info">${product.releasePriceFormat()}원</dd>
 						</div>
 					</dl>
 				</div>

@@ -100,7 +100,7 @@ p {
 				<a href="/product/prod-info/${list.modelNumber}"><img class="img" src="/static/images/prodImages/${list.imgRoute}" width="210" height="250"/></a>
 				<p>${list.engName}</p>
 				<p>${list.korName}</p>
-				<p>${list.releasePrice}원</p>
+				<p>${list.purchaseFormat()}원</p>
 			</div>
 		</c:forEach>
 	</div>

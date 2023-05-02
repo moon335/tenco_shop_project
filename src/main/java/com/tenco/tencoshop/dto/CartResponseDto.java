@@ -2,6 +2,8 @@ package com.tenco.tencoshop.dto;
 
 import java.sql.Date;
 
+import com.tenco.tencoshop.util.MoneyFormatUtil;
+
 import lombok.Data;
 
 @Data
@@ -21,5 +23,9 @@ public class CartResponseDto {
    private String brandName;
    private String categoryName;
    private String sizeName;
+   
+   public String purchaseFormat() {
+	   return MoneyFormatUtil.moneyFormat(purchase);
+   }
    
 } // end of class
