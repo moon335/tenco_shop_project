@@ -1,6 +1,7 @@
 package com.tenco.tencoshop.dto;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -15,7 +16,7 @@ public class UserInfoRequestDto {
 	private String image;
 	@Email(message = "이메일 형식이 아닙니다. ")
 	private String email;
-	@NotNull(message = "비밀번호를 입력해주세요. ")
+	@NotBlank(message = "비밀번호를 입력해주세요. ")
 	private String password;
 	@NotNull(message = "이름을 입력해 주세요. ")
 	private String lastName;

@@ -75,6 +75,11 @@ public class OrderController {
 		return "/product/order";
 	}
 	
+	@GetMapping("/goPurchase")
+	public String gotoOrderPage() {
+		return "redirect:/order/purchase";
+	}
+	
 	@GetMapping("/purchase/{cartId}")
 	public String orderPage(@PathVariable Integer cartId, Model model) {
 		Cart responseCart = cartService.readCartById(cartId);
