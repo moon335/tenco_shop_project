@@ -67,5 +67,11 @@
 
 ![db_erc](https://user-images.githubusercontent.com/124985978/235618173-1603b9b3-33a4-430c-a872-132f665edb0d.png)
 
-
-
+<br>
+## 4️⃣ FLOWCHART
+<table>
+<tr>
+<td><img src="https://user-images.githubusercontent.com/124985978/235823234-d976fc6a-ef5f-4a89-a813-5832198d7d0b.jpg"></td>
+<td><img src="https://user-images.githubusercontent.com/124985978/235823280-f5a47a40-f2d6-4eec-9315-9fcbee4052b3.jpg"></td>
+</tr>
+</table>
