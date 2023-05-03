@@ -32,7 +32,7 @@
 | Profile  | ![김현우](https://user-images.githubusercontent.com/124985978/235606009-bea5abaf-c900-4092-9687-03930e111394.jpg) |![전대영](https://user-images.githubusercontent.com/124985978/235606071-17540786-c7f3-4646-954e-b747edf0f8a9.png) |![이치승](https://user-images.githubusercontent.com/124985978/235606141-63d3c857-b6b1-4156-9c1c-b61774f25d3f.png) |![김미정](https://user-images.githubusercontent.com/124985978/235606169-c42c8b1a-2eb0-46ae-a886-8a4248d4ae52.jpg) |![강민정](https://user-images.githubusercontent.com/124985978/235606203-c0c77adb-8df0-4faa-bb87-29e5b9bfd1a8.jpg) |
 | Position | 팀장 & Backend & UI | Backend & UI | Backend & UI | Backend & UI | Backend & UI |
 
-- 프로젝트 기간: 2023년 4월 27일 ~ 2023년 5월 3일
+- 프로젝트 기간: 2023년 4월 21일 ~ 2023년 5월 3일
 - 소개 및 시연 영상: 
 
 <br> 
@@ -82,44 +82,13 @@
 
 💬 *회원가입을 통해 SQL로 올라간 값을 비교해 각종 예외처리를 구현하였습니다.*
 
-![withdrawal](https://user-images.githubusercontent.com/124985978/235608231-03d6c6d8-90b2-42f5-9b29-d6c1816ac7f9.png)
-
-<details>
-<summary> 👉🏻 Source  </summary>
-  
-<pre>
-<code>
-
-</code>
-</pre>
-  
-</details>
-<br>
-
-### 2️⃣ 관리자 전용 페이지와 공지사항 및 FAQ
-💬 *관리자 계정 공지사항, FAQ 작성 및 수정을 할 수 있습니다.*
-
-  <table border="0" >
+<table border="0" >
     <tr>
-        <td>    <img width="400" src="https://user-images.githubusercontent.com/124985978/235610998-4db6eaa9-8a42-49d4-ac3f-e34596b1c7f4.png"> </img></td>
-        <td>    <img width="400" src="https://user-images.githubusercontent.com/124985978/235611010-4205367c-5db3-4ae7-b786-a110854d3e97.png"> </img></td>
+        <td>    <img width="400" src="https://user-images.githubusercontent.com/124985978/235808655-d5813d65-7ea0-4274-add8-37c02b49db30.png"> </img></td>
+        <td>    <img width="400" src="https://user-images.githubusercontent.com/124985978/235808666-c693b8f0-5b68-4585-bc25-8d3b819a9b18.png"> </img></td>
    </tr>
 </table>
 
-- 회원가입 시 관리자 코드를 입력하면 관리자로 로그인이 가능합니다.
-  - 관리자는 공지사항과 FAQ를 수정할 수 있습니다.
-  - 구매자가 작성한 후기에 답글을 달 수 있습니다.
-
-<details>
-<summary> 👉🏻 Source  </summary>
-  
-<pre>
-<code>
-
-</code>
-</pre>
-  
-</details>
 
 <br>
 
