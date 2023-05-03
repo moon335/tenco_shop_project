@@ -83,7 +83,7 @@ public class QuestionController {
 			return "/user/question";
 		}
 		
-		return "redirect:/admin/find?currentPage=1&begin=0&range=5";
+		return "/admin/adminQuestion";
 	}
 
 	// QnA 상세 정보 들어가기
