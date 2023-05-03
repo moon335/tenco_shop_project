@@ -265,11 +265,6 @@ button:hover {
          </div>
          <div>
             <p>
-               <a href="">결제 정보</a>
-            </p>
-         </div>
-         <div>
-            <p>
                <a href="/admin/find?currentPage=1&begin=0&range=5">QnA</a>
             </p>
          </div>

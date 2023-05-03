@@ -143,7 +143,6 @@ public class UserController {
 	}
 
 	// 내 정보 수정하기
-	// validation
 	@PostMapping("/myinfoupdate")
 	public String myInfoUpdate(@Valid UserInfoRequestDto userInfoRequestDto, BindingResult bindingResult) {
 		LoginResponseDto principal = (LoginResponseDto) session.getAttribute(Define.PRINCIPAL);
