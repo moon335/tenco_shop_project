@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tenco.tencoshop.repository.interfaces.OrderRepository">
+
+	<insert id="insertOrder">
+		insert into order_tb(user_id, product_id, cart_id, receiver, address, receiver_phone_number)
+		values
+		(#{userId}, #{prodId}, #{cartId}, #{receiver}, #{address}, #{receiverPhoneNumber})
+	</insert>
+
+	<update id="updateDeliveryStatus">
+		update order_tb set delivery_status = 1
+		where id =#{id}
+	</update>
+
+	<select id="findById" resultType="com.tenco.tencoshop.repository.model.Order">
+		select * from order_tb where id = #{id}
+	</select>
+
+	<select id="findByUserIdLimitOne" resultType="com.tenco.tencoshop.dto.OrderCompleteDto">
+		select s.name as size_name, o.*, p.*, s.*, b.name as brand_name
+		from order_tb as o
+		inner join product_tb as p
+		on o.product_id=p.id
+		inner join size_tb
+		as s
+		on s.id=p.size_id
+		inner join brand_tb as b
+		on b.id=p.brand_id
+		where o.user_id=#{userId}
+		order by o.id desc
+		limit 1
+	</select>
+
+</mapper> 

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tenco.tencoshop.repository.interfaces.ProductRepository">
+	<select id="findAllByMain" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select p.id, p.model_number, p.eng_name, p.kor_name, p.purchase,
+		p.img_route, b.name as
+		brand_name
+		from product_tb as p
+		inner join
+		brand_tb as b
+		on p.brand_id =
+		b.id
+		group by eng_name
+		limit 8
+	</select>
+
+	<select id="findAll" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select p.id, p.eng_name, p.kor_name, p.purchase,
+		p.img_route, b.name as
+		brand_name
+		from product_tb as p
+		inner join
+		brand_tb as b
+		on p.brand_id =
+		b.id
+		group by eng_name
+		limit #{begin},
+		#{range}
+	</select>
+
+	<select id="findAllCount" resultType="Double">
+		select count(*) as count
+		from (select * from product_tb
+		group by eng_name) as a
+	</select>
+
+	<select id="findProductAll" resultType="com.tenco.tencoshop.repository.model.Product">
+		select * from product_tb
+	</select>
+
+	<select id="findProduct" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select * from product_tb where kor_name LIKE #{title} OR
+		eng_name LIKE
+		#{title}
+		group by eng_name
+		limit #{begin}, #{range}
+	</select>
+
+	<select id="findProductByModelNumberAndSizeId" resultType="com.tenco.tencoshop.repository.model.Product">
+		select * from product_tb where model_number =
+		#{modelNumber} and size_id = #{sizeId}
+	</select>
+
+	<select id="findCategory" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select *
+		from product_tb as p
+		join category_tb as c
+		on p.category_id = c.id
+		where c.name like #{name}
+		group by eng_name
+		limit
+		#{begin}, #{range}
+	</select>
+
+	<select id="findCategoryCount" resultType="Double">
+		select count(*) as
+		count
+		from (
+		select p.*
+		from
+		product_tb as p
+		join category_tb as c
+		on p.category_id = c.id
+		where c.name
+		like #{name}
+		GROUP BY eng_name
+		) as a
+	</select>
+
+	<select id="findProductById" resultType="com.tenco.tencoshop.dto.ProductResponseDtoForReview">
+		select p.*, b.name as brand_name, c.name as category_name,
+		s.name as
+		size_name
+		from product_tb as p
+		inner join brand_tb as b
+		on
+		p.brand_id = b.id
+		inner join
+		category_tb as c
+		on p.category_id = c.id
+		inner join size_tb as s
+		on p.size_id = s.id
+		where p.id = #{id}
+	</select>
+
+	<select id="findProductByProdId" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select p.*, b.name as brand_name, c.name as category_name,
+		s.name as
+		size_name
+		from product_tb as p
+		inner join brand_tb as b
+		on
+		p.brand_id = b.id
+		inner
+		join category_tb as c
+		on p.category_id = c.id
+		inner join size_tb as s
+		on p.size_id = s.id
+		where p.id = #{id}
+	</select>
+
+	<select id="findProductByModelNumber" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select p.*, b.name as brand_name, c.name as category_name,
+		s.name as
+		size_name
+		from product_tb as p
+		inner join brand_tb as b
+		on
+		p.brand_id = b.id
+		inner join category_tb as c
+		on p.category_id = c.id
+		inner join size_tb as s
+		on p.size_id = s.id
+		where p.model_number =
+		#{modelNumber}
+		limit 1
+	</select>
+
+	<select id="findProductByModelNumberAndSize" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select p.*, s.name as size_name
+		from product_tb as p
+		inner
+		join size_tb as s
+		on p.size_id = s.id
+		where p.model_number =
+		#{modelNumber} and
+		s.name = #{sizeName}
+	</select>
+
+	<select id="findBrandAll" resultType="com.tenco.tencoshop.dto.BrandResponseDto">
+		select *
+		from brand_tb
+		limit #{begin},
+		#{range}
+	</select>
+
+	<select id="findBrandAllCount" resultType="Double">
+		select count(*)
+		from brand_tb
+	</select>
+
+	<select id="findBrand" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select name as brand_name ,id
+		from brand_tb
+		where id=#{id}
+	</select>
+
+	<select id="findBrandInfo" resultType="com.tenco.tencoshop.dto.ProductResponseDto">
+		select * from product_tb
+		where brand_id=#{id}
+		group by
+		eng_name
+		limit #{begin},
+		#{range}
+	</select>
+
+	<select id="findBrandInfoCount" resultType="Double">
+		select count(*) as
+		count
+		from (
+		select *
+		from product_tb
+		where brand_id=#{id}
+		group by eng_name
+		)as a
+	</select>
+
+	<select id="findProductCount" resultType="Double">
+		select count(*) as count
+		from (
+		select * from product_tb
+		where kor_name LIKE #{korName} OR
+		eng_name LIKE
+		#{engName}
+		GROUP BY eng_name
+		) as a
+	</select>
+
+</mapper>

@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/layout/myInfoHeader.jsp"%>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Noto Sans' rel='stylesheet'>
 <style>
 body {
-	width: 1200px;
+	width: 1183px;
 	margin: 0 auto;
+}
+
+.content {
+	font-family: 'Noto Sans';
 }
 
 .header {
@@ -64,12 +71,12 @@ body {
 	width: 950px;
 }
 
-.myinfo {
+.myInfo {
 	border-bottom: 1px solid #ccc;
 	margin-bottom: 50px;
 }
 
-.myimage {
+.myImage {
 	margin-right: 20px;
 }
 
@@ -119,7 +126,6 @@ body {
 	background-color: #f8f6f6;
 	border-style: none;
 	justify-content: space-between;
-	padding: 20px;
 }
 
 .buyProgress div {
@@ -155,37 +161,37 @@ body {
 	color: black;
 }
 
-.myinfoDetail {
+.myInfoDetail {
 	display: flex;
 	flex-direction: column;
 }
 
-.myinfoLogin {
+.myInfoLogin {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 30px;
 }
 
-.myinfoLogin div {
+.myInfoLogin div {
 	flex-direction: column;
 	margin: 10px;
 }
 
-.myinfoLogin input {
+.myInfoLogin input {
 	border: none;
 	width: 500px;
 	border-bottom: 1px solid #ccc;
 }
 
-.myinfoLogin input:focus {
+.myInfoLogin input:focus {
 	outline: none;
 }
 
 .submit {
 	display: flex;
-	width: 500px;
 	justify-content: flex-end;
 	align-items: flex-end;
+	margin-left: 10px;
 }
 
 .submit input {
@@ -197,7 +203,7 @@ body {
 	padding: 10px 14px;
 }
 
-.myinfoLogin select {
+.myInfoLogin select {
 	appearance: none;
 	border: none;
 	width: 500px;
@@ -205,88 +211,146 @@ body {
 	border-bottom: 1px solid #ccc;
 }
 
-.myinfoLogin select:focus {
+.myInfoLogin select:focus {
 	outline: none;
 }
 
 .submit input:hover {
 	color: #909090;
 }
+
+#result_card img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+	padding: 5px;
+	margin-top: 10px;
+	margin: auto;
+}
+
+#result_card {
+	position: relative;
+}
+
+.imgDeleteBtn {
+	position: absolute;
+	top: 0;
+	right: 5%;
+	background-color: #ef7d7d;
+	color: wheat;
+	font-weight: 900;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	line-height: 26px;
+	text-align: center;
+	border: none;
+	display: block;
+	cursor: pointer;
+}
+
+.button {
+	display: flex;
+	width: 550px;
+	justify-content: flex-end;
+}
+
+.userinfo {
+	margin-left: 20px;
+	padding: 20px;
+}
 </style>
-
-		<div class="content">
-			<div class="content_1">
-				<div class="title">
-					<h1>프로필 정보</h1>
+<div class="content">
+	<div class="content_1">
+		<div class="title" style="padding-bottom: 10px;">
+			<h2>프로필 정보</h2>
+		</div>
+		<div class="myInfo">
+			<form action="/user/myinfoupdateimage" method="post" enctype="multipart/form-data" style="display: flex;">
+				<div class="myImage">
+					<c:choose>
+						<c:when test="${principal.image!=null}">
+							<label for="customFile"> <input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png"
+								style="display: none;"> <img class="m--profile" alt="" src=" <c:url value="/images/uploads/${principal.image}"/>" width="150px"
+								height="150" style="margin-top: -20px; border-radius: 150px;">
+							</label>
+						</c:when>
+						<c:otherwise>
+							<label for="customFile"><input type="file" class="cutom-file-input" id="customFile" name="file" accept=".jpg,.jpeg,.png"
+								style="display: none;"> <img class="m--profile" alt="" src="/images/myinfo.png" width="150px" height="150"
+								style="margin-top: -20px; border-radius: 150px;"></label>
+						</c:otherwise>
+					</c:choose>
+					<div id="uploadResult"></div>
 				</div>
-				<div class="myinfo">
-					<div class="myimage">
-						<img alt="" src="/images/myinfo.png" width="150px" height="150">
+				<div id="profileediter">
+					<div>
+						<h3>${user.username}</h3>
 					</div>
-					<div id="profileediter">
+					<div>
 						<div>
-							<h3>jdy1787</h3>
+							<button type="submit" class="btn btn-outline-dark">이미지 변경</button>
 						</div>
-						<div>
-							<form action="">
-								<button type="submit" class="btn btn-outline-dark">이미지 변경</button>
-							</form>
-							<form action="">
-								<button type="submit" class="btn btn-outline-dark">삭제</button>
-							</form>
-						</div>
-					</div>
-				</div>
-				<form action="#">
-					<div class="myinfoDetail">
-						<div class="myinfoLogin">
-							<h4>
-								<b>로그인 정보</b>
-							</h4>
-							<div>
-								<p>이메일 주소</p>
-								<input type="text">
-							</div>
-							<div>
-								<p>비밀번호</p>
-								<input type="password">
-							</div>
-						</div>
-					</div>
-					<div class="myinfoDetail">
-						<div class="myinfoLogin">
-							<h4>
-								<b>개인 정보</b>
-							</h4>
-							<div>
-								<p>이름</p>
-								<input type="text">
-							</div>
-							<div>
-								<p>휴대폰 번호</p>
-								<input type="text">
-							</div>
-							<div>
-								<p>신발사이즈</p>
-								<select name="shoesSize" size="1">
-									<option value="230">230</option>
-									<option value="240">240</option>
-									<option value="250">250</option>
-									<option value="260">260</option>
-									<option value="270">270</option>
-									<option value="280">280</option>
-									<option value="290">290</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="submit">
-						<input type="submit" value="수정">
-					</div>
-				</form>
-			</div>
-
+			</form>
+			<form action="/user/userInfoDeleteimage" method="post" enctype="multipart/form-data" style="display: flex;">
+				<button type="submit" class="btn btn-outline-dark">삭제</button>
+			</form>
 		</div>
 	</div>
-</body>
-</html>
+</div>
+</div>
+<form action="/user/myinfoupdate" method="post" class="userinfo">
+	<div class="myInfoDetail">
+		<div class="myInfoLogin">
+			<h4>
+				<b>로그인 정보</b>
+			</h4>
+			<div>
+				<p>이메일 주소</p>
+				<input type="text" value="${user.email}" name="email">
+			</div>
+			<div>
+				<p>비밀번호</p>
+				<input type="password" value="${principal.password}" name="password">
+			</div>
+		</div>
+	</div>
+	<div class="myInfoDetail">
+		<div class="myInfoLogin">
+			<h4>
+				<b>개인 정보</b>
+			</h4>
+			<div>
+				<p>이름</p>
+				<input type="text" value="${user.lastName}" name="lastName">
+			</div>
+			<div>
+				<p>휴대폰 번호</p>
+				<input type="text" value="${user.tel}" name="tel">
+			</div>
+		</div>
+	</div>
+	<div class="button">
+		<div class="submit">
+			<input type="submit" value="수정">
+		</div>
+</form>
+<div class="submit">
+	<form action="/user/withdraw" method="get">
+		<input type="submit" value="탈퇴">
+	</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+	$(".custom-file-input").on(
+			"change",
+			function() {
+				var fileName = $(this).val().split("\\").pop();
+				$(this).siblings(".custom-file-label").addClass("selected")
+						.html(fileName);
+			});
+</script>
+<%@ include file="/WEB-INF/view/layout/footer.jsp"%>
