@@ -33,7 +33,11 @@
 | Position | 팀장 & Backend & UI | Backend & UI | Backend & UI | Backend & UI | Backend & UI |
 
 - 프로젝트 기간: 2023년 4월 21일 ~ 2023년 5월 3일
-- 소개 및 시연 영상: 
+- 소개 및 시연 영상: https://user-images.githubusercontent.com/124985978/235816437-f6c2b80c-86f0-41a7-a002-82c61ba492ed.mp4
+
+
+
+
 
 <br> 
 
